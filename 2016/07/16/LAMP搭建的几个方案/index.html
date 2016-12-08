@@ -1,0 +1,978 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="lamp,xcache," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x5206;&amp;#x522B;&amp;#x4F7F;&amp;#x7528;yum&amp;#x53CA;&amp;#x6E90;&amp;#x7801;&amp;#x5305;&amp;#x7F16;&amp;#x8BD1;&amp;#x642D;&amp;#x5EFA;lamp&amp;#x73AF;&amp;#x5883;&amp;#xFF0C;&amp;#x5E76;&amp;#x505A;&amp;#x6D4B;&amp;#x8BD5;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LAMP搭建的几个方案">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/07/16/LAMP搭建的几个方案/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x5206;&amp;#x522B;&amp;#x4F7F;&amp;#x7528;yum&amp;#x53CA;&amp;#x6E90;&amp;#x7801;&amp;#x5305;&amp;#x7F16;&amp;#x8BD1;&amp;#x642D;&amp;#x5EFA;lamp&amp;#x73AF;&amp;#x5883;&amp;#xFF0C;&amp;#x5E76;&amp;#x505A;&amp;#x6D4B;&amp;#x8BD5;">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/16/LAMP搭建的几个方案/wordpress.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/16/LAMP搭建的几个方案/pma1.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/16/LAMP搭建的几个方案/pma2.png">
+<meta property="og:updated_time" content="2016-12-08T14:37:02.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LAMP搭建的几个方案">
+<meta name="twitter:description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x5206;&amp;#x522B;&amp;#x4F7F;&amp;#x7528;yum&amp;#x53CA;&amp;#x6E90;&amp;#x7801;&amp;#x5305;&amp;#x7F16;&amp;#x8BD1;&amp;#x642D;&amp;#x5EFA;lamp&amp;#x73AF;&amp;#x5883;&amp;#xFF0C;&amp;#x5E76;&amp;#x505A;&amp;#x6D4B;&amp;#x8BD5;">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/07/16/LAMP搭建的几个方案/wordpress.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> LAMP搭建的几个方案 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LAMP搭建的几个方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-16T10:03:59+08:00" content="2016-07-16">
+              2016-07-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux服务/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux服务</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/16/LAMP搭建的几个方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/16/LAMP搭建的几个方案/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5728;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x5206;&#x522B;&#x4F7F;&#x7528;yum&#x53CA;&#x6E90;&#x7801;&#x5305;&#x7F16;&#x8BD1;&#x642D;&#x5EFA;lamp&#x73AF;&#x5883;&#xFF0C;&#x5E76;&#x505A;&#x6D4B;&#x8BD5;</p>
+<a id="more"></a>
+<h2 id="&#x65B9;&#x6848;"><a href="#&#x65B9;&#x6848;" class="headerlink" title="&#x65B9;&#x6848;"></a>&#x65B9;&#x6848;</h2><ol>
+<li><p>CentOS 7, lamp+xcache, rpm&#x5305;, php&#x4EE5;module&#x65B9;&#x5F0F;&#x5B89;&#x88C5;<br> a) &#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x63D0;&#x4F9B;phpMyAdmin&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x63D0;&#x4F9B;wordpress<br> b) &#x4E3A;phpMyAdmim&#x63D0;&#x4F9B;https&#x670D;&#x52A1;  </p>
+</li>
+<li><p>CentOS 7, lamp + xcache&#xFF0C; rpm&#x5305;&#xFF0C;php-fpm<br> a) httpd, php, mariadb&#x5206;&#x522B;&#x90E8;&#x7F72;&#x5728;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x4E3B;&#x673A;&#x4E0A;<br> b) &#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x63D0;&#x4F9B;phpMyAdmin&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x63D0;&#x4F9B;wordpress<br> c) &#x4E3A;phpMyAdmim&#x63D0;&#x4F9B;https&#x670D;&#x52A1;</p>
+</li>
+<li><p>CentOS 7, lamp + xcache&#xFF0C;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#xFF0C;php-fpm<br> a) httpd, php, mariadb&#x5206;&#x522B;&#x90E8;&#x7F72;&#x5728;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x4E3B;&#x673A;&#x4E0A;&#xFF0C;&#x4EE5;&#x53CA;&#x90FD;&#x5728;&#x540C;&#x4E00;&#x4E3B;&#x673A;<br> b) &#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x63D0;&#x4F9B;phpMyAdmin&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x63D0;&#x4F9B;wordpress<br> c) &#x4E3A;phpMyAdmim&#x63D0;&#x4F9B;https&#x670D;&#x52A1;  </p>
+</li>
+</ol>
+<h2 id="&#x73AF;&#x5883;&#x51C6;&#x5907;"><a href="#&#x73AF;&#x5883;&#x51C6;&#x5907;" class="headerlink" title="&#x73AF;&#x5883;&#x51C6;&#x5907;"></a>&#x73AF;&#x5883;&#x51C6;&#x5907;</h2><ul>
+<li>&#x7CFB;&#x7EDF;&#xFF1A;CentOS7.x86_64 (192.168.1.71~74)</li>
+<li>&#x914D;&#x7F6E;&#x597D;yum&#x6E90;&#x5E76;&#x5B89;&#x88C5;&#x5F00;&#x53D1;&#x5305;&#x7EC4; <strong>&#x201C;Development Tools&#x201D;</strong>&#x53CA;<strong>&#x201C;Server Platform Development&#x201D;</strong></li>
+<li>&#x4E3A;&#x65B9;&#x4FBF;&#x6D4B;&#x8BD5;&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;iptables&#x53CA;SELinux&#xFF0C;&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#x540E;&#x671F;&#x8BA8;&#x8BBA;</li>
+<li>&#x4E0B;&#x8F7D;&#x76F8;&#x5E94;&#x6E90;&#x7801;&#x5305;&#xFF1A;<ul>
+<li>apr-1.5.2.tar.bz2</li>
+<li>apr-util-1.5.4.tar.bz2</li>
+<li>httpd-2.4.23.tar.bz2</li>
+<li>mariadb-5.5.50-linux-x86_64.tar.gz</li>
+<li>php-5.5.37.tar.xz</li>
+<li>xcache-3.2.0.tar.bz2</li>
+<li>wordpress-4.5.3-zh_CN.tar.gz</li>
+<li>phpMyAdmin-4.6.3-all-languages.zip</li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x4E00;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;1&#xFF0C;php&#x4EE5;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x5B89;&#x88C5;"><a href="#&#x4E00;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;1&#xFF0C;php&#x4EE5;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x5B89;&#x88C5;" class="headerlink" title="&#x4E00;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;1&#xFF0C;php&#x4EE5;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x5B89;&#x88C5;"></a>&#x4E00;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;1&#xFF0C;php&#x4EE5;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x5B89;&#x88C5;</h2><h3 id="1-&#x73AF;&#x5883;&#xFF1A;&#x9759;&#x6001;IP-192-168-1-71"><a href="#1-&#x73AF;&#x5883;&#xFF1A;&#x9759;&#x6001;IP-192-168-1-71" class="headerlink" title="1. &#x73AF;&#x5883;&#xFF1A;&#x9759;&#x6001;IP(192.168.1.71)"></a>1. &#x73AF;&#x5883;&#xFF1A;&#x9759;&#x6001;IP(192.168.1.71)</h3><h3 id="2-&#x5B89;&#x88C5;"><a href="#2-&#x5B89;&#x88C5;" class="headerlink" title="2. &#x5B89;&#x88C5;"></a>2. &#x5B89;&#x88C5;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd php php-mysql mariadb-server php-xcache</span><br></pre></td></tr></table></figure>
+<h3 id="3-httpd-2-4"><a href="#3-httpd-2-4" class="headerlink" title="3. httpd-2.4"></a>3. httpd-2.4</h3><ul>
+<li><strong>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;</strong>/etc/httpd/conf/httpd.conf, /etc/httpd/conf.d/*.conf</li>
+<li><strong>&#x542F;&#x52A8;&#x670D;&#x52A1;&#xFF1A;</strong><br>  <code>systemctl start httpd</code><br>  <code>ss -tunl sport = :80</code><br>  <code>ps aux | grep httpd</code>  </li>
+<li><strong>&#x6D4B;&#x8BD5;&#xFF1A;</strong><br>  <code>echo &quot;&lt;h2&gt;hello world&lt;/h2&gt;&quot; &gt; /var/www/html/index.html</code><br>  <code>curl 192.168.1.71</code></li>
+</ul>
+<h3 id="4-php-5-4"><a href="#4-php-5-4" class="headerlink" title="4. php-5.4"></a>4. php-5.4</h3><ul>
+<li><strong>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;</strong>/etc/php.ini, /etc/php.d/*.ini</li>
+</ul>
+<h3 id="5-mariadb-5-5"><a href="#5-mariadb-5-5" class="headerlink" title="5. mariadb-5.5"></a>5. mariadb-5.5</h3><ul>
+<li><p><strong>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;</strong>/etc/my.cnf,/etc/my.cnf.d/*.cnf<br>  &#x5728;&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/my.cnf&#x4E2D;[mysqld]&#x4E0B;&#x6DFB;&#x52A0;&#xFF1A;<br>  <code>innodb_file_per_table = On</code><br>  <code>skip_name_resolve = On</code></p>
+</li>
+<li><p><strong>&#x542F;&#x52A8;&#x670D;&#x52A1;&#xFF1A;</strong><br>  <code>systemctl start mariadb</code><br>  <code>ss -tunl sport = :3306</code><br>  <code>ps aux | grep mysql</code><br>  <em>&#x6CE8;&#xFF1A;&#x5982;&#x679C;&#x542F;&#x52A8;&#x4E0D;&#x4E86;&#xFF0C;&#x5C1D;&#x8BD5;&#x4FEE;&#x6539;&#x6743;&#x9650;:</em> <code>chown -R mysql.mysql /var/lib/mysql</code></p>
+</li>
+<li><p><strong>&#x521D;&#x59CB;&#x5316;&#x6570;&#x636E;&#x5E93;&#x53CA;&#x5B89;&#x5168;&#x8BBE;&#x7F6E;&#xFF1A;</strong>&#x9ED8;&#x8BA4;&#x53EA;&#x5141;&#x8BB8;root&#x7528;&#x6237;&#x672C;&#x5730;&#x767B;&#x5F55;&#xFF0C;&#x4E14;&#x7A7A;&#x5BC6;&#x7801;<br>  <code>mysql_install_db</code><br>  <code>mysql_secure_installation</code>  # &#x6DFB;&#x52A0;root&#x5BC6;&#x7801;&#xFF0C;&#x79FB;&#x9664;&#x533F;&#x540D;&#x7528;&#x6237;&#x2026;  </p>
+</li>
+<li><p><strong>&#x767B;&#x5F55;&#x5E76;&#x6388;&#x6743;&#xFF1A;</strong><br>  <code>mysql -uroot -p123</code><br>  <code>GRANT ALL ON *.* TO test@&apos;localhost&apos; identified by &apos;123&apos;</code><br>  <code>GRANT ALL ON *.* TO test@&apos;127.0.0.1&apos; identified by &apos;123&apos;</code></p>
+</li>
+<li><p><strong>&#x4F7F;&#x7528;&#x6D4B;&#x8BD5;&#x7528;&#x6237;&#x767B;&#x5F55;&#xFF1A;</strong><br>  <code>mysql -utest -p123</code></p>
+</li>
+</ul>
+<h3 id="6-php-xcache"><a href="#6-php-xcache" class="headerlink" title="6. php-xcache"></a>6. php-xcache</h3><ul>
+<li><strong>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;</strong>/etc/php.d/xcache.ini</li>
+</ul>
+<h3 id="7-&#x6D4B;&#x8BD5;&#x8FDE;&#x63A5;"><a href="#7-&#x6D4B;&#x8BD5;&#x8FDE;&#x63A5;" class="headerlink" title="7. &#x6D4B;&#x8BD5;&#x8FDE;&#x63A5;"></a>7. &#x6D4B;&#x8BD5;&#x8FDE;&#x63A5;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /var/www/html/index.php     <span class="comment"># &#x7F16;&#x8F91;&#x9ED8;&#x8BA4;&#x4E3B;&#x9875;&#x5185;&#x5BB9;&#x5982;&#x4E0B;</span></span><br><span class="line">curl 192.168.1.71/index.php     <span class="comment"># &#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x8FDE;&#x63A5;&#x6210;&#x529F;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $con = mysql_connect(<span class="string">&apos;127.0.0.1&apos;</span>,<span class="string">&apos;test&apos;</span>,<span class="string">&apos;123&apos;</span>);</span><br><span class="line">    <span class="keyword">if</span>($con){</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&apos;OK&apos;</span>;</span><br><span class="line">    }<span class="keyword">else</span>{</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&apos;FAIL&apos;</span>;</span><br><span class="line">    }</span><br><span class="line">    phpinfo();      <span class="comment">//&#x67E5;&#x770B;php&#x4FE1;&#x606F;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x914D;&#x7F6E;&#x53CA;wordpress&#x5B89;&#x88C5;"><a href="#8-&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x914D;&#x7F6E;&#x53CA;wordpress&#x5B89;&#x88C5;" class="headerlink" title="8. &#x865A;&#x62DF;&#x4E3B;&#x673A;&#x914D;&#x7F6E;&#x53CA;wordpress&#x5B89;&#x88C5;"></a>8. &#x865A;&#x62DF;&#x4E3B;&#x673A;&#x914D;&#x7F6E;&#x53CA;wordpress&#x5B89;&#x88C5;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mkdir /web</span><br><span class="line">tar xf wordpress-4.5.3-zh_CN.tar.gz -C /web</span><br><span class="line"><span class="built_in">cd</span> /web/wordpress/</span><br><span class="line">cp wp-config{-sample,}.php</span><br><span class="line">vim wp-config.php           <span class="comment"># &#x7F16;&#x8F91;wp&#x914D;&#x7F6E;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x65B0;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x505A;&#x5982;&#x4E0B;&#x4FEE;&#x6539;&#x5E76;&#x505A;&#x76F8;&#x5E94;&#x6388;&#x6743;&#xFF0C;&#x7565;</span></span><br><span class="line">    define(<span class="string">&apos;DB_NAME&apos;</span>, <span class="string">&apos;wordpress&apos;</span>);     <span class="comment"># &#x6570;&#x636E;&#x5E93;&#x540D;</span></span><br><span class="line">    define(<span class="string">&apos;DB_USER&apos;</span>, <span class="string">&apos;wpuser&apos;</span>);        <span class="comment"># &#x7528;&#x6237;</span></span><br><span class="line">    define(<span class="string">&apos;DB_PASSWORD&apos;</span>, <span class="string">&apos;wppass&apos;</span>);    <span class="comment"># &#x5BC6;&#x7801;</span></span><br><span class="line"></span><br><span class="line">vim /etc/httpd/conf.d/vhost.conf        <span class="comment"># &#x6DFB;&#x52A0;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x914D;&#x7F6E;</span></span><br><span class="line">    </span><br><span class="line">    &lt;VirtualHost 192.168.1.71:80&gt;</span><br><span class="line">        ServerName wp.liu2lin.com       <span class="comment"># &#x670D;&#x52A1;&#x5668;&#x540D;</span></span><br><span class="line">        DocumentRoot /web/wordpress     <span class="comment"># &#x6839;</span></span><br><span class="line">        &lt;Directory <span class="string">&quot;/web/wordpress&quot;</span>&gt;    <span class="comment"># &#x6388;&#x6743;</span></span><br><span class="line">                Options None</span><br><span class="line">                AllowOverride None</span><br><span class="line">                Require all granted</span><br><span class="line">        &lt;/Directory&gt;</span><br><span class="line">    &lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<p>&#x4FEE;&#x6539;hosts&#x6587;&#x4EF6;&#x6DFB;&#x52A0;: 192.168.1.71 wp.liu2lin.com&#xFF0C;&#x8BBF;&#x95EE;wp.liu2lin.com&#x521D;&#x59CB;&#x5316;wordpress&#x7AD9;&#x70B9;</p>
+<p><img src="/2016/07/16/LAMP&#x642D;&#x5EFA;&#x7684;&#x51E0;&#x4E2A;&#x65B9;&#x6848;/wordpress.png" alt="wp"></p>
+<h2 id="&#x4E8C;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;2&#xFF0C;FastCGI&#x65B9;&#x5F0F;-php-fpm"><a href="#&#x4E8C;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;2&#xFF0C;FastCGI&#x65B9;&#x5F0F;-php-fpm" class="headerlink" title="&#x4E8C;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;2&#xFF0C;FastCGI&#x65B9;&#x5F0F;(php-fpm)"></a>&#x4E8C;&#x3001;yum&#x5FEB;&#x901F;&#x5B89;&#x88C5;2&#xFF0C;FastCGI&#x65B9;&#x5F0F;(php-fpm)</h2><p>&#x8BF4;&#x660E;&#xFF1A;mariadb&#x53CA;httpd&#x5B89;&#x88C5;&#x5982;&#x4E0A;&#x4E0D;&#x518D;&#x7F00;&#x8FF0;</p>
+<blockquote>
+<p>httpd-2.2&#xFF1A;&#x9ED8;&#x8BA4;&#x4E0D;&#x652F;&#x6301;fcgi&#x6A21;&#x5757;&#xFF0C;&#x9700;&#x8981;&#x81EA;&#x884C;&#x7F16;&#x8BD1;&#x6269;&#x5C55;<br>php-5.3.3&#xFF1A;&#x4E0D;&#x652F;&#x6301;fpm&#x673A;&#x5236;&#xFF0C;&#x9700;&#x8981;&#x81EA;&#x884C;&#x6253;&#x8865;&#x4E01;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</p>
+</blockquote>
+<h3 id="1-&#x5B89;&#x88C5;"><a href="#1-&#x5B89;&#x88C5;" class="headerlink" title="1. &#x5B89;&#x88C5;"></a>1. &#x5B89;&#x88C5;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd php-fpm php-mysql mariadb-server php-xcache</span><br></pre></td></tr></table></figure>
+<h3 id="2-php-fpm"><a href="#2-php-fpm" class="headerlink" title="2. php-fpm"></a>2. php-fpm</h3><ul>
+<li><strong>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;</strong></li>
+</ul>
+<blockquote>
+<p>&#x670D;&#x52A1;&#x8FDB;&#x7A0B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;/etc/php-fpm.conf, /etc/php-fpm.d/*.conf<br>&#x89E3;&#x91CA;&#x5668;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;/etc/php.ini, /etc/php.d/*.ini</p>
+</blockquote>
+<ul>
+<li><strong>&#x670D;&#x52A1;&#x8FDB;&#x7A0B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8BF4;&#x660E;&#xFF1A;</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[global]            <span class="comment"># &#x5168;&#x5C40;&#x914D;&#x7F6E;</span></span><br><span class="line"></span><br><span class="line">[pool]              <span class="comment"># &#x8FDE;&#x63A5;&#x6C60;&#x914D;&#x7F6E;</span></span><br><span class="line">listen = 127.0.0.1:9000     <span class="comment"># &#x76D1;&#x542C;&#x7AEF;&#x53E3;</span></span><br><span class="line">listen.backlog = -1</span><br><span class="line"></span><br><span class="line">listen.allowed_clients = 127.0.0.1      <span class="comment"># &#x76D1;&#x542C;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#xFF0C;&#x672C;&#x5B9E;&#x9A8C;&#x4E2D;&#x914D;&#x7F6E;&#x5728;&#x540C;&#x4E00;&#x4E3B;&#x673A;</span></span><br><span class="line"></span><br><span class="line">user = </span><br><span class="line">group = </span><br><span class="line"></span><br><span class="line">pm = dynamic|static     <span class="comment"># &#x652F;&#x6301;&#x52A8;&#x6001;&#x751F;&#x6210;&#x8FDB;&#x7A0B;&#x6C60;&#x548C;&#x9759;&#x6001;</span></span><br><span class="line">pm.max_children = 50    <span class="comment"># &#x6700;&#x5927;&#x7EBF;&#x7A0B;&#x6570;&#xFF0C;&#x5373;&#x652F;&#x6301;&#x7684;&#x6700;&#x5927;&#x5E76;&#x53D1;</span></span><br><span class="line">pm.start_servers = 5</span><br><span class="line">pm.min_spare_servers = 5</span><br><span class="line">pm.max_spare_servers = 35</span><br><span class="line">pm.max_requests  = 500</span><br><span class="line"></span><br><span class="line"><span class="comment"># pm&#x65B9;&#x5F0F;&#x7684;php&#x8FDB;&#x7A0B;&#x5B58;&#x50A8;session&#x7684;&#x8DEF;&#x5F84;&#xFF1A;</span></span><br><span class="line">php_value[session.save_handler] = files</span><br><span class="line">php_value[session.save_path] = /var/lib/php/session</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5982;&#x679C;&#x76EE;&#x5F55;&#x4E0D;&#x5B58;&#x5728;&#x624B;&#x52A8;&#x5EFA;&#x7ACB;&#x5E76;&#x4FEE;&#x6539;&#x5C5E;&#x4E3B;</span></span><br><span class="line">    <span class="comment"># mkdir /var/lib/php/session</span></span><br><span class="line">    <span class="comment"># chown apache.apache /var/lib/php/session</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>&#x914D;&#x7F6E;&#x865A;&#x62DF;&#x4E3B;&#x673A;</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf.d/vhost.conf        <span class="comment"># &#x6DFB;&#x52A0;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x914D;&#x7F6E;</span></span><br><span class="line">    </span><br><span class="line">    &lt;VirtualHost 192.168.1.71:80&gt;</span><br><span class="line">        ServerName wp.liu2lin.com       <span class="comment"># &#x670D;&#x52A1;&#x5668;&#x540D;</span></span><br><span class="line">        DocumentRoot /web/wordpress     <span class="comment"># &#x6839;</span></span><br><span class="line">        ProxyRequests Off               <span class="comment"># &#x5173;&#x95ED;&#x6B63;&#x5411;&#x4EE3;&#x7406;</span></span><br><span class="line">        DirectoryIndex index.php        <span class="comment"># &#x7D22;&#x5F15;&#x6587;&#x4EF6;</span></span><br><span class="line">        ProxyPassMatch ^/(.*\.php)$ fcgi://127.0.0.1:9000/data/www/<span class="variable">$1</span>   <span class="comment"># &#x8BBE;&#x5B9A;&#x4EE3;&#x7406;</span></span><br><span class="line">        &lt;Directory <span class="string">&quot;/web/wordpress&quot;</span>&gt;</span><br><span class="line">                Options None</span><br><span class="line">                AllowOverride None</span><br><span class="line">                Require all granted</span><br><span class="line">        &lt;/Directory&gt;</span><br><span class="line">    &lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>&#x542F;&#x52A8;&#x670D;&#x52A1;&#xFF1A;</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start php-fpm     <span class="comment"># &#x542F;&#x52A8;php-fpm&#x670D;&#x52A1;</span></span><br><span class="line">ss -tuln sport = :9000      <span class="comment"># &#x9ED8;&#x8BA4;&#x76D1;&#x542C;9000/tcp </span></span><br><span class="line">ps aux | grep php-fpm       <span class="comment"># &#x67E5;&#x770B;&#x8FDB;&#x7A0B;</span></span><br></pre></td></tr></table></figure>
+<h2 id="&#x4E09;&#x3001;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;-&#x5728;&#x540C;&#x4E00;&#x4E3B;&#x673A;&#x90E8;&#x7F72;"><a href="#&#x4E09;&#x3001;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;-&#x5728;&#x540C;&#x4E00;&#x4E3B;&#x673A;&#x90E8;&#x7F72;" class="headerlink" title="&#x4E09;&#x3001;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;(&#x5728;&#x540C;&#x4E00;&#x4E3B;&#x673A;&#x90E8;&#x7F72;)"></a>&#x4E09;&#x3001;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;(&#x5728;&#x540C;&#x4E00;&#x4E3B;&#x673A;&#x90E8;&#x7F72;)</h2><blockquote>
+<p><strong>httpd&#xFF1A;</strong>httpd-2.4, &#x9700;&#x8981;apr-1.4+&#x53CA;apr-util-1.4+&#x4EE5;&#x4E0A;&#x4F9D;&#x8D56;<br><strong>mariadb&#xFF1A;</strong>mariadb-5.5, &#x4E8C;&#x8FDB;&#x5236;&#x5305;&#x5B89;&#x88C5;<br><strong>php&#xFF1A;</strong>php-5.5</p>
+</blockquote>
+<h3 id="&#x5F00;&#x53D1;&#x5305;&#x7EC4;&#x53CA;&#x4F9D;&#x8D56;&#x5305;&#x5B89;&#x88C5;"><a href="#&#x5F00;&#x53D1;&#x5305;&#x7EC4;&#x53CA;&#x4F9D;&#x8D56;&#x5305;&#x5B89;&#x88C5;" class="headerlink" title="&#x5F00;&#x53D1;&#x5305;&#x7EC4;&#x53CA;&#x4F9D;&#x8D56;&#x5305;&#x5B89;&#x88C5;"></a>&#x5F00;&#x53D1;&#x5305;&#x7EC4;&#x53CA;&#x4F9D;&#x8D56;&#x5305;&#x5B89;&#x88C5;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall <span class="string">&apos;Development Tools&apos;</span> <span class="string">&apos;Server Platform Development&apos;</span></span><br><span class="line">yum install pcre-devel openssl-devel  libevent-devel                <span class="comment"># httpd&#x4F9D;&#x8D56;</span></span><br><span class="line">yum install libxml2-devel gd-devel freetype-devel libmcrypt-devel   <span class="comment"># php&#x4F9D;&#x8D56;</span></span><br></pre></td></tr></table></figure>
+<h3 id="httpd-2-4-&#x7F16;&#x8BD1;"><a href="#httpd-2-4-&#x7F16;&#x8BD1;" class="headerlink" title="httpd-2.4 &#x7F16;&#x8BD1;"></a>httpd-2.4 &#x7F16;&#x8BD1;</h3><h4 id="1-apr&#x53CA;apr-util&#x7F16;&#x8BD1;&#x5B89;&#x88C5;"><a href="#1-apr&#x53CA;apr-util&#x7F16;&#x8BD1;&#x5B89;&#x88C5;" class="headerlink" title="1. apr&#x53CA;apr-util&#x7F16;&#x8BD1;&#x5B89;&#x88C5;"></a>1. apr&#x53CA;apr-util&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tar xf apr-1.5.2.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> apr-1.5.2</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/apr</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">tar xf apr-util-1.5.4.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> apr-util-1.5.4</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/apr-util --with-apr=/usr/<span class="built_in">local</span>/apr</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5728;centos7&#x7684;yum&#x6E90;&#x4E2D;apr&#x53CA;apr-utl&#x7248;&#x672C;&#x7B26;&#x5408;&#x8981;&#x6C42;&#xFF0C;&#x53EF;&#x4E0D;&#x7528;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-httpd&#x7F16;&#x8BD1;&#x5B89;&#x88C5;"><a href="#2-httpd&#x7F16;&#x8BD1;&#x5B89;&#x88C5;" class="headerlink" title="2. httpd&#x7F16;&#x8BD1;&#x5B89;&#x88C5;"></a>2. httpd&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar xf httpd-2.4.23.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> httpd-2.4.23</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/apache2 --sysconfdir=/etc/httpd2 --enable-so --enable-ssl --enable-cgi --enable-rewrite --with-zlib --with-pcre --with-apr=/usr/<span class="built_in">local</span>/apr --with-apr-util=/usr/<span class="built_in">local</span>/apr-util --enable-modules=most --enable-mpms-shared=all --with-mpm=event</span><br><span class="line">make -j N       <span class="comment"># N&#x4E3A;&#x7269;&#x7406;&#x6838;&#x5FC3;&#x7684;2&#x500D;&#xFF0C;&#x52A0;&#x901F;&#x7F16;&#x8BD1;</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h4 id="3-&#x914D;&#x7F6E;"><a href="#3-&#x914D;&#x7F6E;" class="headerlink" title="3. &#x914D;&#x7F6E;"></a>3. &#x914D;&#x7F6E;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LoadModule proxy_module modules/mod_proxy.so</span><br><span class="line">LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so</span><br><span class="line"><span class="comment"># &#x5982;&#x679C;php&#x4EE5;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x7ED3;&#x5408; &#x5219;&#x4E3A; </span></span><br><span class="line"><span class="comment"># LoadModule php5_module modules/libphp5-[zts].so</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6DFB;&#x52A0;</span></span><br><span class="line">AddType application/x-httpd-php  .php</span><br><span class="line">AddType application/x-httpd-php-source  .phps</span><br><span class="line"></span><br><span class="line">DirectoryIndex  index.php  index.html</span><br></pre></td></tr></table></figure>
+<h4 id="4-PATH&#xFF0C;MAN-&#x5934;&#x6587;&#x4EF6;"><a href="#4-PATH&#xFF0C;MAN-&#x5934;&#x6587;&#x4EF6;" class="headerlink" title="4. PATH&#xFF0C;MAN, &#x5934;&#x6587;&#x4EF6;"></a>4. PATH&#xFF0C;MAN, &#x5934;&#x6587;&#x4EF6;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&apos;export PATH=$PATH:/usr/local/apache2/bin&apos;</span> &gt; /etc/profile.d/httpd.sh</span><br><span class="line">vim /etc/man_db.conf  &#x6DFB;&#x52A0;: MANDATORY_MANPATH  /usr/<span class="built_in">local</span>/apache2/man     <span class="comment"># centos7&#x4E0A;&#x53EA;&#x8981;&#x5BFC;&#x51FA;PATH&#x6B64;&#x6B65;&#x53EF;&#x7701;</span></span><br><span class="line">ln -sv /usr/<span class="built_in">local</span>/apache2/include /usr/include/apache   <span class="comment"># &#x5BFC;&#x51FA;&#x5934;&#x6587;&#x4EF6;</span></span><br><span class="line">ldconfig</span><br></pre></td></tr></table></figure>
+<h4 id="5-&#x542F;&#x52A8;"><a href="#5-&#x542F;&#x52A8;" class="headerlink" title="5. &#x542F;&#x52A8;"></a>5. &#x542F;&#x52A8;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/apache2/bin/apachectl start</span><br><span class="line">ss -tlun | grep :80</span><br><span class="line">ps aux | grep httpd</span><br><span class="line">curl 192.168.1.72</span><br></pre></td></tr></table></figure>
+<h3 id="mariadb-5-5&#x8FDB;&#x5236;&#x5305;&#x5B89;&#x88C5;"><a href="#mariadb-5-5&#x8FDB;&#x5236;&#x5305;&#x5B89;&#x88C5;" class="headerlink" title="mariadb-5.5&#x8FDB;&#x5236;&#x5305;&#x5B89;&#x88C5;"></a>mariadb-5.5&#x8FDB;&#x5236;&#x5305;&#x5B89;&#x88C5;</h3><h4 id="1-&#x521B;&#x5EFA;mysql&#x7528;&#x6237;"><a href="#1-&#x521B;&#x5EFA;mysql&#x7528;&#x6237;" class="headerlink" title="1. &#x521B;&#x5EFA;mysql&#x7528;&#x6237;"></a>1. &#x521B;&#x5EFA;mysql&#x7528;&#x6237;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd -r mysql</span><br><span class="line">useradd -g mysql -r <span class="_">-s</span> /sbin/nologin -M <span class="_">-d</span> /mydata/ mysql</span><br></pre></td></tr></table></figure>
+<h4 id="2-&#x5B89;&#x88C5;-1"><a href="#2-&#x5B89;&#x88C5;-1" class="headerlink" title="2. &#x5B89;&#x88C5;"></a>2. &#x5B89;&#x88C5;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tar xf mariadb-5.5.50-linux-x86_64.tar.gz -C /usr/<span class="built_in">local</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</span><br><span class="line">ln -sv mariadb-5.5.50-linux-x86_64  mysql   <span class="comment"># &#x65B9;&#x4FBF;&#x6EDA;&#x52A8;&#x5347;&#x7EA7;</span></span><br><span class="line"><span class="built_in">cd</span> mysql </span><br><span class="line">chown -R mysql:mysql .</span><br><span class="line">scripts/mysql_install_db --user=mysql --datadir=/mydata      <span class="comment"># &#x521D;&#x59CB;&#x5316;&#x5E76;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5B58;&#x653E;&#x8DEF;&#x5F84;</span></span><br><span class="line">chown -R root .</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6CE8;&#xFF1A;&#x6570;&#x636E;&#x5EFA;&#x8BAE;&#x5B58;&#x653E;&#x5728;lvm&#x4E0A;</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-&#x914D;&#x7F6E;-1"><a href="#3-&#x914D;&#x7F6E;-1" class="headerlink" title="3. &#x914D;&#x7F6E;"></a>3. &#x914D;&#x7F6E;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/<span class="built_in">local</span>/mysql/support-files/my-large.cnf  /etc/my.cnf</span><br><span class="line">vim /etc/my.cnf</span><br><span class="line"></span><br><span class="line">    [mysqld]</span><br><span class="line">    thread_concurrency = 2      <span class="comment"># cpu&#x7684;&#x7269;&#x7406;&#x6838;&#x5FC3;*2</span></span><br><span class="line">    datadir = /mydata           <span class="comment"># &#x6570;&#x636E;&#x5B58;&#x653E;&#x8DEF;&#x5F84;&#xFF01;&#xFF01;&#xFF01;</span></span><br><span class="line">    innodb_file_per_table = On</span><br><span class="line">    skip_name_resolve = On      <span class="comment"># &#x7981;&#x6B62;IP&#x53CD;&#x89E3;</span></span><br><span class="line"></span><br><span class="line">cp /usr/<span class="built_in">local</span>/mysql/support-files/mysql.server /etc/rc.d/init.d/mysqld  <span class="comment"># &#x542F;&#x52A8;&#x811A;&#x672C;</span></span><br><span class="line">chmod +x /etc/rc.d/init.d/mysqld</span><br></pre></td></tr></table></figure>
+<h4 id="4-PATH&#x8DEF;&#x5F84;-MAN&#x6587;&#x6863;-&#x5934;&#x6587;&#x4EF6;"><a href="#4-PATH&#x8DEF;&#x5F84;-MAN&#x6587;&#x6863;-&#x5934;&#x6587;&#x4EF6;" class="headerlink" title="4. PATH&#x8DEF;&#x5F84;,MAN&#x6587;&#x6863;,&#x5934;&#x6587;&#x4EF6;"></a>4. PATH&#x8DEF;&#x5F84;,MAN&#x6587;&#x6863;,&#x5934;&#x6587;&#x4EF6;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&apos;export PATH=$PATH:/usr/local/mysql/bin&apos;</span> &gt; /etc/profile.d/mysql.sh      <span class="comment"># PATH&#x73AF;&#x5883;&#x53D8;&#x91CF;</span></span><br><span class="line">vim /etc/man_db.conf  ==&gt; MANDATORY_MANPATH  /usr/<span class="built_in">local</span>/mysql/man               <span class="comment"># &#x5E2E;&#x5FD9;&#x6587;&#x6863;</span></span><br><span class="line">ln -sv /usr/<span class="built_in">local</span>/mysql/include  /usr/include/mysql                             <span class="comment"># &#x5934;&#x6587;&#x4EF6;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&apos;/usr/local/mysql/lib&apos;</span> &gt; /etc/ld.so.conf.d/mysql.conf          <span class="comment"># &#x8F93;&#x51FA;mysql&#x7684;&#x5E93;&#x6587;&#x4EF6;&#x7ED9;&#x7CFB;&#x7EDF;&#x5E93;&#x67E5;&#x627E;&#x8DEF;&#x5F84;</span></span><br><span class="line">ldconfig [-v]   <span class="comment"># &#x7CFB;&#x7EDF;&#x91CD;&#x65B0;&#x8F7D;&#x5165;&#x7CFB;&#x7EDF;&#x5E93;</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-&#x542F;&#x52A8;&#x670D;&#x52A1;"><a href="#5-&#x542F;&#x52A8;&#x670D;&#x52A1;" class="headerlink" title="5. &#x542F;&#x52A8;&#x670D;&#x52A1;"></a>5. &#x542F;&#x52A8;&#x670D;&#x52A1;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br><span class="line">ss -tlun | grep :80     </span><br><span class="line">mysql       # &#x5EFA;&#x8BAE;&#x5148;&#x6267;&#x884C;mysql_secure_installation &#x8FDB;&#x884C;&#x5B89;&#x5168;&#x8BBE;&#x7F6E;</span><br></pre></td></tr></table></figure>
+<h3 id="php-5-5-&#x7F16;&#x8BD1;&#x5B89;&#x88C5;"><a href="#php-5-5-&#x7F16;&#x8BD1;&#x5B89;&#x88C5;" class="headerlink" title="php-5.5 &#x7F16;&#x8BD1;&#x5B89;&#x88C5;"></a>php-5.5 &#x7F16;&#x8BD1;&#x5B89;&#x88C5;</h3><h4 id="1-&#x5B89;&#x88C5;-php-fpm"><a href="#1-&#x5B89;&#x88C5;-php-fpm" class="headerlink" title="1. &#x5B89;&#x88C5;(php-fpm)"></a>1. &#x5B89;&#x88C5;(php-fpm)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tar xf php-5.5.37.tar.bz2</span><br><span class="line"><span class="built_in">cd</span> php-5.5.37</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/php5 --with-mysql=/usr/<span class="built_in">local</span>/mysql --with-openssl --with-mysqli=/usr/<span class="built_in">local</span>/mysql/bin/mysql_config --enable-mbstring --enable-xml --enable-sockets --enable-fpm --with-freetype-dir --with-gd --with-libxml-dir=/usr --with-zlib --with-jpeg-dir --with-png-dir --with-mcrypt --with-config-file-path=/etc/php5.ini --with-config-file-scan-dir=/etc/php5.d --enable-maintainer-zts</span><br><span class="line">make -j N       <span class="comment"># N&#x4E3A;&#x7269;&#x7406;&#x6838;&#x5FC3;&#x7684;2&#x500D;&#xFF0C;&#x52A0;&#x901F;&#x7F16;&#x8BD1;</span></span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6CE8;&#xFF1A;</span></span><br><span class="line"><span class="comment"># --enable-maintainer-zts                   # &#x4E3A;&#x652F;&#x6301;apache&#x7684;worker&#x6216;event</span></span><br><span class="line"><span class="comment"># --enable-fpm                              # &#x7F16;&#x8BD1;&#x6210;fpm</span></span><br><span class="line"><span class="comment"># --with-apxs2=/usr/local/apache2/bin/apxs  # &#x7F16;&#x8BD1;&#x6210;&#x6A21;&#x5757;&#xFF0C;&#x8DDF;fpm&#x662F;&#x51B2;&#x7A81;&#x7684;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-&#x914D;&#x7F6E;"><a href="#2-&#x914D;&#x7F6E;" class="headerlink" title="2. &#x914D;&#x7F6E;"></a>2. &#x914D;&#x7F6E;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cp ./php.ini-production /etc/php5.ini       <span class="comment"># &#x6E90;&#x7801;&#x76EE;&#x5F55;&#x4E0B;</span></span><br><span class="line">cp /usr/<span class="built_in">local</span>/php5/etc/php-fpm.conf.default /usr/<span class="built_in">local</span>/php5/etc/php-fpm.conf </span><br><span class="line">vim /usr/<span class="built_in">local</span>/php5/etc/php-fpm.conf</span><br><span class="line"></span><br><span class="line">    pm.max_children = 50</span><br><span class="line">    pm.start_servers = 5</span><br><span class="line">    pm.min_spare_servers = 2</span><br><span class="line">    pm.max_spare_servers = 8</span><br><span class="line">    pid = /usr/<span class="built_in">local</span>/php5/var/run/php-fpm.pid    <span class="comment"># &#x4FEE;&#x6539;&#x8FD9;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-&#x670D;&#x52A1;&#x811A;&#x672C;&#x5E76;&#x542F;&#x52A8;"><a href="#3-&#x670D;&#x52A1;&#x811A;&#x672C;&#x5E76;&#x542F;&#x52A8;" class="headerlink" title="3. &#x670D;&#x52A1;&#x811A;&#x672C;&#x5E76;&#x542F;&#x52A8;"></a>3. &#x670D;&#x52A1;&#x811A;&#x672C;&#x5E76;&#x542F;&#x52A8;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/php-fpm.service</span><br><span class="line">    </span><br><span class="line">    [Unit]</span><br><span class="line">    Description=The PHP FastCGI Process Manager</span><br><span class="line">    After=syslog.target network.target</span><br><span class="line"></span><br><span class="line">    [Service]</span><br><span class="line">    Type=forking</span><br><span class="line">    PIDFile=/usr/<span class="built_in">local</span>/php5/var/run/php-fpm.pid</span><br><span class="line">    ExecStart=/usr/<span class="built_in">local</span>/php5/sbin/php-fpm --fpm-config /usr/<span class="built_in">local</span>/php5/etc/php-fpm.conf</span><br><span class="line">    ExecReload=/bin/<span class="built_in">kill</span> -USR2 <span class="variable">$MAINPID</span></span><br><span class="line"></span><br><span class="line">    [Install]</span><br><span class="line">    WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">systemctl start php-fpm</span><br><span class="line">ss -tunl | grep :9000</span><br></pre></td></tr></table></figure>
+<h4 id="4-httpd&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;"><a href="#4-httpd&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;" class="headerlink" title="4. httpd&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;"></a>4. httpd&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/httpd.conf</span><br><span class="line">    </span><br><span class="line">    DirectoryIndex index.php index.html</span><br><span class="line">    ProxyRequests Off           <span class="comment"># &#x5173;&#x95ED;&#x6B63;&#x5411;&#x4EE3;&#x7406;</span></span><br><span class="line">    ProxyPassMatch ^/(.*\.php)$ fcgi://127.0.0.1:9000/usr/<span class="built_in">local</span>/apache2/htdocs/<span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6CE8;&#xFF1A;&#x5EFA;&#x8BAE;&#x5728;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x8BBE;&#x7F6E;</span></span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/apache2/bin/apachectl restart</span><br><span class="line">systemctl restart php-fpm</span><br></pre></td></tr></table></figure>
+<h4 id="5-&#x5B89;&#x88C5;xcache&#x52A0;&#x901F;"><a href="#5-&#x5B89;&#x88C5;xcache&#x52A0;&#x901F;" class="headerlink" title="5. &#x5B89;&#x88C5;xcache&#x52A0;&#x901F;"></a>5. &#x5B89;&#x88C5;xcache&#x52A0;&#x901F;</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tar</span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line">/usr/<span class="built_in">local</span>/php5/bin/phpize      <span class="comment"># &#x6DFB;&#x52A0;php&#x6269;&#x5C55;&#x65F6;&#x5728;&#x6E90;&#x7801;&#x76EE;&#x5F55;&#x4E0B;&#x6267;&#x884C;</span></span><br><span class="line">./configure --enable-xcache --with-php-config=/usr/<span class="built_in">local</span>/php5/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6CE8;&#xFF1A;&#x6267;&#x884C;&#x5B89;&#x88C5;&#x540E;&#x51FA;&#x73B0;  Installing shared extensions:     /usr/local/php5/lib/php/extensions/no-debug-zts-20121212/</span></span><br><span class="line"></span><br><span class="line">mkdir /etc/php5.d/</span><br><span class="line">cp xcache.ini  /etc/php5.d/     <span class="comment"># &#x590D;&#x5236;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5E76;&#x67E5;&#x770B;&#x5982;&#x4E0B;&#x503C;</span></span><br><span class="line">    </span><br><span class="line">    extension = xcache.so   <span class="comment"># &#x786E;&#x4FDD;&#x5F00;&#x542F;</span></span><br><span class="line">    xcache.size  =  160M    <span class="comment"># &#x9002;&#x5F53;&#x8C03;&#x6574;&#x7F13;&#x5B58;&#x5927;&#x5C0F;</span></span><br><span class="line"></span><br><span class="line">systemctl restart php-fpm</span><br></pre></td></tr></table></figure>
+<h3 id="&#x6D4B;&#x8BD5;"><a href="#&#x6D4B;&#x8BD5;" class="headerlink" title="&#x6D4B;&#x8BD5;"></a>&#x6D4B;&#x8BD5;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&apos;&lt;?php phpinfo();?&gt;&apos;</span> &gt; /usr/<span class="built_in">local</span>/apache2/htdocs/index.php</span><br><span class="line">curl 192.168.1.72</span><br></pre></td></tr></table></figure>
+<p><em>&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x8BBE;&#x7F6E;&#x540C;&#x4E0A;&#xFF0C;&#x6B64;&#x7565;</em></p>
+<h2 id="&#x56DB;-&#x57FA;&#x4E8E;FastCGI&#x4E0D;&#x540C;&#x4E3B;&#x673A;&#x5206;&#x522B;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;"><a href="#&#x56DB;-&#x57FA;&#x4E8E;FastCGI&#x4E0D;&#x540C;&#x4E3B;&#x673A;&#x5206;&#x522B;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;" class="headerlink" title="&#x56DB;. &#x57FA;&#x4E8E;FastCGI&#x4E0D;&#x540C;&#x4E3B;&#x673A;&#x5206;&#x522B;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;"></a>&#x56DB;. &#x57FA;&#x4E8E;FastCGI&#x4E0D;&#x540C;&#x4E3B;&#x673A;&#x5206;&#x522B;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;</h2><h3 id="1-&#x73AF;&#x5883;&#x51C6;&#x5907;"><a href="#1-&#x73AF;&#x5883;&#x51C6;&#x5907;" class="headerlink" title="1. &#x73AF;&#x5883;&#x51C6;&#x5907;"></a>1. &#x73AF;&#x5883;&#x51C6;&#x5907;</h3><ul>
+<li>httpd-2.4&#xFF1A;192.168.1.73</li>
+<li>php-5.5&#xFF1A;192.168.1.74</li>
+<li>mariadb-5.5&#xFF1A;192.168.1.75</li>
+</ul>
+<p><strong>httpd&#x548C;mariadb&#x7F16;&#x8BD1;&#x65B9;&#x5F0F;&#x540C;&#x4E0A;&#xFF0C;&#x5219;&#x5904;&#x7F16;&#x8BD1;php</strong></p>
+<h3 id="2-php&#x5B89;&#x88C5;"><a href="#2-php&#x5B89;&#x88C5;" class="headerlink" title="2. php&#x5B89;&#x88C5;"></a>2. php&#x5B89;&#x88C5;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install libxml2-devel gd-devel freetype-devel libmcrypt-devel openssl-devel bzip2-devel</span><br><span class="line">tar</span><br><span class="line"><span class="built_in">cd</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/php5 --with-mysql=mysqlnd --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --with-openssl --enable-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir  --with-libxml-dir=/usr/ --enable-xml --enable-sockets --enable-fpm --with-config-file-path=/etc/ --with-config-file-scan-dir=/etc/php5.d --with-bz2 --enable-maintainer-zts</span><br><span class="line">make -j N    <span class="comment"># N&#x4E3A;&#x7269;&#x7406;&#x6838;&#x5FC3;&#x7684;2&#x500D;&#xFF0C;&#x52A0;&#x901F;&#x7F16;&#x8BD1;</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="3-&#x914D;&#x7F6E;-2"><a href="#3-&#x914D;&#x7F6E;-2" class="headerlink" title="3. &#x914D;&#x7F6E;"></a>3. &#x914D;&#x7F6E;</h3><ul>
+<li>php&#x914D;&#x7F6E;</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cp ./php.ini-production /etc/php5.ini       <span class="comment"># &#x6E90;&#x7801;&#x76EE;&#x5F55;&#x4E0B;</span></span><br><span class="line">cp /usr/<span class="built_in">local</span>/php5/etc/php-fpm.conf.default /usr/<span class="built_in">local</span>/php5/etc/php-fpm.conf </span><br><span class="line">vim /usr/<span class="built_in">local</span>/php5/etc/php-fpm.conf</span><br><span class="line"></span><br><span class="line">    listen 192.168.1.74:9000       <span class="comment"># &#x4FEE;&#x6539;&#x4E3A;php-fpm&#x670D;&#x52A1;&#x76D1;&#x542C;&#x5730;&#x5740;&#xFF01;&#xFF01;&#xFF01;&#xFF01;&#xFF01;</span></span><br><span class="line">    pm.max_children = 50</span><br><span class="line">    pm.start_servers = 5</span><br><span class="line">    pm.min_spare_servers = 2</span><br><span class="line">    pm.max_spare_servers = 8</span><br><span class="line">    pid = /usr/<span class="built_in">local</span>/php5/var/run/php-fpm.pid    <span class="comment"># &#x4FEE;&#x6539;&#x8FD9;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>httpd&#x914D;&#x7F6E;&#xFF1A;/etc/httpd2/httpd.conf</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x5F00;&#x542F;&#x5982;&#x4E0B;&#x6A21;&#x5757;</span></span><br><span class="line">LoadModule proxy_module modules/mod_proxy.so</span><br><span class="line">LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so</span><br><span class="line"><span class="comment"># &#x5982;&#x679C;php&#x4EE5;&#x6A21;&#x5757;&#x65B9;&#x5F0F;&#x7ED3;&#x5408; &#x5219;&#x4E3A; </span></span><br><span class="line"><span class="comment"># LoadModule php5_module modules/libphp5-[zts].so</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6DFB;&#x52A0;</span></span><br><span class="line">AddType application/x-httpd-php  .php</span><br><span class="line">AddType application/x-httpd-php-source  .phps</span><br></pre></td></tr></table></figure>
+<ul>
+<li>httpd&#x865A;&#x62DF;&#x673A;&#x914D;&#x7F6E;&#xFF1A;/etc/httpd2.d/vhost.conf (&#x624B;&#x52A8;&#x5EFA;&#x7ACB;)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost 192.168.1.73:80&gt;</span><br><span class="line">    ServerName www3.liu2lin.com</span><br><span class="line">    DocumentRoot /web</span><br><span class="line">    ProxyRequests Off         </span><br><span class="line">    DirectoryIndex index.php </span><br><span class="line">    ProxyPassMatch ^/(.*\.php)$ fcgi://192.168.1.74:9000/web/<span class="variable">$1</span></span><br><span class="line">    &lt;Directory <span class="string">&quot;/web&quot;</span>&gt;</span><br><span class="line">        Options None</span><br><span class="line">        AllowOverride None</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&#x6D4B;&#x8BD5;mysql&#x8FDE;&#x63A5;&#x6027;  </li>
+</ul>
+<blockquote>
+<p>&#x5728;php-fpm(192.168.1.74)&#x4E0A;&#x65B0;&#x5EFA;&#x6D4B;&#x8BD5;&#x9875;/web/index.php&#xFF0C;mysql&#x5148;&#x6388;&#x6743;&#xFF0C;&#x53C2;&#x8003;&#x4E0A;&#xFF0C;&#x7136;&#x540E;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;192.168.1.73&#x67E5;&#x770B;&#x7ED3;&#x679C;</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $con = mysql_connect(<span class="string">&apos;192.168.1.75&apos;</span>,<span class="string">&apos;wpuser&apos;</span>,<span class="string">&apos;wppass&apos;</span>);</span><br><span class="line">    <span class="keyword">if</span>($con){</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&apos;OK&apos;</span>;</span><br><span class="line">    }<span class="keyword">else</span>{</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&apos;FAIL&apos;</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x642D;&#x5EFA;phpMyAdmin</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php-fpm&#x670D;&#x52A1;&#x5668;&#x4E0A;</span></span><br><span class="line">unzip phpMyAdmin-4.6.3-all-languages.zip</span><br><span class="line">mv phpMyAdmin-4.6.3-all-languages /web/phpmyadmin</span><br><span class="line"><span class="built_in">cd</span> /web/phpmyadmin</span><br><span class="line">cp config.sample.inc.php config.inc.php     <span class="comment"># &#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></span><br><span class="line">vim config.inc.php  <span class="comment"># &#x4FEE;&#x6539;&#x4EE5;&#x4E0B;</span></span><br><span class="line"></span><br><span class="line">    <span class="variable">$cfg</span>[<span class="string">&apos;blowfish_secret&apos;</span>] = <span class="string">&apos;t4hjJbhU1iLz6g&apos;</span>;     <span class="comment"># cookie&#x52A0;&#x5BC6;</span></span><br><span class="line">    <span class="variable">$cfg</span>[<span class="string">&apos;Servers&apos;</span>][<span class="variable">$i</span>][<span class="string">&apos;host&apos;</span>] = <span class="string">&apos;192.168.1.75&apos;</span>;   <span class="comment"># mysql&#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x52A0;&#x5BC6;&#x7801;&#x6700;&#x597D;&#x4F7F;&#x7528;openssl rand -base64 10  &#x6765;&#x751F;&#x6210;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># httpd&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x8BBE;&#x7F6E;</span></span><br><span class="line">&lt;VirtualHost 192.168.1.73:80&gt;</span><br><span class="line">    ServerName pma3.liu2lin.com</span><br><span class="line">    DocumentRoot /web/phpmyadmin</span><br><span class="line">    ProxyRequests Off</span><br><span class="line">    DirectoryIndex index.php</span><br><span class="line">    ProxyPassMatch ^/(.*\.php)$ fcgi://192.168.1.74:9000/web/phpmyadmin/<span class="variable">$1</span></span><br><span class="line">    &lt;Directory <span class="string">&quot;/web/phpmyadmin&quot;</span>&gt;</span><br><span class="line">        Options None</span><br><span class="line">        AllowOverride None</span><br><span class="line">        Require all granted</span><br><span class="line">    &lt;/Directory&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># httpd&#x4E3B;&#x673A;&#x4E0A;&#x9700;&#x8981;&#x5EFA;&#x7ACB;/web/phpmyadmin&#xFF0C;&#x5426;&#x5219;&#x5C06;&#x51FA;&#x73B0;403&#x9519;&#x8BEF; !!!!</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>&#x6CE8;&#xFF1A;php-fpm&#x670D;&#x52A1;&#x5668;&#x53EA;&#x8D1F;&#x8D23;&#x89E3;&#x6790;php&#x6587;&#x4EF6;&#xFF0C;html,&#x56FE;&#x7247;&#x7B49;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4ECD;&#x9700;&#x7531;httpd&#x6765;&#x89E3;&#x6790;&#xFF0C;&#x5982;&#x4E0B;</p>
+</blockquote>
+<p><img src="/2016/07/16/LAMP&#x642D;&#x5EFA;&#x7684;&#x51E0;&#x4E2A;&#x65B9;&#x6848;/pma1.png" alt="pma1"></p>
+<blockquote>
+<p>&#x4E3A;&#x65B9;&#x4FBF;&#x8D77;&#x89C1;&#x76F4;&#x63A5;&#x5C06;phpMyAdmin&#x76EE;&#x5F55;&#x590D;&#x5236;&#x5230;/web/&#x4E0B;&#x5E76;&#xFF0C;&#x56FE;&#x7247;&#x53EF;&#x6B63;&#x5E38;&#x89E3;&#x6790;</p>
+</blockquote>
+<p><img src="/2016/07/16/LAMP&#x642D;&#x5EFA;&#x7684;&#x51E0;&#x4E2A;&#x65B9;&#x6848;/pma2.png" alt="pma2"></p>
+<h2 id="&#x538B;&#x6D4B;&#x7ED3;&#x679C;"><a href="#&#x538B;&#x6D4B;&#x7ED3;&#x679C;" class="headerlink" title="&#x538B;&#x6D4B;&#x7ED3;&#x679C;"></a>&#x538B;&#x6D4B;&#x7ED3;&#x679C;</h2><p>&#x2026;.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lamp/" rel="tag">#lamp</a>
+          
+            <a href="/tags/xcache/" rel="tag">#xcache</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/25/Linux特殊权限及ACL简介/" rel="next" title="Linux特殊权限及ACL简介">
+                <i class="fa fa-chevron-left"></i> Linux特殊权限及ACL简介
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/21/文件共享服务之NFS简介及应用/" rel="prev" title="文件共享服务之NFS简介及应用">
+                文件共享服务之NFS简介及应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/16/LAMP搭建的几个方案/"
+           data-title="LAMP搭建的几个方案" data-url="http://liu2lin600.github.io/2016/07/16/LAMP搭建的几个方案/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">1.</span> <span class="nav-text">方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">2.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、yum快速安装1，php以模块方式安装"><span class="nav-number">3.</span> <span class="nav-text">一、yum快速安装1，php以模块方式安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-环境：静态IP-192-168-1-71"><span class="nav-number">3.1.</span> <span class="nav-text">1. 环境：静态IP(192.168.1.71)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装"><span class="nav-number">3.2.</span> <span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-httpd-2-4"><span class="nav-number">3.3.</span> <span class="nav-text">3. httpd-2.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-php-5-4"><span class="nav-number">3.4.</span> <span class="nav-text">4. php-5.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-mariadb-5-5"><span class="nav-number">3.5.</span> <span class="nav-text">5. mariadb-5.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-php-xcache"><span class="nav-number">3.6.</span> <span class="nav-text">6. php-xcache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-测试连接"><span class="nav-number">3.7.</span> <span class="nav-text">7. 测试连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-虚拟主机配置及wordpress安装"><span class="nav-number">3.8.</span> <span class="nav-text">8. 虚拟主机配置及wordpress安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、yum快速安装2，FastCGI方式-php-fpm"><span class="nav-number">4.</span> <span class="nav-text">二、yum快速安装2，FastCGI方式(php-fpm)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装"><span class="nav-number">4.1.</span> <span class="nav-text">1. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-php-fpm"><span class="nav-number">4.2.</span> <span class="nav-text">2. php-fpm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、编译安装-在同一主机部署"><span class="nav-number">5.</span> <span class="nav-text">三、编译安装(在同一主机部署)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发包组及依赖包安装"><span class="nav-number">5.1.</span> <span class="nav-text">开发包组及依赖包安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#httpd-2-4-编译"><span class="nav-number">5.2.</span> <span class="nav-text">httpd-2.4 编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-apr及apr-util编译安装"><span class="nav-number">5.2.1.</span> <span class="nav-text">1. apr及apr-util编译安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-httpd编译安装"><span class="nav-number">5.2.2.</span> <span class="nav-text">2. httpd编译安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-配置"><span class="nav-number">5.2.3.</span> <span class="nav-text">3. 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-PATH，MAN-头文件"><span class="nav-number">5.2.4.</span> <span class="nav-text">4. PATH，MAN, 头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-启动"><span class="nav-number">5.2.5.</span> <span class="nav-text">5. 启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mariadb-5-5进制包安装"><span class="nav-number">5.3.</span> <span class="nav-text">mariadb-5.5进制包安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建mysql用户"><span class="nav-number">5.3.1.</span> <span class="nav-text">1. 创建mysql用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装-1"><span class="nav-number">5.3.2.</span> <span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-配置-1"><span class="nav-number">5.3.3.</span> <span class="nav-text">3. 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-PATH路径-MAN文档-头文件"><span class="nav-number">5.3.4.</span> <span class="nav-text">4. PATH路径,MAN文档,头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-启动服务"><span class="nav-number">5.3.5.</span> <span class="nav-text">5. 启动服务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#php-5-5-编译安装"><span class="nav-number">5.4.</span> <span class="nav-text">php-5.5 编译安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装-php-fpm"><span class="nav-number">5.4.1.</span> <span class="nav-text">1. 安装(php-fpm)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置"><span class="nav-number">5.4.2.</span> <span class="nav-text">2. 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-服务脚本并启动"><span class="nav-number">5.4.3.</span> <span class="nav-text">3. 服务脚本并启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-httpd设置代理"><span class="nav-number">5.4.4.</span> <span class="nav-text">4. httpd设置代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-安装xcache加速"><span class="nav-number">5.4.5.</span> <span class="nav-text">5. 安装xcache加速</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">5.5.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-基于FastCGI不同主机分别编译安装"><span class="nav-number">6.</span> <span class="nav-text">四. 基于FastCGI不同主机分别编译安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-环境准备"><span class="nav-number">6.1.</span> <span class="nav-text">1. 环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-php安装"><span class="nav-number">6.2.</span> <span class="nav-text">2. php安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-配置-2"><span class="nav-number">6.3.</span> <span class="nav-text">3. 配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压测结果"><span class="nav-number">7.</span> <span class="nav-text">压测结果</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
