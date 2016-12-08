@@ -1,0 +1,894 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="文件共享,nfs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;nfs&amp;#x6587;&amp;#x4EF6;&amp;#x5171;&amp;#x4EAB;&amp;#x670D;&amp;#x52A1;&amp;#x53CA;&amp;#x57FA;&amp;#x4E8E;nfs&amp;#x7684;web&amp;#x670D;&amp;#x52A1;&amp;#x7F51;&amp;#x9875;&amp;#x5171;&amp;#x4EAB;&amp;#x5B9E;&amp;#x9A8C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件共享服务之NFS简介及应用">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/07/21/文件共享服务之NFS简介及应用/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;nfs&amp;#x6587;&amp;#x4EF6;&amp;#x5171;&amp;#x4EAB;&amp;#x670D;&amp;#x52A1;&amp;#x53CA;&amp;#x57FA;&amp;#x4E8E;nfs&amp;#x7684;web&amp;#x670D;&amp;#x52A1;&amp;#x7F51;&amp;#x9875;&amp;#x5171;&amp;#x4EAB;&amp;#x5B9E;&amp;#x9A8C">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/21/文件共享服务之NFS简介及应用/nfs_rpc.png">
+<meta property="og:updated_time" content="2016-07-25T15:22:48.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="文件共享服务之NFS简介及应用">
+<meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;nfs&amp;#x6587;&amp;#x4EF6;&amp;#x5171;&amp;#x4EAB;&amp;#x670D;&amp;#x52A1;&amp;#x53CA;&amp;#x57FA;&amp;#x4E8E;nfs&amp;#x7684;web&amp;#x670D;&amp;#x52A1;&amp;#x7F51;&amp;#x9875;&amp;#x5171;&amp;#x4EAB;&amp;#x5B9E;&amp;#x9A8C">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/07/21/文件共享服务之NFS简介及应用/nfs_rpc.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 文件共享服务之NFS简介及应用 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                文件共享服务之NFS简介及应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-21T20:04:53+08:00" content="2016-07-21">
+              2016-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux服务/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux服务</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/21/文件共享服务之NFS简介及应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/21/文件共享服务之NFS简介及应用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x672C;&#x6587;&#x7B80;&#x8981;&#x4ECB;&#x7ECD;nfs&#x6587;&#x4EF6;&#x5171;&#x4EAB;&#x670D;&#x52A1;&#x53CA;&#x57FA;&#x4E8E;nfs&#x7684;web&#x670D;&#x52A1;&#x7F51;&#x9875;&#x5171;&#x4EAB;&#x5B9E;&#x9A8C;<br><a id="more"></a></p>
+<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><blockquote>
+<p><strong>NFS</strong>(Network File System)&#x5373;&#x7F51;&#x7EDC;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF0C;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x8BA9;&#x4E0D;&#x540C;&#x7684;&#x673A;&#x5668;&#x3001;&#x4E0D;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x80FD;&#x591F;&#x5F7C;&#x6B64;&#x5206;&#x4EAB;&#x4E2A;&#x522B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8BA9;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x8BBF;&#x95EE;&#x4F4D;&#x4E8E;&#x670D;&#x52A1;&#x5668;&#x78C1;&#x76D8;&#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x662F;&#x5728;&#x7C7B;Unix&#x7CFB;&#x7EDF;&#x95F4;&#x5B9E;&#x73B0;&#x78C1;&#x76D8;&#x6587;&#x4EF6;&#x5171;&#x4EAB;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x3002;&#x5728;&#x5B9E;&#x73B0;&#x6587;&#x4EF6;&#x4F20;&#x8F93;&#x9700;&#x8981;&#x4F9D;&#x8D56;<strong>RPC</strong>&#xFF0C;&#x5373;&#x8FDC;&#x7A0B;&#x8FC7;&#x7A0B;&#x8C03;&#x7528;&#x3002;nfs&#x670D;&#x52A1;&#x5728;&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x5411;rpc&#x6CE8;&#x518C;&#x76D1;&#x542C;&#x5728;&#x67D0;&#x4E2A;&#x7AEF;&#x53E3;&#x4E0A;&#xFF0C;rpc&#x670D;&#x52A1;&#x4ECE;&#x8FD8;&#x6CA1;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x7AEF;&#x53E3;&#x4E2D;&#x6311;&#x4E00;&#x4E2A;&#x7ED9;&#x6B64;&#x8FDB;&#x7A0B;&#x76D1;&#x542C;&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;NFS&#x662F;RPC&#x670D;&#x52A1;&#x5668;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x4E0D;&#x4F46;&#x8FD0;&#x884C;NFS&#x7684;&#x670D;&#x52A1;&#x5668;&#x9700;&#x8981;&#x542F;&#x52A8;RPC&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x8981;&#x6302;&#x8F7D;NFS&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x540C;&#x6B65;&#x542F;&#x52A8;RPC&#xFF0C;&#x8FD9;&#x6837;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x624D;&#x80FD;&#x7531;RPC&#x7684;&#x534F;&#x8BAE;&#x8FDB;&#x7A0B;&#x5E8F;&#x7AEF;&#x53E3;&#x7684;&#x5BF9;&#x5E94;&#xFF0C;Linux&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x542F;&#x52A8;&#x6B64;&#x670D;&#x52A1;</p>
+</blockquote>
+<p><img src="/2016/07/21/&#x6587;&#x4EF6;&#x5171;&#x4EAB;&#x670D;&#x52A1;&#x4E4B;NFS&#x7B80;&#x4ECB;&#x53CA;&#x5E94;&#x7528;/nfs_rpc.png" alt="nfs_rpc" title="nfs&#x5DE5;&#x539F;&#x7406;&#x56FE;"></p>
+<p>&#x4EE5;&#x4E0B;&#x5B9E;&#x9A8C;&#x73AF;&#x5883;&#x4E3A;CentOS7.2</p>
+<h2 id="nfs&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x914D;&#x7F6E;"><a href="#nfs&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x914D;&#x7F6E;" class="headerlink" title="nfs&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x914D;&#x7F6E;"></a>nfs&#x670D;&#x52A1;&#x5B89;&#x88C5;&#x914D;&#x7F6E;</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install nfs-utils rpcbind   <span class="comment"># rpcbind&#x63D0;&#x4F9B;rpc&#x670D;&#x52A1;&#xFF0C;&#x9ED8;&#x8BA4;&#x5DF2;&#x5B89;&#x88C5;&#xFF0C;nfs-utils&#x63D0;&#x4F9B;nfs&#x670D;&#x52A1;&#x6240;&#x9700;&#x7A0B;&#x5E8F;&#x5305;</span></span><br><span class="line">systemctl start rpcbind nfs     <span class="comment"># &#x5F00;&#x542F;&#x670D;&#x52A1;</span></span><br><span class="line">rpcinfo -p localhost            <span class="comment"># &#x67E5;&#x770B;rpc&#x670D;&#x52A1;&#x76D1;&#x542C;&#x7AEF;&#x53E3;&#x53CA;&#x670D;&#x52A1;&#xFF0C;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x5730;&#x5740;&#x67E5;&#x770B;&#x8BE5;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x5171;&#x4EAB;</span></span><br></pre></td></tr></table></figure>
+<h3 id="&#x76D1;&#x542C;&#x7AEF;&#x53E3;"><a href="#&#x76D1;&#x542C;&#x7AEF;&#x53E3;" class="headerlink" title="&#x76D1;&#x542C;&#x7AEF;&#x53E3;"></a>&#x76D1;&#x542C;&#x7AEF;&#x53E3;</h3><ol>
+<li>nfs&#x670D;&#x52A1;&#xFF1A;2049/tcp, 2049/udp</li>
+<li>rpc&#x670D;&#x52A1;&#xFF1A;111/tcp, 111/udp</li>
+</ol>
+<h3 id="&#x76F8;&#x5173;&#x8FDB;&#x7A0B;"><a href="#&#x76F8;&#x5173;&#x8FDB;&#x7A0B;" class="headerlink" title="&#x76F8;&#x5173;&#x8FDB;&#x7A0B;"></a>&#x76F8;&#x5173;&#x8FDB;&#x7A0B;</h3><ol>
+<li><code>rpc.mountd</code>&#xFF1A;&#x6302;&#x8F7D;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#xFF0C;&#x8D1F;&#x8D23;&#x5BA2;&#x6237;&#x7AEF;&#x6765;&#x6E90;&#x8BA4;&#x8BC1;&#x8FDB;&#x7A0B;&#xFF0C;&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x53F7;&#x968F;&#x673A;&#xFF0C;&#x53EF;&#x5728;/etc/sysconfig/nfs&#x4E2D;&#x914D;&#x7F6E;&#x56FA;&#x5B9A;&#x7AEF;&#x53E3;</li>
+<li><code>rpc.nfsd</code>&#xFF1A;&#x7BA1;&#x7406;&#x5BA2;&#x6237;&#x7AEF;&#x662F;&#x5426;&#x80FD;&#x591F;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x6302;&#x8F7D;&#x4FE1;&#x606F;&#x7B49;&#xFF0C;&#x5176;&#x4E2D;&#x8FD8;&#x5305;&#x542B;&#x8FD9;&#x4E2A;&#x767B;&#x5165;&#x8005;&#x7684;ID&#x7684;&#x5224;&#x522B;</li>
+<li><code>rpc.idmap</code>&#xFF1A;ID&#x6620;&#x5C04;</li>
+<li><code>rpc.lockd</code>&#xFF1A;&#x6587;&#x4EF6;&#x9501;&#xFF0C;&#x9632;&#x6B62;&#x591A;&#x4EBA;&#x540C;&#x65F6;&#x5BF9;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x9020;&#x6210;&#x95EE;&#x9898;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x7AEF;&#x540C;&#x65F6;&#x5F00;&#x542F;</li>
+<li><code>rpc.statd</code>&#xFF1A;&#x68C0;&#x67E5;&#x6587;&#x4EF6;&#x7684;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x53D1;&#x751F;&#x6587;&#x4EF6;&#x635F;&#x6BC1;&#x65F6;&#x53EF;&#x5C1D;&#x8BD5;&#x4FEE;&#x590D;</li>
+</ol>
+<h3 id="&#x6743;&#x9650;&#x95EE;&#x9898;"><a href="#&#x6743;&#x9650;&#x95EE;&#x9898;" class="headerlink" title="&#x6743;&#x9650;&#x95EE;&#x9898;"></a>&#x6743;&#x9650;&#x95EE;&#x9898;</h3><p>nfs&#x7684;&#x6743;&#x9650;&#x7BA1;&#x7406;&#x673A;&#x5236;&#x9ED8;&#x8BA4;&#x4E0A;&#x4EE5;UID&#x6216;GID&#x6620;&#x5C04;&#xFF0C;&#x5373;&#x8981;&#x786E;&#x4FDD;&#x670D;&#x52A1;&#x7AEF;&#x548C;&#x5BA2;&#x6237;&#x7AEF;&#x4E0A;&#x7684;&#x5B58;&#x5728;&#x76F8;&#x540C;&#x7528;&#x6237;&#x4E14;UID&#x6216;GID&#x4E5F;&#x76F8;&#x673A;&#xFF0C;&#x5426;&#x5219;&#x6620;&#x5C04;&#x65F6;&#x5C06;&#x4F1A;&#x51FA;&#x73B0;&#x6DF7;&#x4E71;&#xFF0C;&#x5F53;&#x7136;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x4E4B;&#x95F4;&#x5B58;&#x5728;&#x4E2D;&#x5FC3;&#x8EAB;&#x4EFD;&#x8BA4;&#x8BC1;&#x670D;&#x52A1;&#x5668;&#x65F6;&#xFF0C;&#x5219;&#x4E0D;&#x5B58;&#x5728;&#x6B64;&#x95EE;&#x9898;&#xFF0C;&#x4E2D;&#x5FC3;&#x8BA4;&#x8BC1;&#x670D;&#x52A1;&#x5668;&#x5305;&#x62EC;NIS&#xFF0C;Kerberos&#x53CA;LDAP&#x7B49;&#xFF0C;&#x6B64;&#x5904;&#x6682;&#x4E0D;&#x8BA8;&#x8BBA;&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x51E0;&#x79CD;&#x6620;&#x5C04;&#x60C5;&#x51B5;&#xFF1A;</p>
+<ol>
+<li>Client&#x548C;Server&#x4E0A;&#x540C;&#x65F6;&#x5B58;&#x5728;lin00&#x7528;&#x6237;&#xFF0C;&#x4E14;UID&#x548C;GID&#x90FD;&#x4E00;&#x81F4;&#x65F6;&#xFF0C;Client&#x4E0A;&#x4EE5;liu00&#x7528;&#x6237;&#x5BF9;nfs&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x7684;&#x6743;&#x9650;&#x6B63;&#x5E38;</li>
+<li>Client&#x4E0A;liu00&#x7528;&#x6237;ID&#x4E3A;1001&#xFF0C;Server&#x4E0A;Tom&#x7528;&#x6237;ID&#x4E3A;1001&#xFF0C;&#x6B64;&#x65F6;Client&#x4E0A;liu00&#x7528;&#x6237;&#x5C06;&#x4EE5;Tom&#x7684;&#x6743;&#x9650;&#x8BBF;&#x95EE;nfs&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#xFF0C;&#x4ECE;&#x800C;&#x9020;&#x6210;&#x4E00;&#x5B9A;&#x7684;&#x95EE;&#x9898;</li>
+<li>Client&#x4E0A;liu00&#x7528;&#x6237;ID&#x4E3A;1001&#xFF0C;Server&#x4E0A;&#x65E0;UID&#x4E3A;1001&#x7528;&#x6237;&#xFF0C;&#x6B64;&#x65F6;liu00&#x5C06;&#x88AB;&#x538B;&#x7F29;&#x6210;&#x533F;&#x540D;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#xFF0C;&#x5176;UID&#x4E3A;65534&#x7684;nfsnobody</li>
+<li>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;root&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x65F6;&#x4E5F;&#x4F1A;&#x88AB;&#x538B;&#x7F29;&#x6210;&#x533F;&#x540D;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#xFF0C;&#x5982;&#x9700;root&#x6743;&#x9650;&#x8981;&#x5728;&#x5B9A;&#x4E49;nfs&#x5BFC;&#x51FA;&#x65F6;&#x6DFB;&#x52A0;<code>no_root_squash</code>&#x9009;&#x9879;</li>
+</ol>
+<h3 id="&#x4E3B;&#x914D;&#x7F6E;"><a href="#&#x4E3B;&#x914D;&#x7F6E;" class="headerlink" title="&#x4E3B;&#x914D;&#x7F6E;"></a>&#x4E3B;&#x914D;&#x7F6E;</h3><p><code>/etc/exports</code>&#xFF1A;&#x5728;&#x6B64;&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x5171;&#x4EAB;&#xFF0C;&#x5BFC;&#x51FA;&#x65F6;&#x5EFA;&#x8BAE;&#x76F4;&#x63A5;&#x5BFC;&#x51FA;&#x4E00;&#x4E2A;&#x65B0;&#x5206;&#x533A;</p>
+<p>&#x8BED;&#x6CD5;&#xFF1A;<code>&#x5BFC;&#x51FA;&#x76EE;&#x5F55;  &#x5BA2;&#x6237;&#x7AEF;1(&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x5BFC;&#x51FA;&#x9009;&#x9879;)  [&#x5BA2;&#x6237;&#x7AEF;2(&#x9009;&#x9879;)...]</code>  </p>
+<pre><code>/nfsshare  192.168.1.0/24(rw,no_root_squash)  172.16.60.0/24(rw)
+</code></pre><ul>
+<li><p>&#x5BA2;&#x6237;&#x7AEF;&#x683C;&#x5F0F;&#xFF1A;<br>  &#x6307;&#x5B9A;IP&#xFF1A;172.16.60.7<br>  &#x6307;&#x5B9A;&#x57DF;&#x540D;&#xFF1A;*.liu2lin.com<br>  &#x7F51;&#x7EDC;&#x5730;&#x5740;&#xFF1A;172.16.0.0/16  192.168.1.0/255.255.255.0<br>  &#x4E3B;&#x673A;&#x7EC4;&#xFF1A;NIS&#x57DF;&#x5185;&#x4E3B;&#x673A;&#x7EC4;&#xFF0C;@groups<br>  &#x6240;&#x6709;&#x4E3B;&#x673A;&#xFF1A;&#x4F7F;&#x7528;*&#x901A;&#x914D;&#x6240;&#x6709;</p>
+</li>
+<li><p>&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x5BFC;&#x51FA;&#x5C5E;&#x6027;&#xFF1A;<br>  <code>ro</code>&#xFF1A;&#x53EA;&#x8BFB;<br>  <code>rw</code>&#xFF1A;&#x8BFB;&#x5199;<br>  <code>async</code>&#xFF1A;&#x5F02;&#x6B65;,&#x5C3D;&#x91CF;&#x4F7F;&#x7528;&#x5F02;&#x6B65;<br>  <code>sync</code>&#xFF1A;&#x540C;&#x6B65;<br>  <code>root_squash</code>&#xFF1A;&#x538B;&#x7F29;root&#x7528;&#x6237;&#xFF0C;&#x57FA;&#x4E8E;imapd&#xFF0C;&#x5C06;root&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x8BBF;&#x95EE;&#x65F6;&#x6620;&#x5C04;&#x4E3A;nfsnobody&#x7528;&#x6237;&#xFF0C;&#x9ED8;&#x8BA4;&#x542F;&#x7528;<br>  <code>no_root_squash</code>&#xFF1A;&#x4E0D;&#x538B;&#x7F29;root&#x7528;&#x6237;<br>  <code>all_squash</code>&#xFF1A;&#x538B;&#x7F29;&#x6240;&#x6709;&#x7528;&#x6237;<br>  <code>anonuid</code>&#xFF0C;<code>anongid</code>&#xFF1A;&#x6307;&#x5B9A;&#x533F;&#x540D;&#x7528;&#x6237;&#x6620;&#x5C04;&#x4E3A;UID&#xFF0C;GID</p>
+</li>
+</ul>
+<font color="red"><strong>&#x6CE8;</strong>&#xFF1A;&#x5BA2;&#x6237;&#x7AEF;&#x4E0A;&#x7528;&#x6237;&#x5BF9;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x7684;&#x53D6;&#x51B3;&#x4E8E;&#x5BFC;&#x51FA;&#x5C5E;&#x6027;&#x53CA;&#x670D;&#x52A1;&#x7AEF;&#x4E0A;&#x5BF9;&#x5E94;&#x7528;&#x6237;&#x5BF9;&#x5BFC;&#x51FA;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x7684;&#x6743;&#x9650;&#x5171;&#x540C;&#x51B3;&#x5B9A;</font>
+
+<h3 id="&#x76F8;&#x5173;&#x547D;&#x4EE4;"><a href="#&#x76F8;&#x5173;&#x547D;&#x4EE4;" class="headerlink" title="&#x76F8;&#x5173;&#x547D;&#x4EE4;"></a>&#x76F8;&#x5173;&#x547D;&#x4EE4;</h3><ol>
+<li><p><code>showmount</code></p>
+<blockquote>
+<p><code>-a</code>: &#x5728;nfs&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x663E;&#x793A;&#x6240;&#x6709;&#x7684;&#x6302;&#x8F7D;&#x4F1A;&#x8BDD;<br><code>-d SERVER_IP</code>: &#x670D;&#x52A1;&#x5668;&#x7AEF;&#x6267;&#x884C;&#xFF0C;&#x663E;&#x793A;&#x90A3;&#x4E2A;&#x5BFC;&#x51FA;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x88AB;&#x90A3;&#x4E9B;&#x5BA2;&#x6237;&#x7AEF;&#x6302;&#x8F7D;&#x8FC7;<br><code>-e SERVER_IP</code>: &#x5BA2;&#x6237;&#x7AEF;&#x6267;&#x884C;&#xFF0C;&#x63A2;&#x67E5;&#x67D0;&#x4E3B;&#x673A;&#x6240;&#x5BFC;&#x51FA;&#x7684;nfs&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</p>
+</blockquote>
+</li>
+<li><p><code>exportfs</code></p>
+<blockquote>
+<p><code>-ar</code>: &#x91CD;&#x65B0;&#x5BFC;&#x51FA;&#x6240;&#x6709;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;<br><code>-au</code>: &#x5173;&#x95ED;&#x5BFC;&#x51FA;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;<br><code>-u FS</code>: &#x5173;&#x95ED;&#x6307;&#x5B9A;&#x7684;&#x5BFC;&#x51FA;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;<br><code>-v</code>: &#x663E;&#x793A;&#x8BE6;&#x7EC6;&#x8FC7;&#x7A0B;</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="&#x5BA2;&#x6237;&#x7AEF;&#x8BBF;&#x95EE;"><a href="#&#x5BA2;&#x6237;&#x7AEF;&#x8BBF;&#x95EE;" class="headerlink" title="&#x5BA2;&#x6237;&#x7AEF;&#x8BBF;&#x95EE;"></a>&#x5BA2;&#x6237;&#x7AEF;&#x8BBF;&#x95EE;</h2><p>&#x5BA2;&#x6237;&#x7AEF;&#x542F;&#x52A8;rpcbind&#xFF0C;&#x4EE5;&#x670D;&#x52A1;&#x7AEF;(172.16.60.1)&#x5BFC;&#x51FA;<code>/nfsshare</code>&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x6302;&#x8F7D;&#x5230;<code>/data/nfs</code>&#x4E3A;&#x4F8B;&#x8BF4;&#x660E;</p>
+<ol>
+<li><p>&#x5BA2;&#x6237;&#x7AEF;&#x6302;&#x8F7D;NFS&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF1A;</p>
+<pre><code>mount -t nfs 172.16.60.1:/nfsshare  /data/nfs
+</code></pre></li>
+<li><p>&#x5BA2;&#x6237;&#x7AEF;&#x5F00;&#x673A;&#x81EA;&#x52A8;&#x6302;&#x8F7D;nfs&#xFF1A;<code>/etc/fstab</code>&#x6DFB;&#x52A0;</p>
+<pre><code>172.16.60.1:/nfsshare  /data/nfs  nfs  defaults,_netdev  0 0
+</code></pre></li>
+</ol>
+<h2 id="&#x5B9E;&#x8DF5;"><a href="#&#x5B9E;&#x8DF5;" class="headerlink" title="&#x5B9E;&#x8DF5;"></a>&#x5B9E;&#x8DF5;</h2>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/文件共享/" rel="tag">#文件共享</a>
+          
+            <a href="/tags/nfs/" rel="tag">#nfs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/17/LAMP搭建的几个方案/" rel="next" title="LAMP搭建的几个方案">
+                <i class="fa fa-chevron-left"></i> LAMP搭建的几个方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/23/iptables简介及命令用法/" rel="prev" title="iptables简介及命令用法">
+                iptables简介及命令用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/21/文件共享服务之NFS简介及应用/"
+           data-title="文件共享服务之NFS简介及应用" data-url="http://liu2lin600.github.io/2016/07/21/文件共享服务之NFS简介及应用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nfs服务安装配置"><span class="nav-number">2.</span> <span class="nav-text">nfs服务安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#监听端口"><span class="nav-number">2.1.</span> <span class="nav-text">监听端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关进程"><span class="nav-number">2.2.</span> <span class="nav-text">相关进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限问题"><span class="nav-number">2.3.</span> <span class="nav-text">权限问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主配置"><span class="nav-number">2.4.</span> <span class="nav-text">主配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关命令"><span class="nav-number">2.5.</span> <span class="nav-text">相关命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端访问"><span class="nav-number">3.</span> <span class="nav-text">客户端访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践"><span class="nav-number">4.</span> <span class="nav-text">实践</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="反向代理,负载均衡,缓存," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x524D;&amp;#x7AEF;&amp;#x4F7F;&amp;#x7528;haproxy&amp;#x8FDB;&amp;#x884C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x53CA;&amp;#x5BF9;&amp;#x52A8;&amp;#x9759;&amp;#x5206;&amp;#x79BB;&amp;#xFF0C;&amp;#x540C;&amp;#x65F6;&amp;#x4F7F;&amp;#x7528;keepalived&amp;#x5BF9;&amp;#x5176">
+<meta property="og:type" content="article">
+<meta property="og:title" content="keepalived+haproxy+varnish实现web动静分离">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x524D;&amp;#x7AEF;&amp;#x4F7F;&amp;#x7528;haproxy&amp;#x8FDB;&amp;#x884C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x53CA;&amp;#x5BF9;&amp;#x52A8;&amp;#x9759;&amp;#x5206;&amp;#x79BB;&amp;#xFF0C;&amp;#x540C;&amp;#x65F6;&amp;#x4F7F;&amp;#x7528;keepalived&amp;#x5BF9;&amp;#x5176">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/main.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/varnishadm.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/check.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/purge.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/stats.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/vip.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/keepalived.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/cache.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/session.png">
+<meta property="og:updated_time" content="2016-08-22T04:14:58.765Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="keepalived+haproxy+varnish实现web动静分离">
+<meta name="twitter:description" content="&amp;#x524D;&amp;#x7AEF;&amp;#x4F7F;&amp;#x7528;haproxy&amp;#x8FDB;&amp;#x884C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x53CA;&amp;#x5BF9;&amp;#x52A8;&amp;#x9759;&amp;#x5206;&amp;#x79BB;&amp;#xFF0C;&amp;#x540C;&amp;#x65F6;&amp;#x4F7F;&amp;#x7528;keepalived&amp;#x5BF9;&amp;#x5176">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/main.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> keepalived+haproxy+varnish实现web动静分离 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                keepalived+haproxy+varnish实现web动静分离
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T09:39:35+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux服务/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux服务</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/22/keepalived-haproxy-varnish实现web动静分离/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/keepalived-haproxy-varnish实现web动静分离/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x524D;&#x7AEF;&#x4F7F;&#x7528;haproxy&#x8FDB;&#x884C;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x53CA;&#x5BF9;&#x52A8;&#x9759;&#x5206;&#x79BB;&#xFF0C;&#x540C;&#x65F6;&#x4F7F;&#x7528;keepalived&#x5BF9;&#x5176;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x540E;&#x7AEF;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;varnish&#x8FDB;&#x884C;&#x7F13;&#x5B58;&#xFF0C;&#x4EE5;php&#x4E3A;&#x4F8B;&#x5BF9;&#x52A8;&#x6001;&#x8BF7;&#x6C42;&#x57FA;&#x4E8E;memcached&#x4FDD;&#x5B58;session&#x4EE5;&#x5B9E;&#x73B0;&#x4F1A;&#x8BDD;&#x4FDD;&#x6301;&#x6548;&#x679C;</p>
+<a id="more"></a>
+<p>&#x6309;&#x7167;&#x60EF;&#x4F8B;&#x76F4;&#x63A5;&#x4E0A;&#x672C;&#x6B21;&#x5B9E;&#x9A8C;&#x7684;&#x62D3;&#x6251;&#x56FE;&#xFF0C;&#x5982;&#x4E0B;</p>
+<p><img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/main.png" alt="main"></p>
+<h2 id="&#x73AF;&#x5883;&#x51C6;&#x5907;"><a href="#&#x73AF;&#x5883;&#x51C6;&#x5907;" class="headerlink" title="&#x73AF;&#x5883;&#x51C6;&#x5907;"></a>&#x73AF;&#x5883;&#x51C6;&#x5907;</h2><ul>
+<li>&#x7CFB;&#x7EDF;&#xFF1A;CentOS.x86_64.7.2</li>
+<li>&#x4E3A;&#x5B9E;&#x9A8C;&#x65B9;&#x4FBF;&#x8FDB;&#x884C;&#xFF0C;&#x5173;&#x95ED;&#x5404;&#x4E3B;&#x673A;&#x9632;&#x706B;&#x5899;&#x53CA;SELinux</li>
+<li>&#x6240;&#x6709;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;yum&#x5B89;&#x88C5;&#xFF0C;&#x7248;&#x672C;&#x5982;&#x4E0B;:<ul>
+<li>keepalived-1.2.13-7.el7.x86_64</li>
+<li>haproxy-1.5.14-3.el7.x86_64 </li>
+<li>varnish-4.0.3-3.el7.x86_64</li>
+<li>httpd-2.4.6-40.el7.centos.4.x86_64</li>
+<li>php-5.4.16-36.3.el7_2.x86_64</li>
+<li>memcached-1.4.15-9.el7.x86_64</li>
+<li>php-pecl-memcached-2.2.0-1.el7.x86_64<ul>
+<li>&#x5982;&#x4E0A;&#x56FE;&#x5728;&#x5404;&#x4E3B;&#x673A;&#x4E0A;&#x5B89;&#x88C5;&#x76F8;&#x5E94;&#x7A0B;&#x5E8F;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>&#x5907;&#x6CE8;&#xFF1A;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;haproxy&#x4E3B;&#x673A;&#x5E94;&#x914D;&#x7F6E;2&#x5757;&#x7F51;&#x5361;&#xFF0C;&#x5BF9;&#x5916;&#x4F7F;&#x7528;&#x4FE1;&#x516C;&#x7F51;IP&#xFF0C;&#x53CD;&#x4EE3;&#x540E;&#x7AEF;&#x4F7F;&#x7528;&#x5185;&#x7F51;IP&#xFF0C;&#x672C;&#x5B9E;&#x9A8C;&#x4E3A;&#x65B9;&#x4FBF;&#x7EDF;&#x4E00;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x7F51;&#x6BB5;</em></p>
+<h2 id="&#x540E;&#x7AEF;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x914D;&#x7F6E;"><a href="#&#x540E;&#x7AEF;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x914D;&#x7F6E;" class="headerlink" title="&#x540E;&#x7AEF;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x914D;&#x7F6E;"></a>&#x540E;&#x7AEF;&#x52A8;&#x6001;&#x670D;&#x52A1;&#x914D;&#x7F6E;</h2><ol>
+<li>&#x4FEE;&#x6539;httpd&#x76D1;&#x542C;&#x7AEF;&#x53E3;&#x4E3A;8080</li>
+<li><p>&#x4E3A;2&#x53F0;&#x52A8;&#x6001;&#x4E3B;&#x673A;&#x51C6;&#x5907;&#x6D4B;&#x8BD5;&#x9875;&#x9762;</p>
+<p> <code>&#x25BA; vim /var/www/html/index.php</code></p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    session_start();</span><br><span class="line"></span><br><span class="line">    $mem = <span class="keyword">new</span> Memcached();</span><br><span class="line">    $mem-&gt;addServer(<span class="string">&apos;172.16.60.74&apos;</span>,<span class="number">11211</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;backend_1&quot;</span>.<span class="string">&apos;&lt;br/&gt;&apos;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;SESSION_ID: &quot;</span>.session_id().<span class="string">&apos;&lt;br/&gt;&apos;</span>;</span><br><span class="line">    $ss = $mem-&gt;get(<span class="string">&apos;memc.sess.key.&apos;</span>.session_id());</span><br><span class="line">    print_r($ss);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x56FE;&#x7247;&#x94FE;&#x63A5;&#xFF0C;&#x6D4B;&#x8BD5;&#x52A8;&#x9759;&#x5206;&#x79BB;</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br/&gt;&lt;img src=&apos;./42.jpg&apos; /&gt;&quot;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x5728;172.16.60.73&#x4E3B;&#x673A;&#x4E0A;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x8BBE;&#x7F6E;session&#x9875;&#x9762;<br> <code>&#x25BA; vim /var/www/html/session.php</code></p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    $ip = <span class="string">&apos;172.16.60.74&apos;</span>;</span><br><span class="line">    $port = <span class="number">11211</span>;</span><br><span class="line">    ini_set(<span class="string">&quot;session.save_handler&quot;</span>, <span class="string">&quot;memcached&quot;</span>);</span><br><span class="line">    ini_set(<span class="string">&quot;session.save_path&quot;</span>, $ip.<span class="string">&quot;:&quot;</span>.$port.<span class="string">&quot;?persistent=1&amp;weight=1&amp;timeout=1&amp;retry_interval=15&quot;</span>);</span><br><span class="line"></span><br><span class="line">    session_start();</span><br><span class="line">    $_SESSION[<span class="string">&apos;test&apos;</span>] = <span class="string">&apos;kelly&apos;</span>;</span><br><span class="line">    <span class="keyword">if</span> ($_SESSION[<span class="string">&apos;test&apos;</span>]) <span class="keyword">echo</span> <span class="string">&apos;set session success!&apos;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6D4B;&#x8BD5;</p>
+</li>
+</ol>
+<h2 id="varnish&#x914D;&#x7F6E;"><a href="#varnish&#x914D;&#x7F6E;" class="headerlink" title="varnish&#x914D;&#x7F6E;"></a>varnish&#x914D;&#x7F6E;</h2><ol>
+<li><p>&#x4FEE;&#x6539;varnish&#x9ED8;&#x8BA4;&#x53C2;&#x6570;<br> <code>vim /etc/varnish/varnish.params</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x4FEE;&#x6539;&#x4E3A;&#x4F7F;&#x7528;&#x5185;&#x5B58;&#x505A;&#x7F13;&#x5B58;&#xFF0C;&#x6CE8;&#x91CA;&#x9ED8;&#x8BA4;&#x9879;&#xFF0C;&#x5176;&#x5B83;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;</span></span><br><span class="line">VARNISH_STORAGE=<span class="string">&quot;malloc,200M&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x4FEE;&#x6539;vcl&#x914D;&#x7F6E;&#x6587;&#x4EF6;<br> <code>vim /etc/varnish/default.vcl</code> </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">vcl 4.0;</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5065;&#x5EB7;&#x68C0;&#x67E5;</span></span><br><span class="line">probe check {</span><br><span class="line">        .url = <span class="string">&quot;/check.html&quot;</span>;</span><br><span class="line">        .window = 5;</span><br><span class="line">        .threshold = 2;</span><br><span class="line">        .interval = 10s;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">acl purge {</span><br><span class="line">        <span class="string">&quot;127.0.0.1&quot;</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">backend default {</span><br><span class="line">    .host = <span class="string">&quot;172.16.60.71&quot;</span>;</span><br><span class="line">    .port = <span class="string">&quot;8080&quot;</span>;</span><br><span class="line">        .probe = check;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">sub vcl_purge {</span><br><span class="line">    <span class="built_in">return</span> (synth(200,<span class="string">&quot;Purged&quot;</span>));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">sub vcl_recv {</span><br><span class="line">    <span class="keyword">if</span> (req.restarts == 0) {</span><br><span class="line">        <span class="keyword">if</span> (req.http.X-Forwarded-For) {</span><br><span class="line">            <span class="built_in">set</span> req.http.X-Forwarded-For = req.http.X-Forwarded-For + <span class="string">&quot;, &quot;</span> + client.ip;</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="built_in">set</span> req.http.X-Forwarded-For = client.ip;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="comment"># &#x53EA;&#x5141;&#x8BB8;&#x901A;&#x8FC7;&#x672C;&#x673A;&#x5BF9;&#x7F13;&#x5B58;&#x505A;&#x4FEE;&#x526A;</span></span><br><span class="line">    <span class="keyword">if</span> (req.method == <span class="string">&quot;PURGE&quot;</span>) {</span><br><span class="line">        <span class="keyword">if</span> (!client.ip ~ purge){</span><br><span class="line">            <span class="built_in">return</span> (synth(405, <span class="string">&quot;This request is not allowed&quot;</span>));</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">return</span> (purge);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">sub vcl_backend_response {</span><br><span class="line">    <span class="comment"># &#x516C;&#x5171;&#x56FE;&#x7247;&#x7B49;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x6DFB;&#x52A0;&#x6709;&#x6548;&#x65F6;&#x957F;</span></span><br><span class="line">    <span class="keyword">if</span> (beresp.http.cache-control !~ <span class="string">&quot;s-maxage&quot;</span>) {</span><br><span class="line">        <span class="keyword">if</span> (bereq.url ~ <span class="string">&quot;(?i)\.(jpg|jpeg|png|gif|css|js)$&quot;</span>) {</span><br><span class="line">            <span class="built_in">unset</span> beresp.http.Set-Cookie;</span><br><span class="line">            <span class="built_in">set</span> beresp.ttl = 3600s;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">sub vcl_deliver {</span><br><span class="line">    <span class="comment"># &#x6DFB;&#x52A0;&#x54CD;&#x5E94;&#x9996;&#x90E8;&#x8BB0;&#x5F55;&#x662F;&#x5426;&#x7F13;&#x5B58;&#x547D;&#x4E2D;</span></span><br><span class="line">    <span class="keyword">if</span> (obj.hits &gt; 0){</span><br><span class="line">        <span class="built_in">set</span> resp.http.X-Cache = <span class="string">&quot;HIT From &quot;</span> + server.ip;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="built_in">set</span> resp.http.X-Cache = <span class="string">&quot;MISS&quot;</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>172.16.60.71&#x9759;&#x6001;&#x670D;&#x52A1;&#x76D1;&#x542C;&#x7AEF;&#x53E3;&#x4FEE;&#x6539;&#x4E3A;8080&#xFF0C;&#x5E76;&#x6DFB;&#x52A0;&#x6D4B;&#x8BD5;&#x9875;&#x9762;<br> &#x5728;<code>/var/www/html/&#x76EE;&#x5F55;&#x4E0B;&#x6DFB;&#x52A0;&#x4E00;&#x5F20;&#x56FE;&#x7247;(42.jpg)</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x6DFB;&#x52A0;&#x4E3B;&#x9875;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&lt;h2&gt;static page&lt;/h2&gt;&quot;</span> &gt; /var/www/html/index.html</span><br><span class="line"><span class="comment"># &#x6DFB;&#x52A0;&#x5065;&#x5EB7;&#x68C0;&#x6D4B;&#x9875;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;I&apos;m alive&quot;</span> &gt; /var/www/html/check.html</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x542F;&#x52A8;varnish&#x5E76;&#x8F7D;&#x5165;vcl&#x914D;&#x7F6E;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/varnishadm.png" alt="varnishadm"></p>
+</li>
+<li><p>&#x5065;&#x5EB7;&#x68C0;&#x6D4B;&#x72B6;&#x6001;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/check.png" alt="check"></p>
+</li>
+<li><p>&#x7F13;&#x5B58;&#x4FEE;&#x526A;&#x6D4B;&#x8BD5;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/purge.png" alt="purge"><br> &#x4ECE;&#x4E0A;&#x56FE;&#x53EF;&#x770B;&#x51FA;&#xFF0C;varnish&#x7F13;&#x5B58;&#x53EA;&#x5141;&#x8BB8;&#x672C;&#x673A;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x6E05;&#x9664;&#x64CD;&#x4F5C;</p>
+</li>
+</ol>
+<h2 id="haproxy&#x914D;&#x7F6E;"><a href="#haproxy&#x914D;&#x7F6E;" class="headerlink" title="haproxy&#x914D;&#x7F6E;"></a>haproxy&#x914D;&#x7F6E;</h2><ol>
+<li><p>&#x4FEE;&#x6539;haproxy&#x4E3B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;global&#x53CA;default&#x6BB5;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;<br> <code>vim /etc/haproxy/haproxy.cfg</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBF;&#x95EE;&#x5165;&#x53E3;</span></span><br><span class="line">frontend websrvs</span><br><span class="line">    <span class="built_in">bind</span> *:80</span><br><span class="line">    acl  static     path_beg    -i  /static  /javascript  /stylesheets</span><br><span class="line">    acl  static     path_end    -i  .html .js .css .jpeg .png .gif .bmp</span><br><span class="line">    acl  dynamic    path_end    -i  .php</span><br><span class="line"></span><br><span class="line">    use_backend     dynamic     <span class="keyword">if</span>  dynamic</span><br><span class="line">    use_backend     static      <span class="keyword">if</span>  static</span><br><span class="line"></span><br><span class="line">    default_backend static</span><br><span class="line">    rspadd X-Via:\ HAPorxy</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;cookie&#x4FDD;&#x6301;</span></span><br><span class="line">backend static</span><br><span class="line">    cookie WEBSRV insert nocache indirect</span><br><span class="line">    server srv1 172.16.60.71:6081 check weight 2 cookie srv1</span><br><span class="line">    server srv2 172.16.60.72:6081 check weight 1 cookie srv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x52A8;&#x6001;&#x8F6E;&#x8BE2;</span></span><br><span class="line">backend dynamic</span><br><span class="line">    balance roundrobin</span><br><span class="line">    server  srv3 172.16.60.73:8080 check</span><br><span class="line">    server  srv4 172.16.60.74:8080 check</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x76D1;&#x63A7;&#x9875;&#x9762;</span></span><br><span class="line">listen stats</span><br><span class="line">    <span class="built_in">bind</span> *:8009</span><br><span class="line">    stats <span class="built_in">enable</span></span><br><span class="line">    stats uri /admin?stats</span><br><span class="line">    stats auth liu:lin</span><br><span class="line">    stats realm admin\ area</span><br><span class="line">    stats admin <span class="keyword">if</span> TRUE</span><br><span class="line">    stats hide-version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x542F;&#x52A8;haproxy&#x5E76;&#x67E5;&#x770B;&#x76D1;&#x63A7;&#x9875;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/stats.png" alt="stats"></p>
+</li>
+</ol>
+<h2 id="keepalived&#x914D;&#x7F6E;"><a href="#keepalived&#x914D;&#x7F6E;" class="headerlink" title="keepalived&#x914D;&#x7F6E;"></a>keepalived&#x914D;&#x7F6E;</h2><ol>
+<li><p>MASTER&#x8BBE;&#x7F6E;(172.16.60.3)<br> <code>vim /etc/keepalived/keepalived.conf</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">!Configuration File <span class="keyword">for</span> keepalived</span><br><span class="line">global_defs {</span><br><span class="line">    notification_email {</span><br><span class="line">        root@localhost</span><br><span class="line">    }</span><br><span class="line">    notification_email_from keepalived@localhost</span><br><span class="line">    smtp_server 127.0.0.1</span><br><span class="line">    smtp_connect_timeout 30</span><br><span class="line">    router_id node1</span><br><span class="line">    vrrp_mcast_group4 224.0.100.18</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">vrrp_script chk_haproxy {</span><br><span class="line">    script <span class="string">&quot;killall -0 haproxy&quot;</span></span><br><span class="line">    interval 1</span><br><span class="line">    weight -5</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">vrrp_instance VI_1 {</span><br><span class="line">    state MASTER</span><br><span class="line">    interface eno16777736</span><br><span class="line">    virtual_router_id 66</span><br><span class="line">    priority 100</span><br><span class="line">    advert_int 1</span><br><span class="line"></span><br><span class="line">    authentication {</span><br><span class="line">        auth_<span class="built_in">type</span> PASS</span><br><span class="line">        auth_pass sdfhj23H</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    virtual_ipaddress {</span><br><span class="line">        172.16.60.100/32 dev eno16777736</span><br><span class="line">    }</span><br><span class="line">    track_script {</span><br><span class="line">        chk_haproxy</span><br><span class="line">    }</span><br><span class="line">    notify_master <span class="string">&quot;/etc/keepalived/notify.sh master&quot;</span></span><br><span class="line">    notify_backup <span class="string">&quot;/etc/keepalived/notify.sh backup&quot;</span></span><br><span class="line">    notify_fault <span class="string">&quot;/etc/keepalived/notify.sh fault&quot;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>BACKUP&#x914D;&#x7F6E;(172.16.60.4)<br> &#x590D;&#x5236;MASTER&#x914D;&#x7F6E;&#x5E76;&#x505A;&#x5982;&#x4E0B;&#x51E0;&#x5904;&#x4FEE;&#x6539;</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router_id node2</span><br><span class="line">state BACKUP</span><br><span class="line">priority 97</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x51C6;&#x5907;&#x901A;&#x77E5;&#x811A;&#x672C;&#xFF0C;&#x7528;&#x6765;&#x5F53;haparoxy&#x4E0D;&#x53EF;&#x7528;&#x65F6;&#x53D1;&#x9001;&#x90AE;&#x4EF6;&#x5E76;&#x5C1D;&#x8BD5;&#x81EA;&#x52A8;&#x91CD;&#x542F;<br> <code>vim /etc/keepalived/notify.sh</code> <strong>&#x5E76;&#x6DFB;&#x52A0;&#x6267;&#x884C;&#x6743;&#x9650;</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">contact=&apos;root@localhost&apos;</span><br><span class="line"></span><br><span class="line">notify() {</span><br><span class="line">    mailsubject=&quot;$(hostname) to be $1, vip floating.&quot;</span><br><span class="line">    mailbody=&quot;$(date +&apos;%F %T&apos;): vrrp transition, $(hostname) changed to be $1&quot;</span><br><span class="line">    echo &quot;$mailbody&quot; | mail -s &quot;$mailsubject&quot; $contact</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">master)</span><br><span class="line">    notify master</span><br><span class="line">    ;;</span><br><span class="line">backup)</span><br><span class="line">    notify backup</span><br><span class="line">    systemctl restart haproxy</span><br><span class="line">    ;;</span><br><span class="line">fault)</span><br><span class="line">    notify fault</span><br><span class="line">    systemctl restart haproxy</span><br><span class="line">    ;;</span><br><span class="line">*)</span><br><span class="line">    echo &quot;Usage: $(basename $0) {master|backup|fault}&quot;</span><br><span class="line">    exit 1</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x542F;&#x52A8;2&#x53F0;&#x4E3B;&#x673A;keepalived<br> &#x5E76;&#x67E5;&#x770B;vip(172.16.60.100)&#x662F;&#x5426;&#x6DFB;&#x52A0;&#x6210;&#x529F;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/vip.png" alt="vip"><br> &#x624B;&#x52A8;&#x5173;&#x95ED;&#x4E3B;haproxy&#xFF0C;&#x67E5;&#x770B;&#x5907;haproxy&#x60C5;&#x51B5;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/keepalived.png" alt="keepalived"><br> <em>&#x4E3B;haproxy&#x6545;&#x969C;&#x65F6;&#xFF0C;&#x5907;&#x542F;&#x52A8;&#xFF0C;&#x4F46;&#x4E3B;&#x72B6;&#x6001;&#x53D8;&#x6210;backup&#x65F6;&#x89E6;&#x53D1;&#x901A;&#x77E5;&#x811A;&#x672C;&#xFF0C;&#x91CD;&#x542F;haproxy&#xFF0C;&#x4E00;&#x65E6;&#x91CD;&#x542F;&#x6210;&#x529F;&#x5E76;&#x91CD;&#x65B0;&#x6210;&#x4E3A;&#x4E3B;&#x8282;&#x70B9;</em></p>
+</li>
+</ol>
+<h2 id="&#x7F13;&#x5B58;&#x53CA;&#x4F1A;&#x8BDD;&#x4FDD;&#x6301;&#x6D4B;&#x8BD5;"><a href="#&#x7F13;&#x5B58;&#x53CA;&#x4F1A;&#x8BDD;&#x4FDD;&#x6301;&#x6D4B;&#x8BD5;" class="headerlink" title="&#x7F13;&#x5B58;&#x53CA;&#x4F1A;&#x8BDD;&#x4FDD;&#x6301;&#x6D4B;&#x8BD5;"></a>&#x7F13;&#x5B58;&#x53CA;&#x4F1A;&#x8BDD;&#x4FDD;&#x6301;&#x6D4B;&#x8BD5;</h2><ol>
+<li><p>&#x7F13;&#x5B58;&#x547D;&#x4E2D;&#x6D4B;&#x8BD5;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/cache.png" alt="cache"></p>
+</li>
+<li><p>&#x4F1A;&#x8BDD;&#x4FDD;&#x6301;&#x53CA;&#x52A8;&#x9759;&#x5206;&#x79BB;<br> <img src="/2016/08/22/keepalived-haproxy-varnish&#x5B9E;&#x73B0;web&#x52A8;&#x9759;&#x5206;&#x79BB;/session.png" alt="session"></p>
+</li>
+</ol>
+<p>&#x4EE5;&#x4E0A;&#x5C31;&#x662F;&#x672C;&#x6B21;&#x5B9E;&#x9A8C;&#x7684;&#x5168;&#x90E8;&#x5185;&#x5BB9;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/反向代理/" rel="tag">#反向代理</a>
+          
+            <a href="/tags/负载均衡/" rel="tag">#负载均衡</a>
+          
+            <a href="/tags/缓存/" rel="tag">#缓存</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/" rel="next" title="ansible简单部署高可用负载均衡lnamp环境">
+                <i class="fa fa-chevron-left"></i> ansible简单部署高可用负载均衡lnamp环境
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/02/基于ssl的MySQL主从复制/" rel="prev" title="基于ssl的MySQL主从复制">
+                基于ssl的MySQL主从复制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/22/keepalived-haproxy-varnish实现web动静分离/"
+           data-title="keepalived+haproxy+varnish实现web动静分离" data-url="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端动态服务配置"><span class="nav-number">2.</span> <span class="nav-text">后端动态服务配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#varnish配置"><span class="nav-number">3.</span> <span class="nav-text">varnish配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#haproxy配置"><span class="nav-number">4.</span> <span class="nav-text">haproxy配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keepalived配置"><span class="nav-number">5.</span> <span class="nav-text">keepalived配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存及会话保持测试"><span class="nav-number">6.</span> <span class="nav-text">缓存及会话保持测试</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

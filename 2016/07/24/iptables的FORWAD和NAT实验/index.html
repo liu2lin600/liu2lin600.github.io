@@ -1,0 +1,879 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iptables,FORWARD,NAT," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x6A21;&amp;#x62DF;&amp;#x5B9E;&amp;#x73B0;iptables&amp;#x4E2D;&amp;#x7684;FORWARD&amp;#x53CA;NAT&amp;#x529F;&amp;#x80FD;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iptables的FORWAD和NAT实验">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x6A21;&amp;#x62DF;&amp;#x5B9E;&amp;#x73B0;iptables&amp;#x4E2D;&amp;#x7684;FORWARD&amp;#x53CA;NAT&amp;#x529F;&amp;#x80FD;">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/forward_nat.png">
+<meta property="og:updated_time" content="2016-07-24T09:58:53.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iptables的FORWAD和NAT实验">
+<meta name="twitter:description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x6A21;&amp;#x62DF;&amp;#x5B9E;&amp;#x73B0;iptables&amp;#x4E2D;&amp;#x7684;FORWARD&amp;#x53CA;NAT&amp;#x529F;&amp;#x80FD;">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/forward_nat.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iptables的FORWAD和NAT实验 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iptables的FORWAD和NAT实验
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-24T07:05:36+08:00" content="2016-07-24">
+              2016-07-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux服务/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux服务</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/24/iptables的FORWAD和NAT实验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/24/iptables的FORWAD和NAT实验/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5728;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x6A21;&#x62DF;&#x5B9E;&#x73B0;iptables&#x4E2D;&#x7684;FORWARD&#x53CA;NAT&#x529F;&#x80FD;</p>
+<a id="more"></a>
+<p>&#x76F4;&#x63A5;&#x4E0A;&#x6B64;&#x6B21;&#x5B9E;&#x9A8C;&#x7684;&#x73AF;&#x5883;&#x793A;&#x610F;&#x56FE;&#xFF1A;<br><img src="/2016/07/24/iptables&#x7684;FORWAD&#x548C;NAT&#x5B9E;&#x9A8C;/forward_nat.png" alt="f"></p>
+<p>&#x73AF;&#x5883;&#x8BF4;&#x660E;</p>
+<ol>
+<li><strong>&#x7CFB;&#x7EDF;</strong>&#xFF1A;CentOS 7.2.x86_64&#x4E3B;&#x673A;3&#x53F0;&#xFF0C;&#x5173;&#x95ED;firewalld&#x670D;&#x52A1;&#xFF0C;&#x540C;&#x65F6;&#x6E05;&#x7A7A;iptables&#x89C4;&#x5219;</li>
+<li>&#x4E3B;&#x673A;B&#x4E0A;&#x914D;2&#x5757;&#x7F51;&#x5361;&#xFF0C;&#x901A;&#x8FC7;vmnet2&#x4E0E;A&#x8FDE;&#x63A5;&#xFF0C;&#x4E0E;C&#x76F4;&#x63A5;&#x6865;&#x63A5;</li>
+<li>&#x4E3B;&#x673A;B&#x5145;&#x5F53;&#x8F6C;&#x53D1;&#x548C;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x5F00;&#x542F;&#x6838;&#x5FC3;&#x8F6C;&#x53D1;&#x529F;&#x80FD;(ip_forward)</li>
+<li>&#x5C06;A&#x7684;&#x9ED8;&#x8BA4;&#x7F51;&#x5173;&#x6307;&#x5411;B</li>
+</ol>
+<h2 id="FORWARD-&#x8F6C;&#x53D1;"><a href="#FORWARD-&#x8F6C;&#x53D1;" class="headerlink" title="FORWARD(&#x8F6C;&#x53D1;)"></a>FORWARD(&#x8F6C;&#x53D1;)</h2><h3 id="&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;"><a href="#&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;"></a>&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;</h3><ol>
+<li><p>B&#x4E3B;&#x673A;&#x5F00;&#x542F;&#x6838;&#x5FC3;&#x8F6C;&#x53D1;&#x529F;&#x80FD;&#xFF0C;&#x540C;&#x65F6;&#x786E;&#x4FDD;&#x6A21;&#x5757;<code>nf_conntrack</code>&#x5904;&#x4E8E;&#x5F00;&#x542F;&#x72B6;</p>
+<pre><code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+lsmod | grep nf_conntrack
+</code></pre></li>
+<li><p>A&#x4E3B;&#x673A;&#x9ED8;&#x8BA4;&#x7F51;&#x5173;&#x6307;&#x5411;B</p>
+<pre><code>route add default gw 172.16.60.12
+</code></pre></li>
+<li><p>C&#x4E3B;&#x673A;&#x6DFB;&#x52A0;&#x4E00;&#x6761;&#x7F51;&#x7EDC;&#x8DEF;&#x7531;&#x5230;B&#x4E3B;&#x673A;</p>
+<pre><code>route add -net 172.16.0.0/16 gw 192.168.1.71 
+</code></pre></li>
+<li><p>&#x6D4B;&#x8BD5;A&#x3001;B&#x3001;C&#x4E4B;&#x95F4;&#x662F;&#x5426;&#x90FD;&#x80FD;ping&#x901A;</p>
+</li>
+</ol>
+<h3 id="&#x5B9E;&#x9A8C;&#x8981;&#x6C42;"><a href="#&#x5B9E;&#x9A8C;&#x8981;&#x6C42;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x8981;&#x6C42;"></a>&#x5B9E;&#x9A8C;&#x8981;&#x6C42;</h3><p>A&#x4E3B;&#x673A;&#x5F00;&#x542F;web,ftp,ssh&#x670D;&#x52A1;&#xFF0C;&#x786E;&#x4FDD;&#x5916;&#x7F51;C&#x4E3B;&#x673A;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;FORWARD&#x9ED8;&#x8BA4;&#x89C4;&#x5219;&#x4E3A;DROP&#xFF0C;&#x6B64;&#x65F6;AC&#x95F4;&#x4E0D;&#x80FD;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x901A;&#x4FE1;</span></span><br><span class="line">iptables -P FORWARD DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x653E;&#x72B6;&#x6001;&#x4E3A;&#x5DF2;&#x5EFA;&#x7ACB;&#x7684;&#x8FDE;&#x63A5;&#x53CA;&#x6709;&#x5173;&#x8054;&#x8FDE;&#x63A5;</span></span><br><span class="line">iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x542F;A&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x5916;&#x90E8;&#x7F51;&#x7EDC;&#xFF0C;&#x6B64;&#x65F6;&#x5916;&#x7F51;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;A&#x4E3B;&#x673A;</span></span><br><span class="line">iptables -A FORWARD <span class="_">-s</span> 172.16.60.11 -m state --state NEW -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x653E;A&#x4E3B;&#x673A;21,22,23,80&#x7AEF;&#x53E3;</span></span><br><span class="line">iptables -A FORWARD <span class="_">-d</span> 172.16.60.11 -p tcp -m multiport --dports 21,22,80 -m state --state NEW -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># B&#x4E3B;&#x673A;&#x52A0;&#x8F7D;ftp&#x6A21;&#x5757;&#xFF0C;&#x786E;&#x4FDD;&#x53EF;&#x4EE5;&#x8FFD;&#x8E2A;ftp&#x72B6;&#x6001;</span></span><br><span class="line">modprobe nf_conntrack_ftp</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5728;C&#x4E3B;&#x673A;&#x6D4B;&#x8BD5;</span></span><br><span class="line">ftp 172.16.60.11</span><br><span class="line">curl 172.16.60.11</span><br><span class="line">ssh root@172.16.60.11</span><br></pre></td></tr></table></figure>
+<h2 id="NAT-&#x5730;&#x5740;&#x8F6C;&#x6362;"><a href="#NAT-&#x5730;&#x5740;&#x8F6C;&#x6362;" class="headerlink" title="NAT(&#x5730;&#x5740;&#x8F6C;&#x6362;)"></a>NAT(&#x5730;&#x5740;&#x8F6C;&#x6362;)</h2><h3 id="&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;-1"><a href="#&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;-1" class="headerlink" title="&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;"></a>&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;</h3><ol>
+<li><p>&#x5220;&#x9664;&#x4E0A;&#x5B9E;&#x9A8C;&#x4E2D;&#x4E3A;C&#x4E3B;&#x673A;&#x6DFB;&#x52A0;&#x7684;&#x5230;B&#x4E3B;&#x673A;&#x7F51;&#x7EDC;&#x8DEF;&#x7531;</p>
+<pre><code>route del -net 172.16.0.0/16
+</code></pre></li>
+<li><p>&#x6E05;&#x7A7A;&#x6240;&#x6709;&#x89C4;&#x5219;&#x94FE;&#xFF0C;&#x5E76;&#x786E;&#x4FDD;&#x9ED8;&#x8BA4;&#x7B56;&#x7565;&#x4E3A;ACCEPT</p>
+<pre><code>iptables -F
+</code></pre></li>
+</ol>
+<h3 id="SNAT"><a href="#SNAT" class="headerlink" title="SNAT"></a>SNAT</h3><p><strong>&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;</strong>&#x7528;&#x4E8E;&#x8BA9;&#x5185;&#x7F51;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x4E92;&#x8054;&#x7F51;&#xFF0C;&#x4EC5;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;POSTROUTING&#xFF0C;INPUT&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x8FBE;&#x5230;&#x9690;&#x85CF;&#x5185;&#x7F51;ip&#x7684;&#x4F5C;&#x7528;</p>
+<p><strong>&#x5B9E;&#x9A8C;&#x8981;&#x6C42;</strong>&#xFF1A;&#x5185;&#x7F51;&#x4E3B;&#x673A;A&#x8BBF;&#x95EE;&#x5916;&#x7F51;C&#x4E3B;&#x673A;&#xFF0C;&#x901A;&#x8FC7;B&#x4E3B;&#x673A;&#x7684;&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x5B9E;&#x73B0;B&#x4EE3;&#x7406;&#x8BBF;&#x95EE;C&#xFF0C;&#x540C;&#x65F6;&#x9690;&#x85CF;&#x5185;&#x7F51;ip&#x3002;&#x524D;&#x63D0;&#x786E;&#x4FDD;B&#x4E3B;&#x673A;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x8BBF;&#x95EE;C</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;&#x8F6C;&#x6362;</span></span><br><span class="line">iptables -t nat -A POSTROUTING <span class="_">-s</span> 172.16.60.11 -j SNAT --to-source 192.168.1.71</span><br><span class="line"></span><br><span class="line"><span class="comment"># A&#x4E3B;&#x673A;&#x8BBF;&#x95EE;C&#x4E3B;&#x673A;web&#x670D;&#x52A1;</span></span><br><span class="line">curl 192.168.1.72</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5728;C&#x4E3B;&#x673A;&#x4E0A;&#x67E5;&#x770B;&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;</span></span><br><span class="line">tail /var/<span class="built_in">log</span>/httpd/access_<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x8BBF;&#x95EE;&#x4E3B;&#x673A;&#x663E;&#x793A;B&#x4E3B;&#x673A;IP</span></span><br><span class="line">    192.168.1.71 - - [24/Jul/2016:11:17:10 +0800] <span class="string">&quot;GET /index.html HTTP/1.1&quot;</span> 200 10</span><br></pre></td></tr></table></figure>
+<h3 id="DNAT"><a href="#DNAT" class="headerlink" title="DNAT"></a>DNAT</h3><p><strong>&#x76EE;&#x6807;&#x5730;&#x5740;&#x8F6C;&#x6362;</strong>&#x7528;&#x4E8E;&#x8BA9;&#x4E92;&#x8054;&#x7F51;&#x4E0A;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x672C;&#x5730;&#x5185;&#x7F51;&#x4E0A;&#x7684;&#x67D0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x4EC5;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;PREROUTING&#x548C;OUTPUT&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x6709;&#x7AEF;&#x53E3;&#x8F6C;&#x6362;&#x4F5C;&#x7528;</p>
+<p><strong>&#x5B9E;&#x9A8C;&#x8981;&#x6C42;</strong>&#xFF1A;&#x5185;&#x7F51;&#x4E3B;&#x673A;&#x7684;httpd&#x670D;&#x52A1;&#x76D1;&#x542C;&#x5728;8080&#x7AEF;&#x53E3;&#xFF0C;&#x8BA9;C&#x8BBF;&#x95EE;&#x4E3B;&#x673A;B&#x7684;80&#x65F6;&#x8F6C;&#x6362;&#x5230;A&#x4E3B;&#x673A;&#x7684;8080&#x4E0A;&#xFF0C;B&#x4E0A;&#x6CA1;&#x6709;httpd&#x670D;&#x52A1;&#xFF0C;&#x53EA;&#x8D1F;&#x8D23;&#x5730;&#x5740;&#x8F6C;&#x6362;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;&#x8F6C;&#x6362;</span></span><br><span class="line">iptables -t nat -A PREROUTING <span class="_">-d</span> 192.168.1.71 -p tcp --dport 80 -j DNAT --to-destination 172.16.60.11:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># C&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x6D4B;&#x8BD5;</span></span><br><span class="line">curl 192.168.1.71</span><br><span class="line"></span><br><span class="line"><span class="comment"># A&#x4E3B;&#x673A;&#x4E0A;&#x67E5;&#x770B;http&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;</span></span><br><span class="line">tail /var/<span class="built_in">log</span>/httpd/access_<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x6B63;&#x5E38;&#x8BB0;&#x5F55;&#x4E0B;C&#x4E3B;&#x673A;IP</span></span><br><span class="line">    192.168.1.72 - - [24/Jul/2016:10:44:14 +0800] <span class="string">&quot;GET / HTTP/1.1&quot;</span> 200 9 <span class="string">&quot;-&quot;</span> <span class="string">&quot;curl/7.29.0&quot;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iptables/" rel="tag">#iptables</a>
+          
+            <a href="/tags/FORWARD/" rel="tag">#FORWARD</a>
+          
+            <a href="/tags/NAT/" rel="tag">#NAT</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/23/iptables简介及命令用法/" rel="next" title="iptables简介及命令用法">
+                <i class="fa fa-chevron-left"></i> iptables简介及命令用法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/02/Nginx配置文件主要指令参考/" rel="prev" title="Nginx配置文件主要指令参考">
+                Nginx配置文件主要指令参考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/24/iptables的FORWAD和NAT实验/"
+           data-title="iptables的FORWAD和NAT实验" data-url="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FORWARD-转发"><span class="nav-number">1.</span> <span class="nav-text">FORWARD(转发)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验前配置"><span class="nav-number">1.1.</span> <span class="nav-text">实验前配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验要求"><span class="nav-number">1.2.</span> <span class="nav-text">实验要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT-地址转换"><span class="nav-number">2.</span> <span class="nav-text">NAT(地址转换)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验前配置-1"><span class="nav-number">2.1.</span> <span class="nav-text">实验前配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SNAT"><span class="nav-number">2.2.</span> <span class="nav-text">SNAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNAT"><span class="nav-number">2.3.</span> <span class="nav-text">DNAT</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

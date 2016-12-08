@@ -1,0 +1,926 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LVM2," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;LVM&amp;#x903B;&amp;#x8F91;&amp;#x5377;&amp;#x53CA;&amp;#x7B80;&amp;#x5355;&amp;#x8FD0;&amp;#x7528;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LVM2简介及实现">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;LVM&amp;#x903B;&amp;#x8F91;&amp;#x5377;&amp;#x53CA;&amp;#x7B80;&amp;#x5355;&amp;#x8FD0;&amp;#x7528;">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvm2.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvm_8e.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/pvcreate.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/vgcreate.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvcreate.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lv_mkfs.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lv_mount.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvm_link.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/vg_reduce.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvm_remove.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvextend.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvreduce.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvm_snapshot.png">
+<meta property="og:updated_time" content="2016-06-03T09:29:32.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LVM2简介及实现">
+<meta name="twitter:description" content="&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;LVM&amp;#x903B;&amp;#x8F91;&amp;#x5377;&amp;#x53CA;&amp;#x7B80;&amp;#x5355;&amp;#x8FD0;&amp;#x7528;">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/lvm2.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> LVM2简介及实现 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LVM2简介及实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-31T17:23:35+08:00" content="2016-05-31">
+              2016-05-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/31/LVM2简介及实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/31/LVM2简介及实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x7B80;&#x8981;&#x4ECB;&#x7ECD;LVM&#x903B;&#x8F91;&#x5377;&#x53CA;&#x7B80;&#x5355;&#x8FD0;&#x7528;</p>
+<a id="more"></a>
+<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>LVM&#x662F;&#x903B;&#x8F91;&#x5377;&#x7BA1;&#x7406;&#xFF08;Logical Volume Manager&#xFF09;&#x7684;&#x7B80;&#x79F0;&#xFF0C;&#x5B83;&#x662F;&#x5EFA;&#x7ACB;&#x5728;&#x7269;&#x7406;&#x5B58;&#x50A8;&#x8BBE;&#x5907;&#x4E4B;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x5C42;&#xFF0C;&#x5141;&#x8BB8;&#x4F60;&#x751F;&#x6210;&#x903B;&#x8F91;&#x5B58;&#x50A8;&#x5377;,&#x4E0E;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x7269;&#x7406;&#x5B58;&#x50A8;&#x5728;&#x7BA1;&#x7406;&#x4E0A;&#x76F8;&#x6BD4;,&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x597D;&#x7075;&#x6D3B;&#x6027;&#x3002;LVM&#x5C06;&#x5B58;&#x50A8;&#x865A;&#x62DF;&#x5316;,&#x4F7F;&#x7528;&#x903B;&#x8F91;&#x5377;,&#x4F60;&#x4E0D;&#x4F1A;&#x53D7;&#x9650;&#x4E8E;&#x7269;&#x7406;&#x78C1;&#x76D8;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x53E6;&#x5916;&#xFF0C;&#x4E0E;&#x786C;&#x4EF6;&#x76F8;&#x5173;&#x7684;&#x5B58;&#x50A8;&#x8BBE;&#x7F6E;&#x88AB;&#x5176;&#x9690;&#x85CF;&#xFF0C;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x505C;&#x6B62;&#x5E94;&#x7528;&#x6216;&#x5378;&#x8F7D;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x6765;&#x8C03;&#x6574;&#x5377;&#x5927;&#x5C0F;&#x6216;&#x6570;&#x636E;&#x8FC1;&#x79FB;&#xFF0C;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x7684;&#x6765;&#x6269;&#x5C55;&#x6216;&#x7F29;&#x5C0F;&#x903B;&#x8F91;&#x5377;&#x5927;&#x5C0F;&#xFF0C;&#x540C;&#x65F6;&#x903B;&#x8F91;&#x5377;&#x652F;&#x6301;&#x5FEB;&#x7167;&#x529F;&#x80FD;<br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvm2.png" alt="LVM&#x793A;&#x610F;&#x56FE;"></p>
+<p><strong>&#x8BF4;&#x660E;</strong></p>
+<ul>
+<li><strong>PV</strong>&#xFF1A;physical volume &#x7269;&#x7406;&#x5377;&#x5728;&#x903B;&#x8F91;&#x5377;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#x6700;&#x5E95;&#x5C42;&#xFF0C;&#x53EF;&#x4E3A;&#x6574;&#x4E2A;&#x7269;&#x7406;&#x786C;&#x76D8;&#x6216;&#x5B9E;&#x9645;&#x7269;&#x7406;&#x786C;&#x76D8;&#x4E0A;&#x7684;&#x5206;&#x533A;</li>
+<li><strong>VG</strong>&#xFF1A;volume group &#x5377;&#x7EC4;&#x5EFA;&#x7ACB;&#x5728;&#x7269;&#x7406;&#x5377;&#x4E0A;&#xFF0C;&#x4E00;&#x5377;&#x7EC4;&#x4E2D;&#x81F3;&#x5C11;&#x8981;&#x5305;&#x62EC;&#x4E00;&#x7269;&#x7406;&#x5377;&#xFF0C;&#x5377;&#x7EC4;&#x5EFA;&#x7ACB;&#x540E;&#x53EF;&#x52A8;&#x6001;&#x7684;&#x6DFB;&#x52A0;&#x5377;&#x5230;&#x5377;&#x7EC4;&#x4E2D;&#xFF0C;&#x7C7B;&#x4F3C;&#x78C1;&#x76D8;&#x7684;&#x6269;&#x5C55;&#x5206;&#x533A;&#xFF0C;&#x672C;&#x8EAB;&#x4E0D;&#x80FD;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF0C;&#x9700;&#x518D;&#x5212;&#x5206;&#x6210;LV&#x6765;&#x4F7F;&#x7528;&#xFF0C;&#x4E00;&#x4E2A;&#x903B;&#x8F91;&#x5377;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#x5DE5;&#x7A0B;&#x4E2D;&#x53EF;&#x6709;&#x591A;&#x4E2A;&#x5377;&#x7EC4;</li>
+<li><strong>LV</strong>&#xFF1A;logical volume &#x903B;&#x8F91;&#x5377;&#x5EFA;&#x7ACB;&#x5728;&#x5377;&#x7EC4;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x5377;&#x7EC4;&#x4E2D;&#x672A;&#x5206;&#x914D;&#x7A7A;&#x95F4;&#x53EF;&#x7528;&#x4E8E;&#x5EFA;&#x7ACB;&#x65B0;&#x7684;&#x903B;&#x8F91;&#x5377;&#xFF0C;&#x903B;&#x8F91;&#x5377;&#x5EFA;&#x7ACB;&#x540E;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x6269;&#x5C55;&#x548C;&#x7F29;&#x5C0F;&#x7A7A;&#x95F4;</li>
+<li><strong>PE</strong>&#xFF1A;physical extent &#x7269;&#x7406;&#x533A;&#x57DF;&#x662F;&#x7269;&#x7406;&#x5377;&#x4E2D;&#x53EF;&#x7528;&#x4E8E;&#x5206;&#x914D;&#x7684;&#x6700;&#x5C0F;&#x5B58;&#x50A8;&#x5355;&#x5143;&#xFF0C;&#x7269;&#x7406;&#x533A;&#x57DF;&#x5927;&#x5C0F;&#x5728;&#x5EFA;&#x7ACB;&#x5377;&#x7EC4;&#x65F6;&#x6307;&#x5B9A;&#xFF0C;&#x4E00;&#x65E6;&#x786E;&#x5B9A;&#x4E0D;&#x80FD;&#x66F4;&#x6539;&#xFF0C;&#x540C;&#x4E00;&#x5377;&#x7EC4;&#x6240;&#x6709;&#x7269;&#x7406;&#x5377;&#x7684;&#x7269;&#x7406;&#x533A;&#x57DF;&#x5927;&#x5C0F;&#x9700;&#x4E00;&#x81F4;&#xFF0C;&#x65B0;PV&#x52A0;&#x5165;&#x5230;VG&#x540E;&#xFF0C;PE&#x5927;&#x5C0F;&#x81EA;&#x52A8;&#x66F4;&#x6539;&#x4E3A;VG&#x4E2D;&#x5B9A;&#x4E49;&#x7684;PE&#x5927;&#x5C0F;</li>
+</ul>
+<p><strong>&#x7BA1;&#x7406;&#x5DE5;&#x5177;</strong></p>
+<blockquote>
+<p>PV&#x7BA1;&#x7406;&#x5DE5;&#x5177;</p>
+<ul>
+<li>pvs: &#x7B80;&#x8981;&#x663E;&#x793A;&#x7269;&#x7406;&#x5377;&#x4FE1;&#x606F;  </li>
+<li>pvdisplay: &#x663E;&#x793A;&#x7269;&#x7406;&#x5377;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;    </li>
+<li>pvcreate: &#x521B;&#x5EFA;&#x7269;&#x7406;&#x5377;  </li>
+<li>pvremove: &#x79FB;&#x9664;&#x7269;&#x7406;&#x5377; </li>
+</ul>
+<p>VG&#x7BA1;&#x7406;&#x5DE5;&#x5177;</p>
+<ul>
+<li>vgs: &#x7B80;&#x8981;&#x663E;&#x793A;&#x5377;&#x7EC4;&#x4FE1;&#x606F;</li>
+<li>vgdisplay: &#x663E;&#x793A;&#x5377;&#x7EC4;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;   </li>
+<li>vgcreate: &#x521B;&#x5EFA;&#x5377;&#x7EC4;</li>
+<li>vgextend: &#x6269;&#x5C55;&#x5377;&#x7EC4;</li>
+<li>vgreduce: &#x7F29;&#x5C0F;&#x5377;&#x7EC4;  </li>
+<li>vgremove&#xFF1A;&#x5220;&#x9664;&#x5377;&#x7EC4;</li>
+</ul>
+<p>LV&#x7BA1;&#x7406;&#x5DE5;&#x5177;</p>
+<ul>
+<li>lvs: &#x7B80;&#x8981;&#x663E;&#x793A;&#x903B;&#x8F91;&#x5377;&#x4FE1;&#x606F;</li>
+<li>lvdisplay: &#x663E;&#x793A;&#x903B;&#x8F91;&#x5377;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;</li>
+<li>lvcreate: &#x521B;&#x5EFA;&#x903B;&#x8F91;&#x5377;<br>-L: &#x5927;&#x5C0F;[mMgGtT]<br>-n: &#x6307;&#x5B9A;&#x521B;&#x5EFA;&#x5377;&#x540D;<br>-s: &#x6307;&#x5B9A;&#x521B;&#x5EFA;&#x4E3A;&#x5FEB;&#x7167;<br>-p: &#x6743;&#x9650;[r|rw],&#x9ED8;&#x8BA4;rw  </li>
+<li>lvextend: &#x6269;&#x5C55;&#x903B;&#x8F91;&#x5377;<br>-L: &#x6307;&#x5B9A;&#x5927;&#x5C0F;  </li>
+<li>resize2fs: &#x8C03;&#x6574;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</li>
+<li>lvremove: &#x7F29;&#x5C0F;&#x903B;&#x8F91;&#x5377;</li>
+</ul>
+</blockquote>
+<h2 id="&#x521B;&#x5EFA;LVM"><a href="#&#x521B;&#x5EFA;LVM" class="headerlink" title="&#x521B;&#x5EFA;LVM"></a>&#x521B;&#x5EFA;LVM</h2><p>&#x521B;&#x5EFA;LVM&#x524D;&#xFF0C;&#x4F7F;&#x7528;<code>fdisk</code>&#x5C06;&#x78C1;&#x76D8;&#x5206;&#x533A;&#xFF0C;&#x5E76;&#x8C03;&#x6574;&#x5206;&#x533A;&#x7C7B;&#x578B;&#x4E3A;8e(Linux LVM)<br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvm_8e.png" alt="lvm&#x5206;&#x533A;&#x7C7B;&#x578B;"></p>
+<ol>
+<li><p>&#x521B;&#x5EFA;&#x7269;&#x7406;&#x5377;PV<br><code>pvcreate /dev/sdc5 /dev/sdc6</code><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/pvcreate.png" alt="&#x521B;&#x5EFA;PV"></p>
+</li>
+<li><p>&#x521B;&#x5EFA;&#x5377;&#x7EC4;VG&#xFF0C;&#x5E76;&#x5C06;PV&#x52A0;&#x5165;&#x5377;&#x7EC4;&#x4E2D;<br><code>vgcreate VG_name /dev/sdc5 /dev/sdc6</code><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/vgcreate.png" alt="&#x521B;&#x5EFA;VG"></p>
+</li>
+<li><p>&#x57FA;&#x4E8E;&#x5377;&#x7EC4;&#x521B;&#x5EFA;&#x903B;&#x8F91;&#x5377;LV<br><code>lvcreate -n LV_name -L 2[mMgGtT] VG_name</code><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvcreate.png" alt="&#x521B;&#x5EFA;PV"></p>
+</li>
+<li><p>&#x4E3A;LV&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;<br><code>mkfs -t ext4 [-b 1024 -L MYLV] /dev/VG_name/LV_name</code><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lv_mkfs.png" alt="&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;"></p>
+</li>
+<li><p>&#x6302;&#x8F7D;&#x4F7F;&#x7528;<br><code>mount /dev/VG_name/LV_name /mnt/LV</code><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lv_mount.png" alt="&#x6302;&#x8F7D;&#x903B;&#x8F91;&#x5377;"></p>
+</li>
+</ol>
+<ul>
+<li><strong>&#x8865;&#x5145;&#x8BF4;&#x660E;</strong><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvm_link.png" alt="lvm&#x8BBE;&#x5907;&#x6620;&#x5C04;&#x5173;&#x7CFB;"></li>
+</ul>
+<p>&#x4EE5;&#x4E0A;&#x4E3A;&#x7B80;&#x5355;&#x7684;&#x521B;&#x5EFA;&#x903B;&#x8F91;&#x5377;&#x8FC7;&#x7A0B;</p>
+<h2 id="&#x79FB;&#x9664;&#x64CD;&#x4F5C;"><a href="#&#x79FB;&#x9664;&#x64CD;&#x4F5C;" class="headerlink" title="&#x79FB;&#x9664;&#x64CD;&#x4F5C;"></a>&#x79FB;&#x9664;&#x64CD;&#x4F5C;</h2><p>PV/VG&#x7684;&#x79FB;&#x9664;&#x9700;&#x786E;&#x4FDD;&#x5728;LV&#x672A;&#x4F7F;&#x7528;&#x7684;&#x7A7A;&#x95F4;&#x4E0A;&#x8FDB;&#x884C;&#xFF0C;&#x5220;&#x9664;&#x6574;&#x4E2A;lvm&#x9700;&#x5148;&#x79FB;&#x9664;LV&#xFF0C;&#x518D;&#x5220;VG&#xFF0C;&#x6700;&#x540E;&#x5220;PV</p>
+<ul>
+<li><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/vg_reduce.png" alt="PV/VG&#x6DFB;&#x52A0;&#x79FB;&#x9664;&#x64CD;&#x4F5C;"></li>
+<li><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvm_remove.png" alt="lvm&#x5220;&#x9664;"></li>
+</ul>
+<h2 id="&#x6269;&#x5C55;&#x903B;&#x8F91;&#x5377;"><a href="#&#x6269;&#x5C55;&#x903B;&#x8F91;&#x5377;" class="headerlink" title="&#x6269;&#x5C55;&#x903B;&#x8F91;&#x5377;"></a>&#x6269;&#x5C55;&#x903B;&#x8F91;&#x5377;</h2><p>&#x5728;VG&#x5927;&#x5C0F;&#x8303;&#x56F4;&#x5185;&#x53EF;&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x903B;&#x8F91;&#x5377;&#xFF0C;&#x6BCF;&#x4E2A;&#x5377;&#x53EF;&#x4EE5;&#x6269;&#x5C55;&#x7F29;&#x5C0F;&#xFF0C;&#x7F29;&#x5C0F;&#x6709;&#x98CE;&#x9669;&#xFF0C;&#x6269;&#x5C55;&#x53EF;&#x4EE5;&#x5728;&#x7EBF;&#x6267;&#x884C;&#xFF0C;&#x65E0;&#x9700;&#x5378;&#x8F7D;&#x903B;&#x8F91;&#x5377;&#xFF0C;&#x5982;&#x679C;&#x5377;&#x7EC4;&#x7A7A;&#x95F4;&#x4E0D;&#x591F;&#xFF0C;&#x5219;&#x9700;PV&#x6765;&#x6269;&#x5145;VG&#x7A7A;&#x95F4;&#x518D;&#x8FDB;&#x884C;&#x6269;&#x5C55;LV(&#x6269;&#x5145;&#x89C1;&#x4E0A;&#x56FE;)  </p>
+<ol>
+<li><code>lvextend -L [+]1G /dev/VG_name/LV_name</code> : &#x6269;&#x5C55;&#x903B;&#x8F91;&#x5377;(+&#x8868;&#x793A;&#x589E;&#x52A0;&#x7684;&#x91CF;&#xFF0C;&#x4E0D;&#x52A0;&#x8868;&#x793A;&#x589E;&#x52A0;&#x81F3;)    </li>
+<li><code>resize2fs /dev/VG_name/LV_name</code>: &#x8C03;&#x6574;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;(&#x7269;&#x7406;&#x8FB9;&#x754C;)<br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvextend.png" alt="&#x903B;&#x8F91;&#x5377;&#x6269;&#x5C55;"></li>
+</ol>
+<h2 id="&#x7F29;&#x5C0F;&#x903B;&#x8F91;&#x5377;"><a href="#&#x7F29;&#x5C0F;&#x903B;&#x8F91;&#x5377;" class="headerlink" title="&#x7F29;&#x5C0F;&#x903B;&#x8F91;&#x5377;"></a>&#x7F29;&#x5C0F;&#x903B;&#x8F91;&#x5377;</h2><p>&#x7F29;&#x5C0F;&#x903B;&#x8F91;&#x5377;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x5728;&#x7EBF;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x7EBF;&#x6267;&#x884C;&#x7F29;&#x5C0F;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x6570;&#x636E;&#x4E22;&#x5931;&#x3002;&#x5982;&#x9700;&#x7F29;&#x5C0F;&#x8981;&#x5148;&#x5378;&#x8F7D;&#x518D;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x6B64;&#x64CD;&#x4F5C;&#x6709;&#x98CE;&#x9669;&#xFF0C;&#x975E;&#x5FC5;&#x8981;&#x60C5;&#x51B5;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#xFF0C;&#x540C;&#x65F6;&#x786E;&#x4FDD;&#x7A7A;&#x95F4;&#x8DB3;&#x591F;&#x5BB9;&#x7EB3;&#x5DF2;&#x6709;&#x6570;&#x636E;</p>
+<ol>
+<li><code>umount /dev/VG_name/LV_name</code></li>
+<li><code>e2fsck -f /dev/VG/LV</code></li>
+<li><code>resize2fs /dev/VG_name/LV_name [+]2[mMgGtT]</code></li>
+<li><code>lvreduce [+]2[mMgGtT] /dev/VG_name/LV_name</code></li>
+<li><code>mount /dev/VG_name/LV_name /mnt/mylv</code><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvreduce.png" alt="&#x903B;&#x8F91;&#x5377;&#x7F29;&#x5C0F;"></li>
+</ol>
+<h2 id="&#x903B;&#x8F91;&#x5377;&#x5FEB;&#x7167;"><a href="#&#x903B;&#x8F91;&#x5377;&#x5FEB;&#x7167;" class="headerlink" title="&#x903B;&#x8F91;&#x5377;&#x5FEB;&#x7167;"></a>&#x903B;&#x8F91;&#x5377;&#x5FEB;&#x7167;</h2><p>&#x5FEB;&#x7167;&#x5377;(snapshot)&#x4E3A;&#x786E;&#x4FDD;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x5206;&#x533A;&#x7684;&#x5B8C;&#x6574;&#x67D0;&#x4E00;&#x65F6;&#x523B;&#x7684;&#x5907;&#x4EFD;&#x521B;&#x5EFA;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x5907;&#x4EFD;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E00;&#x4E2A;&#x5206;&#x533A;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x8005;&#x6570;&#x636E;&#x5E93;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x6539;&#x53D8;&#xFF0C;&#x800C;&#x5BFC;&#x81F4;&#x5907;&#x4EFD;&#x51FA;&#x6765;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x5B8C;&#x6574;&#xFF0C;&#x5FEB;&#x7167;&#x521B;&#x5EFA;&#x521D;&#x671F;&#x4E0D;&#x5360;&#x7528;&#x5B9E;&#x9645;&#x7A7A;&#x95F4;&#xFF0C;&#x5168;&#x90E8;&#x6570;&#x636E;&#x5747;&#x6307;&#x5411;&#x6E90;&#x6570;&#x636E;&#xFF0C;&#x540C;&#x65F6;&#x76D1;&#x63A7;&#x6570;&#x636E;&#x53D8;&#x5316;&#xFF0C;&#x5F53;&#x6570;&#x636E;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#x624D;&#x5C06;&#x539F;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x5230;&#x5FEB;&#x7167;&#xFF0C;&#x6240;&#x4EE5;&#x5FEB;&#x7167;&#x7684;&#x5927;&#x5C0F;&#x53D6;&#x51B3;&#x4E8E;&#x539F;&#x6570;&#x636E;&#x7684;&#x53D8;&#x5316;&#x91CF;&#x3002;</p>
+<ol>
+<li><code>lvcreate -L 2[mMgGtT] -p r -s -n snapshot_lv_name original_lv_name</code></li>
+<li><code>mount /dev/VG_NAME/snapshot_lv_name /mnt/snap</code><br><img src="/2016/05/31/LVM2&#x7B80;&#x4ECB;&#x53CA;&#x5B9E;&#x73B0;/lvm_snapshot.png" alt="lvm&#x5FEB;&#x7167;"></li>
+</ol>
+<p>LVM2&#x5C31;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#x5230;&#x6B64;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LVM2/" rel="tag">#LVM2</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/30/RAID简介及软件实践/" rel="next" title="RAID简介及软件实践">
+                <i class="fa fa-chevron-left"></i> RAID简介及软件实践
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/03/Linux程序包管理之编译安装/" rel="prev" title="Linux程序包管理之编译安装">
+                Linux程序包管理之编译安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/31/LVM2简介及实现/"
+           data-title="LVM2简介及实现" data-url="http://liu2lin600.github.io/2016/05/31/LVM2简介及实现/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建LVM"><span class="nav-number">2.</span> <span class="nav-text">创建LVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除操作"><span class="nav-number">3.</span> <span class="nav-text">移除操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展逻辑卷"><span class="nav-number">4.</span> <span class="nav-text">扩展逻辑卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩小逻辑卷"><span class="nav-number">5.</span> <span class="nav-text">缩小逻辑卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑卷快照"><span class="nav-number">6.</span> <span class="nav-text">逻辑卷快照</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

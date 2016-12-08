@@ -1,0 +1,983 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iptables,防火墙," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;Linux&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x53CA;iptables&amp;#x7684;&amp;#x5E38;&amp;#x89C1;&amp;#x7528;&amp;#x6CD5;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iptables简介及命令用法">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/07/23/iptables简介及命令用法/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;Linux&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x53CA;iptables&amp;#x7684;&amp;#x5E38;&amp;#x89C1;&amp;#x7528;&amp;#x6CD5;">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/23/iptables简介及命令用法/iptables.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/23/iptables简介及命令用法/iptables1.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/07/23/iptables简介及命令用法/iptables2.jpg">
+<meta property="og:updated_time" content="2016-09-28T08:03:10.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iptables简介及命令用法">
+<meta name="twitter:description" content="&amp;#x7B80;&amp;#x8981;&amp;#x4ECB;&amp;#x7ECD;Linux&amp;#x9632;&amp;#x706B;&amp;#x5899;&amp;#x53CA;iptables&amp;#x7684;&amp;#x5E38;&amp;#x89C1;&amp;#x7528;&amp;#x6CD5;">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/07/23/iptables简介及命令用法/iptables.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iptables简介及命令用法 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iptables简介及命令用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-23T16:43:43+08:00" content="2016-07-23">
+              2016-07-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux服务/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux服务</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/23/iptables简介及命令用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/23/iptables简介及命令用法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x7B80;&#x8981;&#x4ECB;&#x7ECD;Linux&#x9632;&#x706B;&#x5899;&#x53CA;iptables&#x7684;&#x5E38;&#x89C1;&#x7528;&#x6CD5;</p>
+<a id="more"></a>
+<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><blockquote>
+<p>&#x9632;&#x706B;&#x5899;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5C4F;&#x853D;&#x6765;&#x81EA;&#x4E8E;&#x4E92;&#x8054;&#x7F51;&#xFF0C;&#x6216;&#x6765;&#x81EA;&#x4E8E;&#x4F01;&#x4E1A;&#x5185;&#x90E8;&#x7684;&#x7528;&#x6237;&#x7684;&#x653B;&#x51FB;&#x64CD;&#x4F5C;&#x53CA;&#x9632;&#x8303;&#x975E;&#x6388;&#x6743;&#x7684;&#x8BBF;&#x95EE;&#x7684;&#x3002;&#x4E00;&#x822C;&#x5DE5;&#x4F5C;&#x4E8E;&#x7F51;&#x7EDC;&#x6216;&#x4E3B;&#x673A;&#x7684;&#x8FB9;&#x7F18;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FDB;&#x51FA;&#x672C;&#x7F51;&#x7EDC;&#x6216;&#x4E3B;&#x673A;&#x7684;&#x62A5;&#x6587;&#x6839;&#x636E;&#x4E8B;&#x5148;&#x5B9A;&#x4E49;&#x7684;&#x68C0;&#x67E5;&#x89C4;&#x5219;&#x505A;&#x5339;&#x914D;&#x68C0;&#x6D4B;&#xFF0C;&#x5BF9;&#x4E8E;&#x88AB;&#x89C4;&#x5219;&#x5339;&#x914D;&#x5230;&#x7684;&#x62A5;&#x6587;&#x505A;&#x51FA;&#x76F8;&#x5E94;&#x5904;&#x7406;&#xFF0C;&#x65F6;&#x523B;&#x68C0;&#x67E5;&#x51FA;&#x5165;&#x9632;&#x706B;&#x5899;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;&#x5305;&#xFF0C;&#x51B3;&#x5B9A;&#x62E6;&#x622A;&#x6216;&#x662F;&#x653E;&#x884C;&#x54EA;&#x4E9B;&#x6570;&#x636E;&#x5305;&#x3002;</p>
+</blockquote>
+<p>&#x6839;&#x636E;&#x8BBE;&#x5907;&#x6765;&#x5212;&#x5206;&#x901A;&#x5E38;&#x53EF;&#x5206;&#x4E3A;&#x786C;&#x4EF6;&#x9632;&#x706B;&#x5899;&#x548C;&#x8F6F;&#x4EF6;&#x9632;&#x706B;&#x5899;&#xFF1A;</p>
+<ul>
+<li><strong>&#x786C;&#x4EF6;&#x9632;&#x706B;&#x5899;</strong>&#xFF1A;&#x4E13;&#x95E8;&#x7684;&#x4E00;&#x53F0;&#x9632;&#x706B;&#x5899;&#x786C;&#x4EF6;&#x8BBE;&#x5907;&#xFF0C;&#x5DE5;&#x4F5C;&#x5728;&#x6574;&#x4E2A;&#x7F51;&#x7EDC;&#x5165;&#x53E3;&#x5904;</li>
+<li><strong>&#x8F6F;&#x4EF6;&#x9632;&#x706B;&#x5899;</strong>&#xFF1A;&#x5DE5;&#x4F5C;&#x5728;&#x4E3B;&#x673A;&#x4E2D;TCP/IP&#x534F;&#x8BAE;&#x7AD9;&#x4E0A;&#x9762;&#x7684;&#x8F6F;&#x4EF6;&#xFF08;&#x5DE5;&#x4F5C;&#x5728;&#x5185;&#x6838;&#x4E2D;&#xFF09;</li>
+</ul>
+<p>&#x6839;&#x636E;&#x9632;&#x706B;&#x5899;&#x5DE5;&#x4F5C;&#x4F4D;&#x7F6E;&#x53C8;&#x53EF;&#x5206;&#x4E3A;&#x7F51;&#x7EDC;&#x9632;&#x706B;&#x5899;&#x548C;&#x4E3B;&#x673A;&#x9632;&#x706B;&#x5899;&#xFF1A;</p>
+<ul>
+<li><strong>&#x7F51;&#x7EDC;&#x9632;&#x706B;&#x5899;&#xFF1A;</strong>&#x5DE5;&#x4F5C;&#x4E0E;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#x7684;&#x8FB9;&#x7F18;&#xFF0C;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x5BF9;&#x8FDB;&#x51FA;&#x672C;&#x7F51;&#x7EDC;&#x7684;&#x6240;&#x6709;&#x4E3B;&#x673A;&#x62A5;&#x6587;&#x52A0;&#x4EE5;&#x9632;&#x62A4;</li>
+<li><strong>&#x4E3B;&#x673A;&#x9632;&#x706B;&#x5899;&#xFF1A;</strong>&#x4E3B;&#x8981;&#x662F;&#x7528;&#x6765;&#x9632;&#x8303;&#x5355;&#x53F0;&#x4E3B;&#x673A;&#x7684;&#x8FDB;&#x51FA;&#x62A5;&#x6587;</li>
+</ul>
+<h3 id="iptables-netfilter"><a href="#iptables-netfilter" class="headerlink" title="iptables/netfilter"></a>iptables/netfilter</h3><p>Linux&#x4E0A;&#x7684;&#x9632;&#x706B;&#x5899;&#x5957;&#x4EF6;&#x4E3A;<code>iptables/netfilter</code>&#xFF0C;iptables&#x662F;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x4E0A;&#x914D;&#x7F6E;&#x4E0E;&#x4FEE;&#x6539;&#x8FC7;&#x6EE4;&#x89C4;&#x5219;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x89C4;&#x5219;&#x76F4;&#x63A5;&#x9001;&#x5F80;linux&#x5185;&#x6838;&#x7A7A;&#x95F4;netfilter&#x4E2D;&#xFF0C;netfilter&#x662F;Linux&#x6838;&#x5FC3;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x67B6;&#x6784;&#xFF0C;&#x7528;&#x4E8E;&#x63A5;&#x6536;&#x5E76;&#x751F;&#x6548;&#x89C4;&#x5219;&#xFF0C;&#x8D77;&#x5230;&#x9632;&#x706B;&#x5899;&#x4F5C;&#x7528;&#xFF0C;&#x4E8C;&#x8005;&#x5173;&#x7CFB;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2016/07/23/iptables&#x7B80;&#x4ECB;&#x53CA;&#x547D;&#x4EE4;&#x7528;&#x6CD5;/iptables.png" alt="iptables"></p>
+<p>&#x5728;netfilter&#x4E0A;&#x5B9A;&#x4E49;&#x4E86;5&#x4E2A;&#x94A9;&#x5B50;&#x51FD;&#x6570;(hook function)&#xFF0C;&#x5206;&#x522B;&#x4F5C;&#x7528;&#x4E8E;5&#x4E2A;&#x94FE;&#x4E0A;&#xFF1A;</p>
+<ol>
+<li>&#x8DEF;&#x7531;&#x524D;&#xFF0C;&#x76EE;&#x6807;&#x5730;&#x5740;&#x8F6C;&#x6362;       == &gt; PREROUTING</li>
+<li>&#x5230;&#x8FBE;&#x672C;&#x673A;&#x5185;&#x90E8;&#x7684;&#x62A5;&#x6587;&#x5FC5;&#x7ECF;&#x4E4B;&#x8DEF; == &gt; INPUT</li>
+<li>&#x7531;&#x672C;&#x673A;&#x8F6C;&#x53D1;&#x7684;&#x62A5;&#x6587;&#x5FC5;&#x7ECF;&#x4E4B;&#x8DEF;   == &gt; FORWARD</li>
+<li>&#x7531;&#x672C;&#x673A;&#x53D1;&#x51FA;&#x7684;&#x62A5;&#x6587;&#x7684;&#x5FC5;&#x7ECF;&#x4E4B;&#x8DEF; == &gt; OUTPUT</li>
+<li>&#x8DEF;&#x7531;&#x540E;&#xFF0C;&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;         == &gt; POSTROUTING</li>
+</ol>
+<p>netfilter&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x8868;(tables),&#x6BCF;&#x4E2A;&#x8868;&#x7531;&#x82E5;&#x5E72;&#x4E2A;&#x94FE;(chains)&#x7EC4;&#x6210;&#xFF0C;&#x800C;&#x6BCF;&#x6761;&#x94FE;&#x53EF;&#x4EE5;&#x7531;&#x4E00;&#x6761;&#x6216;&#x82E5;&#x5E72;&#x6761;&#x89C4;&#x5219;(rules)&#x7EC4;&#x6210;&#xFF0C;&#x5173;&#x7CFB;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2016/07/23/iptables&#x7B80;&#x4ECB;&#x53CA;&#x547D;&#x4EE4;&#x7528;&#x6CD5;/iptables1.png" alt="table-chain-rule"></p>
+<h4 id="4&#x8868;"><a href="#4&#x8868;" class="headerlink" title="4&#x8868;"></a>4&#x8868;</h4><ol>
+<li><code>raw</code>&#xFF1A;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x6570;&#x636E;&#x5305;&#xFF0C;raw &#x4E2D;&#x7684;&#x6570;&#x636E;&#x5305;&#x4E0D;&#x4F1A;&#x88AB;&#x7CFB;&#x7EDF;&#x8DDF;&#x8E2A;</li>
+<li><code>mangle</code>&#xFF1A;&#x7528;&#x4E8E;&#x5BF9;&#x7279;&#x5B9A;&#x6570;&#x636E;&#x5305;&#x7684;&#x4FEE;&#x6539;</li>
+<li><code>nat</code>&#xFF1A;&#x7528;&#x4E8E;&#x7F51;&#x7EDC;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x5982;SNAT&#x3001;DNAT&#x3001;MASQUERADE&#x3001;REDIRECT</li>
+<li><code>filter</code>&#xFF1A;&#x8FC7;&#x6EE4;&#xFF0C;&#x5B9A;&#x4E49;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x901A;&#x8FC7;&#x9632;&#x706B;&#x5899;</li>
+</ol>
+<h4 id="5&#x94FE;"><a href="#5&#x94FE;" class="headerlink" title="5&#x94FE;"></a>5&#x94FE;</h4><ol>
+<li><code>INPUT</code>&#x94FE;&#xFF1A;&#x5F53;&#x63A5;&#x6536;&#x5230;&#x9632;&#x706B;&#x5899;&#x672C;&#x673A;&#x5730;&#x5740;&#x7684;&#x6570;&#x636E;&#x5305;&#xFF08;&#x5165;&#x7AD9;&#xFF09;&#x65F6;&#xFF0C;&#x5E94;&#x7528;&#x6B64;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;</li>
+<li><code>OUTPUT</code>&#x94FE;&#xFF1A;&#x5F53;&#x9632;&#x706B;&#x5899;&#x672C;&#x673A;&#x5411;&#x5916;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#xFF08;&#x51FA;&#x7AD9;&#xFF09;&#x65F6;&#xFF0C;&#x5E94;&#x7528;&#x6B64;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;</li>
+<li><code>FORWARD</code>&#x94FE;&#xFF1A;&#x5F53;&#x63A5;&#x6536;&#x5230;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x9632;&#x706B;&#x5899;&#x53D1;&#x9001;&#x7ED9;&#x5176;&#x4ED6;&#x5730;&#x5740;&#x7684;&#x6570;&#x636E;&#x5305;&#xFF08;&#x8F6C;&#x53D1;&#xFF09;&#x65F6;&#xFF0C;&#x5E94;&#x7528;&#x6B64;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;</li>
+<li><code>PREROUTING</code>&#x94FE;&#xFF1A;&#x5728;&#x5BF9;&#x6570;&#x636E;&#x5305;&#x4F5C;&#x8DEF;&#x7531;&#x9009;&#x62E9;&#x4E4B;&#x524D;&#xFF0C;&#x5E94;&#x7528;&#x6B64;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;</li>
+<li><code>POSTROUTING</code>&#x94FE;&#xFF1A;&#x5728;&#x5BF9;&#x6570;&#x636E;&#x5305;&#x4F5C;&#x8DEF;&#x7531;&#x9009;&#x62E9;&#x4E4B;&#x540E;&#xFF0C;&#x5E94;&#x7528;&#x6B64;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;</li>
+</ol>
+<h4 id="&#x89C4;&#x5219;-&#x5904;&#x7406;&#x673A;&#x5236;"><a href="#&#x89C4;&#x5219;-&#x5904;&#x7406;&#x673A;&#x5236;" class="headerlink" title="&#x89C4;&#x5219;(&#x5904;&#x7406;&#x673A;&#x5236;)"></a>&#x89C4;&#x5219;(&#x5904;&#x7406;&#x673A;&#x5236;)</h4><ol>
+<li><code>ACCEPT</code>&#xFF1A;&#x5141;&#x8BB8;&#x6570;&#x636E;&#x5305;&#x901A;&#x8FC7;</li>
+<li><code>DROP</code>&#xFF1A;&#x76F4;&#x63A5;&#x4E22;&#x5F03;&#x6570;&#x636E;&#x5305;&#xFF0C;&#x4E0D;&#x7ED9;&#x4EFB;&#x4F55;&#x56DE;&#x5E94;&#x4FE1;&#x606F;</li>
+<li><code>REJECT</code>&#xFF1A;&#x62D2;&#x7EDD;&#x6570;&#x636E;&#x5305;&#x901A;&#x8FC7;&#xFF0C;&#x540C;&#x65F6;&#x4F1A;&#x7ED9;&#x6570;&#x636E;&#x53D1;&#x9001;&#x7AEF;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x7684;&#x4FE1;&#x606F;</li>
+<li><code>SNAT</code>&#xFF1A;&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x89E3;&#x51B3;&#x5185;&#x7F51;&#x7528;&#x6237;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x516C;&#x7F51;&#x5730;&#x5740;&#x4E0A;&#x7F51;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4EC5;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;POSTROUTING&#xFF0C;INPUT&#x4E0A;&#x3002;&#x5728;&#x8FDB;&#x5165;&#x8DEF;&#x7531;&#x5C42;&#x9762;&#x7684;route&#x4E4B;&#x524D;&#xFF0C;&#x91CD;&#x65B0;&#x6539;&#x5199;&#x6E90;&#x5730;&#x5740;&#xFF0C;&#x76EE;&#x6807;&#x5730;&#x5740;&#x4E0D;&#x53D8;&#xFF0C;&#x5E76;&#x5728;&#x672C;&#x673A;&#x5EFA;&#x7ACB;NAT&#x8868;&#x9879;&#xFF0C;&#x5F53;&#x6570;&#x636E;&#x8FD4;&#x56DE;&#x65F6;&#xFF0C;&#x6839;&#x636E;NAT&#x8868;&#x5C06;&#x76EE;&#x7684;&#x5730;&#x5740;&#x6570;&#x636E;&#x6539;&#x5199;&#x4E3A;&#x6570;&#x636E;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x65F6;&#x5019;&#x7684;&#x6E90;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x53D1;&#x9001;&#x7ED9;&#x4E3B;&#x673A;</li>
+<li><code>MASQUERADE</code>&#xFF1A;&#x662F;SNAT&#x7684;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x5F62;&#x5F0F;&#xFF0C;&#x9002;&#x7528;&#x4E8E;&#x50CF;adsl&#x8FD9;&#x79CD;&#x4E34;&#x65F6;&#x4F1A;&#x53D8;&#x7684;ip&#x4E0A;</li>
+<li><code>DNAT</code>:&#x76EE;&#x6807;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x8BA9;&#x4E92;&#x8054;&#x7F51;&#x4E0A;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x672C;&#x5730;&#x5185;&#x7F51;&#x4E0A;&#x7684;&#x67D0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x4EC5;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;PREROUTING&#x548C;OUTPUT&#x3002;&#x548C;SNAT&#x76F8;&#x53CD;&#xFF0C;IP&#x5305;&#x7ECF;&#x8FC7;route&#x4E4B;&#x540E;&#x3001;&#x51FA;&#x672C;&#x5730;&#x7684;&#x7F51;&#x7EDC;&#x6808;&#x4E4B;&#x524D;&#xFF0C;&#x91CD;&#x65B0;&#x4FEE;&#x6539;&#x76EE;&#x6807;&#x5730;&#x5740;&#xFF0C;&#x6E90;&#x5730;&#x5740;&#x4E0D;&#x53D8;&#xFF0C;&#x5728;&#x672C;&#x673A;&#x5EFA;&#x7ACB;NAT&#x8868;&#x9879;&#xFF0C;&#x5F53;&#x6570;&#x636E;&#x8FD4;&#x56DE;&#x65F6;&#xFF0C;&#x6839;&#x636E;NAT&#x8868;&#x5C06;&#x6E90;&#x5730;&#x5740;&#x4FEE;&#x6539;&#x4E3A;&#x6570;&#x636E;&#x53D1;&#x9001;&#x8FC7;&#x6765;&#x65F6;&#x7684;&#x76EE;&#x6807;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x53D1;&#x7ED9;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#xFF0C;&#x53EF;&#x4EE5;&#x9690;&#x85CF;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x7684;&#x771F;&#x5B9E;&#x5730;&#x5740;</li>
+<li><code>REDIRECT</code>&#xFF1A;&#x662F;DNAT&#x7684;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x5F62;&#x5F0F;&#xFF0C;&#x5C06;&#x7F51;&#x7EDC;&#x5305;&#x8F6C;&#x53D1;&#x5230;&#x672C;&#x5730;host&#x4E0A;&#xFF08;&#x4E0D;&#x7BA1;IP&#x5934;&#x90E8;&#x6307;&#x5B9A;&#x7684;&#x76EE;&#x6807;&#x5730;&#x5740;&#x662F;&#x5565;&#xFF09;&#xFF0C;&#x65B9;&#x4FBF;&#x5728;&#x672C;&#x673A;&#x505A;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;</li>
+<li><code>LOG</code>&#xFF1A;&#x4EC5;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x6570;&#x636E;&#x5305;&#x4F20;&#x9012;&#x7ED9;&#x4E0B;&#x4E00;&#x6761;&#x89C4;&#x5219;</li>
+<li><code>RETURN</code>&#xFF1A;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;&#x4E0A;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;&#x88AB;&#x5185;&#x7F6E;&#x94FE;&#x5F15;&#x7528;&#x65F6;&#xFF0C;&#x5F53;&#x6CA1;&#x6709;&#x89C4;&#x5219;&#x88AB;&#x5339;&#x914D;&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;&#x5185;&#x7F6E;&#x94FE;&#x7684;&#x4E0B;&#x4E00;&#x6761;&#x89C4;&#x5219;</li>
+</ol>
+<h4 id="&#x6570;&#x636E;&#x6D41;&#x5411;"><a href="#&#x6570;&#x636E;&#x6D41;&#x5411;" class="headerlink" title="&#x6570;&#x636E;&#x6D41;&#x5411;"></a>&#x6570;&#x636E;&#x6D41;&#x5411;</h4><ul>
+<li><p>&#x4E0E;&#x672C;&#x673A;&#x5185;&#x90E8;&#x8FDB;&#x7A0B;&#x901A;&#x4FE1;&#xFF1A;<br>  <strong>&#x8FDB;&#x5165;</strong>&#xFF1A;&#x2013;&gt; PREROUTING &#x2013;&gt; INPUT<br>  <strong>&#x51FA;&#x53BB;</strong>&#xFF1A;&#x2013;&gt; OUTPUT &#x2013;&gt; POSTROUTING</p>
+</li>
+<li><p>&#x7531;&#x672C;&#x673A;&#x8F6C;&#x53D1;&#xFF1A;<br>  <strong>&#x8BF7;&#x6C42;</strong>&#xFF1A;&#x2013;&gt;PREROUTING&#x2013;&gt;FORWARD&#x2013;&gt;POSTROUTING<br>  <strong>&#x54CD;&#x5E94;</strong>&#xFF1A;&#x2013;&gt;PREROUTING&#x2013;&gt;FORWARD&#x2013;&gt;POSTROUTING</p>
+</li>
+</ul>
+<p>&#x6570;&#x636E;&#x6D41;&#x5411;&#x53CA;&#x76F8;&#x5E94;&#x7684;&#x8868;&#x94FE;&#x5173;&#x7CFB;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;<br><img src="/2016/07/23/iptables&#x7B80;&#x4ECB;&#x53CA;&#x547D;&#x4EE4;&#x7528;&#x6CD5;/iptables2.jpg" alt="iptables/netfilter"></p>
+<h2 id="iptables&#x547D;&#x4EE4;&#x7528;&#x6CD5;"><a href="#iptables&#x547D;&#x4EE4;&#x7528;&#x6CD5;" class="headerlink" title="iptables&#x547D;&#x4EE4;&#x7528;&#x6CD5;"></a>iptables&#x547D;&#x4EE4;&#x7528;&#x6CD5;</h2><h3 id="&#x8BED;&#x6CD5;"><a href="#&#x8BED;&#x6CD5;" class="headerlink" title="&#x8BED;&#x6CD5;"></a>&#x8BED;&#x6CD5;</h3><p><code>iptables [-t table] COMMAND chain [num] [-m match [match-options]] [-j target [target-options]]</code></p>
+<h3 id="&#x5E38;&#x7528;&#x9009;&#x9879;"><a href="#&#x5E38;&#x7528;&#x9009;&#x9879;" class="headerlink" title="&#x5E38;&#x7528;&#x9009;&#x9879;"></a>&#x5E38;&#x7528;&#x9009;&#x9879;</h3><blockquote>
+<p><strong>&#x94FE;&#x7BA1;&#x7406;</strong><br><code>-F</code>&#xFF1A;flush, &#x6E05;&#x7A7A;&#x89C4;&#x5219;&#x94FE;&#xFF0C;&#x65E0;&#x6CD5;&#x8FD8;&#x539F;<br><code>-N</code>&#xFF1A;new, &#x65B0;&#x5EFA;&#x4E00;&#x6761;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;&#xFF0C;&#x88AB;&#x5185;&#x5EFA;&#x94FE;&#x4E0A;&#x89C4;&#x5219;&#x8C03;&#x7528;&#x624D;&#x80FD;&#x751F;&#x6548;<br><code>-X</code>&#xFF1A;delete, &#x5220;&#x9664;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4E3A;0&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x7A7A;&#x94FE;<br><code>-P</code>&#xFF1A;policy&#xFF0C;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x7B56;&#x7565;&#xFF0C;&#x5BF9;filter&#x8868;&#x6765;&#x8BB2;&#xFF0C;&#x9ED8;&#x8BA4;&#x89C4;&#x5219;&#x4E3A;ACCEPT&#x6216;DROP<br><code>-E</code>&#xFF1A;&#x91CD;&#x547D;&#x540D;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4E3A;0&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;<br><code>-Z</code>&#xFF1A;zero&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x5F52;&#x96F6;<br><strong>&#x89C4;&#x5219;&#x7BA1;&#x7406;</strong><br><code>-A</code>&#xFF1A;Append&#xFF0C;&#x5728;&#x5C3E;&#x540E;&#x8FFD;&#x52A0;<br><code>-I</code>&#xFF1A;Insert&#xFF0C;&#x5728;&#x6307;&#x5B9A;&#x4F4D;&#x63D2;&#x5165;&#x89C4;&#x5219;&#xFF0C;&#x7701;&#x7565;&#x4F4D;&#x7F6E;&#x5219;&#x4E3A;&#x94FE;&#x9996;<br><code>-D</code>&#xFF1A;Delete&#xFF0C;&#x5220;&#x9664;&#x6307;&#x5B9A;&#x89C4;&#x5219;<br><code>-R</code>&#xFF1A;Replace&#xFF0C;&#x5C06;&#x6307;&#x5B9A;&#x89C4;&#x5219;&#x66FF;&#x6362;&#x4E3A;&#x65B0;&#x89C4;&#x5219;<br><strong>&#x663E;&#x793A;</strong><br><code>-L</code>&#xFF1A;list&#xFF0C;&#x5217;&#x51FA;&#x8868;&#x4E2D;&#x7684;&#x94FE;&#x4E0A;&#x7684;&#x89C4;&#x5219;&#xFF1B;</p>
+<blockquote>
+<p><code>-n</code>&#xFF1A;numeric&#xFF0C;&#x4EE5;&#x6570;&#x503C;&#x683C;&#x5F0F;&#x663E;&#x793A;&#xFF1B;<br><code>-v</code>&#xFF1A;verbose&#xFF0C;&#x663E;&#x793A;&#x8BE6;&#x7EC6;&#x683C;&#x5F0F;&#x4FE1;&#x606F;&#xFF0C;&#x66F4;&#x8BE6;&#x7EC6;<code>-vv</code>, <code>-vvv</code><br><code>-x</code>&#xFF1A;exactly&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x7684;&#x7CBE;&#x786E;&#x7ED3;&#x679C;&#xFF1B;<br><code>--line-numbers</code>&#xFF1A;&#x663E;&#x793A;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;&#x7F16;&#x53F7;</p>
+</blockquote>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">iptables -vnL               <span class="comment"># &#x9ED8;&#x8BA4;&#x663E;&#x793A;filter&#x8868;&#x89C4;&#x5219;&#xFF0C;&#x53EF;&#x6307;&#x5B9A;&#x8868;&#x663E;&#x793A;</span></span><br><span class="line">iptables -F -t filter       <span class="comment"># &#x6E05;&#x7A7A;filter&#x8868;&#x4E2D;&#x89C4;&#x5219;&#xFF0C;&#x4E0D;&#x6307;&#x5B9A;&#x5219;&#x6E05;&#x7A7A;&#x6240;&#x6709;&#x8868;&#x4E2D;&#x7684;&#x89C4;&#x5219;</span></span><br><span class="line">iptables -P INPUT DROP      <span class="comment"># &#x8BBE;&#x7F6E;INPUT&#x94FE;&#x9ED8;&#x8BA4;&#x5904;&#x7406;&#x673A;&#x5236;&#x4E3A;DROP</span></span><br><span class="line">iptables -D INPUT 2         <span class="comment"># &#x5220;&#x9664;INPUT&#x94FE;&#x4E0A;&#x7B2C;2&#x6761;&#x89C4;&#x5219;</span></span><br><span class="line">iptables -N <span class="built_in">test</span>_chain      <span class="comment"># &#x6DFB;&#x52A0;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;test_chain&#xFF0C;&#x5176;&#x53EA;&#x80FD;&#x88AB;&#x5185;&#x7F6E;&#x94FE;&#x63A5;&#x6240;&#x5F15;&#x7528;</span></span><br><span class="line">iptables -X <span class="built_in">test</span>_chain      <span class="comment"># &#x5220;&#x9664;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4E3A;0&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x7A7A;&#x94FE;</span></span><br><span class="line">iptables -I INPUT 2 xxxx    <span class="comment"># &#x6DFB;&#x52A0;&#x89C4;&#x5219;&#x5230;INPUT&#x4E0A;&#x7B2C;2&#x6761;</span></span><br><span class="line">iptables -A OUTPUT xxxx     <span class="comment"># &#x5728;OUTPUT&#x94FE;&#x5C3E;&#x6DFB;&#x52A0;</span></span><br></pre></td></tr></table></figure>
+<h3 id="&#x5339;&#x914D;&#x6761;&#x4EF6;"><a href="#&#x5339;&#x914D;&#x6761;&#x4EF6;" class="headerlink" title="&#x5339;&#x914D;&#x6761;&#x4EF6;"></a>&#x5339;&#x914D;&#x6761;&#x4EF6;</h3><h4 id="&#x901A;&#x7528;&#x5339;&#x914D;"><a href="#&#x901A;&#x7528;&#x5339;&#x914D;" class="headerlink" title="&#x901A;&#x7528;&#x5339;&#x914D;"></a>&#x901A;&#x7528;&#x5339;&#x914D;</h4><blockquote>
+<p><code>[!] -s ADDR[/mask]</code>&#xFF1A;&#x6307;&#x5B9A;&#x62A5;&#x6587;&#x6E90;IP&#x5730;&#x5740;&#x5339;&#x914D;&#x7684;&#x8303;&#x56F4;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;IP&#x548C;&#x7F51;&#x7EDC;&#x5730;&#x5740;&#xFF0C;<code>!</code>&#x8868;&#x793A;&#x53D6;&#x53CD;<br><code>[!] -d ADDR[/mask]</code>&#xFF1A;&#x6307;&#x5B9A;&#x62A5;&#x6587;&#x76EE;&#x6807;IP&#x5730;&#x5740;&#x5339;&#x914D;&#x7684;&#x8303;&#x56F4;<br><code>[!] -p PROTOCOL</code>&#xFF1A;&#x6307;&#x5B9A;&#x5339;&#x914D;&#x62A5;&#x6587;&#x7684;&#x534F;&#x8BAE;&#x7C7B;&#x578B;&#xFF0C;&#x4E00;&#x822C;&#x6709;&#x4E09;&#x79CD;tcp, udp&#x548C;icmp<br><code>[!] -i INTERFACE</code>&#xFF1A;&#x6570;&#x636E;&#x62A5;&#x6587;&#x6D41;&#x5165;&#x7684;&#x63A5;&#x53E3;&#xFF1B;&#x53EA;&#x9002;&#x7528;&#x4E8E;PREROUTING, INPUT, FORWARD<br><code>[!] -o INTERFACE</code>&#xFF1A;&#x6570;&#x636E;&#x62A5;&#x6587;&#x6D41;&#x51FA;&#x7684;&#x63A5;&#x53E3;&#xFF1B;&#x53EA;&#x9002;&#x7528;&#x4E8E;OUTPUT, FORWARD, POSTROUITING</p>
+</blockquote>
+<h4 id="&#x6269;&#x5C55;&#x5339;&#x914D;"><a href="#&#x6269;&#x5C55;&#x5339;&#x914D;" class="headerlink" title="&#x6269;&#x5C55;&#x5339;&#x914D;"></a>&#x6269;&#x5C55;&#x5339;&#x914D;</h4><h5 id="p-tcp"><a href="#p-tcp" class="headerlink" title="-p tcp"></a>-p tcp</h5><blockquote>
+<p><code>--sport PORT[:PORT]</code>: tcp &#x6307;&#x5B9A;&#x6E90;&#x7AEF;&#x53E3;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x8FDE;&#x7EED;&#x591A;&#x4E2A;&#x7AEF;&#x53E3;<br><code>--dport PORT[:PORT]</code>: tcp &#x6307;&#x5B9A;&#x76EE;&#x6807;&#x7AEF;&#x53E3;<br><code>--tcp-flags</code>: tcp&#x6807;&#x793A;&#x4F4D;&#xFF0C;&#x5305;&#x62EC;SYN&#xFF0C;ACK&#xFF0C;FIN&#xFF0C;RST&#xFF0C;URG&#xFF0C;PSH&#xFF0C;&#x5206;2&#x6BB5;&#xFF0C;&#x8868;&#x793A;&#x5728;&#x5DE6;&#x6BB5;&#x7684;&#x6807;&#x793A;&#x4F4D;&#x4E2D;&#xFF0C;&#x53EA;&#x6709;&#x53F3;&#x6BB5;&#x4E2D;&#x7684;&#x4E3A;1</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x4E0D;&#x6307;&#x5B9A;&#x8868;&#x9ED8;&#x8BA4;&#x4E3A;filter&#x8FC7;&#x6EE4;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5141;&#x8BB8;172.16&#x7F51;&#x6BB5;&#x7684;&#x4E3B;&#x673A;&#x53EF;&#x901A;&#x8FC7;22&#x53F7;&#x7AEF;&#x53E3;&#x5230;&#x8FBE;&#x672C;&#x673A;172.16.60.1</span></span><br><span class="line">iptables -A INPUT <span class="_">-s</span> 172.16.0.0/16 <span class="_">-d</span> 172.16.60.1 -p tcp --dport 22 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT <span class="_">-s</span> 172.16.60.1 <span class="_">-d</span> 172.16.0.0/16 -p tcp --dport 22 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x62D2;&#x7EDD;tcp&#x6807;&#x793A;&#x4F4D;&#x4E0D;&#x6B63;&#x5E38;&#x6570;&#x636E;</span></span><br><span class="line">iptables -A INPUT  -p tcp --tcp-flags all all -j DROP       <span class="comment"># tcp&#x6807;&#x793A;&#x4F4D;&#x5168;&#x4E3A;1</span></span><br><span class="line">iptables -A OUTPUT  -p tcp --tcp-flages all none -j DROP    <span class="comment"># tcp&#x6807;&#x793A;&#x4F4D;&#x5168;&#x4E3A;0</span></span><br></pre></td></tr></table></figure>
+<h5 id="p-udp"><a href="#p-udp" class="headerlink" title="-p udp"></a>-p udp</h5><blockquote>
+<p><code>--sport PORT[:PORT]</code> &#xFF1A;udp &#x6E90;&#x7AEF;&#x53E3;&#xFF0C;&#x53EF;&#x8FDE;&#x7EED;<br><code>--dport PORT[:PORT]</code>&#xFF1A;udp &#x76EE;&#x6807;&#x7AEF;&#x53E3;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x653E;&#x884C;&#x672C;&#x673A;dns&#xFF0C;&#x672C;&#x673A;172.16.60.1</span></span><br><span class="line">iptables -A INPUT <span class="_">-s</span> 172.16.0.0/16 <span class="_">-d</span> 172.16.60.1 -p udp --dport 53 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT <span class="_">-s</span> 172.16.60.1 <span class="_">-d</span> 172.16.0.0/16 -p udp --sport 53 -j AACEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x672C;&#x673A;&#x8BBF;&#x95EE;&#x5176;&#x5B83;&#x4E3B;&#x673A;DNS</span></span><br><span class="line">iptables -A OUTPUT <span class="_">-s</span> 172.16.60.1 -p udp --sport 53 -j ACCEPT  </span><br><span class="line">iptables -A INPUT <span class="_">-d</span> 172.16.60.1 -p udp --dport 53 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h5 id="p-icmp"><a href="#p-icmp" class="headerlink" title="-p icmp"></a>-p icmp</h5><blockquote>
+<p><code>--icmp-type 8</code>&#xFF1A;echo-request,&#x8BF7;&#x6C42;<br><code>--icmp-type 0</code>&#xFF1A;echo-reply,&#x54CD;&#x5E94;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x653E;&#x884C;ping&#x5176;&#x5B83;&#x4E3B;&#x673A;</span></span><br><span class="line">iptables -A INPUT <span class="_">-d</span> 172.16.60.1 -p icmp --icmp-type 0 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT <span class="_">-s</span> 172.16.60.1 -p icmp --icmp-type 8 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h5 id="m-multiport"><a href="#m-multiport" class="headerlink" title="-m multiport"></a>-m multiport</h5><p>&#x591A;&#x7AEF;&#x53E3;&#x5339;&#x914D;&#xFF0C;&#x53EF;&#x7528;&#x4E8E;&#x5339;&#x914D;&#x975E;&#x8FDE;&#x7EED;(,)&#x6216;&#x8FDE;&#x7EED;&#x7AEF;&#x53E3;(:)&#xFF0C;&#x9700;&#x6307;&#x660E;&#x76F8;&#x5E94;tcp&#x6216;udp&#x534F;&#x8BAE;</p>
+<blockquote>
+<p><code>[!] --sports PORT[,PORT...]</code><br><code>[!] --dports PORT[,PORT...]</code><br><code>[!] --ports PORT[,PORT...]</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x5F00;&#x653E;&#x672C;&#x673A;21&#xFF0C;22&#xFF0C;23&#xFF0C;80&#x7AEF;&#x53E3;</span></span><br><span class="line">iptables -I INPUT <span class="_">-d</span> 172.16.60.1 -p tcp -m multiport --dports 21:23,80 -j ACCEPT</span><br><span class="line">iptables -I OUTPUT <span class="_">-s</span> 172.16.60.1 -p tcp -m multiport --sports 21:23,80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h5 id="m-iprange"><a href="#m-iprange" class="headerlink" title="-m iprange"></a>-m iprange</h5><p>&#x5339;&#x914D;&#x6307;&#x5B9A;&#x8303;&#x56F4;&#x5185;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x5339;&#x914D;&#x4E00;&#x6BB5;&#x8FDE;&#x7EED;&#x7684;&#x5730;&#x5740;&#x800C;&#x975E;&#x6574;&#x4E2A;&#x7F51;&#x7EDC;&#x65F6;&#x6709;&#x7528;</p>
+<blockquote>
+<p><code>[!] --src-range FROM_IP[-TO_IP]</code><br><code>[!] --dst-range FROM_IP[-TO_IP]</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT <span class="_">-d</span> 172.16.60.1 -p tcp --dport 23 -m iprange --src-range 172.16.60.1-172.16.60.100 -j ACCEPT</span><br><span class="line">iptables -A OUTPUT <span class="_">-s</span> 172.16.60.1 -p tcp --sport 23 -m iprange --dst-range 172.16.60.1-172.16.60.100 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h5 id="m-string"><a href="#m-string" class="headerlink" title="-m string"></a>-m string</h5><p>&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;&#xFF0C;&#x80FD;&#x591F;&#x68C0;&#x6D4B;&#x62A5;&#x6587;&#x5E94;&#x7528;&#x5C42;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;</p>
+<blockquote>
+<p><code>[!] --string PATTERN</code>: &#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;<br><code>[!] --hex-string &quot;HEX_STRING&quot;</code>: HEX_STRING&#x4E3A;&#x7F16;&#x7801;&#x6210;16&#x8FDB;&#x5236;&#x683C;&#x5F0F;&#x7684;&#x5B57;&#x4E32;</p>
+<blockquote>
+<p><code>--algo {kmp|bm}</code>: &#x6307;&#x5B9A;&#x7B97;&#x6CD5;<br>    iptables -I OUTPUT -m string &#x2013;algo kmp &#x2013;string &#x201C;sex&#x201D; -j DROP</p>
+</blockquote>
+</blockquote>
+<h5 id="m-time"><a href="#m-time" class="headerlink" title="-m time"></a>-m time</h5><p>&#x57FA;&#x4E8E;&#x65F6;&#x95F4;&#x505A;&#x8BBF;&#x95EE;&#x63A7;&#x5236;</p>
+<blockquote>
+<p><code>--datestart YYYY[-MM][-DD[Thh[:mm[:ss]]]]</code>&#xFF1A;&#x5F00;&#x59CB;&#x65E5;&#x671F;<br><code>--datestop YYYY[-MM][-DD[Thh[:mm[:ss]]]]</code>&#xFF1A;&#x7ED3;&#x675F;&#x65E5;&#x671F;<br><code>--timestart hh:mm[:ss]</code>&#xFF1A;&#x5F00;&#x59CB;&#x65F6;&#x95F4;<br><code>--timestop hh:mm[:ss]</code>&#xFF1A;<br><code>[!]--monthdays day[,day...]</code>&#xFF1A;&#x6307;&#x5B9A;&#x65E5;&#x671F;<br><code>[!]--weekdays day[,day]|1-7</code>&#xFF1A;&#x6307;&#x5B9A;&#x661F;&#x671F;&#xFF0C;&#x53EF;&#x7528;Mon,Tue&#x2026;&#x6216; Mo,Tu&#x2026;&#x6216; 1-7</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT <span class="_">-d</span> 172.16.60.1 -p tcp --dport 90 -m time --timestart 08:20 --timestop 18:40 --weekdays Mon,Tue,Thu,Fri -j ACCEPT</span><br><span class="line">iptables -A OUTPUT <span class="_">-s</span> 172.16.60.1 -p tcp --dport 901 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h5 id="m-connlimit"><a href="#m-connlimit" class="headerlink" title="-m connlimit"></a>-m connlimit</h5><p>&#x8FDE;&#x63A5;&#x6570;&#x9650;&#x5236;&#xFF0C;&#x5BF9;&#x6BCF;IP&#x6240;&#x80FD;&#x591F;&#x53D1;&#x8D77;&#x5E76;&#x53D1;&#x8FDE;&#x63A5;&#x6570;&#x505A;&#x9650;&#x5236;</p>
+<blockquote>
+<p><code>--connlimit-upto N</code>&#xFF1A;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;N<br><code>--connlimit-above N</code>&#xFF1A;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT <span class="_">-d</span> 172.16.60.1 -p tcp --dport 80 -m connlimit --connlimit-above 5 -j DROP</span><br></pre></td></tr></table></figure>
+<h5 id="m-limit"><a href="#m-limit" class="headerlink" title="-m limit"></a>-m limit</h5><p>&#x4F20;&#x8F93;&#x901F;&#x7387;&#x9650;&#x5236;</p>
+<blockquote>
+<p><code>[!] --limit n[/second|/minute|/hour|/day]</code>: &#x9650;&#x5236;&#x6BCF;&#x79D2;,&#x5206;,&#x5C0F;&#x65F6;,&#x5929;n&#x4E2A;<br><code>[!] --limit-burst N</code>: &#x5CF0;&#x503C;&#x9650;&#x5236;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT <span class="_">-d</span> 172.16.60.1 -p icmp --icmp-type 8 -m <span class="built_in">limit</span> --limit 20/second --limit-burst 5 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<h5 id="m-state"><a href="#m-state" class="headerlink" title="-m state"></a>-m state</h5><p>&#x72B6;&#x6001;&#x5339;&#x914D;&#xFF0C;&#x72B6;&#x6001;&#x5305;&#x62EC;<code>NEW</code>(&#x65B0;&#x5EFA;&#x8FDE;&#x63A5;), <code>ESTABLISHED</code>(&#x5DF2;&#x5EFA;&#x7ACB;&#x7684;&#x8FDE;&#x63A5;), <code>RELATED</code>(&#x6709;&#x5173;&#x8054;&#x5173;&#x7CFB;), <code>INVALID</code>(&#x65E0;&#x6CD5;&#x8BC6;&#x522B;),<code>UNTRACKED</code>(&#x672A;&#x8FFD;&#x8E2A;)</p>
+<blockquote>
+<p><code>[!] --state STATE</code></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT <span class="_">-d</span> 172.16.60.1 -m multiport --dports 22,80 -m state --state NEW,ESTABLISHED -j ACCEPT</span><br><span class="line">iptables -I OUTPUT <span class="_">-s</span> 172.16.60.1 -m state --state ESTABLISHED -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p><font color="red">&#x6CE8;&#xFF1A;</font>&#x5F00;&#x542F;&#x72B6;&#x6001;&#x8FFD;&#x8E2A;&#x673A;&#x5236;&#x5FC5;&#x987B;&#x52A0;&#x8F7D;<code>nf_conntrack</code>&#x6A21;&#x5757;&#xFF0C;&#x7279;&#x5B9A;&#x670D;&#x52A1;&#x8FD8;&#x9700;&#x52A0;&#x8F7D;&#x76F8;&#x5E94;&#x6A21;&#x5757;&#xFF0C;&#x5982;ftp&#x9700;&#x52A0;&#x8F7D;<code>nf_conntrack_ftp</code></p>
+<p><strong>&#x72B6;&#x6001;&#x8FFD;&#x8E2A;&#x7F16;&#x5199;&#x6CD5;&#x5219;&#xFF1A;</strong>  </p>
+<ol>
+<li>&#x6240;&#x6709;&#x8FDB;&#x5165;&#x6216;&#x51FA;&#x53BB;&#x72B6;&#x6001;&#x4E3A;<code>ESTABLISHED</code>&#x90FD;&#x5E94;&#x8BE5;&#x653E;&#x884C;</li>
+<li>&#x4E25;&#x683C;&#x68C0;&#x67E5;&#x8FDB;&#x5165;&#x72B6;&#x6001;&#x4E3A;<code>NEW</code>&#x7684;&#x8FDE;&#x63A5;</li>
+<li>&#x6240;&#x6709;&#x72B6;&#x6001;&#x6709;<code>INVALIED</code>&#x90FD;&#x5E94;&#x8BE5;&#x62D2;&#x7EDD;</li>
+</ol>
+<p><strong>&#x76F8;&#x5173;&#x6587;&#x4EF6;</strong></p>
+<ol>
+<li>/proc/sys/net/nf_conntrack_max&#xFF1A;&#x8FDE;&#x63A5;&#x8FFD;&#x8E2A;&#x529F;&#x80FD;&#x6240;&#x80FD;&#x5BB9;&#x7EB3;&#x7684;&#x8FDE;&#x63A5;&#x7684;&#x6700;&#x5927;&#x6570;&#x76EE;&#xFF0C;&#x5EFA;&#x8BAE;&#x8C03;&#x5927;</li>
+<li>/proc/net/nf_conntrack&#xFF1A;&#x8BB0;&#x5F55;&#x5F53;&#x524D;&#x8FFD;&#x8E2A;&#x7684;&#x6240;&#x6709;&#x8FDE;&#x63A5;</li>
+<li>/proc/sys/net/netfilter/*&#xFF1A;&#x4E0D;&#x540C;&#x534F;&#x8BAE;&#x6216;&#x8FDE;&#x63A5;&#x7C7B;&#x578B;&#x8FFD;&#x8E2A;&#x65F6;&#x7684;&#x5C5E;&#x6027;</li>
+</ol>
+<h3 id="&#x81EA;&#x5B9A;&#x4E49;&#x94FE;"><a href="#&#x81EA;&#x5B9A;&#x4E49;&#x94FE;" class="headerlink" title="&#x81EA;&#x5B9A;&#x4E49;&#x94FE;"></a>&#x81EA;&#x5B9A;&#x4E49;&#x94FE;</h3><p>iptables&#x4E2D;&#x7684;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;&#x53EA;&#x80FD;&#x88AB;&#x5185;&#x7F6E;&#x5F15;&#x7528;&#x4F7F;&#x7528;&#xFF0C;&#x53EF;&#x7528;&#x4E8E;&#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x7CFB;&#x5217;&#x9488;&#x5BF9;&#x6027;&#x7684;&#x89C4;&#x5219;&#x65B9;&#x4FBF;&#x88AB;&#x4E0D;&#x540C;&#x7684;&#x5185;&#x7F6E;&#x94FE;&#x6240;&#x5F15;&#x7528;&#xFF0C;&#x540C;&#x65F6;&#x5EFA;&#x8BAE;&#x5728;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x4E00;&#x6761;RETURN&#x89C4;&#x5219;&#xFF0C;&#x5DF2;&#x4FBF;&#x672A;&#x5339;&#x914D;&#x5230;&#x65F6;&#x8FD4;&#x56DE;&#x4E3B;&#x94FE;&#x7EE7;&#x7EED;&#x5339;&#x914D;&#x3002;&#x5220;&#x9664;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;&#x9700;&#x6E05;&#x7A7A;&#x5F15;&#x7528;&#xFF0C;&#x540C;&#x65F6;&#x6E05;&#x7A7A;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x81EA;&#x5B9A;&#x4E49;&#x4E00;&#x6761;&#x653E;&#x884C;ping&#x8BF7;&#x6C42;&#x7684;&#x94FE;</span></span><br><span class="line">iptables -N icmp_<span class="built_in">test</span></span><br><span class="line">iptables -A icmp_<span class="built_in">test</span> -p icmp -j ACCEPT</span><br><span class="line">iptables -A icmp_<span class="built_in">test</span> -j RETURN</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F15;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x94FE;</span></span><br><span class="line">iptables -A INPUT -j icmp_<span class="built_in">test</span></span><br><span class="line">iptables -A OUTPUT -j icmp_<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h3 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h3><p>&#x7F51;&#x7EDC;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x5305;&#x62EC;SNAT&#xFF0C;DNAT&#xFF0C;MASQUERADE<br><code>SNAT</code>&#xFF1A;&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x7528;&#x4E8E;&#x5185;&#x7F51;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x4E92;&#x8054;&#x7F51;&#xFF0C;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;POSTROUTING&#xFF0C;INPUT<br><code>DNAT</code>&#xFF1A;&#x76EE;&#x6807;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x8BA9;&#x4E92;&#x8054;&#x7F51;&#x4E0A;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x672C;&#x5730;&#x5185;&#x7F51;&#x4E0A;&#x7684;&#x67D0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;PREROUTING&#x548C;OUTPUT</p>
+<blockquote>
+<p><code>-j SNAT --to-source SIP</code>&#xFF1A;&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;<br><code>-j DNAT --to-destination DIP[:PORT]</code>&#xFF1A;&#x76EE;&#x6807;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x652F;&#x6301;&#x7AEF;&#x53E3;&#x6620;&#x5C04;<br><code>-j MASQUERADE</code>&#xFF1A;&#x52A8;&#x6001;&#x83B7;&#x53D6;&#xFF0C;&#x4EC5;&#x7528;&#x4E8E;nat&#x8868;&#x7684;POSTROUTING</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x672C;&#x5730;&#x5185;&#x7F51;172.16&#x7F51;&#x6BB5;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x4E92;&#x8054;&#x7F51;&#x65F6;&#xFF0C;&#x5C06;&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5728;&#x672C;&#x516C;&#x53F8;&#x7684;&#x516C;&#x7F51;8.9.9.9&#x4E0A;</span></span><br><span class="line">iptables -t nat -A POSTROUTING <span class="_">-s</span> 172.16.0.0/24 -j SNAT --to-source 8.9.9.9</span><br><span class="line">iptables -t nat -A POSTROUTING <span class="_">-s</span> 172.16.0.0/24 -j MASQUERADE</span><br><span class="line">                    </span><br><span class="line"><span class="comment"># &#x5916;&#x90E8;&#x8BBF;&#x95EE;&#x516C;&#x53F8;&#x5BF9;&#x5916;&#x670D;&#x52A1;&#x5668;8.8.8.9&#x7684;22022&#x7AEF;&#x53E3;&#x65F6;&#xFF0C;&#x5C06;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7ED9;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;192.168.0.1&#x7684;22&#x7AEF;&#x53E3;&#x4E0A;</span></span><br><span class="line">iptables -t nat -A PREROUTING <span class="_">-d</span> 8.8.8.9 -p -tcp --dport 22022 -j DNAT --to-destination 192.168.0.1:22</span><br></pre></td></tr></table></figure>
+<h3 id="&#x4FDD;&#x5B58;&#x548C;&#x91CD;&#x8F7D;&#x89C4;&#x5219;"><a href="#&#x4FDD;&#x5B58;&#x548C;&#x91CD;&#x8F7D;&#x89C4;&#x5219;" class="headerlink" title="&#x4FDD;&#x5B58;&#x548C;&#x91CD;&#x8F7D;&#x89C4;&#x5219;"></a>&#x4FDD;&#x5B58;&#x548C;&#x91CD;&#x8F7D;&#x89C4;&#x5219;</h3><p>&#x4F7F;&#x7528;iptables&#x547D;&#x4EE4;&#x751F;&#x6210;&#x7684;&#x89C4;&#x5219;&#x5728;&#x91CD;&#x542F;&#x540E;&#x5C06;&#x5931;&#x6548;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x5C06;&#x89C4;&#x5219;&#x4FDD;&#x5B58;&#x81F3;&#x6587;&#x4EF6;&#xFF0C;&#x91CD;&#x542F;&#x65F6;&#x4ECE;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">iptables-save &gt; /PATH/TO/SOME_RULE_FILE       <span class="comment"># &#x5C06;&#x7F16;&#x5199;&#x7684;&#x89C4;&#x5219;&#x4FDD;&#x5B58;&#x5230;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x4E2D;</span></span><br><span class="line">iptables-restore &lt; /PATH/FROM/SOME_RULE_FILE  <span class="comment"># &#x4ECE;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x4E2D;&#x6062;&#x590D;&#x89C4;&#x5219;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># centos6&#x4E0A;&#x4E5F;&#x53EF;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x547D;&#x4EE4;</span></span><br><span class="line">service iptables save       <span class="comment"># &#x81EA;&#x52A8;&#x4FDD;&#x5B58;&#x89C4;&#x5219;&#x81F3;/etc/sysconfig/iptables&#x6587;&#x4EF6;&#x4E2D;</span></span><br><span class="line">server iptables restore     <span class="comment"># &#x4ECE;/etc/sysconfig/iptables&#x6587;&#x4EF6;&#x4E2D;&#x91CD;&#x8F7D;&#x89C4;&#x5219;</span></span><br></pre></td></tr></table></figure>
+<h3 id="&#x89C4;&#x5219;&#x4F18;&#x5316;"><a href="#&#x89C4;&#x5219;&#x4F18;&#x5316;" class="headerlink" title="&#x89C4;&#x5219;&#x4F18;&#x5316;"></a>&#x89C4;&#x5219;&#x4F18;&#x5316;</h3><ol>
+<li>&#x53EF;&#x5B89;&#x5168;&#x653E;&#x884C;&#x6240;&#x6709;&#x5165;&#x7AD9;&#x53CA;&#x51FA;&#x7AD9;&#xFF0C;&#x4E14;&#x72B6;&#x6001;&#x4E3A;ESTABLISHED&#x7684;&#x8FDE;&#x63A5;</li>
+<li>&#x670D;&#x52A1;&#x4E8E;&#x540C;&#x4E00;&#x7C7B;&#x529F;&#x80FD;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x5339;&#x914D;&#x6761;&#x4EF6;&#x4E25;&#x683C;&#x7684;&#x653E;&#x524D;&#x9762;&#xFF0C;&#x5BBD;&#x677E;&#x653E;&#x540E;&#x9762;</li>
+<li>&#x670D;&#x52A1;&#x4E8E;&#x4E0D;&#x540C;&#x7C7B;&#x529F;&#x80FD;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x5339;&#x914D;&#x62A5;&#x6587;&#x53EF;&#x80FD;&#x6027;&#x8F83;&#x5927;&#x6269;&#x524D;&#x9762;&#xFF0C;&#x8F83;&#x5C0F;&#x653E;&#x540E;&#x9762;</li>
+<li>&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x7B56;&#x7565;&#xFF1A;<br> (a) &#x6700;&#x540E;&#x4E00;&#x6761;&#x89C4;&#x5219;&#x8BBE;&#x5B9A;<br> (b) &#x9ED8;&#x8BA4;&#x7B56;&#x7565;&#x8BBE;&#x5B9A;  </li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iptables/" rel="tag">#iptables</a>
+          
+            <a href="/tags/防火墙/" rel="tag">#防火墙</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/21/文件共享服务之NFS简介及应用/" rel="next" title="文件共享服务之NFS简介及应用">
+                <i class="fa fa-chevron-left"></i> 文件共享服务之NFS简介及应用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/24/iptables的FORWAD和NAT实验/" rel="prev" title="iptables的FORWAD和NAT实验">
+                iptables的FORWAD和NAT实验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/23/iptables简介及命令用法/"
+           data-title="iptables简介及命令用法" data-url="http://liu2lin600.github.io/2016/07/23/iptables简介及命令用法/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iptables-netfilter"><span class="nav-number">1.1.</span> <span class="nav-text">iptables/netfilter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4表"><span class="nav-number">1.1.1.</span> <span class="nav-text">4表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5链"><span class="nav-number">1.1.2.</span> <span class="nav-text">5链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规则-处理机制"><span class="nav-number">1.1.3.</span> <span class="nav-text">规则(处理机制)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流向"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据流向</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iptables命令用法"><span class="nav-number">2.</span> <span class="nav-text">iptables命令用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用选项"><span class="nav-number">2.2.</span> <span class="nav-text">常用选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配条件"><span class="nav-number">2.3.</span> <span class="nav-text">匹配条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用匹配"><span class="nav-number">2.3.1.</span> <span class="nav-text">通用匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展匹配"><span class="nav-number">2.3.2.</span> <span class="nav-text">扩展匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#p-tcp"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">-p tcp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#p-udp"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">-p udp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#p-icmp"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">-p icmp</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-multiport"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">-m multiport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-iprange"><span class="nav-number">2.3.2.5.</span> <span class="nav-text">-m iprange</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-string"><span class="nav-number">2.3.2.6.</span> <span class="nav-text">-m string</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-time"><span class="nav-number">2.3.2.7.</span> <span class="nav-text">-m time</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-connlimit"><span class="nav-number">2.3.2.8.</span> <span class="nav-text">-m connlimit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-limit"><span class="nav-number">2.3.2.9.</span> <span class="nav-text">-m limit</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#m-state"><span class="nav-number">2.3.2.10.</span> <span class="nav-text">-m state</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义链"><span class="nav-number">2.4.</span> <span class="nav-text">自定义链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT"><span class="nav-number">2.5.</span> <span class="nav-text">NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存和重载规则"><span class="nav-number">2.6.</span> <span class="nav-text">保存和重载规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规则优化"><span class="nav-number">2.7.</span> <span class="nav-text">规则优化</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

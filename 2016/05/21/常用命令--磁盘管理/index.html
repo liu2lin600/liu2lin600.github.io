@@ -1,0 +1,941 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="命令," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5305;&amp;#x62EC;&amp;#x5206;&amp;#x533A;&amp;#x67E5;&amp;#x770B;&amp;#x3001;&amp;#x521B;&amp;#x5EFA;&amp;#x3001;&amp;#x4FEE;&amp;#x6539;&amp;#x2026;&amp;#x53CA;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x7B49;&amp;#x64CD;&amp;#x4F5C;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令--磁盘管理">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/05/21/常用命令--磁盘管理/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x5305;&amp;#x62EC;&amp;#x5206;&amp;#x533A;&amp;#x67E5;&amp;#x770B;&amp;#x3001;&amp;#x521B;&amp;#x5EFA;&amp;#x3001;&amp;#x4FEE;&amp;#x6539;&amp;#x2026;&amp;#x53CA;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x7B49;&amp;#x64CD;&amp;#x4F5C;">
+<meta property="og:updated_time" content="2016-06-21T02:59:10.747Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用命令--磁盘管理">
+<meta name="twitter:description" content="&amp;#x5305;&amp;#x62EC;&amp;#x5206;&amp;#x533A;&amp;#x67E5;&amp;#x770B;&amp;#x3001;&amp;#x521B;&amp;#x5EFA;&amp;#x3001;&amp;#x4FEE;&amp;#x6539;&amp;#x2026;&amp;#x53CA;&amp;#x683C;&amp;#x5F0F;&amp;#x5316;&amp;#xFF0C;&amp;#x6302;&amp;#x8F7D;&amp;#x7B49;&amp;#x64CD;&amp;#x4F5C;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 常用命令--磁盘管理 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用命令--磁盘管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T18:54:49+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/21/常用命令--磁盘管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/21/常用命令--磁盘管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5305;&#x62EC;&#x5206;&#x533A;&#x67E5;&#x770B;&#x3001;&#x521B;&#x5EFA;&#x3001;&#x4FEE;&#x6539;&#x2026;&#x53CA;&#x683C;&#x5F0F;&#x5316;&#xFF0C;&#x6302;&#x8F7D;&#x7B49;&#x64CD;&#x4F5C;<br><a id="more"></a></p>
+<h4 id="mknod"><a href="#mknod" class="headerlink" title="mknod"></a>mknod</h4><p><code>mknod [OPTION]... NAME TYPE [MAJOR MINOR]</code><br>&#x521B;&#x5EFA;&#x5757;&#x8BBE;&#x5907;&#x6216;&#x5B57;&#x7B26;&#x8BBE;&#x5907;</p>
+<blockquote>
+<p><code>-m MODE</code>&#xFF1A;&#x521B;&#x5EFA;&#x540E;&#x8BBE;&#x5907;&#x6587;&#x4EF6;&#x8BBF;&#x95EE;&#x6743;&#x9650;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mknod -m 660 /dev/<span class="built_in">test</span> c 111 1</span><br></pre></td></tr></table></figure>
+<h4 id="fdisk"><a href="#fdisk" class="headerlink" title="fdisk"></a>fdisk</h4><p><code>fdisk -l [-u][device...]</code><br>&#x5217;&#x51FA;&#x6307;&#x5B9A;&#x78C1;&#x76D8;&#x8BBE;&#x5907;&#x4E0A;&#x7684;&#x5206;&#x533A;&#x60C5;&#x51B5;&#x6216;&#x7BA1;&#x7406;&#x5206;&#x533A;</p>
+<blockquote>
+<p><code>-l</code>&#xFF1A;&#x5217;&#x51FA;&#x6307;&#x5B9A;&#x7684;&#x5916;&#x56F4;&#x8BBE;&#x5907;&#x7684;&#x5206;&#x533A;&#x8868;&#x72B6;&#x51B5;  </p>
+<ul>
+<li>&#x78C1;&#x76D8;&#x5206;&#x533A;&#x64CD;&#x4F5C; &#x5982;&#xFF1A;fdisk /dev/sda&#x7684;&#x5E38;&#x7528;&#x547D;&#x4EE4;<br><code>m</code>&#xFF1A;&#x67E5;&#x770B;&#x5E2E;&#x52A9;<br><code>p</code>&#xFF1A;&#x663E;&#x793A;&#x73B0;&#x6709;&#x5206;&#x533A;<br><code>n</code>&#xFF1A;&#x521B;&#x5EFA;&#x65B0;&#x5206;&#x533A;<br><code>d</code>&#xFF1A;&#x5220;&#x9664;&#x5DF2;&#x6709;&#x5206;&#x533A;<br><code>t</code>&#xFF1A;&#x4FEE;&#x6539;&#x5206;&#x533A;&#x7C7B;&#x578B;<br><code>l</code>&#xFF1A;&#x67E5;&#x770B;&#x6240;&#x6709;&#x5206;&#x533A;ID<br><code>w</code>&#xFF1A;&#x4FDD;&#x5B58;&#x5E76;&#x9000;&#x51FA;<br><code>q</code>&#xFF1A;&#x4E0D;&#x4FDD;&#x5B58;&#x9000;&#x51FA;  </li>
+<li><code>&#x5728;&#x5DF2;&#x5206;&#x533A;&#x4E14;&#x6302;&#x8F7D;&#x7684;&#x67D0;&#x5206;&#x533A;&#x4E0A;&#x521B;&#x5EFA;&#x65B0;&#x5206;&#x533A;&#x65F6;&#xFF0C;&#x5185;&#x6838;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x8BC6;&#x522B;&#x51FA;&#x65B0;&#x5206;&#x533A;,/proc/partitions&#x6587;&#x4EF6;&#x8BB0;&#x5F55;</code>  </li>
+</ul>
+<ol>
+<li>CentOS 5: partprobe [device]</li>
+<li>CentOS6, 7:partx -a [device]&#xFF08;&#x6267;&#x884C;&#x4E24;&#x6B21;&#xFF09;&#x6216;kpartx -af [device]  </li>
+</ol>
+<ul>
+<li>&#x547D;&#x4EE4;&#x8F93;&#x5165;&#x9519;&#x8BEF;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;<code>ctrl+backspace</code>&#x5220;&#x9664;&#xFF0C;</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fdisk <span class="_">-l</span>        <span class="comment"># &#x67E5;&#x770B;&#x78C1;&#x76D8;&#x5206;&#x533A;&#x4FE1;&#x606F;  </span></span><br><span class="line">fdisk /dev/sda  <span class="comment"># &#x7BA1;&#x7406;&#x7B2C;&#x4E00;&#x5757;&#x78C1;&#x76D8;&#x5305;&#x62EC;&#x67E5;&#x770B;&#xFF0C;&#x521B;&#x5EFA;&#xFF0C;&#x5220;&#x9664;&#xFF0C;&#x4FEE;&#x6539;&#x7B49;&#x5206;&#x533A;&#x5B8C;&#x6210;&#x540E;&#x9700;&#x8981;&#x683C;&#x5F0F;&#x5316;mkfs.*&#x6216;mke2fs &#x53CA;&#x6302;&#x8F7D;mount&#x540E;&#x624D;&#x80FD;&#x4F7F;&#x7528;</span></span><br></pre></td></tr></table></figure>
+<h4 id="mkfs"><a href="#mkfs" class="headerlink" title="mkfs"></a>mkfs</h4><p><code>mkfs [OPTION]... DEVICE</code><br>&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;  </p>
+<blockquote>
+<p><code>-t {ext2|ext3...}</code>&#xFF1A;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#xFF0C;&#x4F5C;&#x7528;&#x540C;<code>mkfs.ext2, mkfs.ext4,mkfs.xfs</code>&#x7B49;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs -t ext4 /dev/sda4 == mkfs.ext4 /dev/sda4</span><br></pre></td></tr></table></figure>
+<h4 id="mke2fs"><a href="#mke2fs" class="headerlink" title="mke2fs"></a>mke2fs</h4><p><code>mke2fs [OPTION]... DEVICE</code><br>ext&#x7CFB;&#x5217;&#x4E13;&#x7528;&#x521B;&#x5EFA;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;  </p>
+<blockquote>
+<p><code>-t {ext2|ext3|ext4}</code>&#xFF1A;&#x6307;&#x660E;&#x7C7B;&#x578B;<br><code>-b {1024|2048|4096}</code>&#xFF1A;&#x6307;&#x660E;&#x5757;&#x5927;&#x5C0F;<br><code>-L LABEL</code>&#xFF1A;&#x6307;&#x660E;&#x5377;&#x6807;&#x540D;<br><code>-j</code>&#xFF1A;&#x521B;&#x5EFA;&#x5E26;&#x6709;&#x65E5;&#x5FD7;&#x529F;&#x80FD;&#x7684;ext3<br><code>-i #</code>&#xFF1A;&#x6307;&#x660E;&#x6BCF;&#x4E2A;Inode&#x7684;&#x5927;&#x5C0F;<br><code>-N #</code>&#xFF1A;&#x6307;&#x660E;Inode&#x6570;&#x91CF;<br><code>-m #</code>&#xFF1A;&#x6307;&#x660E;&#x9884;&#x7559;&#x7A7A;&#x95F4;&#x767E;&#x5206;&#x6BD4;&#xFF0C;&#x65E0;&#x9700;&#x52A0;%<br><code>-O [^]FEATURE</code>&#xFF1A;&#x6307;&#x5B9A;&#x67D0;&#x79CD;&#x7279;&#x6027;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mke2fs -t ext3 -b 2048 -L DATA -o acl /dev/sda6   <span class="comment"># &#x521B;&#x5EFA;ext3&#x683C;&#x5F0F;&#xFF0C;&#x5757;&#x5927;&#x5C0F;&#x4E3A;2k&#xFF0C;&#x5377;&#x6807;&#x4E3A;DATA&#x5E76;&#x5F00;&#x542F;acl&#x529F;&#x80FD;</span></span><br></pre></td></tr></table></figure>
+<h4 id="tune2fs"><a href="#tune2fs" class="headerlink" title="tune2fs"></a>tune2fs</h4><p><code>tune2fs [OPTION]... DEVICE</code><br>&#x67E5;&#x770B;&#x6216;&#x4FEE;&#x6539;ext&#x7CFB;&#x7EDF;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x67D0;&#x4E9B;&#x5C5E;&#x6027;&#xFF0C;&#x65E0;&#x9700;&#x683C;&#x5F0F;&#x5316;  </p>
+<blockquote>
+<p><code>-l</code>&#xFF1A;&#x67E5;&#x770B;&#x8D85;&#x7EA7;&#x5757;&#x5185;&#x5BB9;<br><code>-j</code>&#xFF1A;ext2&#x2013;&gt;ext3&#xFF0C;&#x65E0;&#x635F;&#x5347;&#x7EA7;<br><code>-L</code>&#xFF1A;&#x4FEE;&#x6539;&#x5377;&#x6807;<br><code>-m #</code>&#xFF1A;&#x8C03;&#x6574;&#x9884;&#x7559;&#x7A7A;&#x95F4;<br><code>-O [^]FEATURE</code>&#xFF1A;&#x5F00;&#x542F;&#x6216;&#x5173;&#x95ED;&#x67D0;&#x4E9B;&#x7279;&#x6027;<br><code>-o [^]mount_options</code>&#xFF1A;&#x5F00;&#x542F;&#x6216;&#x5173;&#x95ED;&#x67D0;&#x4E9B;&#x9ED8;&#x8BA4;&#x6302;&#x8F7D;&#x9009;&#x9879;&#xFF0C;&#x5982;acl<br><code>-i #</code>: &#x6307;&#x5B9A;&#x6302;&#x8F7D;&#x4F7F;&#x7528;#&#x5929;&#x540E;&#x81EA;&#x68C0;&#xFF0C;0&#x6216;-1&#x8868;&#x793A;&#x5173;&#x95ED;<br><code>-c #</code>: &#x6307;&#x5B9A;&#x6302;&#x8F7D;&#x6B21;&#x6570;&#x8FBE;&#x5230;#&#x6B21;&#x4E4B;&#x540E;&#x8FDB;&#x884C;&#x81EA;&#x68C0;&#xFF0C;0&#x6216;-1&#x8868;&#x5173;&#x95ED;&#x6B64;   </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tune2fs <span class="_">-l</span> /dev/sda1                      <span class="comment"># &#x67E5;&#x770B;sda1&#x78C1;&#x76D8;&#x7684;&#x8D85;&#x7EA7;&#x5757;&#x4FE1;&#x606F;</span></span><br><span class="line">tune2fs -L MYDAYA -m 5 -o acl /dev/sda1   <span class="comment"># &#x4FEE;&#x6539;&#x5377;&#x6807;&#x4E3A;MYDATA&#xFF0C;&#x8C03;&#x6574;&#x9884;&#x7559;&#x7A7A;&#x95F4;&#x4E3A;5%&#x5E76;&#x5F00;&#x542F;acl&#x529F;&#x80FD;</span></span><br></pre></td></tr></table></figure>
+<h4 id="dumpe2fs"><a href="#dumpe2fs" class="headerlink" title="dumpe2fs"></a>dumpe2fs</h4><p><code>dumpe2fs [-h] DEVICE</code><br>&#x67E5;&#x770B;ext&#x7CFB;&#x5217;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7684;&#x5C5E;&#x6027;&#x4FE1;&#x606F;</p>
+<blockquote>
+<p><code>-h</code>&#xFF1A;&#x663E;&#x793A;&#x8D85;&#x7EA7;&#x5757;&#x4FE1;&#x606F;&#xFF0C;&#x4E0D;&#x52A0;&#x5219;&#x4F1A;&#x67E5;&#x770B;&#x8D85;&#x7EA7;&#x5757;&#x548C;&#x5757;&#x7EC4;&#x4FE1;&#x606F;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dumpe2fs -h /dev/sda3</span><br></pre></td></tr></table></figure>
+<h4 id="blkid"><a href="#blkid" class="headerlink" title="blkid"></a>blkid</h4><p>&#x67E5;&#x770B;&#x5206;&#x533A;UUID&#x53CA;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x683C;&#x5F0F;<br><code>blkid [-LU] DEVICE</code>  </p>
+<blockquote>
+<p><code>-L LABEL</code>&#xFF1A;&#x6839;&#x636E;&#x6307;&#x5B9A;&#x5377;&#x6807;&#x5B9A;&#x4F4D;&#x8BBE;&#x5907;<br><code>-U UUID</code>&#xFF1A;&#x6839;&#x636E;UUID&#x5B9A;&#x4F4D;&#x8BBE;&#x5907;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blkid /dev/sda1   <span class="comment"># &#x67E5;&#x770B;</span></span><br><span class="line">blkid -L DATA     <span class="comment"># &#x67E5;&#x627E;&#x5377;&#x6807;&#x4E3A;DATA&#x7684;&#x8BBE;&#x5907;</span></span><br></pre></td></tr></table></figure>
+<h4 id="free"><a href="#free" class="headerlink" title="free"></a>free</h4><p><code>free</code><br>&#x67E5;&#x770B;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x60C5;&#x51B5;<br><strong>buffer:</strong> &#x5185;&#x5B58;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x5B58;&#x653E;&#x6587;&#x4EF6;&#x5143;&#x6570;&#x6570;&#x636E;<br><strong>cached:</strong> &#x5185;&#x5B58;&#x7F13;&#x5B58;&#x533A;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x5B58;&#x653E;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x6570;&#x636E;</p>
+<blockquote>
+<p><code>-m</code>&#xFF1A;&#x4EE5;m&#x4E3A;&#x5355;&#x4F4D;&#x663E;&#x793A;<br><code>-h</code>&#xFF1A;&#x4EBA;&#x6027;&#x5316;&#x663E;&#x793A;</p>
+</blockquote>
+<h4 id="fsck"><a href="#fsck" class="headerlink" title="fsck"></a>fsck</h4><p><code>fsck [OPTION]... DEVICE</code><br>&#x7528;&#x4E8E;&#x68C0;&#x67E5;&#x5E76;&#x4E14;&#x8BD5;&#x56FE;&#x4FEE;&#x590D;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x9519;&#x8BEF;&#x3002;&#x5F53;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#x56DB;&#x5316;&#xFF0C;&#x53EF;&#x7528;fsck&#x6307;&#x4EE4;&#x5C1D;&#x8BD5;&#x52A0;&#x4EE5;&#x4FEE;&#x590D;&#xFF0C;&#x6307;&#x5B9A;&#x7C7B;&#x578B;&#x65F6;&#x53EF;&#x76F4;&#x63A5;&#x4F7F;&#x7528;fsck.ext2, fsck.ext3.., fsck.xfs&#x7B49;</p>
+<blockquote>
+<p><code>-t {ext2|ext3...}</code>&#xFF1A;&#x4FEE;&#x590D;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x7C7B;&#x578B;&#xFF0C;&#x7B49;&#x540C;<code>fsck.ext2</code>&#x7B49;<br><code>-a</code>&#xFF1A;&#x65E0;&#x987B;&#x4EA4;&#x4E92;&#x800C;&#x81EA;&#x52A8;&#x81EA;&#x52A8;&#x4FEE;&#x590D;(&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;)  </p>
+</blockquote>
+<h4 id="e2fsck"><a href="#e2fsck" class="headerlink" title="e2fsck"></a>e2fsck</h4><p><code>e2fsck [OPTION]... DEVICE</code><br>&#x68C0;&#x6D4B;ext&#x7CFB;&#x5217;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</p>
+<blockquote>
+<p><code>-y</code>&#xFF1A;&#x5BF9;&#x6240;&#x6709;&#x95EE;&#x9898;&#x81EA;&#x52A8;&#x56DE;&#x7B54;yes<br><code>-f</code>&#xFF1A;&#x5F3A;&#x5236;&#x68C0;&#x6D4B;&#xFF0C;&#x5373;&#x4F7F;&#x6587;&#x4EF6;&#x6CA1;&#x95EE;&#x9898;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e2fsck -yf /dev/sda1</span><br></pre></td></tr></table></figure>
+<h4 id="mkswap"><a href="#mkswap" class="headerlink" title="mkswap"></a>mkswap</h4><p><code>mkswap [OPTION]... DEVICE</code><br>&#x521B;&#x5EFA;swap&#x8BBE;&#x5907;</p>
+<blockquote>
+<p><code>-L</code>&#xFF1A;&#x6307;&#x660E;&#x5377;&#x6807;<br><code>-f</code>&#xFF1A;&#x5F3A;&#x5236;  </p>
+</blockquote>
+<h4 id="swapon"><a href="#swapon" class="headerlink" title="swapon"></a>swapon</h4><p><code>swapon [OPT] [DEV]</code><br>&#x542F;&#x7528;&#x4EA4;&#x6362;&#x5206;&#x533A;</p>
+<blockquote>
+<p><code>-a</code>&#xFF1A;&#x5B9A;&#x4E49;&#x5728;/etc/fstab&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x6240;&#x6709;swap&#x8BBE;&#x5907;  </p>
+</blockquote>
+<h4 id="swapoff"><a href="#swapoff" class="headerlink" title="swapoff"></a>swapoff</h4><p><code>swapoff DEV</code>  </p>
+<h4 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h4><p><code>mount [-nrw] [-t vfstype] [-o options] device dir</code>  </p>
+<blockquote>
+<p><code>-r</code>&#xFF1A;&#x53EA;&#x8BFB;&#x6302;&#x8F7D;<br><code>-n</code>&#xFF1A;&#x9ED8;&#x8BA4;&#x6302;&#x8F7D;&#x6216;&#x5378;&#x8F7D;&#x4F1A;&#x540C;&#x6B65;&#x66F4;&#x65B0;&#x81F3;<code>/etc/mtab</code>&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x52A0;-n&#x5219;&#x4E0D;&#x540C;&#x6B65;<br><code>-L LABEL</code>&#xFF1A;&#x6307;&#x660E;&#x5377;&#x6807;&#x65B9;&#x5F0F;<br><code>-U UUID</code>&#xFF1A;&#x6307;&#x660E;UUID&#x65B9;&#x5F0F;<br><code>--bind</code>&#xFF1A;&#x5B9E;&#x73B0;&#x5C06;&#x76EE;&#x5F55;&#x7ED1;&#x5B9A;&#x5728;&#x53E6;&#x4E00;&#x76EE;&#x5F55;&#x4E0A;&#xFF0C;&#x505A;&#x4E3A;&#x4E34;&#x65F6;&#x8BBF;&#x95EE;&#x5165;&#x53E3;<br><code>-a</code>&#xFF1A;&#x53EF;&#x81EA;&#x52A8;&#x6302;&#x8F7D;&#x5B9A;&#x4E49;&#x5728;<code>/etc/fstab</code>&#x4E2D;&#x6240;&#x652F;&#x6301;&#x7684;&#x81EA;&#x52A8;&#x6302;&#x8F7D;&#x8BBE;&#x5907;<br><code>-o options</code>&#xFF1A;&#x6302;&#x8F7D;&#x9009;&#x9879;,&#x9009;&#x9879;&#x5982;&#x4E0B;    </p>
+<ul>
+<li>sync/async&#xFF1A;&#x540C;&#x6B65;/&#x5F02;&#x6B65;  </li>
+<li>atime/noatime&#xFF1A;&#x6587;&#x4EF6;&#x6216;&#x76EE;&#x5F55;&#x88AB;&#x8BBF;&#x95EE;&#x65F6;&#x662F;&#x5426;&#x66F4;&#x65B0;&#x5176;&#x8BBF;&#x95EE;&#x65F6;&#x95F4;  </li>
+<li>remount&#xFF1A;&#x91CD;&#x65B0;&#x6302;&#x8F7D;  </li>
+<li>acl&#xFF1A;&#x652F;&#x6280;&#x4F7F;&#x7528;acl&#x529F;&#x80FD;&#xFF0C;<code>tune2fs -o acl DEV</code>  </li>
+<li>ro&#xFF1A;&#x53EA;&#x8BFB;  </li>
+<li>rw&#xFF1A;&#x8BFB;&#x5199;  </li>
+<li>dev/nodev&#xFF1A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x521B;&#x5EFA;&#x8BBE;&#x5907;&#x6587;&#x4EF6;  </li>
+<li>exec/noexec&#xFF1A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x8FD0;&#x884C;&#x6B64;&#x8BBE;&#x5907;&#x4E0A;&#x7684;&#x7A0B;&#x5E8F;&#x6587;&#x4EF6;  </li>
+<li>user/nouser&#xFF1A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x666E;&#x901A;&#x7528;&#x6237;&#x6302;&#x8F7D;&#x6B64;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;  </li>
+<li>suid/nosuid&#xFF1A;&#x662F;&#x5426;&#x652F;&#x6301;suid&#xFF0C;sgid&#x7279;&#x6B8A;&#x6743;&#x9650;  </li>
+<li>usrquota/grpquota&#xFF1A;&#x662F;&#x5426;&#x542F;&#x7528;&#x914D;&#x989D;&#x7CFB;&#x7EDF;    </li>
+<li>defaults&#xFF1A;&#x5305;&#x62EC;rw, suid, dev, exec, auto, nouser, async, and rela-time  </li>
+<li>loop: &#x6302;&#x8F7D;&#x672C;&#x5730;&#x56DE;&#x73AF;&#x8BBE;&#x5907;&#xFF0C;&#x5982;&#x672C;&#x5730;iso&#x955C;&#x50CF;   </li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount -L MYDATE -r /mnt/cdrom         <span class="comment"># &#x5C06;&#x5377;&#x6807;&#x4E3A;MYDATE&#x7684;&#x5206;&#x533A;&#x53EA;&#x8BFB;&#x6302;&#x8F7D;&#x5230;/mnt/cdrom&#x4E0A;</span></span><br><span class="line">mount -o remount,acl /dev/sda6 /mnt   <span class="comment"># &#x91CD;&#x65B0;&#x6302;&#x8F7D;&#x6DFB;&#x52A0;acl&#x529F;&#x80FD;  </span></span><br><span class="line">mount --bind /dev /mnt                <span class="comment"># &#x5C06;/dev&#x7ED1;&#x5B9A;&#x5728;/mnt&#x4E0A;</span></span><br></pre></td></tr></table></figure>
+<h4 id="umount"><a href="#umount" class="headerlink" title="umount"></a>umount</h4><p><code>umount DEV|MOUNT_POINT</code><br>&#x5378;&#x8F7D;&#x8BBE;&#x5907;  </p>
+<h4 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h4><blockquote>
+<p><code>-v MOUNT_POINT</code>&#xFF1A;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6302;&#x8F7D;&#x70B9;&#x88AB;&#x54EA;&#x4E9B;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -v /mnt</span><br></pre></td></tr></table></figure>
+<h4 id="fuser"><a href="#fuser" class="headerlink" title="fuser"></a>fuser</h4><blockquote>
+<p><code>-u</code>&#xFF1A;&#x67E5;&#x770B;&#x5F53;&#x524D;&#x6302;&#x8F7D;&#x70B9;&#x88AB;&#x54EA;&#x4E9B;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;<br><code>-k</code>&#xFF1A;&#x6740;&#x6B7B;&#x8BBF;&#x95EE;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7684;&#x6240;&#x6709;&#x8FDB;&#x7A0B;<br><code>-m</code>&#xFF1A;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x88AB;&#x52A0;&#x8F7D;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x6216;&#x4E00;&#x4E2A;&#x88AB;&#x52A0;&#x8F7D;&#x7684;&#x5757;&#x8BBE;&#x5907;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser -km /mnt</span><br></pre></td></tr></table></figure>
+<h4 id="df"><a href="#df" class="headerlink" title="df"></a>df</h4><p><code>df [OPT]... [FILE]</code><br>Disk Free &#x67E5;&#x770B;&#x78C1;&#x76D8;&#x4F7F;&#x7528;&#x60C5;&#x51B5;</p>
+<blockquote>
+<p><code>-l</code>&#xFF1A;&#x53EA;&#x663E;&#x793A;&#x672C;&#x5730;<br><code>-h</code>&#xFF1A;&#x4EBA;&#x6027;&#x5316;&#x663E;&#x793A;<br><code>-i</code>&#xFF1A;inode&#x4F7F;&#x7528;&#x60C5;&#x51B5;<br><code>-t</code>&#xFF1A;&#x663E;&#x793A;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;<br><code>-H</code>&#xFF1A;&#x8BA1;&#x7B97;&#x4EE5;1000&#x800C;&#x975E;1024&#x500D;&#x6570;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -lh  <span class="comment"># &#x663E;&#x793A;&#x672C;&#x5730;&#x78C1;&#x76D8;&#x4F7F;&#x7528;&#x60C5;&#x51B5;</span></span><br></pre></td></tr></table></figure>
+<h4 id="du"><a href="#du" class="headerlink" title="du"></a>du</h4><p><code>du [OPT] [FILE]</code><br>Disk Usage &#x663E;&#x793A;&#x76EE;&#x5F55;&#x6587;&#x4EF6;&#x5927;&#x5C0F;  </p>
+<blockquote>
+<p><code>-s</code>&#xFF1A;&#x603B;&#x5927;&#x5C0F;<br><code>-h</code>&#xFF1A;&#x4EBA;&#x6027;&#x5316;&#x663E;&#x793A;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -sh /etc</span><br><span class="line">&#x67E5;&#x770B;/etc&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x603B;&#x5927;&#x5C0F;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/命令/" rel="tag">#命令</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/21/常用命令--文件目录操作/" rel="next" title="常用命令--文件目录">
+                <i class="fa fa-chevron-left"></i> 常用命令--文件目录
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/21/常用命令--文本内容/" rel="prev" title="常用命令--文本内容">
+                常用命令--文本内容 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/21/常用命令--磁盘管理/"
+           data-title="常用命令--磁盘管理" data-url="http://liu2lin600.github.io/2016/05/21/常用命令--磁盘管理/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#mknod"><span class="nav-number">1.</span> <span class="nav-text">mknod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fdisk"><span class="nav-number">2.</span> <span class="nav-text">fdisk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkfs"><span class="nav-number">3.</span> <span class="nav-text">mkfs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mke2fs"><span class="nav-number">4.</span> <span class="nav-text">mke2fs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tune2fs"><span class="nav-number">5.</span> <span class="nav-text">tune2fs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dumpe2fs"><span class="nav-number">6.</span> <span class="nav-text">dumpe2fs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#blkid"><span class="nav-number">7.</span> <span class="nav-text">blkid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#free"><span class="nav-number">8.</span> <span class="nav-text">free</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fsck"><span class="nav-number">9.</span> <span class="nav-text">fsck</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e2fsck"><span class="nav-number">10.</span> <span class="nav-text">e2fsck</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkswap"><span class="nav-number">11.</span> <span class="nav-text">mkswap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#swapon"><span class="nav-number">12.</span> <span class="nav-text">swapon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#swapoff"><span class="nav-number">13.</span> <span class="nav-text">swapoff</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mount"><span class="nav-number">14.</span> <span class="nav-text">mount</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#umount"><span class="nav-number">15.</span> <span class="nav-text">umount</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lsof"><span class="nav-number">16.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fuser"><span class="nav-number">17.</span> <span class="nav-text">fuser</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#df"><span class="nav-number">18.</span> <span class="nav-text">df</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#du"><span class="nav-number">19.</span> <span class="nav-text">du</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

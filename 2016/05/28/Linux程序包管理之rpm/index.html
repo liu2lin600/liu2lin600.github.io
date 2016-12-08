@@ -1,0 +1,920 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="rpm,程序包管理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="RPM&amp;#x5305;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;rpm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux程序包管理之rpm">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="RPM&amp;#x5305;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;rpm">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmInstall.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmUpdate.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmErase.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmQuery.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmVertify.png">
+<meta property="og:updated_time" content="2016-05-31T01:50:28.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux程序包管理之rpm">
+<meta name="twitter:description" content="RPM&amp;#x5305;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;rpm">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmInstall.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Linux程序包管理之rpm | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux程序包管理之rpm
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-28T12:43:24+08:00" content="2016-05-28">
+              2016-05-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/28/Linux程序包管理之rpm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/28/Linux程序包管理之rpm/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>RPM&#x5305;&#x7BA1;&#x7406;&#x5DE5;&#x5177;rpm<br><a id="more"></a></p>
+<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>Linux&#x4E0B;&#x7684;&#x7A0B;&#x5E8F;&#x5B89;&#x88C5;&#x5305;&#x5206;&#x4E3A;<code>&#x4E8C;&#x8FDB;&#x5236;&#x5305;(Binary)</code>&#x548C;<code>&#x6E90;&#x7801;&#x5305;(Source)</code>&#xFF0C;&#x6E90;&#x4EE3;&#x7801;&#x5305;&#x5219;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#xFF0C;&#x5C06;&#x5728;&#x4EE5;&#x540E;&#x7BC7;&#x5E45;&#x4ECB;&#x7ECD;&#x3002;&#x4E8C;&#x8FDB;&#x5236;&#x5305;&#x4E2D;&#x7684;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x4EE5;Debian&#x7684;deb&#x5305;&#x548C;RedHat&#x7684;rpm&#x5305;&#x8F83;&#x4E3A;&#x6D41;&#x884C;&#xFF0C;&#x8FD9;&#x91CC;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;RPM&#x7684;&#x7528;&#x6CD5;<br>RPM&#x662F;RPM Package Manager&#xFF08;RPM&#x8F6F;&#x4EF6;&#x5305;&#x7BA1;&#x7406;&#x5668;&#xFF09;&#x7684;&#x7F29;&#x5199;&#xFF0C;&#x5728;&#x591A;&#x79CD;Linux&#x53D1;&#x884C;&#x7248;&#x4E2D;&#x88AB;&#x91C7;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x7B97;&#x662F;&#x516C;&#x8BA4;&#x7684;&#x884C;&#x4E1A;&#x6807;&#x51C6;&#x4E86;&#xFF0C;&#x9ED8;&#x8BA4;&#x4EE5;.rpm&#x4F5C;&#x4E3A;&#x6587;&#x4EF6;&#x7684;&#x540E;&#x7F00;&#x540D; </p>
+<h3 id="&#x5BB6;&#x65CF;"><a href="#&#x5BB6;&#x65CF;" class="headerlink" title="&#x5BB6;&#x65CF;"></a>&#x5BB6;&#x65CF;</h3><p><strong>Debian(.deb)</strong>&#xFF1A;Debian, Ubuntu, Xandros, Linspire<br><strong>Red Hat(.rpm)</strong>&#xFF1A;RHEL, Fedora, CentOS, OpenSUSE, Mandriva, PCLinuxOS</p>
+<h3 id="&#x5DE5;&#x5177;"><a href="#&#x5DE5;&#x5177;" class="headerlink" title="&#x5DE5;&#x5177;"></a>&#x5DE5;&#x5177;</h3><p>&#x524D;&#x7AEF;&#x5DE5;&#x5177;&#xFF1A;yum(.rpm), apt-get(.deb), zypper(suse&#x4E0A;rpm), dnf(Fedora 22+&#x4E0A;rpm)<br>&#x540E;&#x7AEF;&#x5DE5;&#x5177;&#xFF1A;rpm, dpkg</p>
+<h3 id="&#x547D;&#x540D;"><a href="#&#x547D;&#x540D;" class="headerlink" title="&#x547D;&#x540D;"></a>&#x547D;&#x540D;</h3><p><strong>&#x6E90;&#x7801;&#x5305;</strong>&#xFF1A;thrift-0.9.3.tar.gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thrift: &#x5305;&#x540D;  </span><br><span class="line">0.9.3:  &#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;0&#x4E3A;&#x4E3B;&#x7248;&#x672C;&#x53F7;&#xFF0C;9&#x8868;&#x793A;&#x6B21;&#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;3&#x4E3A;&#x6E90;&#x7801;&#x5305;&#x53D1;&#x884C;&#x53F7;  </span><br><span class="line">tar.gz&#xFF1A;&#x4EE5;gz&#x683C;&#x5F0F;&#x538B;&#x7F29;</span><br></pre></td></tr></table></figure></p>
+<p><strong>RPM&#x5305;</strong>&#xFF1A;httpd-devel-2.4.6-40.el7.centos.x86_64.rpm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">httpd: &#x4E3B;&#x5305;&#x540D;</span><br><span class="line">devel: &#x5206;&#x5305;&#x540D;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x4E3B;&#x5305;&#x5219;&#x65E0;&#x6B64;&#x9879;</span><br><span class="line">2.4.6: &#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;2&#x4E3A;&#x4E3B;&#x7248;&#x672C;&#x53F7;&#xFF0C;0&#x8868;&#x793A;&#x6B21;&#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;35&#x4E3A;&#x6E90;&#x7801;&#x5305;&#x53D1;&#x884C;&#x53F7;&#xFF0C;&#x4E5F;&#x53EB;&#x4FEE;&#x8BA2;&#x53F7;</span><br><span class="line">40.el7: &#x53D1;&#x884C;&#x4FE1;&#x606F;&#xFF0C;40&#x8868;&#x793A;rpm&#x7684;&#x53D1;&#x884C;&#x53F7;&#xFF0C;el6&#x8868;&#x793A;REHL7</span><br><span class="line">x86_64: &#x9002;&#x7528;&#x5E73;&#x53F0;&#xFF0C;&#x5E38;&#x6709;i386-i686,x86_64,noarch,powerpc,ppc</span><br><span class="line">rpm: &#x540E;&#x7F00;&#x540D;</span><br></pre></td></tr></table></figure></p>
+<h3 id="&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;"><a href="#&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;" class="headerlink" title="&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;"></a>&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;</h3><ol>
+<li>&#x7CFB;&#x7EDF;&#x53D1;&#x7248;&#x7684;&#x5149;&#x76D8;&#x6216;&#x5B98;&#x65B9;&#x7684;&#x670D;&#x52A1;&#x5668;<br><a href="http://mirrors.aliyun.com" target="_blank" rel="external">http://mirrors.aliyun.com</a><br><a href="http://mirrors.163.com" target="_blank" rel="external">http://mirrors.163.com</a></li>
+<li>&#x9879;&#x76EE;&#x5B98;&#x65B9;&#x7AD9;&#x70B9;<br><a href="https://thrift.apache.org/" target="_blank" rel="external">https://thrift.apache.org/</a><br><a href="http://redis.io/" target="_blank" rel="external">http://redis.io/</a></li>
+<li>&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x7EC7;&#xFF08;EPEL&#xFF09;<br><a href="http://pkgs.org" target="_blank" rel="external">http://pkgs.org</a><br><a href="http://rpmfind.net" target="_blank" rel="external">http://rpmfind.net</a><br><a href="http://rpm.pbone.net" target="_blank" rel="external">http://rpm.pbone.net</a></li>
+<li>&#x81EA;&#x5DF1;&#x5236;&#x4F5C;rpm&#x5305;</li>
+</ol>
+<h2 id="&#x7528;&#x6CD5;"><a href="#&#x7528;&#x6CD5;" class="headerlink" title="&#x7528;&#x6CD5;"></a>&#x7528;&#x6CD5;</h2><p>&#x8BF4;&#x660E;&#xFF1A;  </p>
+<ul>
+<li>PACKAGE_FILE&#xFF1A;&#x5305;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x5982;zsh-5.0.2-14.el7.x86_64.rpm  </li>
+<li>PACKAGE_NAME&#xFF1A;&#x5305;&#x540D;&#xFF0C;&#x5982;zsh</li>
+</ul>
+<p>&#x4E3B;&#x8981;&#x7528;&#x6CD5;&#x5982;&#x4E0B;&#xFF0C;&#x5176;&#x4E2D;&#x67E5;&#x8BE2;&#x529F;&#x80FD;&#x4E3A;&#x5B66;&#x4E60;&#x91CD;&#x70B9;  </p>
+<ul>
+<li>&#x5B89;&#x88C5;&#xFF1A;rpm -i [install-options] PACKAGE_FILE</li>
+<li>&#x5347;&#x7EA7;&#xFF1A;rpm -U|F [install-options] PACKAGE_FILE  </li>
+<li>&#x5378;&#x8F7D;&#xFF1A;rpm -e [&#x2013;allmatches] [&#x2013;nodeps] [&#x2013;noscripts] [&#x2013;test] PACKAGE_NAME</li>
+<li>&#x67E5;&#x8BE2;&#xFF1A;rpm -q [select-options] [query-options] PACKAGE_NAME</li>
+<li>&#x6821;&#x9A8C;&#xFF1A;rpm -V [select-options] [verify-options] PACKAGE_NAME</li>
+</ul>
+<h3 id="&#x5B89;&#x88C5;"><a href="#&#x5B89;&#x88C5;" class="headerlink" title="&#x5B89;&#x88C5;"></a>&#x5B89;&#x88C5;</h3><p><code>rpm -i [install-options] PACKAGE_FILE</code>  </p>
+<blockquote>
+<p><code>-i</code>: &#x4E3B;&#x9009;&#x9879;&#x5B89;&#x88C5;<br><code>-v</code>&#xFF1A;&#x663E;&#x793A;&#x5B89;&#x88C5;&#x8BE6;&#x60C5;<br><code>-h</code>: &#x7528;#&#x663E;&#x793A;&#x8FDB;&#x5EA6;&#x6761;  </p>
+<blockquote>
+<p><code>--test</code>: &#x6D4B;&#x8BD5;&#x5B89;&#x88C5;&#xFF0C;&#x67E5;&#x770B;&#x662F;&#x5426;&#x6709;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x7B49;<br><code>--replacepkgs</code>: &#x91CD;&#x65B0;&#x5B89;&#x88C5;<br><code>--nodeps</code>: &#x5FFD;&#x7565;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#xFF0C;&#x4E0D;&#x63A8;&#x8350;<br><code>--noscripts</code>&#xFF1A;&#x4E0D;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x5305;&#x811A;&#x672C;&#x7247;&#x6BB5;&#xFF0C;&#x5305;&#x62EC;&#x5B89;&#x88C5;&#x524D;%pre, &#x5B89;&#x88C5;&#x540E;%post, &#x5378;&#x8F7D;&#x524D;%preun, &#x548C;&#x5378;&#x8F7D;&#x540E;%postun&#x811A;&#x672C;<br><code>--nosignature</code>: &#x4E0D;&#x68C0;&#x6D4B;&#x6570;&#x5B57;&#x7B7E;&#x540D;  </p>
+</blockquote>
+</blockquote>
+<ul>
+<li>&#x6CE8;&#x610F;&#xFF1A;&#x5F88;&#x591A;&#x7A0B;&#x5E8F;&#x5B58;&#x5728;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#xFF0C;RPM&#x65B9;&#x5F0F;&#x4E0D;&#x80FD;&#x5F88;&#x597D;&#x89E3;&#x51B3;&#xFF0C;&#x9700;&#x624B;&#x52A8;&#x5B89;&#x88C5;&#x6240;&#x4F9D;&#x8D56;&#x7684;&#x7A0B;&#x5E8F;&#xFF0C;&#x6709;&#x65F6;&#x4F1A;&#x51FA;&#x73B0;&#x73AF;&#x5F62;&#x4F9D;&#x8D56;&#xFF0C;&#x5373;a-&gt;b-&gt;c-&gt;a&#xFF0C;&#x89E3;&#x51B3;&#x76F8;&#x5BF9;&#x6BD4;&#x8F83;&#x9EBB;&#x70E6;<br><img src="/2016/05/28/Linux&#x7A0B;&#x5E8F;&#x5305;&#x7BA1;&#x7406;&#x4E4B;rpm/rpmInstall.png" alt="rpm&#x5305;&#x5B89;&#x88C5;"></li>
+</ul>
+<h3 id="&#x5347;&#x7EA7;"><a href="#&#x5347;&#x7EA7;" class="headerlink" title="&#x5347;&#x7EA7;"></a>&#x5347;&#x7EA7;</h3><p><code>rpm -U [install-options] PACKAGE_FILE</code><br><code>rpm -F [install-options] PACKAGE_FILE</code></p>
+<blockquote>
+<p><code>-U</code>: &#x4E3B;&#x9009;&#x9879;&#x5347;&#x7EA7;&#xFF0C;&#x5B58;&#x5728;&#x8001;&#x7248;&#x672C;&#x5219;&#x5347;&#x7EA7;&#xFF0C;&#x5426;&#x5219;&#xFF0C;&#x5219;&#x5B89;&#x88C5;<br><code>-F</code>: &#x4E3B;&#x9009;&#x9879;&#x5347;&#x7EA7;&#xFF0C;&#x5B58;&#x5728;&#x8001;&#x7248;&#x672C;&#x5219;&#x5347;&#x7EA7;&#xFF0C;&#x5426;&#x5219;&#xFF0C;&#x5219;&#x9000;&#x51FA;<br><code>-v</code>&#xFF1A;&#x663E;&#x793A;&#x5347;&#x7EA7;&#x8BE6;&#x60C5;<br><code>-h</code>: &#x7528;#&#x663E;&#x793A;&#x8FDB;&#x5EA6;&#x6761;  </p>
+<blockquote>
+<p><code>--oldpackage</code>: &#x964D;&#x7EA7;<br><code>--force</code>: &#x5F3A;&#x5236;&#x5347;&#x7EA7;</p>
+</blockquote>
+</blockquote>
+<p><img src="/2016/05/28/Linux&#x7A0B;&#x5E8F;&#x5305;&#x7BA1;&#x7406;&#x4E4B;rpm/rpmUpdate.png" alt="rpm&#x5305;&#x5347;&#x7EA7;"></p>
+<ul>
+<li>&#x6CE8;&#x610F;</li>
+</ul>
+<ol>
+<li>&#x4E0D;&#x8981;&#x5BF9;&#x5185;&#x6838;&#x505A;&#x5347;&#x7EA7;&#x64CD;&#x4F5C;&#xFF1B;Linux&#x652F;&#x6301;&#x591A;&#x5185;&#x6838;&#x7248;&#x672C;&#x5E76;&#x5B58;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5C06;&#x76F4;&#x63A5;&#x5B89;&#x88C5;&#x65B0;&#x7248;&#x672C;&#x5185;&#x6838;</li>
+<li>&#x5982;&#x679C;&#x67D0;&#x539F;&#x7A0B;&#x5E8F;&#x5305;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5B89;&#x88C5;&#x540E;&#x66FE;&#x88AB;&#x4FEE;&#x6539;&#x8FC7;&#xFF0C;&#x5347;&#x7EA7;&#x65F6;&#xFF0C;&#x65B0;&#x7248;&#x672C;&#x7684;&#x7A0B;&#x5E8F;&#x63D0;&#x4F9B;&#x7684;&#x540C;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E0D;&#x4F1A;&#x8986;&#x76D6;&#x539F;&#x6709;&#x7248;&#x672C;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x662F;&#x628A;&#x65B0;&#x7248;&#x672C;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x91CD;&#x547D;&#x540D;(FILENAME.rpmnew)&#x540E;&#x63D0;&#x4F9B;</li>
+</ol>
+<h3 id="&#x5378;&#x8F7D;"><a href="#&#x5378;&#x8F7D;" class="headerlink" title="&#x5378;&#x8F7D;"></a>&#x5378;&#x8F7D;</h3><p><code>rpm -e [--allmatches] [--nodeps] [--noscripts] [--test] PACKAGE_NAME</code></p>
+<blockquote>
+<p><code>-e</code>: &#x4E3B;&#x9009;&#x9879;&#x5378;&#x8F7D;  </p>
+<blockquote>
+<p><code>--allmatches</code>: &#x5378;&#x8F7D;&#x6240;&#x6709;&#x5339;&#x914D;&#x7684;&#x6307;&#x5B9A;&#x7A0B;&#x5E8F;&#x5305;<br><code>--nodeps</code>: &#x5FFD;&#x7565;&#x4F9D;&#x8D56;&#x5378;&#x8F7D;<br><code>--test</code>: &#x6D4B;&#x8BD5;&#x5378;&#x8F7D;<br><code>--noscripts</code>: </p>
+</blockquote>
+</blockquote>
+<p><img src="/2016/05/28/Linux&#x7A0B;&#x5E8F;&#x5305;&#x7BA1;&#x7406;&#x4E4B;rpm/rpmErase.png" alt="rpm&#x5378;&#x8F7D;"></p>
+<h3 id="&#x67E5;&#x8BE2;"><a href="#&#x67E5;&#x8BE2;" class="headerlink" title="&#x67E5;&#x8BE2;"></a><font color="red">&#x67E5;&#x8BE2;</font></h3><p><code>rpm -q [select-options] [query-options] PACKAGE_NAME</code><br><code>rpm -qp[dil] PACKAGE_FILE</code></p>
+<h4 id="&#x5DF2;&#x5B89;&#x88C5;&#x67E5;&#x8BE2;"><a href="#&#x5DF2;&#x5B89;&#x88C5;&#x67E5;&#x8BE2;" class="headerlink" title="&#x5DF2;&#x5B89;&#x88C5;&#x67E5;&#x8BE2;"></a>&#x5DF2;&#x5B89;&#x88C5;&#x67E5;&#x8BE2;</h4><blockquote>
+<p><code>-q</code>&#xFF1A;&#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x7684;&#x5305;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;<br><code>-qa</code>: &#x67E5;&#x8BE2;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x7684;&#x6240;&#x6709;&#x5305;<br><code>-qf file</code>: &#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x662F;&#x7531;&#x54EA;&#x4E2A;rpm&#x5305;&#x5B89;&#x88C5;&#x751F;&#x6210;&#x7684;<br><code>-q --whatprovides CAP</code>: &#x6307;&#x5B9A;&#x529F;&#x80FD;&#x7531;&#x54EA;&#x4E2A;&#x7A0B;&#x5E8F;&#x63D0;&#x4F9B;<br><code>-q --whatrequires CAP</code>: &#x6307;&#x5B9A;&#x529F;&#x80FD;&#x7531;&#x54EA;&#x4E2A;&#x5305;&#x6240;&#x4F9D;&#x8D56;<br><code>-q --provice</code>: &#x7A0B;&#x5E8F;&#x5305;&#x63D0;&#x4F9B;&#x54EA;&#x4E2A;CAPABILITY(&#x529F;&#x80FD;)<br><code>-qi</code>: &#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5305;&#x7684;&#x8BF4;&#x660E;&#x4FE1;&#x606F;<br><code>-ql</code>: &#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5305;&#x5B89;&#x88C5;&#x540E;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x5217;&#x8868;<br><code>-qc</code>&#xFF1A;&#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5305;&#x5B89;&#x88C5;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;<br><code>-qd</code>: &#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5305;&#x5B89;&#x88C5;&#x7684;&#x5E2E;&#x52A9;&#x6587;&#x4EF6;<br><code>-q</code> &#x2013;changelog: &#x7A0B;&#x5E8F;&#x5305;&#x66F4;&#x65B0;&#x5386;&#x53F2;&#x4FE1;&#x606F;<br><code>-qR</code>: &#x4F9D;&#x8D56;&#x5173;&#x7CFB;<br><code>-q --script</code>: &#x76F8;&#x5E94;&#x6267;&#x884C;&#x811A;&#x672C;  </p>
+</blockquote>
+<h4 id="&#x672A;&#x5B89;&#x88C5;"><a href="#&#x672A;&#x5B89;&#x88C5;" class="headerlink" title="&#x672A;&#x5B89;&#x88C5;"></a>&#x672A;&#x5B89;&#x88C5;</h4><blockquote>
+<p><code>-qpl</code>: &#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5305;&#x5B89;&#x88C5;&#x540E;&#x751F;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x5217;&#x8868;<br><code>-qpi</code>: &#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5305;&#x8BF4;&#x660E;&#x4FE1;&#x606F;<br><code>-qpd</code>: &#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5305;&#x5B89;&#x88C5;&#x540E;&#x751F;&#x6210;&#x7684;&#x6587;&#x6863;  </p>
+</blockquote>
+<p><img src="/2016/05/28/Linux&#x7A0B;&#x5E8F;&#x5305;&#x7BA1;&#x7406;&#x4E4B;rpm/rpmQuery.png" alt="rpm&#x67E5;&#x8BE2;"></p>
+<h3 id="&#x6821;&#x9A8C;"><a href="#&#x6821;&#x9A8C;" class="headerlink" title="&#x6821;&#x9A8C;"></a>&#x6821;&#x9A8C;</h3><p><code>rpm -K PACKAGE_FILE</code><br><code>rpm -V PACKAGE_NAME</code></p>
+<blockquote>
+<p>-K &#x2013;nosignature: &#x5FFD;&#x7565;&#x9A8C;&#x8BC1;&#x6765;&#x6E90;&#x5408;&#x6CD5;&#x6027;&#xFF0C;&#x4E5F;&#x5373;&#x9A8C;&#x6B63;&#x7B7E;&#x540D;(dsa, gpg)<br>-K &#x2013;nodigest&#xFF1A;&#x5FFD;&#x7565;&#x9A8C;&#x8BC1;&#x8F6F;&#x4EF6;&#x5305;&#x5B8C;&#x6574;&#x6027;(sha1, md5)<br>&#x2013;import: &#x5BFC;&#x5165;&#x5BC6;&#x94A5;  </p>
+</blockquote>
+<ul>
+<li>rpm &#x2013;import /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release<br>&#x5BFC;&#x5165;&#x5BC6;&#x94A5;&#x6587;&#x4EF6;</li>
+</ul>
+<p><img src="/2016/05/28/Linux&#x7A0B;&#x5E8F;&#x5305;&#x7BA1;&#x7406;&#x4E4B;rpm/rpmVertify.png" alt="rpm&#x6821;&#x9A8C;"><br>&#x9A8C;&#x8BC1;&#x5185;&#x5BB9;&#x4E2D;&#x7684;9&#x4F4D;&#x4FE1;&#x606F;&#x7684;&#x5177;&#x4F53;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">S   Size &#x5927;&#x5C0F;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">M   Mode &#x7C7B;&#x578B;&#x6216;&#x6587;&#x4EF6;&#x7684;&#x6743;&#x9650;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">5   MD5 MD5&#x6548;&#x9A8C;&#x548C;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">D   Device &#x8BBE;&#x5907;&#x4E3B;&#x4ECE;&#x7801;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">L   readLink &#x8DEF;&#x5F84;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">U   User &#x5C5E;&#x4E3B;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">G   Group &#x5C5E;&#x7EC4;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">T   mTime &#x4FEE;&#x6539;&#x65F6;&#x95F4;&#x662F;&#x5426;&#x6539;&#x53D8;</span><br><span class="line">P   caPabilities &#x529F;&#x80FD;&#x662F;&#x5426;&#x53D8;&#x5316;</span><br></pre></td></tr></table></figure></p>
+<h3 id="&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;"><a href="#&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;"></a>&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;</h3><p>rpm&#x7BA1;&#x7406;&#x5668;&#x6570;&#x636E;&#x5E93;&#x8DEF;&#x5F84;<code>/var/lib/rpm/</code>&#xFF0C;&#x901A;&#x8FC7;rpm &#x547D;&#x4EE4;&#x67E5;&#x8BE2;&#x4E00;&#x4E2A;rpm &#x5305;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x4E86;&#xFF0C;&#x4E5F;&#x662F;&#x901A;&#x8FC7;&#x67E5;&#x8BE2;rpm &#x6570;&#x636E;&#x5E93;&#x6765;&#x5B8C;&#x6210;&#x7684;&#xFF0C;&#x5F53;&#x7136;&#x6CA1;&#x4E8B;&#x522B;&#x8FDB;&#x884C;&#x6B64;&#x64CD;&#x4F5C;</p>
+<blockquote>
+<p>&#x2013;initdb&#xFF1A;&#x4E8B;&#x5148;&#x5B58;&#x5728;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5219;&#x4E0D;&#x6267;&#x884C;&#x4EFB;&#x4F55;&#x64CD;&#x4F5C;&#xFF0C;&#x5426;&#x5219;&#xFF0C;&#x65B0;&#x5EFA;<br>&#x2013;rebuilddb&#xFF1A;&#x76F4;&#x63A5;&#x91CD;&#x5EFA;&#xFF0C;&#x8986;&#x76D6;&#x539F;&#x6709;&#x7684;&#x6570;&#x636E;&#x5E93;<br>&#x2013;dbpath&#xFF1A;&#x6307;&#x660E;&#x8981;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x7684;&#x76EE;&#x5F55;</p>
+</blockquote>
+<p>&#x4EE5;&#x4E0A;&#x5185;&#x5BB9;&#x6574;&#x7406;&#x81EA;&#x9A6C;&#x54E5;&#x7B14;&#x8BB0;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rpm/" rel="tag">#rpm</a>
+          
+            <a href="/tags/程序包管理/" rel="tag">#程序包管理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/26/vim操作小结/" rel="next" title="vim操作小结">
+                <i class="fa fa-chevron-left"></i> vim操作小结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/30/RAID简介及软件实践/" rel="prev" title="RAID简介及软件实践">
+                RAID简介及软件实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/28/Linux程序包管理之rpm/"
+           data-title="Linux程序包管理之rpm" data-url="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#家族"><span class="nav-number">1.1.</span> <span class="nav-text">家族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具"><span class="nav-number">1.2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名"><span class="nav-number">1.3.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取软件包的途径："><span class="nav-number">1.4.</span> <span class="nav-text">获取软件包的途径：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级"><span class="nav-number">2.2.</span> <span class="nav-text">升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载"><span class="nav-number">2.3.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询"><span class="nav-number">2.4.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#已安装查询"><span class="nav-number">2.4.1.</span> <span class="nav-text">已安装查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#未安装"><span class="nav-number">2.4.2.</span> <span class="nav-text">未安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验"><span class="nav-number">2.5.</span> <span class="nav-text">校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库管理"><span class="nav-number">2.6.</span> <span class="nav-text">数据库管理</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

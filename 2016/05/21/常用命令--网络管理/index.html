@@ -1,0 +1,971 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="命令," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x7F51;&amp;#x7EDC;&amp;#x76F8;&amp;#x5173;&amp;#x64CD;&amp;#x4F5C;&amp;#x547D;&amp;#x4EE4;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令--网络管理">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/05/21/常用命令--网络管理/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x7F51;&amp;#x7EDC;&amp;#x76F8;&amp;#x5173;&amp;#x64CD;&amp;#x4F5C;&amp;#x547D;&amp;#x4EE4;">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/21/常用命令--网络管理/ssh_first.png">
+<meta property="og:image" content="http://liu2lin600.github.io/2016/05/21/常用命令--网络管理/ssh_pub.png">
+<meta property="og:updated_time" content="2016-09-16T06:20:39.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用命令--网络管理">
+<meta name="twitter:description" content="&amp;#x5E38;&amp;#x89C1;&amp;#x7684;&amp;#x7F51;&amp;#x7EDC;&amp;#x76F8;&amp;#x5173;&amp;#x64CD;&amp;#x4F5C;&amp;#x547D;&amp;#x4EE4;">
+<meta name="twitter:image" content="http://liu2lin600.github.io/2016/05/21/常用命令--网络管理/ssh_first.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 常用命令--网络管理 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用命令--网络管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T20:21:49+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/21/常用命令--网络管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/21/常用命令--网络管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5E38;&#x89C1;&#x7684;&#x7F51;&#x7EDC;&#x76F8;&#x5173;&#x64CD;&#x4F5C;&#x547D;&#x4EE4;<br><a id="more"></a></p>
+<h4 id="&#x7F51;&#x7EDC;&#x76F8;&#x5173;&#x914D;&#x7F6E;&#x6587;&#x4EF6;-REHL&#x7CFB;"><a href="#&#x7F51;&#x7EDC;&#x76F8;&#x5173;&#x914D;&#x7F6E;&#x6587;&#x4EF6;-REHL&#x7CFB;" class="headerlink" title="&#x7F51;&#x7EDC;&#x76F8;&#x5173;&#x914D;&#x7F6E;&#x6587;&#x4EF6;(REHL&#x7CFB;)"></a>&#x7F51;&#x7EDC;&#x76F8;&#x5173;&#x914D;&#x7F6E;&#x6587;&#x4EF6;(REHL&#x7CFB;)</h4><h5 id="&#x7F51;&#x5361;&#x4FE1;&#x606F;"><a href="#&#x7F51;&#x5361;&#x4FE1;&#x606F;" class="headerlink" title="&#x7F51;&#x5361;&#x4FE1;&#x606F;"></a>&#x7F51;&#x5361;&#x4FE1;&#x606F;</h5><p><code>/etc/sysconfig/network-scripts/ifcfg-eth0</code>  (centos7&#x4E3A;enoX)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0                 <span class="comment"># &#x8BBE;&#x5907;&#x540D;</span></span><br><span class="line">TYPE=Ethernet               <span class="comment"># &#x63A5;&#x53E3;&#x7C7B;&#x578B;&#xFF0C;&#x5305;&#x62EC;Ethernet,Bridge</span></span><br><span class="line">ONBOOT=yes                  <span class="comment"># &#x7F51;&#x5361;&#x5F00;&#x673A;&#x542F;&#x52A8;</span></span><br><span class="line">NM_CONTROLLED=yes           <span class="comment"># &#x662F;&#x5426;&#x542F;&#x7528;NetworkManager&#x670D;&#x52A1;&#x6765;&#x63A7;&#x5236;&#x63A5;&#x53E3;&#xFF0C;centos6&#x4E0A;&#x4E0D;&#x5B8C;&#x5584;</span></span><br><span class="line">BOOTPROTO=none              <span class="comment"># &#x5F15;&#x5BFC;&#x534F;&#x8BAE;&#xFF0C;&#x5305;&#x62EC;static, none, dhcp, bootp&#x3002;&#x7F51;&#x5361;&#x522B;&#x540D;&#x4E0D;&#x652F;&#x6301;&#x52A8;&#x6001;&#x83B7;&#x53D6;</span></span><br><span class="line">NETMASK=255.255.0.0         <span class="comment"># &#x5B50;&#x7F51;&#x63A9;&#x7801;&#xFF0C;centos7&#x7528;PREFIX&#x8868;&#x793A;&#x5982;24</span></span><br><span class="line">IPV6INIT=no                 <span class="comment"># &#x662F;&#x5426;&#x521D;&#x59CB;&#x5316;IPv6</span></span><br><span class="line">IPADDR=172.16.60.2          <span class="comment"># IP&#x5730;&#x5740;</span></span><br><span class="line">GATEWAY=172.16.0.1          <span class="comment"># &#x9ED8;&#x8BA4;&#x7F51;&#x5173;</span></span><br><span class="line">DNS1=172.16.0.1             <span class="comment"># DNS&#x670D;&#x52A1;&#xFF0C;&#x6700;&#x591A;&#x53EF;&#x6DFB;&#x52A0;3&#x4E2A;&#xFF0C;DNS1&#xFF0C;DNS2&#xFF0C;DNS3</span></span><br><span class="line">HWADDR=00:0C:29:24:3D:58    <span class="comment"># MAC&#x5730;&#x5740;</span></span><br><span class="line">USERCTL=no                  <span class="comment"># &#x662F;&#x5426;&#x5141;&#x8BB8;&#x666E;&#x901A;&#x7528;&#x6237;&#x63A7;&#x5236;</span></span><br><span class="line">PEERDNS=no                  <span class="comment"># dhcp&#x5F15;&#x5BFC;&#x65F6;&#x662F;&#x5426;&#x63A5;&#x53D7;&#x7531;DHCP&#x670D;&#x52A1;&#x5668;&#x6307;&#x5B9A;DNS&#x6765;&#x8986;&#x76D6;&#x672C;&#x5730;</span></span><br><span class="line">UUID=9e1481bd<span class="_">-d</span>10f-48c2-8d21-54fb9be702a9   <span class="comment"># &#x7F51;&#x5361;&#x552F;&#x4E00;&#x8BC6;&#x522B;&#x7801;</span></span><br></pre></td></tr></table></figure>
+<h5 id="&#x8DEF;&#x7531;&#x4FE1;&#x606F;"><a href="#&#x8DEF;&#x7531;&#x4FE1;&#x606F;" class="headerlink" title="&#x8DEF;&#x7531;&#x4FE1;&#x606F;"></a>&#x8DEF;&#x7531;&#x4FE1;&#x606F;</h5><p><code>/etc/sysconfig/network-script/route-eth0</code>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x65B9;&#x5F0F;1&#xFF1A;&#x6BCF;1&#x884C;&#x4E00;&#x4E2A;&#x8DEF;&#x7531;&#x6761;&#x76EE;</span></span><br><span class="line">10.0.0.0/24 via 192.168.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x65B9;&#x5F0F;2&#xFF1A;&#x6BCF;3&#x884C;&#x4E00;&#x4E2A;&#x8DEF;&#x7531;&#x6761;&#x76EE;&#xFF0C;&#x6761;&#x76EE;&#x6570;&#x5B57;0,1,2...</span></span><br><span class="line">ADDRESS0=20.0.0.1</span><br><span class="line">NETMASK0=255.255.255.0</span><br><span class="line">GATEWAY0=192.168.0.2</span><br></pre></td></tr></table></figure>
+<p><em>&#x6CE8;&#xFF1A;2&#x79CD;&#x65B9;&#x5F0F;&#x4E0D;&#x80FD;&#x6DF7;&#x7528;</em></p>
+<h5 id="&#x4E3B;&#x673A;&#x540D;"><a href="#&#x4E3B;&#x673A;&#x540D;" class="headerlink" title="&#x4E3B;&#x673A;&#x540D;"></a>&#x4E3B;&#x673A;&#x540D;</h5><p><code>/etc/sysconfig/network</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORKING=yes                    <span class="comment">#&#x5F00;&#x542F;</span></span><br><span class="line">HOSTNAME=localhost.localdomain    <span class="comment">#&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;</span></span><br></pre></td></tr></table></figure>
+<h5 id="DNS&#x914D;&#x7F6E;"><a href="#DNS&#x914D;&#x7F6E;" class="headerlink" title="DNS&#x914D;&#x7F6E;"></a>DNS&#x914D;&#x7F6E;</h5><p><code>/etc/resolv.conf</code>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 202.106.0.20</span><br><span class="line">search localhost</span><br></pre></td></tr></table></figure>
+<h5 id="hosts"><a href="#hosts" class="headerlink" title="hosts"></a>hosts</h5><p><code>/etc/hosts</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#   IP&#x5730;&#x5740;       &#x7F51;&#x5740;      &#x522B;&#x540D;(&#x53EF;&#x591A;&#x4E2A;)          </span></span><br><span class="line">172.16.1.100  www.liu.com   www liu</span><br><span class="line">127.0.0.1     localhost</span><br></pre></td></tr></table></figure>
+<p><strong>&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x540E;&#x9700;&#x8981;&#x91CD;&#x542F;&#x7F51;&#x7EDC;&#x624D;&#x80FD;&#x751F;&#x6548;</strong></p>
+<ul>
+<li>CentOS6&#xFF1A;<code>service network {restart|stop|start|status}</code></li>
+<li>CentOS7&#xFF1A;<code>systemctl {restart|stop|start|status} network[.service]</code></li>
+</ul>
+<p><strong>&#x5907;&#x6CE8;</strong>&#xFF1A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x8FD8;&#x53EF;&#x901A;&#x8FC7;&#x4E13;&#x7528;&#x547D;&#x4EE4;&#x6765;&#x4FEE;&#x6539;&#xFF1A;  </p>
+<ul>
+<li>CentOS6&#xFF1A;<code>setup</code>&#x6216;<code>system-config-network</code>  </li>
+<li>CentOS7&#xFF1A;<code>nmtui</code></li>
+</ul>
+<hr>
+<h4 id="hostname"><a href="#hostname" class="headerlink" title="hostname"></a>hostname</h4><p>&#x663E;&#x793A;&#x548C;&#x4E34;&#x65F6;&#x8BBE;&#x7F6E;&#x4E3B;&#x673A;&#x540D;&#xFF0C;<em>centos7&#x53EF;&#x4F7F;&#x7528;<code>hostnamectl</code>, &#x8BBE;&#x7F6E;&#x53EF;&#x6C38;&#x4E45;&#x6709;&#x6548;</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hostname                <span class="comment"># &#x67E5;&#x770B;&#x4E3B;&#x673A;&#x540D;</span></span><br><span class="line">hostname liu2lin600     <span class="comment"># &#x4E34;&#x65F6;&#x8BBE;&#x7F6E;&#x4E3B;&#x673A;&#x540D;</span></span><br></pre></td></tr></table></figure>
+<h4 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h4><p><code>ping [OPTION] {IP|ADDR}</code><br>&#x6D4B;&#x8BD5;&#x4E3B;&#x673A;&#x4E4B;&#x95F4;&#x7F51;&#x7EDC;&#x7684;&#x8FDE;&#x901A;&#x6027;&#xFF0C;&#x4F7F;&#x7528;ICMP&#x4F20;&#x8F93;&#x534F;&#x8BAE;</p>
+<blockquote>
+<p><code>-c #</code>&#xFF1A;&#x6307;&#x5B9A;ping&#x6B21;&#x6570;<br><code>-W #</code>&#xFF1A;&#x4E00;&#x6B21;ping&#x4E2D;&#x7B49;&#x5F85;&#x54CD;&#x5E94;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;<br><code>-w #</code>&#xFF1A;ping&#x547D;&#x4EE4;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#xFF0C;&#x5230;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x7ED3;&#x675F;<br><code>-i #</code>&#xFF1A;&#x95F4;&#x9694;&#x65F6;&#x95F4;&#xFF0C;&#x9ED8;&#x8BA4;1&#x79D2;ping&#x4E00;&#x6B21;<br><code>-s #</code>&#xFF1A;&#x53D1;&#x9001;&#x5305;&#x5927;&#x5C0F;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;64bytes    </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping -c 2 -W 1 <span class="_">-s</span> 128 -i 3 www.163.com      <span class="comment"># &#x9009;&#x9879;&#x548C;&#x6570;&#x503C;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x7A7A;&#x683C;&#x9694;&#x5F00;</span></span><br></pre></td></tr></table></figure>
+<h4 id="hping"><a href="#hping" class="headerlink" title="hping"></a>hping</h4><p>&#x53D1;&#x9001;&#x4EFB;&#x610F;&#x7684;TCP/IP&#x5305;&#x5230;&#x6307;&#x5B9A;&#x4E3B;&#x673A;&#xFF0C;&#x5305;&#x540D;&#x4E3A;hping3</p>
+<blockquote>
+<p><code>--fast</code><br><code>--faster</code><br><code>--flood</code><br><code>-i</code></p>
+</blockquote>
+<h4 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h4><p><code>traceroute ADDR</code><br>&#x8FFD;&#x8E2A;&#x6570;&#x636E;&#x5305;&#x5728;&#x7F51;&#x7EDC;&#x4E0A;&#x7684;&#x4F20;&#x8F93;&#x65F6;&#x7684;&#x5168;&#x90E8;&#x8DEF;&#x5F84;&#xFF0C;&#x5B83;&#x9ED8;&#x8BA4;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;&#x5305;&#x5927;&#x5C0F;&#x662F;40&#x5B57;&#x8282;</p>
+<h4 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h4><p>&#x663E;&#x793A;&#x7F51;&#x7EDC;&#x72B6;&#x6001;&#xFF0C;&#x5305;&#x62EC;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#xFF0C;&#x8DEF;&#x7531;&#xFF0C;&#x63A5;&#x53E3;&#x72B6;&#x6001;&#x7B49;</p>
+<blockquote>
+<p><code>-t</code>&#xFF1A;&#x5217;&#x51FA;TCP&#x534F;&#x8BAE;&#x76F8;&#x5173;&#x8FDE;&#x63A5;&#xFF0C;&#x8FDE;&#x63A5;&#x5747;&#x6709;&#x72B6;&#x6001;<br><code>-u</code>&#xFF1A;UDP<br><code>-w</code>&#xFF1A;raw socket&#x76F8;&#x5173;&#x8FDE;&#x63A5;<br><code>-n</code>&#xFF1A;&#x6570;&#x5B57;&#x65B9;&#x5F0F;&#x663E;&#x793A;IP&#x548C;&#x7AEF;&#x53E3;&#x53F7;<br><code>-l</code>&#xFF1A;&#x4EC5;&#x5217;&#x51FA;&#x5728;&#x76D1;&#x542C;&#x72B6;&#x6001;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;<br><code>-p</code>&#xFF1A;&#x663E;&#x793A;&#x76D1;&#x542C;&#x6307;&#x5B9A;&#x7684;&#x5957;&#x63A5;&#x5B57;&#x7684;&#x8FDB;&#x7A0B;&#x7684;&#x8FDB;&#x7A0B;&#x53F7;&#x53CA;&#x8FDB;&#x7A0B;&#x540D;<br><code>-a</code>&#xFF1A;&#x5217;&#x51FA;&#x6240;&#x6709;&#x7684;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;<br><code>-r</code>&#xFF1A;&#x5217;&#x51FA;&#x8DEF;&#x7531;&#x5217;&#x8868;&#xFF0C;&#x540C;route&#x547D;&#x4EE4;<br><code>-i</code>&#xFF1A;&#x663E;&#x793A;&#x6240;&#x6709;&#x63A5;&#x53E3;&#x4FE1;&#x606F;<br><code>-I</code>&lt; IFace&gt;&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x63A5;&#x53E3;&#x4FE1;&#x606F;&#xFF0C;&#x6CE8;&#x610F;I&#x548C;&#x63A5;&#x53E3;&#x95F4;&#x6CA1;&#x6709;&#x7A7A;&#x683C;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x5E38;&#x7528;&#x9009;&#x9879;</span></span><br><span class="line">netstat -tunl</span><br><span class="line">netstat -tan</span><br><span class="line"></span><br><span class="line"><span class="comment">#&#x67E5;&#x770B;&#x8FDE;&#x63A5;&#x67D0;&#x670D;&#x52A1;&#x7AEF;&#x53E3;&#x6700;&#x591A;&#x7684;&#x7684;IP&#x5730;&#x5740;</span></span><br><span class="line">netstat -ntu | grep :80 | awk <span class="string">&apos;{print $5}&apos;</span> | cut <span class="_">-d</span>: <span class="_">-f</span>1 | awk <span class="string">&apos;{++ip[$1]} END {for(i in ip) print ip[i],&quot;\t&quot;,i}&apos;</span> | sort -nr</span><br><span class="line"></span><br><span class="line"><span class="comment">#TCP&#x5404;&#x79CD;&#x72B6;&#x6001;&#x5217;&#x8868;</span></span><br><span class="line">netstat -nt | grep <span class="_">-e</span> 127.0.0.1 <span class="_">-e</span> 0.0.0.0 <span class="_">-e</span> ::: -v | awk <span class="string">&apos;/^tcp/ {++state[$NF]} END {for(i in state) print i,&quot;\t&quot;,state[i]}&apos;</span></span><br></pre></td></tr></table></figure>
+<h4 id="ftp"><a href="#ftp" class="headerlink" title="ftp"></a>ftp</h4><p><code>ftp HOST</code><br>&#x8FDE;&#x63A5;&#x5230;&#x6307;&#x5B9A;ftp&#x670D;&#x52A1;&#x5668;</p>
+<p>&#x8FDE;&#x63A5;&#x540E;&#x7684;&#x76F8;&#x5173;&#x64CD;&#x4F5C;&#x547D;&#x4EE4;&#xFF1A;<br><code>help</code>&#xFF1A;&#x67E5;&#x770B;&#x5E2E;&#x52A9;<br><code>get</code>&#xFF1A;&#x4E0B;&#x8F7D;&#x6307;&#x5B9A;&#x5355;&#x4E2A;&#x6587;&#x4EF6;&#x5230;&#x767B;&#x5F55;&#x65F6;&#x6587;&#x4EF6;&#x5939;&#x4E2D;<br><code>mget</code>&#xFF1A;&#x4E0B;&#x8F7D;&#x591A;&#x4E2A;<br><code>put</code>&#xFF1A;&#x4E0A;&#x4F20;&#xFF0C;&#x9700;&#x8981;&#x6709;&#x4E0A;&#x4F20;&#x6743;&#x9650;<br><code>bye</code>&#xFF1A;&#x9000;&#x51FA;ftp  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp 172.16.0.1     <span class="comment"># &#x533F;&#x540D;&#x7528;&#x6237;&#x540D;&#x4E3A;anonymous&#x6216;ftp</span></span><br></pre></td></tr></table></figure>
+<h4 id="lftp"><a href="#lftp" class="headerlink" title="lftp"></a>lftp</h4><p><code>lftp [-p port] [-u user[,pass]] [site]</code><br>&#x589E;&#x5F3A;&#x7248;ftp&#xFF0C;&#x53EF;&#x6307;&#x5B9A;&#x7AEF;&#x53E3;&#xFF0C;&#x7528;&#x6237;&#x540D;&#x53CA;&#x5BC6;&#x7801;&#xFF0C;&#x9ED8;&#x8BA4;&#x533F;&#x540D;&#x767B;&#x5F55;&#xFF0C;&#x652F;&#x6301;tab&#x81EA;&#x52A8;&#x8865;&#x5168;  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lftp -u liu,123123 192.168.1.100   <span class="comment"># &#x6307;&#x5B9A;liu&#x7528;&#x6237;&#x5BC6;&#x7801;&#x4E3A;123123</span></span><br></pre></td></tr></table></figure>
+<h4 id="lftpget"><a href="#lftpget" class="headerlink" title="lftpget"></a>lftpget</h4><p><code>lftpget URL</code><br>&#x4E0B;&#x8F7D;&#x6307;&#x5B9A;ftp&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x6587;&#x4EF6;</p>
+<blockquote>
+<p><code>-c</code>&#xFF1A;&#x65AD;&#x70B9;&#x7EED;&#x4F20;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lftpget -c ftp://172.16.0.1/pub/a.txt</span><br></pre></td></tr></table></figure>
+<h4 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h4><p><code>wget [OPTION] URL</code><br>&#x4ECE;&#x6307;&#x5B9A;&#x7684;URL&#x4E0B;&#x8F7D;&#x6587;&#x4EF6;</p>
+<blockquote>
+<p><code>-b</code>&#xFF1A;&#x540E;&#x53F0;&#x4E0B;&#x8F7D;&#xFF0C;&#x53EF;&#x4F7F;&#x7528;<code>tail -f wget-log</code>&#x67E5;&#x770B;<br><code>-c</code>&#xFF1A;&#x65AD;&#x70B9;&#x7EED;&#x4F20;<br><code>-O</code>&#xFF1A;&#x91CD;&#x547D;&#x540D;<br><code>--limit-rate=#</code>&#xFF1A;&#x9650;&#x901F;<br>&#x2026;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/tmux/xxx/tmux-2.2.tar.gz        <span class="comment"># &#x4E0B;&#x8F7D;&#x6307;&#x5B9A;&#x6587;&#x4EF6;</span></span><br><span class="line">wget -O xxx.zip http://www.xxx.com/download.php?id=12   <span class="comment"># &#x91CD;&#x547D;&#x540D;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;/&#x540E;&#x7684;&#x540D;&#x5B57;&#x4FDD;&#x5B58;</span></span><br><span class="line">wget --limit-rate=300k http://www.xx.cn/xx.zip          <span class="comment"># &#x9650;&#x901F;300k</span></span><br><span class="line">wget -c http://www.xx.cn/xx.zip                         <span class="comment"># &#x65AD;&#x70B9;&#x7EED;&#x4F20;</span></span><br><span class="line">wget -b http://www.xx.cn/xx.zip                         <span class="comment"># &#x540E;&#x53F0;&#x4E0B;&#x8F7D;</span></span><br><span class="line">wget --tries=40 http://www.xx.cn/xx.zip                 <span class="comment"># &#x9ED8;&#x8BA4;&#x91CD;&#x8BD5;20&#x6B21;&#xFF0C;&#x4FEE;&#x6539;&#x4E3A;40</span></span><br><span class="line">wget -i file.txt                                        <span class="comment"># &#x5728;file.txt&#x6587;&#x4EF6;&#x4E2D;&#x5199;&#x5165;&#x591A;&#x4E2A;url&#x5730;&#x5740;</span></span><br><span class="line">wget -o msg.log http://www.xx.cn/xx.zip                 <span class="comment"># &#x4E0B;&#x8F7D;&#x4FE1;&#x606F;&#x5199;&#x5165;msg.log&#x6587;&#x4EF6;</span></span><br><span class="line">wget -r -A.pdf http://www.xx.cn/xx.zip                  <span class="comment"># &#x9012;&#x5F52;&#x4E0B;&#x8F7D;&#x6240;&#x6709;pdf&#x6587;&#x4EF6;&#xFF0C;&#x614E;&#x7528;</span></span><br><span class="line">wget --ftp-user=NAME --ftp-password=PASSWD URL          <span class="comment"># &#x5E26;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x7684;ftp&#x4E0B;&#x8F7D;</span></span><br><span class="line">wget --spider URL                                       <span class="comment"># &#x6D4B;&#x8BD5;&#x4E0B;&#x8F7D;</span></span><br><span class="line">wget --user-agent=<span class="string">&quot;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.204 Safari/534.16&quot;</span> URL    <span class="comment"># &#x4F2A;&#x88C5;&#x4E0B;&#x8F7D;</span></span><br></pre></td></tr></table></figure>
+<h4 id="route"><a href="#route" class="headerlink" title="route"></a>route</h4><p>&#x663E;&#x793A;&#x6216;&#x4E34;&#x65F6;&#x8BBE;&#x7F6E;Linux&#x5185;&#x6838;&#x4E2D;&#x7684;&#x7F51;&#x7EDC;&#x8DEF;&#x7531;&#x8868;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;<code>ip</code>&#x6765;&#x4EE3;&#x66FF;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">route -n[ee]                                    # &#x4EE5;&#x6570;&#x5B57;&#x683C;&#x5F0F;&#x663E;&#x793A;&#x8DEF;&#x7531;&#x6761;&#x76EE;</span><br><span class="line">route add -net 192.168.2.0/24 dev eth0          # &#x6DFB;&#x52A0;&#x4E00;&#x6761;&#x5230;&#x8FBE;192.168.2.0&#x7F51;&#x7EDC;&#x7684;&#x8DEF;&#x7531;&#xFF0C;&#x63A9;&#x7801;255.255.255.0,&#x6570;&#x636E;&#x5305;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x63A5;&#x53E3;eth0</span><br><span class="line">route add -net 10.0.0.1/8 gw 192.168.1.1        # &#x4E0B;&#x4E00;&#x8DF3;(192.168.1.1)&#x5FC5;&#x987B;&#x5728;&#x672C;&#x5730;&#x67D0;&#x4E00;&#x7F51;&#x5361;&#x7684;&#x7F51;&#x6BB5;&#x4E2D;&#x624D;&#x884C;</span><br><span class="line">route add -host 192.57.66.200 gw 192.168.2.1    # &#x6240;&#x6709;&#x53BB;&#x5F80;192.57.66.200&#x4E3B;&#x673A;&#x7684;&#x6570;&#x636E;&#x5305;&#x53D1;&#x5F80;&#x7F51;&#x5173;&#x5730;&#x5740;192.168.2.1</span><br><span class="line">route add default gw 192.168.1.1                # &#x6DFB;&#x52A0;&#x9ED8;&#x8BA4;&#x7F51;&#x5173;</span><br><span class="line">route del -net 192.168.2.0/24                   # &#x5220;&#x9664;&#x7F51;&#x7EDC;&#x8DEF;&#x7531;</span><br><span class="line">route del default                               # &#x5220;&#x9664;&#x9ED8;&#x8BA4;&#x8DEF;&#x7531;</span><br></pre></td></tr></table></figure>
+<p>&#x8DEF;&#x7531;&#x8868;&#x4FE1;&#x606F;&#x8BF4;&#x660E;</p>
+<blockquote>
+<p>Destination&#xFF1A;&#x76EE;&#x6807;&#x7F51;&#x7EDC;&#x6216;&#x4E3B;&#x673A;(0.0.0.0&#x8868;&#x793A;&#x9ED8;&#x8BA4;&#x7F51;&#x5173;)<br>Gateway&#xFF1A;&#x4E0B;&#x4E00;&#x8DF3;&#x7F51;&#x5173;&#x5730;&#x5740;(0.0.0.0&#x8868;&#x672C;&#x5730;&#x4E3B;&#x673A;&#x6240;&#x5728;&#x7F51;&#x7EDC;&#xFF0C;&#x65E0;&#x9700;&#x7F51;&#x5173;&#xFF0C;&#x4E5F;&#x79F0;&#x76F4;&#x8FDE;&#x8DEF;&#x7531;)<br>Genmask&#xFF1A;&#x76EE;&#x6807;&#x7F51;&#x7EDC;&#x7684;&#x7F51;&#x7EDC;&#x63A9;&#x7801;&#x3002;&#x201D;255.255.255.255&#x201D;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x4E3B;&#x673A;&#xFF0C;&#x201D;0.0.0.0&#x201D;&#x8868;&#x793A;&#x7F51;&#x5173;<br>Flags&#xFF1A;&#x6807;&#x8BB0;  </p>
+<blockquote>
+<p>U&#xFF1A;&#x8DEF;&#x7531;&#x88AB;&#x542F;&#x7528;<br>H&#xFF1A;&#x76EE;&#x6807;&#x662F;&#x4E00;&#x4E2A;&#x4E3B;&#x673A;<br>G&#xFF1A;&#x9700;&#x8981;&#x900F;&#x8FC7;&#x5916;&#x90E8;&#x7684;&#x4E3B;&#x673A; (gateway) &#x6765;&#x8F6C;&#x9012;&#x5C01;&#x5305;<br>UG&#xFF1A;&#x672A;&#x5F00;&#x542F;<br>M&#xFF1A;&#x8BE5;&#x8DEF;&#x7531;&#x5DF2;&#x88AB;&#x4FEE;&#x6539;   </p>
+</blockquote>
+<p>Metric&#xFF1A;&#x5230;&#x8FBE;&#x76EE;&#x6807;&#x7684;&#x5F00;&#x9500;<br>Iface&#xFF1A;&#x5230;&#x8FBE;&#x76EE;&#x6807;&#x4F7F;&#x7528;&#x7684;&#x672C;&#x673A;&#x7F51;&#x5361;&#x63A5;&#x53E3;   </p>
+</blockquote>
+<h4 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h4><p><code>ifconfig [OPTION]</code><br>&#x914D;&#x7F6E;&#x6216;&#x67E5;&#x770B;&#x7F51;&#x7EDC;&#x76F8;&#x5173;&#x914D;&#x7F6E;&#xFF0C;&#x6BD4;&#x8F83;&#x8001;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x63A8;&#x8350;&#x4F7F;&#x7528;<code>ip</code>&#x547D;&#x4EE4;&#x6765;&#x5B8C;&#x6210;&#x76F8;&#x5173;&#x64CD;&#x4F5C;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifconfig&#x7684;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E34;&#x65F6;&#xFF0C;&#x7ACB;&#x5373;&#x751F;&#x6548;&#x4F46;&#x91CD;&#x542F;&#x7F51;&#x7EDC;&#x5931;&#x6548;</span></span><br><span class="line">ifconfig                            <span class="comment">#&#x663E;&#x793A;&#x6D3B;&#x52A8;&#x7F51;&#x5361;&#x4FE1;&#x606F;&#xFF0C;&#x52A0;-a&#x663E;&#x793A;&#x5168;&#x90E8;</span></span><br><span class="line">ifconfig eth0 up|down               <span class="comment">#&#x542F;&#x7528;&#x6216;&#x5173;&#x95ED;eth0&#x7F51;&#x5361;&#xFF0C;(&#x540C;ifup/ifdown&#xFF0C;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x8BFB;&#x53D6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6765;&#x5B8C;&#x6210;)</span></span><br><span class="line">ifconfig eth0:1 192.168.1.100/24    <span class="comment">#&#x7ED9;eth0&#x6DFB;&#x52A0;&#x4E00;ip&#xFF0C;&#x522B;&#x8BBE;&#x7F6E;&#x522B;&#x540D;&#x4E3A;eth0:1</span></span><br><span class="line">ifconfig eth0 [-]arp                <span class="comment">#&#x5F00;&#x542F;&#x6216;&#x5173;&#x95ED;eth0&#x7684;arp&#x534F;&#x8BAE;&#xFF0C;&#x5305;&#x62EC;promisc, allmulti&#x7B49;</span></span><br><span class="line">ifconfig eth0 mtu 1500              <span class="comment">#&#x8BBE;&#x7F6E;&#x80FD;&#x901A;&#x8FC7;&#x7684;&#x6700;&#x5927;&#x5305;&#x5355;&#x5143;&#x4E3A;1500bytes</span></span><br></pre></td></tr></table></figure>
+<h4 id="ip"><a href="#ip" class="headerlink" title="ip"></a><font color="red">ip</font></h4><p><code>ip [OPTIONS] COMMAND</code><br>&#x5F3A;&#x5927;&#x7684;&#x7F51;&#x7EDC;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#xFF0C;&#x53EF;&#x5B8C;&#x5168;&#x66FF;&#x4EE3;<code>ifconfig</code>,<code>ifup</code>,<code>ifdown</code>,<code>route</code>&#x7B49;&#x529F;&#x80FD;  </p>
+<blockquote>
+<p><strong>OPTIONS</strong><br><code>-s</code>&#xFF1A;&#x66F4;&#x8BE6;&#x7EC6;&#x663E;&#x793A;<br><strong>COMMAND</strong><br><code>link</code>&#xFF1A;&#x8BBE;&#x5907;&#x76F8;&#x5173;&#x8BBE;&#x7F6E;&#xFF0C;&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>l</code> </p>
+<blockquote>
+<p><code>show</code>&#xFF1A;&#x663E;&#x793A;&#x8BBE;&#x5907;&#x4FE1;&#x606F;&#xFF0C;&#x540C;list&#xFF0C;&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>lst</code>&#x3001;<code>sh</code>&#x3001;<code>ls</code>&#x3001;<code>l</code><br><code>set</code>&#xFF1A;&#x8BBE;&#x7F6E;&#x8BBE;&#x5907;&#x5C5E;&#x6027;&#xFF0C;&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>s</code><br><code>help</code>&#xFF1A;&#x663E;&#x793A;&#x7B80;&#x8981;&#x5E2E;&#x52A9;&#xFF0C;&#x5176;&#x5B83;&#x5B50;&#x547D;&#x4EE4;&#x540C;&#x6837;&#x652F;&#x6301;  </p>
+</blockquote>
+<p><code>addr</code>&#xFF1A;IP&#x5730;&#x5740;&#x67E5;&#x770B;&#x6DFB;&#x52A0;&#x5220;&#x9664;&#x7B49;&#xFF0C;&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>a</code>  </p>
+<blockquote>
+<p><code>show</code>&#xFF1A;&#x663E;&#x793A;IP&#x4FE1;&#x606F;&#xFF0C;&#x540C;list&#xFF0C;&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>lst</code>&#x3001;<code>sh</code>&#x3001;<code>ls</code>&#x3001;<code>l</code><br><code>add</code>&#xFF1A;&#x6DFB;&#x52A0;&#xFF0C;&#x4E00;&#x4E2A;&#x7F51;&#x5361;&#x53EF;&#x8BBE;&#x7F6E;&#x591A;&#x4E2A;IP&#xFF0C;&#x591A;&#x4E2A;&#x7F51;&#x6BB5;&#x65F6;&#x6BCF;&#x4E2A;&#x7F51;&#x6BB5;&#x7531;&#x4E00;&#x4E2A;&#x4E3B;&#x5730;&#x5740;&#xFF0C;&#x591A;&#x4E2A;&#x8F85;&#x52A9;&#x5730;&#x5740;<br><code>del</code>&#xFF1A;&#x5220;&#x9664;<br><code>flush</code>&#xFF1A;&#x6E05;&#x7A7A;IP&#x5730;&#x5740;  </p>
+</blockquote>
+<p><code>route</code>&#xFF1A;&#x548C;&#x8DEF;&#x7531;&#x76F8;&#x5173;&#x7684;&#x8BBE;&#x7F6E; &#xFF0C;&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>r</code> </p>
+<blockquote>
+<p><code>show</code>&#xFF1A;&#x663E;&#x793A;&#x8DEF;&#x7531;&#x4FE1;&#x606F;&#xFF0C;&#x540C;list&#xFF0C;&#x53EF;&#x7B80;&#x5199;&#x4E3A;<code>lst</code>&#x3001;<code>sh</code>&#x3001;<code>ls</code>&#x3001;<code>l</code><br><code>add</code>&#xFF1A;&#x6DFB;&#x52A0;&#xFF0C;<strong>via&#x4E0B;&#x4E00;&#x8DF3;&#x5FC5;&#x987B;&#x662F;&#x672C;&#x673A;&#x4E0A;&#x7684;&#x67D0;&#x4E00;&#x7F51;&#x6BB5;</strong><br><code>del</code>&#xFF1A;&#x5220;&#x9664;<br><code>flush</code>&#xFF1A;&#x6E05;&#x7A7A;&#x8DEF;&#x7531;  </p>
+</blockquote>
+<p><code>netns</code>&#xFF1A;&#x7F51;&#x7EDC;&#x7A7A;&#x95F4;(centos7)  </p>
+<blockquote>
+<p><code>list</code>&#xFF1A;&#x5217;&#x51FA;&#x6240;&#x6709;&#x7F51;&#x7EDC;&#x7A7A;&#x95F4;<br><code>add NAME</code>&#xFF1A;&#x6DFB;&#x52A0;&#x6307;&#x5B9A;&#x7F51;&#x7EDC;&#x7A7A;&#x95F4;<br><code>del NAME</code>&#xFF1A;&#x5220;&#x9664;<br><code>exec NAME COMMAND</code>&#xFF1A;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x7A7A;&#x95F4;&#x4E2D;&#x4F7F;&#x7528;COMMAND  </p>
+</blockquote>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ip link [show|set] [DEV] [&#x53C2;&#x6570;]</span></span><br><span class="line">ip [<span class="_">-s</span>] link show [eth0]                <span class="comment"># &#x663E;&#x793A;&#x7F51;&#x5361;&#x4FE1;&#x606F;</span></span><br><span class="line">ip link <span class="built_in">set</span> eth0 {up|down}              <span class="comment"># &#x5F00;&#x542F;&#x6216;&#x5173;&#x95ED;eth0&#x7F51;&#x5361;</span></span><br><span class="line">ip link <span class="built_in">set</span> eth0 multicast {on|off}     <span class="comment"># &#x5F00;&#x542F;&#x6216;&#x5173;&#x95ED;&#x591A;&#x64AD;&#x529F;&#x80FD;  </span></span><br><span class="line">ip link <span class="built_in">set</span> eth0 mtu 1000               <span class="comment"># &#x8BBE;&#x7F6E;&#x6700;&#x5927;&#x5305;&#x901A;&#x8FC7;&#x5927;&#x5C0F;&#x4E3A;1000bytes&#xFF0C;&#x9ED8;&#x8BA4;1500</span></span><br><span class="line">ip link <span class="built_in">set</span> eth0 name liu               <span class="comment"># &#x4FEE;&#x6539;&#x7F51;&#x5361;&#x540D;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5173;&#x95ED;&#x624D;&#x80FD;&#x4FEE;&#x6539;</span></span><br><span class="line">ip link <span class="built_in">set</span> eth0 address xxx            <span class="comment"># &#x4FEE;&#x6539;&#x7F51;&#x5361;MAC&#x5730;&#x5740;&#xFF0C;&#x9700;&#x7F51;&#x5361;&#x652F;&#x6301;&#xFF0C;&#x6700;&#x597D;&#x4E0D;&#x8981;&#x6539;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ip addr [show|add|del] [IP&#x53C2;&#x6570;] [dev &#x8BBE;&#x5907;&#x540D;] [&#x76F8;&#x5173;&#x53C2;&#x6570;]</span></span><br><span class="line">ip addr show [eth0]                                         <span class="comment"># &#x663E;&#x793A;&#x7F51;&#x5361;&#x5730;&#x5740;&#x4FE1;&#x606F; </span></span><br><span class="line">ip addr add 192.168.1.100/24 dev eth0 label eth0:1          <span class="comment"># &#x7ED9;eth0&#x6DFB;&#x52A0;IP&#x5E76;&#x8BBE;&#x7F6E;&#x522B;&#x540D;&#x4E3A;eth0:1&#xFF0C;&#x522B;&#x540D;&#x53EF;&#x7701;</span></span><br><span class="line">ip addr add 10.0.0.1 dev eth0 scope {global|link|host}      <span class="comment"># &#x4F5C;&#x7528;&#x57DF;&#xFF0C;global&#x5168;&#x5C40;, link&#x63A5;&#x53E3;, host&#x4EC5;&#x672C;&#x673A;</span></span><br><span class="line">ip addr del 192.168.1.100/24 dev eth0                       <span class="comment"># &#x5220;&#x9664;eth0&#x7684;IP</span></span><br><span class="line">ip addr flush dev eth1                                      <span class="comment"># &#x6E05;&#x9664;eth0&#x63A5;&#x53E3;&#x6240;&#x6709;IP</span></span><br><span class="line">ip addr flush to 10/8                                       <span class="comment"># &#x6E05;&#x7A7A;&#x524D;&#x7F00;&#x4E3A;10&#xFF0C;8&#x4F4D;&#x63A9;&#x7801;&#x7684;&#x6240;&#x6709;IP</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ip route [show|add|del] [IP&#x6216;&#x7F51;&#x57DF;] [via gateway] [dev &#x8BBE;&#x5907;] [src SRC_IP]</span></span><br><span class="line">ip route show                                               <span class="comment"># &#x663E;&#x793A;&#x8DEF;&#x7531;&#x8868;&#x4FE1;&#x606F;</span></span><br><span class="line">ip route add 192.168.10.0/24 via 192.168.5.100 dev eth0     <span class="comment"># &#x589E;&#x52A0;&#x53EF;&#x4EE5;&#x901A;&#x5F80;&#x5916;&#x90E8;&#x7684;&#x8DEF;&#x7531;</span></span><br><span class="line">ip route add default via 192.168.1.2 dev eth0               <span class="comment"># &#x6DFB;&#x52A0;&#x9ED8;&#x8BA4;&#x8DEF;&#x7531;</span></span><br><span class="line">ip route del 192.168.10.0/24                                <span class="comment"># &#x5220;&#x9664;&#x8DEF;&#x7531;</span></span><br><span class="line">ip route flush 192.168/24                                   <span class="comment"># &#x6E05;&#x7A7A;&#x8DEF;&#x7531;&#xFF0C;&#x4E5F;&#x53EF;&#x6307;&#x5B9A;&#x5177;&#x4F53;&#x6761;&#x76EE;</span></span><br></pre></td></tr></table></figure>
+<h4 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a><font color="red">ssh</font></h4><p><code>ssh [OPTION] [USER@HOSTNAME] [COMMAND]</code><br>&#x57FA;&#x4E8E;ssh&#x534F;&#x8BAE;&#x65B9;&#x5F0F;&#x767B;&#x5F55;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;</p>
+<blockquote>
+<p><code>-p PORT</code>&#xFF1A;&#x6307;&#x5B9A;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#x7AEF;&#x53E3;&#xFF0C;&#x9ED8;&#x8BA4;22<br><code>-l USER</code>&#xFF1A;&#x6307;&#x5B9A;&#x7528;&#x6237;<br><code>-X</code>&#xFF1A;&#x652F;&#x6301;X11&#x8F6C;&#x53D1;&#xFF0C;&#x5982;&#x4F7F;&#x7528;<code>system-config-kickstart</code>&#x547D;&#x4EE4;&#x65F6;&#x4F7F;&#x7528;<br><code>-Y</code>&#xFF1A;&#x652F;&#x6301;&#x4FE1;&#x4EFB;&#x7684;X11&#x8F6C;&#x53D1;<br><code>-o</code>&#xFF1A;&#x8FDE;&#x63A5;&#x9009;&#x9879;&#xFF0C;&#x5982;<code>StickHostKeyChecking</code>&#xFF0C;&#x4E5F;&#x53EF;&#x4FEE;&#x6539;<code>/etc/ssh/ssh_config</code>&#x6DFB;&#x52A0;&#x5BF9;&#x5E94;&#x9009;&#x9879;</p>
+</blockquote>
+<p>&#x5728;Linux&#x4E0A;&#x7684;&#x5B9E;&#x73B0;&#x4EE5;OpenSSH&#x8F6F;&#x4EF6;&#x4E3A;&#x4E3B;&#xFF0C;&#x57FA;&#x672C;&#x6D41;&#x7A0B;&#x4E3A;&#xFF1A;  </p>
+<p>&#x4E00;&#x3001;&#x4E3B;&#x673A;&#x8BA4;&#x8BC1;</p>
+<ol>
+<li>&#x7528;&#x6237;&#x5411;&#x8FDC;&#x7A0B;&#x53D1;&#x9001;&#x767B;&#x5F55;&#x8BF7;&#x6C42;</li>
+<li>&#x8FDC;&#x7A0B;&#x5C06;&#x81EA;&#x5DF1;&#x7684;&#x516C;&#x94A5;&#x53D1;&#x7ED9;&#x7528;&#x6237;</li>
+<li>&#x7528;&#x6237;&#x786E;&#x8BA4;&#x540E;&#xFF0C;&#x4FDD;&#x5B58;&#x5728;&#x7528;&#x6237;<code>~/.ssh/know_hosts</code>&#x4E2D;&#xFF0C;&#x4EE5;&#x540E;&#x767B;&#x5F55;&#x8BFB;&#x53D6;&#x6B64;&#x6587;&#x4EF6;&#x65E0;&#x9700;&#x518D;&#x4FDD;&#x5B58;</li>
+<li>&#x53CC;&#x65B9;&#x534F;&#x5546;&#x4E00;&#x4E2A;&#x5BF9;&#x79F0;&#x52A0;&#x5BC6;&#x5BC6;&#x7801;&#xFF0C;&#x7528;&#x4E8E;&#x4E4B;&#x540E;&#x7684;&#x6570;&#x636E;&#x52A0;&#x5BC6;&#xFF0C;&#x9ED8;&#x8BA4;&#x6B64;&#x5BC6;&#x7801;&#x4F1A;&#x4E00;&#x76F4;&#x6539;&#x53D8;</li>
+</ol>
+<p>&#x4E8C;&#x3001;&#x8EAB;&#x4EFD;&#x8BA4;&#x8BC1;</p>
+<ol>
+<li>&#x57FA;&#x4E8E;&#x53E3;&#x4EE4;&#x8BA4;&#x8BC1;&#xFF1A;&#x7528;&#x6237;&#x540D;&#x5BC6;&#x7801;&#x4F7F;&#x7528;&#x53CC;&#x65B9;&#x534F;&#x5546;&#x7684;&#x5BC6;&#x7801;&#x52A0;&#x5BC6;&#x53D1;&#x9001;&#xFF0C;&#x786E;&#x8BA4;&#x8EAB;&#x4EFD;</li>
+<li>&#x57FA;&#x4E8E;&#x5BC6;&#x94A5;&#x8BA4;&#x8BC1;&#xFF1A;&#x5C06;&#x672C;&#x5730;&#x516C;&#x94A5;&#x53D1;&#x7ED9;&#x4E3B;&#x673A;&#xFF0C;&#x4FDD;&#x5B58;&#x5728;&#x7279;&#x5B9A;&#x4F4D;&#x7F6E;&#xFF0C;&#x4EE5;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x5BC6;&#x7801;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;</li>
+</ol>
+<p><strong>&#x4F7F;&#x7528;&#x516C;&#x94A5;&#x767B;&#x5F55;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#xFF0C;&#x65E0;&#x9700;&#x518D;&#x8F93;&#x5BC6;&#x7801;</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen              <span class="comment"># &#x751F;&#x6210;&#x516C;&#x94A5;&#x79C1;&#x94A5;&#xFF0C;&#x4FDD;&#x5B58;&#x5728; ~/.ssh &#x4E0B;&#x7684;id_rsa&#x548C;id_rsa.pub&#xFF0C;&#x5982;&#x5DF2;&#x751F;&#x6210;&#x8FC7;&#x6B64;&#x6B65;&#x65E0;&#x9700;&#x8FDB;&#x884C;</span></span><br><span class="line">ssh-copy-id USER@HOST   <span class="comment"># &#x5C06;&#x516C;&#x94A5;&#x53D1;&#x9001;&#x7ED9;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#xFF0C;&#x4FDD;&#x5B58;&#x5728;~/.ssh/authorized_keys&#x4E2D;&#xFF0C;&#x6B64;&#x6B65;&#x9700;&#x8F93;&#x5BC6;&#x7801;&#x786E;&#x8BA4;</span></span><br><span class="line">ssh USER@HOST           <span class="comment"># &#x767B;&#x5F55;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#xFF0C;&#x6B64;&#x65F6;&#x65E0;&#x9700;&#x5BC6;&#x7801;&#xFF0C;&#x5982;&#x65E0;&#x6CD5;&#x767B;&#x5F55;&#x6B64;&#x9700;&#x4FEE;&#x6539;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#x914D;&#x7F6E;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x4FEE;&#x6539;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;/etc/ssh/sshd_config&#x6587;&#x4EF6;&#xFF0C;&#x786E;&#x4FDD;&#x4EE5;&#x4E0B;&#x9009;&#x9879;&#x5F00;&#x542F;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x542F;sshd&#x670D;&#x52A1;</span></span><br><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x5C06;&#x516C;&#x94A5;&#x53D1;&#x9001;&#x7ED9;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#x65B9;&#x5F0F;</span></span><br><span class="line">ssh USER@HOST <span class="string">&apos;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&apos;</span> &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p><em>&#x6CE8;&#xFF1A;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x79C1;&#x94A5;&#x6743;&#x9650;&#x4E3A;600&#xFF0C;&#x5982;&#x679C;&#x8FC7;&#x5927;&#x4E5F;&#x4F1A;&#x62A5;&#x201D;WARNING: UNPROTECTED PRIVATE KEY FILE&#x201D;&#xFF0C;&#x4FEE;&#x6539;&#x4E3A;600&#x5373;&#x53EF;</em></p>
+<p><img src="/2016/05/21/&#x5E38;&#x7528;&#x547D;&#x4EE4;--&#x7F51;&#x7EDC;&#x7BA1;&#x7406;/ssh_first.png" alt="&#x9996;&#x6B21;&#x767B;&#x5F55;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;" title="&#x9996;&#x6B21;&#x767B;&#x5F55;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;"><br><img src="/2016/05/21/&#x5E38;&#x7528;&#x547D;&#x4EE4;--&#x7F51;&#x7EDC;&#x7BA1;&#x7406;/ssh_pub.png" alt="&#x516C;&#x94A5;&#x767B;&#x5F55;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;" title="&#x516C;&#x94A5;&#x65B9;&#x5F0F;&#x767B;&#x5F55;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;"></p>
+<p><strong>&#x7B80;&#x5355;&#x68B3;&#x7406;~/.ssh/&#x76EE;&#x5F55;&#x4E0B;&#x51E0;&#x4E2A;&#x6587;&#x4EF6;&#x5185;&#x5BB9;</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">authorized_keys   <span class="comment"># &#x5176;&#x5B83;&#x4E3B;&#x673A;&#x516C;&#x94A5;&#xFF0C;&#x8BB0;&#x5F55;&#x5728;&#x6B64;&#x7684;&#x4E3B;&#x673A;&#x53EF;&#x4EE5;&#x8FDC;&#x7A0B;&#x65E0;&#x5BC6;&#x7801;&#x767B;&#x5F55;&#x5230;&#x672C;&#x673A;</span></span><br><span class="line">id_rsa            <span class="comment"># &#x672C;&#x673A;&#x79C1;&#x94A5;</span></span><br><span class="line">id_rsa.pub        <span class="comment"># &#x672C;&#x673A;&#x516C;&#x94A5;</span></span><br><span class="line">know_hosts        <span class="comment"># &#x672C;&#x673A;&#x4FE1;&#x4EFB;&#x7684;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#x5217;&#x8868;</span></span><br></pre></td></tr></table></figure>
+<h4 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h4><p><code>scp [OPTION] SRC DST</code><br>&#x4E24;&#x53F0;&#x4E3B;&#x673A;&#x95F4;&#x7684;&#x52A0;&#x5BC6;&#x4F20;&#x8F93;&#xFF0C;&#x4F7F;&#x7528;ssh&#x534F;&#x8BAE;</p>
+<blockquote>
+<p><code>-P</code>&#xFF1A;&#x6307;&#x5B9A;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#x7AEF;&#x53E3;&#xFF0C;&#x9ED8;&#x8BA4;22<br><code>-r</code>&#xFF1A;&#x590D;&#x5236;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x9012;&#x5F52;&#x590D;&#x5236;<br><code>-p</code>&#xFF1A;&#x4FDD;&#x7559;&#x539F;&#x6587;&#x4EF6;&#x6743;&#x9650;&#x53CA;&#x6700;&#x540E;&#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x65F6;&#x95F4;<br><code>-q</code>&#xFF1A;&#x9759;&#x9ED8;&#x6A21;&#x5F0F;<br><code>-v</code>&#xFF1A;&#x663E;&#x793A;&#x8FC7;&#x7A0B;&#x8BE6;&#x60C5;  </p>
+</blockquote>
+<p>&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;&#x683C;&#x5F0F;&#xFF1A;<strong>&#x7528;&#x6237;&#x540D;@&#x4E3B;&#x673A;&#x540D;:&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp [-P1008] root@192.168.1.100:/data/xx.gz /tmp/       <span class="comment"># &#x4E0B;&#x8F7D;&#x6587;&#x4EF6;</span></span><br><span class="line">scp [-P1008] -r root@192.168.1.100:/data/aa/ /tmp/      <span class="comment"># &#x4E0B;&#x8F7D;&#x76EE;&#x5F55;</span></span><br><span class="line">scp [-P1008] /tmp/xx.gz root@192.168.1.100:/data/       <span class="comment"># &#x4E0A;&#x4F20;&#x6587;&#x4EF6;</span></span><br><span class="line">scp [-P1008] -r /tmp/aa/ root@192.168.1.100:/data/      <span class="comment"># &#x4E0A;&#x4F20;&#x76EE;&#x5F55;</span></span><br></pre></td></tr></table></figure>
+<h4 id="sshpass"><a href="#sshpass" class="headerlink" title="sshpass"></a>sshpass</h4><p><code>sshpass -{p|f|e} {ssh|scp} USER@HOST</code><br>&#x5F53;&#x4E0D;&#x4F7F;&#x7528;&#x516C;&#x94A5;SSH&#x8FDE;&#x63A5;&#x65F6;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x4EA4;&#x4E92;&#x5F0F;&#x8F93;&#x5165;&#x5BC6;&#x7801;&#xFF0C;&#x6B64;&#x547D;&#x4EE4;&#x53EF;&#x5B8C;&#x6210;&#x975E;&#x4EA4;&#x4E92;SSH&#x5BC6;&#x7801;&#x9A8C;&#x8BC1;&#xFF0C;&#x4F46;&#x9700;&#x624B;&#x52A8;&#x6E90;&#x7801;&#x5B89;&#x88C5;</p>
+<blockquote>
+<p><code>-p PASSWD</code>&#xFF1A;&#x6307;&#x5B9A;&#x5BC6;&#x7801;<br><code>-f FILE</code>&#xFF1A;&#x4ECE;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;&#x5BC6;&#x7801;<br><code>-e</code>&#xFF1A;&#x4ECE;&#x73AF;&#x5883;&#x53D8;&#x91CF; <code>SSHPASS</code> &#x4E2D;&#x8BFB;&#x53D6;&#x5BC6;&#x7801;&#xFF0C;&#x987B;&#x5148;&#x8BBE;&#x7F6E;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sshpass -p <span class="string">&apos;123123&apos;</span> ssh root@192.168.1.100          <span class="comment"># &#x6307;&#x5B9A;&#x5BC6;&#x7801;ssh&#x767B;&#x5F55;</span></span><br><span class="line">sshpass <span class="_">-f</span> pwd.txt  ssh root@192.168.1.100          <span class="comment"># &#x4ECE;pwd.txt&#x6587;&#x4EF6;&#x8BFB;&#x53D6;&#x5BC6;&#x7801;</span></span><br><span class="line">sshpass <span class="_">-e</span> scp -r ~/ab/ root@192.168.1.100:/root/   <span class="comment"># &#x4ECE;&#x73AF;&#x5883;&#x53D8;&#x91CF; SSPHPASS &#x4E2D;&#x8BFB;&#x53D6;</span></span><br></pre></td></tr></table></figure>
+<h4 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h4><p><code>telnet [option] [ip[:port]]</code><br>&#x6267;&#x884C;telnet&#x6307;&#x4EE4;&#x5F00;&#x542F;&#x7EC8;&#x7AEF;&#x673A;&#x9636;&#x6BB5;&#x4F5C;&#x4E1A;&#xFF0C;&#x5E76;&#x767B;&#x5165;&#x8FDC;&#x7AEF;&#x4E3B;&#x673A;&#xFF0C;&#x9700;&#x624B;&#x52A8;&#x5B89;&#x88C5;</p>
+<blockquote>
+<p><code>-a</code>&#xFF1A;&#x5C1D;&#x8BD5;&#x81EA;&#x52A8;&#x767B;&#x5165;&#x8FDC;&#x7AEF;&#x7CFB;&#x7EDF;<br><code>-c</code>&#xFF1A;&#x4E0D;&#x8BFB;&#x53D6;&#x7528;&#x6237;&#x4E13;&#x5C5E;&#x76EE;&#x5F55;&#x91CC;&#x7684;.telnetrc&#x6587;&#x4EF6;<br><code>-d</code>&#xFF1A;&#x542F;&#x52A8;&#x6392;&#x9519;&#x6A21;&#x5F0F;<br><code>-k&lt;&#x57DF;&#x540D;&gt;</code>&#xFF1A;&#x4F7F;&#x7528;Kerberos&#x8BA4;&#x8BC1;&#x65F6;&#xFF0C;&#x52A0;&#x4E0A;&#x6B64;&#x53C2;&#x6570;&#x8BA9;&#x8FDC;&#x7AEF;&#x4E3B;&#x673A;&#x91C7;&#x7528;&#x6307;&#x5B9A;&#x7684;&#x9886;&#x57DF;&#x540D;&#xFF0C;&#x800C;&#x975E;&#x8BE5;&#x4E3B;&#x673A;&#x7684;&#x57DF;&#x540D;<br><code>-l&lt;&#x7528;&#x6237;&#x540D;&#x79F0;&gt;</code>&#xFF1A;&#x6307;&#x5B9A;&#x8981;&#x767B;&#x5165;&#x8FDC;&#x7AEF;&#x4E3B;&#x673A;&#x7684;&#x7528;&#x6237;&#x540D;&#x79F0;<br><code>-S&lt;&#x670D;&#x52A1;&#x7C7B;&#x578B;&gt;</code>&#xFF1A;&#x8BBE;&#x7F6E;telnet&#x8FDE;&#x7EBF;&#x6240;&#x9700;&#x7684;IP TOS&#x4FE1;&#x606F;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 172.16.60.1 22       <span class="comment"># &#x63A2;&#x6D4B;22&#x53F7;&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x5F00;&#x542F;</span></span><br></pre></td></tr></table></figure>
+<h4 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h4><p>&#x67E5;&#x770B;&#x57DF;&#x540D;&#x89E3;&#x6790;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup www.baidu.com</span><br></pre></td></tr></table></figure>
+<h4 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h4><p>&#x6253;&#x5370;&#x6240;&#x6709;&#x7ECF;&#x8FC7;&#x7F51;&#x7EDC;&#x63A5;&#x53E3;&#x7684;&#x6570;&#x636E;&#x5305;&#x7684;&#x5934;&#x4FE1;&#x606F;</p>
+<blockquote>
+<p><code>-i</code>&#xFF1A;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x63A5;&#x53E3;&#x4E0A;&#x83B7;&#x53D6;&#x5305;&#x4FE1;&#x606F;<br><code>tcp port 80</code>&#xFF1A;&#x6307;&#x5B9A;tcp&#x534F;&#x8BAE;&#x7684;80&#x7AEF;&#x53E3;,&#x5373;http&#x901A;&#x4FE1;&#x7684;&#x62A5;&#x6587;<br><code>and</code>&#xFF1A;&#x5173;&#x8054;&#x591A;&#x9879;<br><code>dst host</code>&#xFF1A;&#x76EE;&#x6807;&#x4E3B;&#x673A;<br><code>src host</code>&#xFF1A;&#x6E90;&#x4E3B;&#x673A;<br><code>-nn</code>&#xFF1A;&#x6BCF;&#x4E00;&#x4E2A;n&#x8868;&#x793A;&#x4E0D;&#x628A;ip&#x53CD;&#x89E3;&#x4E3A;&#x4E3B;&#x673A;&#x540D;, &#x7B2C;2&#x4E2A;n&#x8868;&#x793A;&#x4E0D;&#x628A;&#x7AEF;&#x53E3;&#x53CD;&#x89E3;&#x4E3A;&#x670D;&#x52A1;&#x540D;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 [src|dst] host 192.168.0.1      <span class="comment"># &#x6293;&#x53D6;&#x6240;&#x6709;&#x7ECF;&#x8FC7;eth0&#xFF0C;&#x76EE;&#x7684;&#x6216;&#x6E90;&#x5730;&#x5740;&#x662F;192.168.0.1&#x7684;&#x7F51;&#x7EDC;&#x6570;&#x636E;</span></span><br><span class="line">tcpdump -i eth0 [src|dst] port 80               <span class="comment"># &#x6293;&#x53D6;&#x6240;&#x6709;&#x7ECF;&#x8FC7;eth0&#xFF0C;&#x76EE;&#x7684;&#x6216;&#x6E90;&#x7AEF;&#x53E3;&#x662F;80&#x7684;&#x7F51;&#x7EDC;&#x6570;&#x636E; </span></span><br><span class="line">tcpdump -i eth0 [src|dst] net 192.168           <span class="comment"># &#x7F51;&#x7EDC;&#x8FC7;&#x6EE4;</span></span><br><span class="line">tcpdump -i eth0 [src|dst] {arp|ip|tcp|icmp}     <span class="comment"># &#x534F;&#x8BAE;&#x8FC7;&#x6EE4;</span></span><br><span class="line">tcpdump -i eth2 tcp port 80 and dst host 172.16.60.1 and src host 192.168.0.1 -nn</span><br></pre></td></tr></table></figure>
+<p><em>tcpdump&#x529F;&#x80FD;&#x5F3A;&#x5927;&#xFF0C;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x4EE5;&#x540E;&#x518D;&#x6DFB;&#x52A0;</em></p>
+<h4 id="dig"><a href="#dig" class="headerlink" title="dig"></a>dig</h4><h4 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h4><h4 id="sftp"><a href="#sftp" class="headerlink" title="sftp"></a>sftp</h4><p>&#x672A;&#x5B8C;&#x5F85;&#x6DFB;&#x52A0;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/命令/" rel="tag">#命令</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/21/常用命令--系统管理/" rel="next" title="常用命令--系统管理">
+                <i class="fa fa-chevron-left"></i> 常用命令--系统管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/24/Linux文本处理三剑客之grep/" rel="prev" title="Linux文本处理三剑客之grep">
+                Linux文本处理三剑客之grep <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/21/常用命令--网络管理/"
+           data-title="常用命令--网络管理" data-url="http://liu2lin600.github.io/2016/05/21/常用命令--网络管理/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络相关配置文件-REHL系"><span class="nav-number">1.</span> <span class="nav-text">网络相关配置文件(REHL系)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#网卡信息"><span class="nav-number">1.1.</span> <span class="nav-text">网卡信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路由信息"><span class="nav-number">1.2.</span> <span class="nav-text">路由信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#主机名"><span class="nav-number">1.3.</span> <span class="nav-text">主机名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DNS配置"><span class="nav-number">1.4.</span> <span class="nav-text">DNS配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hosts"><span class="nav-number">1.5.</span> <span class="nav-text">hosts</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hostname"><span class="nav-number">2.</span> <span class="nav-text">hostname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ping"><span class="nav-number">3.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hping"><span class="nav-number">4.</span> <span class="nav-text">hping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#traceroute"><span class="nav-number">5.</span> <span class="nav-text">traceroute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#netstat"><span class="nav-number">6.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ftp"><span class="nav-number">7.</span> <span class="nav-text">ftp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lftp"><span class="nav-number">8.</span> <span class="nav-text">lftp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lftpget"><span class="nav-number">9.</span> <span class="nav-text">lftpget</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wget"><span class="nav-number">10.</span> <span class="nav-text">wget</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#route"><span class="nav-number">11.</span> <span class="nav-text">route</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ifconfig"><span class="nav-number">12.</span> <span class="nav-text">ifconfig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ip"><span class="nav-number">13.</span> <span class="nav-text">ip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh"><span class="nav-number">14.</span> <span class="nav-text">ssh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scp"><span class="nav-number">15.</span> <span class="nav-text">scp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sshpass"><span class="nav-number">16.</span> <span class="nav-text">sshpass</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#telnet"><span class="nav-number">17.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nslookup"><span class="nav-number">18.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tcpdump"><span class="nav-number">19.</span> <span class="nav-text">tcpdump</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dig"><span class="nav-number">20.</span> <span class="nav-text">dig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rsync"><span class="nav-number">21.</span> <span class="nav-text">rsync</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sftp"><span class="nav-number">22.</span> <span class="nav-text">sftp</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

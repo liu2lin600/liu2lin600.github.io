@@ -1,0 +1,954 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="awk,文本处理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Linux&amp;#x6587;&amp;#x672C;&amp;#x5904;&amp;#x7406;&amp;#x4E2D;&amp;#x7684;&amp;#x5C60;&amp;#x9F99;&amp;#x5200;&amp;#x51FA;&amp;#x573A;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文本处理三剑客之awk">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/06/21/Linux文本处理三剑客之awk/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="Linux&amp;#x6587;&amp;#x672C;&amp;#x5904;&amp;#x7406;&amp;#x4E2D;&amp;#x7684;&amp;#x5C60;&amp;#x9F99;&amp;#x5200;&amp;#x51FA;&amp;#x573A;">
+<meta property="og:updated_time" content="2016-09-28T04:43:31.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux文本处理三剑客之awk">
+<meta name="twitter:description" content="Linux&amp;#x6587;&amp;#x672C;&amp;#x5904;&amp;#x7406;&amp;#x4E2D;&amp;#x7684;&amp;#x5C60;&amp;#x9F99;&amp;#x5200;&amp;#x51FA;&amp;#x573A;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Linux文本处理三剑客之awk | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux文本处理三剑客之awk
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-21T13:28:38+08:00" content="2016-06-21">
+              2016-06-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/21/Linux文本处理三剑客之awk/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/21/Linux文本处理三剑客之awk/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Linux&#x6587;&#x672C;&#x5904;&#x7406;&#x4E2D;&#x7684;&#x5C60;&#x9F99;&#x5200;&#x51FA;&#x573A;</p>
+<a id="more"></a>
+<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>awk&#x662F;&#x4E00;&#x79CD;&#x89E3;&#x91CA;&#x6267;&#x884C;&#x7684;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#xFF0C;&#x7528;&#x6765;&#x4E13;&#x95E8;&#x5904;&#x7406;&#x6587;&#x672C;&#x6570;&#x636E;&#xFF0C;&#x5176;&#x540D;&#x79F0;&#x662F;&#x7531;&#x5B83;&#x4EEC;&#x8BBE;&#x8BA1;&#x8005;&#x7684;&#x540D;&#x5B57;&#x7F29;&#x5199;&#x800C;&#x6765; &#x2014;&#x2014;&#x2014; Afred Aho, Peter Weinberger &#x4E0E; Brian Kernighan&#x3002;&#x5E38;&#x89C1;&#x7248;&#x672C;&#x6709;&#xFF1A;</p>
+<ul>
+<li>awk&#xFF1A; &#x6700;&#x539F;&#x521D;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x5B83;&#x7531; AT&amp;T &#x5B9E;&#x9A8C;&#x5BA4;&#x5F00;&#x53D1;</li>
+<li>nawk&#xFF1A;awk&#x7684;&#x6539;&#x8FDB;&#x589E;&#x5F3A;&#x7248;&#x672C;</li>
+<li>gawk&#xFF1A;GNU awk&#xFF0C;&#x6240;&#x6709;&#x7684; GNU/Linux &#x53D1;&#x884C;&#x7248;&#x90FD;&#x5305;&#x62EC;gawk&#xFF0C;&#x4E14;&#x5B8C;&#x5168;&#x517C;&#x5BB9;awk&#x4E0E;nawk</li>
+</ul>
+<p>&#x5176;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x4E3A;&#x6309;&#x884C;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x5168;&#x90E8;&#x6216;&#x5339;&#x914D;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x9ED8;&#x8BA4;&#x4EE5;&#x7A7A;&#x683C;&#x4E3A;&#x5206;&#x9694;&#x7B26;&#x5C06;&#x6BCF;&#x884C;&#x5206;&#x5272;&#x6210;&#x5B57;&#x6BB5;&#xFF0C;&#x53EF;&#x5BF9;&#x5404;&#x5B57;&#x6BB5;&#x6309;&#x67D0;&#x79CD;&#x683C;&#x5F0F;&#x8F93;&#x51FA;</p>
+<h2 id="&#x8BED;&#x6CD5;"><a href="#&#x8BED;&#x6CD5;" class="headerlink" title="&#x8BED;&#x6CD5;"></a>&#x8BED;&#x6CD5;</h2><p><code>awk [OPTION] &apos;[BEGIN{action}][PATTERN]{action}[END{action}]&apos; file1...</code>  </p>
+<p>&#x8BF4;&#x660E;&#xFF1A;</p>
+<ul>
+<li>OPTION&#xFF1A;&#x5E38;&#x7528;&#x9009;&#x9879;&#x6709;<code>-F</code>&#x548C;<code>-v</code>&#x7B49;  </li>
+<li>BEGIN{&#x2026;}&#xFF1A;&#x542F;&#x52A8;&#x65F6;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;&#x90E8;&#x5206;&#xFF0C;&#x4E14;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x6765;&#x521D;&#x59CB;&#x5316;&#x53D8;&#x91CF;&#x7B49;&#xFF0C;&#x53EF;&#x9009;  </li>
+<li>PATTERN&#xFF1A;&#x9650;&#x5B9A;&#x5BF9;&#x4E8E;&#x8F93;&#x5165;&#x7684;&#x884C;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x53EF;&#x9009;  </li>
+<li>{action}&#xFF1A;&#x6BCF;&#x4E00;&#x6B21;&#x8F93;&#x5165;&#x7684;&#x884C;&#x90FD;&#x4F1A;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x4E3B;&#x4F53;&#x90E8;&#x5206;&#x7684;&#x547D;&#x4EE4;</li>
+<li>END{&#x2026;}&#xFF1A;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x7ED3;&#x675F;&#x65F6;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x53EF;&#x9009;</li>
+</ul>
+<h2 id="&#x4F7F;&#x7528;"><a href="#&#x4F7F;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;"></a>&#x4F7F;&#x7528;</h2><h3 id="0-&#x5185;&#x7F6E;&#x53D8;&#x91CF;"><a href="#0-&#x5185;&#x7F6E;&#x53D8;&#x91CF;" class="headerlink" title="0.&#x5185;&#x7F6E;&#x53D8;&#x91CF;"></a>0.&#x5185;&#x7F6E;&#x53D8;&#x91CF;</h3><p><code>$0</code>&#xFF1A;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#x7684;&#x5168;&#x90E8;&#x5B57;&#x6BB5;<br><code>$1~$#</code>&#xFF1A;&#x5339;&#x914D;&#x5230;&#x884C;&#x5206;&#x5272;&#x540E;&#x7684;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;<br><code>NF</code>&#xFF1A;number of field&#xFF0C;&#x5B57;&#x6BB5;&#x4E2A;&#x6570;<br><code>FS</code>&#xFF1A;input field seperator&#xFF0C;&#x8F93;&#x5165;&#x7684;&#x5206;&#x9694;&#x7B26;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;&#x7A7A;&#x767D;&#x5B57;&#x7B26;<br><code>OFS</code>&#xFF1A;output field seperator&#xFF0C;&#x8F93;&#x51FA;&#x7684;&#x5206;&#x9694;&#x7B26;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;&#x7A7A;&#x767D;&#x5B57;&#x7B26;<br><code>RS</code>&#xFF1A;input record seperator&#xFF0C;&#x8F93;&#x5165;&#x7684;&#x6362;&#x884C;&#x7B26;<br><code>ORS</code>&#xFF1A;output record seperator&#xFF0C;&#x8F93;&#x51FA;&#x65F6;&#x7684;&#x6362;&#x884C;&#x7B26;<br><code>NR</code>&#xFF1A;number of record&#xFF0C;&#x5F53;&#x524D;&#x8BB0;&#x5F55;&#x7684;&#x5B57;&#x6BB5;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x591A;&#x6587;&#x4EF6;&#x65F6;&#x7F16;&#x53F7;&#x7D2F;&#x52A0;<br><code>FNR</code>&#xFF1A;&#x4E0E;<code>NR</code>&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;<code>FNR</code>&#x7528;&#x4E8E;&#x8BB0;&#x5F55;&#x6B63;&#x5904;&#x7406;&#x7684;&#x884C;&#x662F;&#x5F53;&#x524D;&#x8FD9;&#x4E00;&#x6587;&#x4EF6;&#x4E2D;&#x88AB;&#x603B;&#x5171;&#x5904;&#x7406;&#x7684;&#x884C;&#x6570;<br><code>FILENAME</code>&#xFF1A;awk&#x547D;&#x4EE4;&#x6240;&#x5904;&#x7406;&#x7684;&#x6587;&#x4EF6;&#x7684;&#x540D;&#x79F0;<br><code>ARGC</code>&#xFF1A;&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x53C2;&#x6570;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x5176;awk&#x547D;&#x4EE4;&#x4E5F;&#x7B97;&#x4E00;&#x4E2A;&#x53C2;&#x6570;<br><code>ARGV</code>&#xFF1A;&#x5176;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x4FDD;&#x5B58;&#x7684;&#x662F;&#x547D;&#x4EE4;&#x884C;&#x6240;&#x7ED9;&#x5B9A;&#x7684;&#x5404;&#x53C2;&#x6570;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&apos;{print NF}&apos;</span> /etc/fstab         <span class="comment"># &#x6BCF;&#x884C;&#x5B57;&#x6BB5;&#x6570;&#xFF0C;&#x8FD9;&#x91CC;&#x662F;&#x6570;&#x91CF;&#x5F15;&#x7528;&#xFF0C;&#x4E0D;&#x662F;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#x5F15;&#x7528;</span></span><br><span class="line">awk <span class="string">&apos;{print $NF}&apos;</span> /etc/fstab        <span class="comment"># &#x6BCF;&#x884C;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x503C;</span></span><br><span class="line">awk <span class="string">&apos;{print NR}&apos;</span> file1 file2        <span class="comment"># &#x4F1A;&#x6BCF;&#x628A;&#x6240;&#x6709;&#x6587;&#x6863;&#x8FDB;&#x884C;&#x603B;&#x7684;&#x7F16;&#x53F7;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5355;&#x72EC;&#x5BF9;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x7F16;&#x53F7;</span></span><br><span class="line">awk <span class="string">&apos;{print FNR}&apos;</span> file1 file2       <span class="comment"># &#x4F1A;&#x5BF9;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x884C;&#x6570;&#x8FDB;&#x884C;&#x5355;&#x72EC;&#x7684;&#x7F16;&#x53F7;&#x663E;&#x793A;</span></span><br><span class="line">awk <span class="string">&apos;{print FILENAME}&apos;</span> file1        <span class="comment"># &#x663E;&#x793A;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x4F46;&#x4F1A;&#x6BCF;&#x884C;&#x663E;&#x793A;&#x4E00;&#x6B21;</span></span><br><span class="line">awk <span class="string">&apos;END{print FILENAME}&apos;</span> file1     <span class="comment"># &#x663E;&#x793A;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x4F46;&#x53EA;&#x4F1A;&#x663E;&#x793A;&#x4E00;&#x6B21;</span></span><br><span class="line">awk <span class="string">&apos;END{print ARGC}&apos;</span> /etc/fstab    <span class="comment"># &#x663E;&#x793A;&#x5171;&#x6709;&#x51E0;&#x4E2A;&#x53C2;&#x6570;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-OPTION"><a href="#1-OPTION" class="headerlink" title="1.OPTION"></a>1.OPTION</h3><blockquote>
+<p><code>-F</code>&#xFF1A;&#x6307;&#x660E;&#x8F93;&#x5165;&#x65F6;&#x7528;&#x5230;&#x7684;&#x5B57;&#x6BB5;&#x5206;&#x9694;&#x7B26;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;&#x7A7A;&#x767D;&#x5B57;&#x7B26;<br><code>-v var=value</code>&#xFF1A;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;<br><code>-f</code>&#xFF1A;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x4E2D;&#x7684;awk&#x89C4;&#x5219;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk -v str=<span class="string">&apos;hello&apos;</span> <span class="string">&apos;{print str,$1}&apos;</span> file1       <span class="comment"># </span></span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;hello&quot;}{print str,$1}&apos;</span> file1    <span class="comment"># &#x6548;&#x679C;&#x540C;&#x4E0A;</span></span><br><span class="line">awk <span class="_">-f</span> file1                                    <span class="comment"># awk&#x89C4;&#x5219;&#x5199;&#x5230;&#x811A;&#x672C;&#x4E2D;&#xFF0C;&#x4ECE;&#x4E2D;&#x8BFB;&#x53D6;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-PATTERN"><a href="#2-PATTERN" class="headerlink" title="2.PATTERN"></a>2.PATTERN</h3><p>&#x5E38;&#x89C1;&#x7684;&#x6A21;&#x5F0F;&#x7C7B;&#x578B;&#x6709;&#x5730;&#x5740;&#x5B9A;&#x754C;&#x3001;BEGIN/END&#x3001;&#x8868;&#x8FBE;&#x5F0F;</p>
+<p><em>&#x5730;&#x5740;&#x5B9A;&#x754C;</em>&#xFF1A; </p>
+<ul>
+<li><code>&#x7A7A;</code>&#xFF1A;&#x5339;&#x914D;&#x4EFB;&#x610F;&#x8F93;&#x5165;&#x884C;</li>
+<li><code>/pattern/</code>&#xFF1A;&#x88AB;&#x6B64;&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x5230;&#x7684;&#x6BCF;&#x4E00;&#x884C;</li>
+<li><code>/pat1/,/pat2/</code>&#xFF1A;&#x7B2C;&#x4E00;&#x6B21;&#x88AB;&#x6A21;&#x5F0F;1&#x5339;&#x914D;&#x7684;&#x884C;&#x5230;&#x7B2C;&#x4E00;&#x6B21;&#x88AB;&#x6A21;&#x5F0F;2&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;</li>
+<li><code>!/patter/</code>&#xFF1A;&#x53D6;&#x53CD;</li>
+</ul>
+<p><em>&#x8868;&#x8FBE;&#x5F0F;</em>&#xFF1A;  </p>
+<ul>
+<li><strong>x</strong> <code>&gt;</code>,<code>&gt;=</code>,<code>&lt;</code>,<code>&lt;=</code>,<code>==</code>,<code>!=</code>,<code>~</code>,<code>!~</code> <strong>y</strong></li>
+</ul>
+<p><em>BEGIN/END</em>&#xFF1A;</p>
+<ul>
+<li><code>BEGIN</code>&#xFF1A;&#x8BA9;&#x7528;&#x6237;&#x6307;&#x5B9A;&#x5728;&#x7B2C;&#x4E00;&#x6761;&#x8F93;&#x5165;&#x8BB0;&#x5F55;&#x88AB;&#x5904;&#x7406;&#x4E4B;&#x524D;&#x6240;&#x53D1;&#x751F;&#x7684;&#x52A8;&#x4F5C;&#xFF0C;&#x901A;&#x5E38;&#x53EF;&#x5728;&#x8FD9;&#x91CC;&#x8BBE;&#x7F6E;&#x5168;&#x5C40;&#x53D8;&#x91CF;  </li>
+<li><code>END</code>&#xFF1A;&#x8BA9;&#x7528;&#x6237;&#x5728;&#x6700;&#x540E;&#x4E00;&#x6761;&#x8F93;&#x5165;&#x8BB0;&#x5F55;&#x88AB;&#x8BFB;&#x53D6;&#x4E4B;&#x540E;&#x53D1;&#x751F;&#x7684;&#x52A8;&#x4F5C; </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&apos;/^UUID/{print $1}&apos;</span> /etc/fstab              <span class="comment"># &#x4EE5;UUID&#x5F00;&#x5934;&#x7684;&#x884C;&#x7684;&#x7B2C;&#x4E00;&#x5B57;&#x6BB5;</span></span><br><span class="line">awk -F: <span class="string">&apos;$3&gt;50{print $0}&apos;</span> /etc/passwd           <span class="comment"># &#x4EE5;&#xFF1A;&#x5206;&#x5272;&#x7B2C;3&#x5B57;&#x6BB5;&#x503C;&#x5927;&#x4E8E;50&#x7684;&#x884C;</span></span><br><span class="line">awk -F: <span class="string">&apos;$NF~/bash$/{print $0}&apos;</span> /etc/passwd     <span class="comment"># &#x6700;&#x540E;&#x5B57;&#x6BB5;&#x4E3A;bash&#x7ED3;&#x5C3E;&#x7684;&#x884C;</span></span><br><span class="line">awk <span class="string">&apos;BEGIN{print &quot;hello&quot;}{print $1}&apos;</span> file1      <span class="comment"># &#x5728;&#x6700;&#x5F00;&#x59CB;&#x8F93;&#x51FA;hello&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x5236;&#x505A;&#x8868;&#x5934;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-action"><a href="#3-action" class="headerlink" title="3.action"></a>3.action</h3><h4 id="print"><a href="#print" class="headerlink" title="print"></a>print</h4><p><code>print intem1,item2...</code>  </p>
+<blockquote>
+<ul>
+<li>&#x5404;&#x9879;&#x76EE;&#x4E4B;&#x95F4;&#x4F7F;&#x7528;&#x9017;&#x53F7;&#x9694;&#x5F00;&#xFF0C;&#x800C;&#x8F93;&#x51FA;&#x65F6;&#x5219;&#x4EE5;&#x7A7A;&#x767D;&#x5B57;&#x7B26;&#x5206;&#x9694;</li>
+<li>&#x8F93;&#x51FA;&#x7684;item&#x53EF;&#x4EE5;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x6216;&#x6570;&#x503C;&#x3001;&#x5F53;&#x524D;&#x8BB0;&#x5F55;&#x7684;&#x5B57;&#x6BB5;(&#x5982;$1)&#x3001;&#x53D8;&#x91CF;&#x6216;awk&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#xFF1B;&#x6570;&#x503C;&#x4F1A;&#x5148;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#x540E;&#x518D;&#x8F93;&#x51FA;</li>
+<li>print&#x547D;&#x4EE4;&#x540E;&#x9762;&#x7684;item&#x53EF;&#x4EE5;&#x7701;&#x7565;&#xFF0C;&#x6B64;&#x65F6;&#x5176;&#x529F;&#x80FD;&#x76F8;&#x5F53;&#x4E8E;print $0, &#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x8F93;&#x51FA;&#x7A7A;&#x767D;&#x884C;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;print &#x201C;&#x201D;</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&apos;BEGIN{print &quot;line one\nline two\nline three&quot;}&apos;</span></span><br></pre></td></tr></table></figure>
+<h4 id="printf"><a href="#printf" class="headerlink" title="printf"></a>printf</h4><p><code>printf format, item1, item2, ...</code></p>
+<blockquote>
+<ul>
+<li>&#x5176;&#x4E0E;print&#x547D;&#x4EE4;&#x7684;&#x6700;&#x5927;&#x4E0D;&#x540C;&#x662F;&#xFF0C;printf&#x9700;&#x8981;&#x6307;&#x5B9A;format&#xFF1B;</li>
+<li>format&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x540E;&#x9762;&#x7684;&#x6BCF;&#x4E2A;item&#x7684;&#x8F93;&#x51FA;&#x683C;&#x5F0F;&#xFF1B;</li>
+<li>printf&#x8BED;&#x53E5;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x6253;&#x5370;&#x6362;&#x884C;&#x7B26;&#xFF1B;\n</li>
+</ul>
+</blockquote>
+<p>format&#x683C;&#x5F0F;&#x7684;&#x6307;&#x793A;&#x7B26;&#x90FD;&#x4EE5;%&#x5F00;&#x5934;&#xFF0C;&#x540E;&#x8DDF;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#xFF1B;</p>
+<blockquote>
+<p><code>%s</code>&#xFF1A;&#x663E;&#x793A;&#x5B57;&#x7B26;&#x4E32;<br><code>%d,%i</code>&#xFF1A;&#x5341;&#x8FDB;&#x5236;&#x6574;&#x6570;<br><code>%c</code>&#xFF1A;&#x663E;&#x793A;&#x5B57;&#x7B26;&#x7684;ASCII&#x7801;<br><code>%e,%E</code>&#xFF1A;&#x79D1;&#x5B66;&#x8BA1;&#x6570;&#x6CD5;&#x663E;&#x793A;&#x6570;&#x503C;<br><code>%f</code>&#xFF1A;&#x663E;&#x793A;&#x6D6E;&#x70B9;&#x6570;<br><code>%g,%G</code>&#xFF1A;&#x4EE5;&#x79D1;&#x5B66;&#x8BA1;&#x6570;&#x6CD5;&#x7684;&#x683C;&#x5F0F;&#x6216;&#x6D6E;&#x70B9;&#x6570;&#x7684;&#x683C;&#x5F0F;&#x663E;&#x793A;&#x6570;&#x503C;<br><code>%u</code>&#xFF1A;&#x65E0;&#x7B26;&#x53F7;&#x6574;&#x6570;<br><code>%%</code>&#xFF1A;&#x663E;&#x793A;%&#x81EA;&#x8EAB;  </p>
+<blockquote>
+<p>&#x4FEE;&#x9970;&#x7B26;&#xFF1A;<br><code>N</code>: &#x663E;&#x793A;&#x5BBD;&#x5EA6;<br><code>-</code>: &#x5DE6;&#x5BF9;&#x9F50;<br><code>+</code>&#xFF1A;&#x663E;&#x793A;&#x6570;&#x503C;&#x7B26;&#x53F7;  </p>
+</blockquote>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&apos;{printf &quot;%-15s %i\n&quot;,$1,$3}&apos;</span> /etc/passwd   <span class="comment"># &#x6CE8;&#x610F;&#x52A0;&#x6362;&#x884C;&#x7B26;</span></span><br></pre></td></tr></table></figure>
+<h4 id="&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;"><a href="#&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;" class="headerlink" title="&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;"></a>&#x8F93;&#x51FA;&#x91CD;&#x5B9A;&#x5411;</h4><p><code>print items &gt; output-file</code><br><code>print items &gt;&gt; output-file</code><br><code>print items | command</code>  </p>
+<p>&#x7279;&#x6B8A;&#x6587;&#x4EF6;&#xFF1A;  </p>
+<ul>
+<li><code>/dev/stdin</code>&#xFF1A;&#x6807;&#x51C6;&#x8F93;&#x5165;  </li>
+<li><code>/dev/sdtout</code>&#xFF1A;&#x6807;&#x51C6;&#x8F93;&#x51FA;  </li>
+<li><code>/dev/stderr</code>&#xFF1A;&#x9519;&#x8BEF;&#x8F93;&#x51FA;  </li>
+<li><code>/dev/fd/N</code>&#xFF1A;&#x67D0;&#x7279;&#x5B9A;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#xFF0C;&#x5982;/dev/stdin&#x5C31;&#x76F8;&#x5F53;&#x4E8E;/dev/fd/0</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&apos;{printf &quot;%-15s %i\n&quot;,$1,$3 &gt; &quot;/dev/stderr&quot; }&apos;</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+<h4 id="&#x64CD;&#x4F5C;&#x7B26;"><a href="#&#x64CD;&#x4F5C;&#x7B26;" class="headerlink" title="&#x64CD;&#x4F5C;&#x7B26;"></a>&#x64CD;&#x4F5C;&#x7B26;</h4><ul>
+<li>&#x7B97;&#x672F;&#x64CD;&#x4F5C;&#x7B26;&#xFF1A;<strong>X</strong> <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>**</code>, <code>^</code> <strong>Y</strong>   (**&#x548C;^&#x540C;&#x4E3A;&#x6B21;&#x65B9;)  </li>
+<li>&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#x7B26;&#xFF1A;<strong>X</strong> <code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>**=</code>, <code>^=</code>, <strong>Y</strong>  <code>++</code>,<code>--</code>  </li>
+<li>&#x6BD4;&#x8F83;&#x64CD;&#x4F5C;&#x7B26;&#xFF1A;<strong>X</strong> <code>&gt;</code>,<code>&gt;=</code>,<code>&lt;</code>,<code>&lt;=</code>,<code>==</code>,<code>!=</code>,<code>~</code>,<code>!~</code> <strong>Y</strong>  </li>
+<li>&#x903B;&#x8F91;&#x5173;&#x7CFB;&#x7B26;&#xFF1A;<strong>X</strong> <code>&amp;&amp;</code>,<code>||</code> <strong>Y</strong>  </li>
+<li>&#x4E09;&#x5143;&#x8FD0;&#x7B97;&#x7B26;&#xFF1A;selector <code>?</code> if-true-exp <code>:</code> if-false-exp</li>
+</ul>
+<h4 id="&#x6761;&#x4EF6;&#x63A7;&#x5236;"><a href="#&#x6761;&#x4EF6;&#x63A7;&#x5236;" class="headerlink" title="&#x6761;&#x4EF6;&#x63A7;&#x5236;"></a>&#x6761;&#x4EF6;&#x63A7;&#x5236;</h4><ul>
+<li><strong>if-else&#xFF1A;</strong>  <code>if (condition) {then-body} else {[ else-body ]}</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&apos;{if ($1==&quot;root&quot;) print $1, &quot;Admin&quot;; else print $1, &quot;Common User&quot;}&apos;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&apos;{if ($1==&quot;root&quot;) printf &quot;%-15s: %s\n&quot;, $1,&quot;Admin&quot;; else printf &quot;%-15s: %s\n&quot;, $1, &quot;Common User&quot;}&apos;</span> /etc/passwd</span><br><span class="line">awk -F: -v sum=0 <span class="string">&apos;{if ($3&gt;=500) sum++}END{print sum}&apos;</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>while&#xFF1A;</strong><code>while (condition){statement1; statment2; ...}</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&apos;{i=1;while (i&lt;=3) {print $i;i++}}&apos;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&apos;{i=1;while (i&lt;=NF) { if (length($i)&gt;=4) {print $i}; i++ }}&apos;</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>do-while&#xFF1A;</strong><code>do {statement1, statement2, ...} while (condition)</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&apos;{i=1;do {print $i;i++}while(i&lt;=3)}&apos;</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>for&#xFF1A;</strong><br>  <code>for ( variable assignment; condition; iteration process) { statement1, statement2, ...}</code><br>  <code>for (i in array) {statement1, statement2, ...}</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&apos;{for(i=1;i&lt;=3;i++) print $i}&apos;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&apos;{for(i=1;i&lt;=NF;i++) { if (length($i)&gt;=4) {print $i}}}&apos;</span> /etc/passwd</span><br><span class="line">awk -F: <span class="string">&apos;$NF!~/^$/{BASH[$NF]++}END{for(A in BASH){printf &quot;%15s:%i\n&quot;,A,BASH[A]}}&apos;</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>case&#xFF1A;</strong><code>switch (expression) { case VALUE or /REGEXP/: statement1, statement2,... default: statement1, ...}</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&apos;BEGIN{foo=0;switch(foo){case 0:print &quot;yes&quot;;break; case 1:print &quot;no&quot;;break; default: print &quot;unknow&quot;}}&apos;</span></span><br></pre></td></tr></table></figure>
+<p><em>3.1.3&#x7248;&#x672C;&#x6DFB;&#x52A0;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x9700;&#x6DFB;&#x52A0;<code>--enable-switch</code>&#x9009;&#x9879;&#x624D;&#x6709;&#x6548;&#xFF0C;&#x9AD8;&#x7248;&#x672C;4+&#x5219;&#x65E0;&#x9700;&#x52A0;</em></p>
+<ul>
+<li><strong>next&#xFF1A;</strong><br>  &#x63D0;&#x524D;&#x7ED3;&#x675F;&#x5BF9;&#x672C;&#x884C;&#x6587;&#x672C;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x5E76;&#x63A5;&#x7740;&#x5904;&#x7406;&#x4E0B;&#x4E00;&#x884C;</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">&apos;{if($3%2==0) next;print $1,$3}&apos;</span> /etc/passwd    <span class="comment"># &#x663E;&#x793A;&#x5176;ID&#x53F7;&#x4E3A;&#x5947;&#x6570;&#x7684;&#x7528;&#x6237;</span></span><br></pre></td></tr></table></figure>
+<h4 id="&#x6570;&#x7EC4;"><a href="#&#x6570;&#x7EC4;" class="headerlink" title="&#x6570;&#x7EC4;"></a>&#x6570;&#x7EC4;</h4><p><code>array[index]</code>  </p>
+<p>index&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EFB;&#x610F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5F53;&#x67D0;&#x6570;&#x636E;&#x7EC4;&#x5143;&#x7D20;&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#xFF0C;&#x8981;&#x5F15;&#x7528;&#x5176;&#x65F6;&#xFF0C;awk&#x4F1A;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x6B64;&#x5143;&#x7D20;&#x5E76;&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x7A7A;&#x4E32;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x8981;&#x5224;&#x65AD;&#x67D0;&#x6570;&#x636E;&#x7EC4;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x5143;&#x7D20;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;index in array&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<ul>
+<li>&#x904D;&#x5386;&#xFF1A;<code>for (var in array) { statement1, ... }</code></li>
+<li>&#x5220;&#x9664;&#x6570;&#x7EC4;&#x53D8;&#x91CF;&#xFF1A;<code>delete  array[index]</code>  </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -ant | awk <span class="string">&apos;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&apos;</span>      <span class="comment"># &#x6BCF;&#x51FA;&#x73B0;&#x4E00;&#x88AB;/^tcp/&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#xFF0C;&#x6570;&#x7EC4;S[$NF]&#x5C31;&#x52A0;1&#xFF0C;NF&#x4E3A;&#x5F53;&#x524D;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x6B64;&#x5904;&#x7528;&#x5176;&#x503C;&#x505A;&#x4E3A;&#x6570;&#x7EC4;S&#x7684;&#x5143;&#x7D20;&#x7D22;&#x5F15;&#xFF1B;</span></span><br><span class="line"></span><br><span class="line">awk <span class="string">&apos;{counts[$1]++}; END {for(url in counts) print counts[url], url}&apos;</span> /var/<span class="built_in">log</span>/httpd/access_<span class="built_in">log</span>     <span class="comment">#&#x7EDF;&#x8BA1;&#x67D0;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;IP&#x5730;&#x7684;&#x8BBF;&#x95EE;&#x91CF;</span></span><br></pre></td></tr></table></figure>
+<h4 id="&#x5185;&#x7F6E;&#x51FD;&#x6570;"><a href="#&#x5185;&#x7F6E;&#x51FD;&#x6570;" class="headerlink" title="&#x5185;&#x7F6E;&#x51FD;&#x6570;"></a>&#x5185;&#x7F6E;&#x51FD;&#x6570;</h4><p><code>rand()</code>&#xFF1A;&#x968F;&#x673A;&#x6570;&#xFF0C;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;0&#xFF0C;&#x5C0F;&#x4E8E;1<br><code>gsub(str1, str2, str)</code>&#xFF1A;&#x5728;str&#x4E2D;&#x5C06;str1&#x5168;&#x90E8;&#x66FF;&#x6362;&#x4E3A;str2&#xFF0C;&#x652F;&#x6301;&#x914D;&#x7B26;&#x67E5;&#x627E;<br><code>index(str1, str2 )</code>&#xFF1A;&#x5728;str1&#x5185;&#x627E;&#x9996;&#x6B21;&#x51FA;&#x73B0;str2&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6CA1;&#x6709;&#x5219;&#x8FD4;&#x56DE;0<br><code>split(str,array[,fieldsep[,seps]])</code>&#xFF1A;&#x5C06;str&#x4EE5;fieldsep&#x4E3A;&#x5206;&#x9694;&#x7B26;&#x5206;&#x9694;&#xFF0C;&#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x81F3;array&#x6570;&#x7EC4;&#x4E2D;&#xFF0C;&#x4E0B;&#x6807;&#x4E3A;&#x4ECE;0&#x5F00;&#x59CB;<br><code>length([str])</code>&#xFF1A;&#x8FD4;&#x56DE;string&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5B57;&#x7B26;&#x7684;&#x4E2A;&#x6570;<br><code>substr(str, start [, length])</code>&#xFF1A;&#x622A;&#x53D6;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4ECE;start&#x5F00;&#x59CB;&#xFF0C;&#x53D6;length&#x4E2A;&#xFF0C;start&#x4ECE;1&#x5F00;&#x59CB;&#x8BA1;&#x6570;<br><code>system(command)</code>&#xFF1A;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x547D;&#x4EE4;&#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x81F3;awk<br><code>systime()</code>&#xFF1A;&#x7CFB;&#x7EDF;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x6233;<br><code>mktime(&quot;YYYY MM DD HH MM SS[ DST]&quot;)</code>&#xFF1A;&#x6307;&#x5B9A;&#x65E5;&#x671F;&#x65F6;&#x95F4;&#x6233;&#xFF0C;&#x6CE8;&#x610F;&#x52A0;&#x5F15;&#x53F7;<br><code>strftime(format [,timestamp [,utc-flage]])</code>&#xFF1A;&#x751F;&#x6210;&#x6307;&#x5B9A;&#x683C;&#x5F0F;&#x65F6;&#x95F4;&#xFF0C;&#x5177;&#x4F53;&#x683C;&#x5F0F;&#x53C2;&#x8003;date&#x547D;&#x4EE4;<br><code>tolower(str)</code>&#xFF1A;&#x8F6C;&#x4E3A;&#x5C0F;&#x5199;<br><code>toupper(str)</code>&#xFF1A;&#x8F6C;&#x4E3A;&#x5927;&#x5199;  </p>
+<p><em>&#x66F4;&#x591A;&#x51FD;&#x6570;&#x5185;&#x5BB9;&#x67E5;&#x770B;man&#x5E2E;&#x52A9;</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;this is a test&quot;;split(str,A,&quot; &quot;);print length(A);for(i in A){print i,A[i];}}&apos;</span></span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;str std str2&quot;;gsub(&quot;str&quot;,&quot;STR&quot;,str);print str}&apos;</span> </span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;this is a test&quot;;b=match(str,&quot;is&quot;);print b}&apos;</span></span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;this is a test2016&quot;;print substr(str,4,6)}&apos;</span> </span><br><span class="line">netstat -ant | awk <span class="string">&apos;/:80\&gt;/{split($5,clients,&quot;:&quot;);IP[clients[1]]++}END{for(i in IP){print IP[i],i}}&apos;</span> | sort -rn | head -50</span><br><span class="line">awk <span class="string">&apos;BEGIN{print mktime(&quot;2016 06 21 11 22 33&quot;)}&apos;</span></span><br><span class="line">awk <span class="string">&apos;BEGIN{print strftime(&quot;%Y-%m-%d %H:%M:%S&quot;,systime())}&apos;</span></span><br><span class="line">awk <span class="string">&apos;{system(&quot;mkdir &quot; ($NF-1)}&apos;</span> filename    <span class="comment"># &#x5012;&#x6570;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x6BB5;&#x505A;&#x4E3A;&#x76EE;&#x5F55;&#x540D;&#x521B;&#x5EFA;&#x76EE;&#x5F55;</span></span><br></pre></td></tr></table></figure>
+<p>&#x4EE5;&#x4E0A;&#x5185;&#x5BB9;&#x53C2;&#x8003;&#x81EA;&#x9A6C;&#x54E5;&#x7B14;&#x8BB0;&#xFF0C;&#x4EE5;&#x5907;&#x65E5;&#x540E;&#x67E5;&#x770B;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/awk/" rel="tag">#awk</a>
+          
+            <a href="/tags/文本处理/" rel="tag">#文本处理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/12/Linux用户及权限介绍/" rel="next" title="Linux用户及权限介绍">
+                <i class="fa fa-chevron-left"></i> Linux用户及权限介绍
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/25/Linux特殊权限及ACL简介/" rel="prev" title="Linux特殊权限及ACL简介">
+                Linux特殊权限及ACL简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/21/Linux文本处理三剑客之awk/"
+           data-title="Linux文本处理三剑客之awk" data-url="http://liu2lin600.github.io/2016/06/21/Linux文本处理三剑客之awk/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-内置变量"><span class="nav-number">3.1.</span> <span class="nav-text">0.内置变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-OPTION"><span class="nav-number">3.2.</span> <span class="nav-text">1.OPTION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-PATTERN"><span class="nav-number">3.3.</span> <span class="nav-text">2.PATTERN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-action"><span class="nav-number">3.4.</span> <span class="nav-text">3.action</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#print"><span class="nav-number">3.4.1.</span> <span class="nav-text">print</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#printf"><span class="nav-number">3.4.2.</span> <span class="nav-text">printf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出重定向"><span class="nav-number">3.4.3.</span> <span class="nav-text">输出重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作符"><span class="nav-number">3.4.4.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件控制"><span class="nav-number">3.4.5.</span> <span class="nav-text">条件控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">3.4.6.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内置函数"><span class="nav-number">3.4.7.</span> <span class="nav-text">内置函数</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

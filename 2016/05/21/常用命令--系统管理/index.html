@@ -1,0 +1,1152 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="命令," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5BF9;&amp;#x4E8E;&amp;#x7CFB;&amp;#x7EDF;&amp;#x76F8;&amp;#x5173;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x547D;&amp;#x4EE4;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令--系统管理">
+<meta property="og:url" content="http://liu2lin600.github.io/2016/05/21/常用命令--系统管理/index.html">
+<meta property="og:site_name" content="600's life">
+<meta property="og:description" content="&amp;#x5BF9;&amp;#x4E8E;&amp;#x7CFB;&amp;#x7EDF;&amp;#x76F8;&amp;#x5173;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x547D;&amp;#x4EE4;">
+<meta property="og:updated_time" content="2016-09-16T06:50:04.493Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用命令--系统管理">
+<meta name="twitter:description" content="&amp;#x5BF9;&amp;#x4E8E;&amp;#x7CFB;&amp;#x7EDF;&amp;#x76F8;&amp;#x5173;&amp;#x7684;&amp;#x64CD;&amp;#x4F5C;&amp;#x547D;&amp;#x4EE4;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 常用命令--系统管理 | 600's life </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">600's life</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Record My Linux's Travel</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用命令--系统管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T20:01:49+08:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/21/常用命令--系统管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/21/常用命令--系统管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读次数
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x5BF9;&#x4E8E;&#x7CFB;&#x7EDF;&#x76F8;&#x5173;&#x7684;&#x64CD;&#x4F5C;&#x547D;&#x4EE4;<br><a id="more"></a></p>
+<h4 id="date"><a href="#date" class="headerlink" title="date"></a>date</h4><p><code>date [OPTION] [+FORMAT]</code><br>&#x663E;&#x793A;&#x6216;&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x65E5;&#x671F;&#x548C;&#x65F6;&#x95F4;</p>
+<blockquote>
+<p><code>-d STR</code>&#xFF1A;&#x663E;&#x793A;&#x5B57;&#x7B26;&#x4E32;&#x6240;&#x6307;&#x7684;&#x65E5;&#x671F;&#x4E0E;&#x65F6;&#x95F4;&#xFF0C;&#x5982;&#x201D;+1 day&#x201D;,&#x2019;-2 month&#x2019;&#x7B49;<br><code>-s STR</code>&#xFF1A;&#x8BBE;&#x7F6E;&#x65E5;&#x671F;&#x548C;&#x65F6;&#x95F4;  </p>
+</blockquote>
+<p>&#x65F6;&#x671F;&#x663E;&#x793A;&#x683C;&#x5F0F;&#x6709;&#xFF1A;</p>
+<ul>
+<li><code>%H</code>&#xFF1A;&#x5C0F;&#x65F6;&#xFF0C;24&#x5C0F;&#x65F6;&#x5236;&#xFF08;00~23&#xFF09; </li>
+<li><code>%I</code>&#xFF1A;&#x5C0F;&#x65F6;&#xFF0C;12&#x5C0F;&#x65F6;&#x5236;&#xFF08;01~12&#xFF09; </li>
+<li><code>%k</code>&#xFF1A;&#x5C0F;&#x65F6;&#xFF0C;24&#x5C0F;&#x65F6;&#x5236;&#xFF08;0~23&#xFF09; </li>
+<li><code>%l</code>&#xFF1A;&#x5C0F;&#x65F6;&#xFF0C;12&#x5C0F;&#x65F6;&#x5236;&#xFF08;1~12&#xFF09; </li>
+<li><code>%M</code>&#xFF1A;&#x5206;&#x949F;&#xFF08;00~59&#xFF09; </li>
+<li><code>%p</code>&#xFF1A;&#x663E;&#x793A;&#x51FA;AM&#x6216;PM </li>
+<li><code>%r</code>&#xFF1A;&#x663E;&#x793A;&#x65F6;&#x95F4;&#xFF0C;12&#x5C0F;&#x65F6;&#x5236;&#xFF08;hh:mm:ss %p&#xFF09; </li>
+<li><code>%s</code>&#xFF1A;&#x4ECE;1970&#x5E74;1&#x6708;1&#x65E5;00:00:00&#x5230;&#x76EE;&#x524D;&#x7ECF;&#x5386;&#x7684;&#x79D2;&#x6570; </li>
+<li><code>%S</code>&#xFF1A;&#x663E;&#x793A;&#x79D2;&#xFF08;00~59&#xFF09; </li>
+<li><code>%T</code>&#xFF1A;&#x663E;&#x793A;&#x65F6;&#x95F4;&#xFF0C;24&#x5C0F;&#x65F6;&#x5236;&#xFF08;hh:mm:ss&#xFF09; </li>
+<li><code>%X</code>&#xFF1A;&#x663E;&#x793A;&#x65F6;&#x95F4;&#x7684;&#x683C;&#x5F0F;&#xFF08;%H:%M:%S&#xFF09; </li>
+<li><code>%Z</code>&#xFF1A;&#x663E;&#x793A;&#x65F6;&#x533A;&#xFF0C;&#x65E5;&#x671F;&#x57DF;&#xFF08;CST&#xFF09; </li>
+<li><code>%a</code>&#xFF1A;&#x661F;&#x671F;&#x7684;&#x7B80;&#x79F0;&#xFF08;Sun~Sat&#xFF09; </li>
+<li><code>%A</code>&#xFF1A;&#x661F;&#x671F;&#x7684;&#x5168;&#x79F0;&#xFF08;Sunday~Saturday&#xFF09; </li>
+<li><code>%h</code>,<code>%b</code>&#xFF1A;&#x6708;&#x7684;&#x7B80;&#x79F0;&#xFF08;Jan~Dec&#xFF09; </li>
+<li><code>%B</code>&#xFF1A;&#x6708;&#x7684;&#x5168;&#x79F0;&#xFF08;January~December&#xFF09; </li>
+<li><code>%c</code>&#xFF1A;&#x65E5;&#x671F;&#x548C;&#x65F6;&#x95F4;&#xFF08;Tue Nov 20 14:12:58 2012&#xFF09; </li>
+<li><code>%d</code>&#xFF1A;&#x4E00;&#x4E2A;&#x6708;&#x7684;&#x7B2C;&#x51E0;&#x5929;&#xFF08;01~31&#xFF09; </li>
+<li><code>%x</code>,<code>%D</code> &#x65E5;&#x671F;&#xFF08;mm/dd/yy&#xFF09; </li>
+<li><code>%j</code>&#xFF1A;&#x4E00;&#x5E74;&#x7684;&#x7B2C;&#x51E0;&#x5929;&#xFF08;001~366&#xFF09; </li>
+<li><code>%m</code>&#xFF1A;&#x6708;&#x4EFD;&#xFF08;01~12&#xFF09; </li>
+<li><code>%w</code>&#xFF1A;&#x4E00;&#x4E2A;&#x661F;&#x671F;&#x7684;&#x7B2C;&#x51E0;&#x5929;&#xFF08;0&#x4EE3;&#x8868;&#x661F;&#x671F;&#x5929;&#xFF09; </li>
+<li><code>%W</code>&#xFF1A;&#x4E00;&#x5E74;&#x7684;&#x7B2C;&#x51E0;&#x4E2A;&#x661F;&#x671F;&#xFF08;00~53&#xFF0C;&#x661F;&#x671F;&#x4E00;&#x4E3A;&#x7B2C;&#x4E00;&#x5929;&#xFF09; </li>
+<li><code>%y</code>&#xFF1A;&#x5E74;&#x7684;&#x6700;&#x540E;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#xFF08;1999&#x5219;&#x662F;99&#xFF09; </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">date +%F                                <span class="comment"># &#x663E;&#x793A;&#x5F53;&#x524D;&#x5E74;&#x6708;&#x65E5;</span></span><br><span class="line">date <span class="_">-d</span> <span class="string">&quot;-2 day&quot;</span> +<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>   <span class="comment"># &#x67E5;&#x770B;2&#x5929;&#x524D;&#x7684;&#x65E5;&#x671F;</span></span><br><span class="line">date <span class="_">-s</span> 20160613                        <span class="comment"># &#x8BBE;&#x7F6E;&#x6210;20160613&#xFF0C;&#x540C;&#x65F6;&#x65F6;&#x95F4;&#x8BBE;&#x4E3A; 00:00:00 </span></span><br><span class="line">date <span class="_">-s</span> 05:41:01                        <span class="comment"># &#x8BBE;&#x7F6E;&#x5177;&#x4F53;&#x65F6;&#x95F4;&#xFF0C;&#x4E0D;&#x4F1A;&#x5BF9;&#x65E5;&#x671F;&#x505A;&#x66F4;&#x6539; </span></span><br><span class="line">date <span class="_">-s</span> <span class="string">&quot;01:01:01 2016-05-23&quot;</span>           <span class="comment"># &#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x5168;&#x90E8;&#x65F6;&#x95F4; </span></span><br><span class="line">date <span class="_">-s</span> <span class="string">&quot;01:01:01 20160523&quot;</span>             <span class="comment">#  </span></span><br><span class="line">date <span class="_">-s</span> <span class="string">&quot;2016-05-23 01:01:01&quot;</span>           <span class="comment">#  </span></span><br><span class="line">date <span class="_">-s</span> <span class="string">&quot;20160523 01:01:01&quot;</span>             <span class="comment"># </span></span><br><span class="line">date <span class="_">-d</span> <span class="string">&apos;20160512&apos;</span> +%s                  <span class="comment"># &#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x65E5;&#x671F;&#x65F6;&#x95F4;&#x6233;</span></span><br></pre></td></tr></table></figure>
+<h4 id="clock"><a href="#clock" class="headerlink" title="clock"></a>clock</h4><p><code>clock [functions] [options]</code><br>&#x786C;&#x4EF6;&#x65F6;&#x95F4;&#xFF0C;&#x540C;<code>hwclock</code></p>
+<blockquote>
+<p><code>-s</code>&#xFF1A;&#x4EE5;&#x786C;&#x4EF6;&#x65F6;&#x949F;&#x4E3A;&#x51C6;&#xFF0C;&#x6821;&#x6B63;&#x7CFB;&#x7EDF;&#x65F6;&#x949F;<br><code>-w</code>&#xFF1A;&#x4EE5;&#x7CFB;&#x7EDF;&#x65F6;&#x949F;&#x4E3A;&#x51C6;&#xFF0C;&#x6821;&#x6B63;&#x786C;&#x4EF6;&#x65F6;&#x949F;</p>
+</blockquote>
+<h4 id="at"><a href="#at" class="headerlink" title="at"></a>at</h4><p><code>at [OPTION] TIME</code><br>&#x5728;&#x672A;&#x6765;&#x67D0;&#x65F6;&#x523B;&#x4E00;&#x6B21;&#x6027;&#x6267;&#x884C;&#x67D0;&#x4E9B;&#x4EFB;&#x52A1;</p>
+<blockquote>
+<p><strong>OPTION&#xFF1A;</strong><br><code>-l</code>&#xFF1A;&#x67E5;&#x770B;&#x4F5C;&#x4E1A;&#x961F;&#x5217;&#xFF0C;&#x7B49;&#x540C;&#x4E8E;<code>atq</code>&#x547D;&#x4EE4;<br><code>-f</code> FILE&#xFF1A;&#x4ECE;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;&#x4F5C;&#x4E1A;&#xFF0C;&#x4E0D;&#x7528;&#x4EA4;&#x4E92;&#x8F93;&#x5165;<br><code>-d</code>&#xFF1A;&#x5220;&#x9664;&#x6307;&#x5B9A;&#x4F5C;&#x4E1A;&#xFF0C;&#x7B49;&#x540C;&#x4E8E;<code>atrm</code>&#x547D;&#x4EE4;<br><code>-c</code>&#xFF1A;&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x4F5C;&#x4E1A;&#x5185;&#x5BB9;<br><code>-q</code> QUEUE&#xFF1A;&#x6307;&#x660E;&#x961F;&#x5217;<br><em>&#x4F5C;&#x4E1A;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x4EE5;&#x90AE;&#x4EF6;&#x53D1;&#x9001;&#x7ED9;&#x63D0;&#x4EA4;&#x4F5C;&#x4E1A;&#x7684;&#x7528;&#x6237;</em>  </p>
+<p><strong>TIME&#xFF1A;</strong><br>HH:MM[YYYY-mm-dd]<br>noon,midnight,teatime,tomorrow<br>now+#UNIT&#xFF1A;now+3min (hours,days,weeks)</p>
+</blockquote>
+<p><strong>at&#x4F5C;&#x4E1A;&#x6709;&#x961F;&#x5217;&#xFF0C;&#x7528;&#x5355;&#x5B57;&#x6BCD;&#x8868;&#x793A;&#xFF0C;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;a&#x961F;&#x5217;</strong></p>
+<h4 id="mail"><a href="#mail" class="headerlink" title="mail"></a>mail</h4><p><code>mail [OPTION] TO_ADDR</code><br>&#x90AE;&#x4EF6;&#x53D1;&#x9001;&#x63A5;&#x6536;&#xFF0C;&#x5B9E;&#x9645;&#x4E3A;mailx&#x7A0B;&#x5E8F;</p>
+<blockquote>
+<p><code>-s</code>&#xFF1A;&#x6307;&#x5B9A;&#x4E3B;&#x9898;<br><code>-f</code>&#xFF1A;&#x8BFB;&#x53D6;&#x6307;&#x5B9A;&#x90AE;&#x4EF6;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x90AE;&#x4EF6;    </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mail <span class="_">-s</span> <span class="string">&apos;xxxx&apos;</span> admin@liu.com            <span class="comment"># &#x56DE;&#x8F66;&#x540E;&#x8F93;&#x5165;&#x5185;&#x5BB9;&#xFF0C;ctrl+d&#x7ED3;&#x675F;&#x5E76;&#x53D1;&#x9001;   </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&apos;xxx&apos;</span> | mail admin@liu.com </span><br><span class="line">mail <span class="_">-s</span> <span class="string">&apos;xxx&apos;</span> admin@liu.com &lt; file.txt</span><br></pre></td></tr></table></figure>
+<h4 id="read"><a href="#read" class="headerlink" title="read"></a>read</h4><p><code>read [OPT] VAR</code><br>&#x952E;&#x76D8;&#x8BFB;&#x53D6;&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x5728;shell&#x811A;&#x672C;&#x4E2D;&#x4E0E;&#x7528;&#x6237;&#x8FDB;&#x884C;&#x4EA4;&#x4E92;&#x7684;&#x573A;&#x5408;&#xFF0C;&#x4E00;&#x6B21;&#x53EF;&#x8BFB;&#x53D6;&#x591A;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x53D8;&#x91CF;&#x548C;&#x8F93;&#x5165;&#x7684;&#x503C;&#x90FD;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x7A7A;&#x683C;&#x9694;&#x5F00;&#xFF0C;shell&#x5185;&#x90E8;&#x547D;&#x4EE4;</p>
+<blockquote>
+<p>-p&#xFF1A;&#x8BFB;&#x53D6;&#x503C;&#x65F6;&#x7684;&#x63D0;&#x793A;&#x4FE1;&#x606F;<br>-t&#xFF1A;&#x8BFB;&#x53D6;&#x7B49;&#x5F85;&#x65F6;&#x957F;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -p <span class="string">&apos;Input Your Name : &apos;</span> NAME   <span class="comment"># &#x8F93;&#x5165;&#x5185;&#x5BB9;&#x8D4B;&#x503C;&#x7ED9;&#x53D8;&#x91CF;NAME</span></span><br></pre></td></tr></table></figure>
+<h4 id="declare"><a href="#declare" class="headerlink" title="declare"></a>declare</h4><p><code>declare [OPT] VAR</code><br>&#x58F0;&#x660E;&#x548C;&#x663E;&#x793A;&#x5DF2;&#x5B58;&#x5728;&#x7684;shell&#x53D8;&#x91CF;&#xFF0C;&#x4E0D;&#x52A0;&#x53C2;&#x6570;&#x5219;&#x663E;&#x793A;</p>
+<blockquote>
+<p><code>-i</code>&#xFF1A;&#x5B9A;&#x4E49;&#x6574;&#x6570;<br><code>-x</code>&#xFF1A;&#x5B9A;&#x4E49;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br><code>-r</code>&#xFF1A;&#x5B9A;&#x4E49;&#x53EA;&#x8BFB;&#x53D8;&#x91CF;<br><code>-a</code>&#xFF1A;&#x5B9A;&#x4E49;&#x6570;&#x7EC4;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> -x          <span class="comment"># &#x663E;&#x793A;&#x73AF;&#x5883;&#x53D8;&#x91CF;</span></span><br><span class="line"><span class="built_in">declare</span> -i NUM=600  <span class="comment"># &#x5B9A;&#x4E49;&#x6574;&#x6570;</span></span><br></pre></td></tr></table></figure>
+<h4 id="env"><a href="#env" class="headerlink" title="env"></a>env</h4><p>&#x663E;&#x793A;&#x7CFB;&#x7EDF;&#x5DF2;&#x5B58;&#x5728;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C;&#x529F;&#x80FD;&#x540C;<code>declare -x</code>&#x3001;<code>printenv</code>&#x3001;<code>export</code> </p>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><p><code>set [+|-OPTION] [ARGS]</code><br>&#x663E;&#x793A;&#x7CFB;&#x7EDF;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;shell&#x53D8;&#x91CF;&#xFF0C;&#x8BBE;&#x7F6E;shell&#x53D8;&#x91CF;&#x7684;&#x65B0;&#x53D8;&#x91CF;&#x503C;&#x53CA;&#x4FEE;&#x6539;shell&#x7279;&#x6027;&#x65F6;</p>
+<blockquote>
+<p><code>-a</code>&#xFF1A;&#x6807;&#x793A;&#x5DF2;&#x4FEE;&#x6539;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4EE5;&#x4F9B;&#x8F93;&#x51FA;&#x81F3;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br><code>-b</code>&#xFF1A;&#x4F7F;&#x88AB;&#x4E2D;&#x6B62;&#x7684;&#x540E;&#x53F0;&#x7A0B;&#x5E8F;&#x7ACB;&#x523B;&#x56DE;&#x62A5;&#x6267;&#x884C;&#x72B6;&#x6001;<br><code>-C</code>&#xFF1A;&#x8F6C;&#x5411;&#x6240;&#x4EA7;&#x751F;&#x7684;&#x6587;&#x4EF6;&#x65E0;&#x6CD5;&#x8986;&#x76D6;&#x5DF2;&#x5B58;&#x5728;&#x7684;&#x6587;&#x4EF6;<br><code>-d</code>&#xFF1A;Shell&#x9884;&#x8BBE;&#x4F1A;&#x7528;&#x6742;&#x51D1;&#x8868;&#x8BB0;&#x5FC6;&#x4F7F;&#x7528;&#x8FC7;&#x7684;&#x6307;&#x4EE4;&#xFF0C;&#x4EE5;&#x52A0;&#x901F;&#x6307;&#x4EE4;&#x7684;&#x6267;&#x884C;&#x3002;&#x4F7F;&#x7528;-d&#x53C2;&#x6570;&#x53EF;&#x53D6;&#x6D88;<br><code>-e</code>&#xFF1A;&#x82E5;&#x6307;&#x4EE4;&#x4F20;&#x56DE;&#x503C;&#x4E0D;&#x7B49;&#x4E8E;0&#xFF0C;&#x5219;&#x7ACB;&#x5373;&#x9000;&#x51FA;shell<br><code>-f</code>&#xFF1A;&#x53D6;&#x6D88;&#x4F7F;&#x7528;&#x901A;&#x914D;&#x7B26;<br><code>-h</code>&#xFF1A;&#x81EA;&#x52A8;&#x8BB0;&#x5F55;&#x51FD;&#x6570;&#x7684;&#x6240;&#x5728;&#x4F4D;&#x7F6E;<br><code>-H Shell</code>&#xFF1A;&#x53EF;&#x5229;&#x7528;&#x201D;!&#x201D;&#x52A0;&lt;&#x6307;&#x4EE4;&#x7F16;&#x53F7;&gt;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x6267;&#x884C;history&#x4E2D;&#x8BB0;&#x5F55;&#x7684;&#x6307;&#x4EE4;<br><code>-k</code>&#xFF1A;&#x6307;&#x4EE4;&#x6240;&#x7ED9;&#x7684;&#x53C2;&#x6570;&#x90FD;&#x4F1A;&#x88AB;&#x89C6;&#x4E3A;&#x6B64;&#x6307;&#x4EE4;&#x7684;&#x73AF;&#x5883;&#x53D8;&#x91CF;<br><code>-l</code>&#xFF1A;&#x8BB0;&#x5F55;for&#x5FAA;&#x73AF;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x79F0;<br><code>-m</code>&#xFF1A;&#x4F7F;&#x7528;&#x76D1;&#x89C6;&#x6A21;&#x5F0F;<br><code>-n</code>&#xFF1A;&#x53EA;&#x8BFB;&#x53D6;&#x6307;&#x4EE4;&#xFF0C;&#x800C;&#x4E0D;&#x5B9E;&#x9645;&#x6267;&#x884C;<br><code>-p</code>&#xFF1A;&#x542F;&#x52A8;&#x4F18;&#x5148;&#x987A;&#x5E8F;&#x6A21;&#x5F0F;<br><code>-P</code>&#xFF1A;&#x542F;&#x52A8;-P&#x53C2;&#x6570;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x6307;&#x4EE4;&#x65F6;&#xFF0C;&#x4F1A;&#x4EE5;&#x5B9E;&#x9645;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x76EE;&#x5F55;&#x6765;&#x53D6;&#x4EE3;&#x7B26;&#x53F7;&#x8FDE;&#x63A5;<br><code>-t</code>&#xFF1A;&#x6267;&#x884C;&#x5B8C;&#x968F;&#x540E;&#x7684;&#x6307;&#x4EE4;&#xFF0C;&#x5373;&#x9000;&#x51FA;shell<br><code>-u</code>&#xFF1A;&#x5F53;&#x6267;&#x884C;&#x65F6;&#x4F7F;&#x7528;&#x5230;&#x672A;&#x5B9A;&#x4E49;&#x8FC7;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5219;&#x663E;&#x793A;&#x9519;&#x8BEF;&#x4FE1;&#x606F;<br><code>-v</code>&#xFF1A;&#x663E;&#x793A;shell&#x6240;&#x8BFB;&#x53D6;&#x7684;&#x8F93;&#x5165;&#x503C;<br><code>-x</code>&#xFF1A;&#x6267;&#x884C;&#x6307;&#x4EE4;&#x540E;&#xFF0C;&#x4F1A;&#x5148;&#x663E;&#x793A;&#x8BE5;&#x6307;&#x4EE4;&#x53CA;&#x6240;&#x4E0B;&#x7684;&#x53C2;&#x6570;</p>
+<p><code>-o opti-name</code>&#xFF1A;&#x9009;&#x9879;&#x540D;&#x53EF;&#x4EE5;&#x662F;&#x4E0B;&#x5217;&#x4E4B;&#x4E00;: </p>
+<blockquote>
+<p><code>allexport</code>&#xFF1A;&#x540C;-a&#x9009;&#x9879;<br><code>braceexpand</code>&#xFF1A;shell&#x6267;&#x884C;&#x82B1;&#x62EC;&#x53F7;&#x6269;&#x5C55;,&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x8D77;&#x4F5C;&#x7528;<br><code>emacs</code>&#xFF1A;&#x4F7F;&#x7528;emacs&#x98CE;&#x683C;&#x547D;&#x4EE4;&#x884C;&#x7F16;&#x8F91;&#x63A5;&#x53E3;.&#x9664;&#x975E;shell&#x4EE5;-noline-editing&#x9009;&#x9879;&#x542F;&#x52A8;&#xFF1A;shell&#x4EA4;&#x4E92;&#x65F6;,&#x901A;&#x8FC7;&#x9ED8;&#x8BA4;&#x542F;&#x52A8;&#x8BE5;&#x9009;&#x9879;<br><code>errexit</code>&#xFF1A;&#x540C;-e&#x9009;&#x9879;<br><code>histexpand</code>&#xFF1A;&#x540C;-H&#x9009;&#x9879;<br><code>ignoreeof</code>&#xFF1A;&#x5176;&#x7ED3;&#x679C;&#x662F;&#x597D;&#x50CF;shell&#x547D;&#x4EE4;IGNOREEOF=10&#x88AB;&#x6267;&#x884C;<br><code>interactive</code>&#xFF1A;&#x5141;&#x8BB8;&#x5355;&#x8BCD;&#x524D;&#x5E26;#&#x53F7;,&#x4EE5;&#x4F7F;&#x5F97;&#x5728;&#x4EA4;&#x4E92;shell&#x4E2D;&#x5FFD;&#x7565;&#x547D;&#x4EE4;&#x884C;&#x7684;&#x5168;&#x90E8;&#x5B57;&#x7B26;<br><code>monitor</code>&#xFF1A;&#x540C;-m&#x9009;&#x9879;<br><code>noclobber</code>&#xFF1A;&#x540C;-C&#x9009;&#x9879;<br><code>noexec</code>&#xFF1A; &#x540C;-n&#x9009;&#x9879;<br><code>noglob</code>&#xFF1A;&#x540C;-f&#x9009;&#x9879;<br><code>nohash</code>&#xFF1A;&#x540C;-d&#x9009;&#x9879;<br><code>notify</code>&#xFF1A;&#x540C;-b&#x9009;&#x9879;<br><code>nounset</code>&#xFF1A;&#x540C;-u&#x9009;&#x9879;<br><code>physical</code>&#xFF1A;&#x540C;-p&#x9009;&#x9879;<br><code>posix</code>&#xFF1A;&#x6539;&#x53D8;BASH&#x5C5E;&#x6027;&#x4EE5;&#x5339;&#x914D;&#x6807;&#x51C6;,&#x9ED8;&#x8BA4;&#x64CD;&#x4F5C;&#x4E0D;&#x540C;&#x4E8E;POSIX1003.2&#x6807;&#x51C6;<br><code>verbose</code>&#xFF1A;&#x540C;-v&#x9009;&#x9879;<br><code>vi</code>&#xFF1A;&#x4F7F;&#x7528;vi&#x98CE;&#x683C;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x7F16;&#x8F91;&#x5668;<br><code>XTRACE</code>&#xFF1A;&#x540C;-x&#x9009;&#x9879;,&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7ED9;&#x51FA;&#x9009;&#x9879;&#x540D;,&#x663E;&#x793A;&#x5F53;&#x524D;&#x9009;&#x9879;&#x503C; </p>
+</blockquote>
+</blockquote>
+<p><strong>&#x5728;set&#x547D;&#x4EE4;&#x4E2D;&#xFF0C;&#x9009;&#x9879;&#x524D;&#x9762;&#x8DDF;&#x7740;&#x53F7;&#x2019;-&#x2018;&#x793A;&#x5F00;&#x542F;&#x8FD9;&#x4E2A;&#x9009;&#x9879;&#xFF0C;&#x2019;+&#x2019;&#x8868;&#x793A;&#x5173;&#x95ED;&#x8FD9;&#x4E2A;&#x9009;&#x9879;</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> {-|+}o          <span class="comment"># &#x663E;&#x793A;shell&#x8BBE;&#x7F6E;&#x5217;&#x8868;&#xFF0C;&apos;+&apos;&#x548C;&apos;-&apos;&#x663E;&#x793A;&#x5F62;&#x5F0F;&#x4E0D;&#x540C;&#x800C;&#x5DF2;</span></span><br></pre></td></tr></table></figure>
+<p><em>&#x66F4;&#x591A;&#x5173;&#x4E8E;set&#x5185;&#x5BB9;&#x65E5;&#x540E;&#x518D;&#x6DFB;&#x52A0;</em></p>
+<h4 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h4><p><code>echo [SHORT-OPTION] [STRING]</code><br>&#x6253;&#x5370;shell&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x6216;&#x8005;&#x76F4;&#x63A5;&#x8F93;&#x51FA;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x9ED8;&#x8BA4;&#x5728;&#x6700;&#x540E;&#x52A0;&#x4E0A;&#x6362;&#x884C;&#x7B26;</p>
+<blockquote>
+<p><code>-n</code>&#xFF1A;&#x8F93;&#x51FA;&#x6700;&#x540E;&#x4E0D;&#x52A0;&#x6362;&#x884C;&#x7B26;<br><code>-e</code>&#xFF1A;&#x6FC0;&#x6D3B;&#x8F6C;&#x4E49;&#x5B57;&#x7B26;&#xFF0C;&#x5982;&#x4E0B;  </p>
+<blockquote>
+<p><code>\a</code>&#xFF1A;&#x53D1;&#x51FA;&#x8B66;&#x544A;&#x58F0;<br><code>\b</code>&#xFF1A;&#x9000;&#x683C;&#x952E;<br><code>\c</code>&#xFF1A;&#x6700;&#x540E;&#x4E0D;&#x52A0;&#x4E0A;&#x6362;&#x884C;&#x7B26;&#x53F7;<br><code>\n</code>&#xFF1A;&#x6362;&#x884C;&#x4E14;&#x5149;&#x6807;&#x79FB;&#x81F3;&#x884C;&#x9996;<br><code>\r</code>&#xFF1A;&#x5149;&#x6807;&#x79FB;&#x81F3;&#x884C;&#x9996;&#xFF0C;&#x4F46;&#x4E0D;&#x6362;&#x884C;<br><code>\t</code>&#xFF1A;&#x63D2;&#x5165;tab<br><code>\\</code>&#xFF1A;&#x63D2;&#x5165;\&#x5B57;&#x7B26;<br><code>\0nnn</code>&#xFF1A;&#x63D2;&#x5165;nnn&#xFF08;&#x516B;&#x8FDB;&#x5236;&#xFF09;&#x6240;&#x4EE3;&#x8868;&#x7684;ASCII&#x5B57;&#x7B26;<br><code>\xHH</code>&#xFF1A;&#x63D2;&#x5165;HH&#xFF08;&#x5341;&#x516D;&#x8FDB;&#x5236;&#xFF09;&#x6240;&#x4EE3;&#x8868;&#x7684;ASCII&#x5B57;&#x7B26;   </p>
+</blockquote>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="_">-e</span> <span class="string">&quot;\e[1;31mred\e[0m&quot;</span>     <span class="comment"># &#x8F93;&#x51FA;&#x7EA2;&#x8272;&#x5B57;&#xFF0C;&#x76F8;&#x5173;&#x989C;&#x8272;&#x8BBE;&#x7F6E;&#x5C06;&#x5728;&#x4EE5;&#x540E;&#x547D;&#x4EE4;&#x63D0;&#x793A;&#x7B26;&#x8BBE;&#x7F6E;&#x4E2D;&#x8BE6;&#x89E3;</span></span><br></pre></td></tr></table></figure>
+<h4 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h4><p>&#x53D6;&#x524D;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x7684;&#x8F93;&#x51FA;&#x4F5C;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x9ED8;&#x8BA4;&#x547D;&#x4EE4;&#x4E3A;echo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat test.txt | xargs        <span class="comment"># &#x5355;&#x884C;&#x8F93;&#x51FA;</span></span><br><span class="line">cat test.txt | xargs -n3    <span class="comment"># 3&#x4E2A;&#x8FDE;&#x7EED;&#x5B57;&#x7B26;&#x4E32;&#x4E00;&#x884C;&#x8F93;&#x51FA;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;acXnaXgn&quot;</span> | xargs <span class="_">-d</span>X <span class="comment"># &#x4EE5;X&#x5206;&#x9694;&#x540E;&#x8F93;&#x51FA;</span></span><br><span class="line"></span><br><span class="line">find ./ -type f -name <span class="string">&quot;*.tmp&quot;</span>|xargs rm <span class="_">-f</span></span><br></pre></td></tr></table></figure>
+<h4 id="seq"><a href="#seq" class="headerlink" title="seq"></a>seq</h4><p><code>seq [OPTION] LAST</code><br><code>seq [OPTION] FIRST LAST</code><br><code>seq [OPTION] FIRST INCREMENT LAST</code><br>&#x7528;&#x4E8E;&#x4EA7;&#x751F;&#x4ECE;&#x67D0;&#x4E2A;&#x6570;&#x5230;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x6570;&#x4E4B;&#x95F4;&#x7684;&#x6240;&#x6709;&#x6574;&#x6570;</p>
+<blockquote>
+<p><code>-f</code>&#xFF1A;&#x4F7F;&#x7528;printf &#x6837;&#x5F0F;&#x7684;&#x6D6E;&#x70B9;&#x683C;&#x5F0F;<br><code>-s</code>&#xFF1A;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x5206;&#x9694;&#x6570;&#x5B57;&#xFF08;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#xFF1A;\n&#xFF09;<br><code>-w</code>&#xFF1A;&#x5728;&#x5217;&#x524D;&#x6DFB;&#x52A0;0 &#x4F7F;&#x5F97;&#x5BBD;&#x5EA6;&#x76F8;&#x540C;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq <span class="_">-s</span><span class="string">&apos; &apos;</span> <span class="_">-f</span><span class="string">&quot;num_%02g&quot;</span> 5 12</span><br></pre></td></tr></table></figure>
+<h4 id="history"><a href="#history" class="headerlink" title="history"></a>history</h4><p><code>history [OPT]</code></p>
+<blockquote>
+<p>&#x6570;&#x5B57;&#xFF1A;&#x663E;&#x793A;&#x6700;&#x8FD1;&#x51E0;&#x6761;<br><code>-c</code>&#xFF1A;&#x6E05;&#x7A7A;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5386;&#x53F2;<br><code>-d #</code>&#xFF1A;&#x5220;&#x9664;&#x6307;&#x5B9A;&#x7F16;&#x53F7;&#x7684;&#x5386;&#x53F2;<br><code>-w</code>&#xFF1A;&#x4ECE;&#x5185;&#x5B58;&#x4E2D;&#x5199;&#x5165;&#x5230;<code>~/.bash_history</code>&#x6587;&#x4EF6;&#x4E2D;<br><code>-r</code>&#xFF1A;&#x4ECE;&#x5386;&#x53F2;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;&#x5230;&#x5185;&#x5B58;  </p>
+</blockquote>
+<p><em>&#x76F8;&#x5173;&#x5185;&#x5BB9;&#x67E5;&#x770B;&#xFF1A;</em><a href="http://liu2lin600.github.io/2016/06/10/bash%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%BB%8B%E7%BB%8D/">bash&#x57FA;&#x672C;&#x7279;&#x6027;&#x4ECB;&#x7ECD;</a></p>
+<h4 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h4><p>&#x5B9A;&#x65F6;&#x76D1;&#x63A7;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<blockquote>
+<p><code>-n</code>&#xFF1A;&#x6307;&#x5B9A;&#x6307;&#x4EE4;&#x6267;&#x884C;&#x7684;&#x95F4;&#x9694;&#x65F6;&#x95F4;&#xFF08;&#x79D2;&#xFF09;<br><code>-d</code>&#xFF1A;&#x9AD8;&#x4EAE;&#x663E;&#x793A;&#x6307;&#x4EE4;&#x8F93;&#x51FA;&#x4FE1;&#x606F;&#x4E0D;&#x540C;&#x4E4B;&#x5904;<br><code>-t</code>&#xFF1A;&#x4E0D;&#x663E;&#x793A;&#x6807;&#x9898;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch -n 1 <span class="string">&quot;df -i&quot;</span>      <span class="comment"># &#x76D1;&#x6D4B;&#x78C1;&#x76D8;inode&#x548C;block&#x6570;&#x76EE;&#x53D8;&#x5316;&#x60C5;&#x51B5;</span></span><br></pre></td></tr></table></figure>
+<h4 id="source"><a href="#source" class="headerlink" title="source"></a>source</h4><p><code>source FILENAME</code><br>&#x91CD;&#x65B0;&#x6267;&#x884C;&#x521A;&#x4FEE;&#x6539;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4F7F;&#x4E4B;&#x7ACB;&#x5373;&#x751F;&#x6548;&#xFF0C;&#x800C;&#x4E0D;&#x5FC5;&#x6CE8;&#x9500;&#x5E76;&#x91CD;&#x65B0;&#x767B;&#x5F55;&#xFF0C;&#x529F;&#x80FD;&#x540C;<code>.</code></p>
+<h4 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h4><p><code>pstree [OPTION]</code><br>&#x663E;&#x793A;&#x8FDB;&#x7A0B;&#x6811;</p>
+<blockquote>
+<p><code>-a</code>&#xFF1A;&#x663E;&#x793A;&#x6BCF;&#x4E2A;&#x7A0B;&#x5E8F;&#x7684;&#x5B8C;&#x6574;&#x6307;&#x4EE4;&#xFF0C;&#x5305;&#x542B;&#x8DEF;&#x5F84;&#xFF0C;&#x53C2;&#x6570;&#x6216;&#x662F;&#x5E38;&#x9A7B;&#x670D;&#x52A1;&#x7684;&#x6807;&#x793A;<br><code>-p</code>&#xFF1A;&#x663E;&#x793A;&#x7A0B;&#x5E8F;&#x8BC6;&#x522B;&#x7801;<br><code>-u</code>&#xFF1A;&#x663E;&#x793A;&#x7528;&#x6237;&#x540D;&#x79F0;<br><code>-c</code>&#xFF1A;&#x4E0D;&#x4F7F;&#x7528;&#x7CBE;&#x7B80;&#x6807;&#x793A;&#x6CD5;<br><code>-h</code>&#xFF1A;&#x5217;&#x51FA;&#x6811;&#x72B6;&#x56FE;&#x65F6;&#xFF0C;&#x7279;&#x522B;&#x6807;&#x660E;&#x73B0;&#x5728;&#x6267;&#x884C;&#x7684;&#x7A0B;&#x5E8F;<br><code>-l</code>&#xFF1A;&#x91C7;&#x7528;&#x957F;&#x5217;&#x683C;&#x5F0F;&#x663E;&#x793A;&#x6811;&#x72B6;&#x56FE;<br><code>-n</code>&#xFF1A;&#x7528;&#x7A0B;&#x5E8F;&#x8BC6;&#x522B;&#x7801;&#x6392;&#x5E8F;&#x3002;&#x9884;&#x8BBE;&#x662F;&#x4EE5;&#x7A0B;&#x5E8F;&#x540D;&#x79F0;&#x6765;&#x6392;&#x5E8F;<br><code>-U</code>&#xFF1A;&#x4F7F;&#x7528;UTF-8&#x5217;&#x7ED8;&#x56FE;&#x5B57;&#x7B26;</p>
+</blockquote>
+<h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p><code>ps [OPTION]</code><br>&#x9009;&#x9879;&#x6709;3&#x79CD;&#x98CE;&#x683C;</p>
+<ol>
+<li>UNIX&#xFF1A;&#x9009;&#x9879;&#x524D;&#x5E26;<code>-</code>  </li>
+<li>BSD&#xFF1A;&#x9009;&#x9879;&#x524D;&#x4E0D;&#x80FD;&#x5E26;<code>-</code>  </li>
+<li>GUN long option&#xFF1A;&#x957F;&#x9009;&#x9879;&#xFF0C;&#x9009;&#x9879;&#x524D;<code>--</code></li>
+</ol>
+<blockquote>
+<p><code>a</code>&#xFF1A;&#x6240;&#x6709;&#x4E0E;&#x7EC8;&#x7AEF;&#x6709;&#x5173;&#x7684;&#x8FDB;&#x7A0B;<br><code>u</code>&#xFF1A;&#x4EE5;&#x7528;&#x6237;&#x4E3A;&#x4E2D;&#x5FC3;&#x6765;&#x7EC4;&#x7EC7;&#x8FDB;&#x7A0B;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x663E;&#x793A;<br><code>x</code>&#xFF1A;&#x6240;&#x6709;&#x4E0E;&#x7EC8;&#x7AEF;&#x65E0;&#x5173;&#x7684;&#x8FDB;&#x7A0B;,&#x5E26;<code>[]</code>&#x4E3A;&#x5185;&#x6838;&#x7EBF;&#x7A0B;<br><code>-e</code>&#xFF1A;&#x663E;&#x793A;&#x6240;&#x6709;&#x8FDB;&#x7A0B;<br><code>-f</code>&#xFF1A;&#x663E;&#x793A;&#x5B8C;&#x6574;&#x683C;&#x5F0F;<br><code>-F</code>&#xFF1A;&#x663E;&#x793A;&#x5B8C;&#x6574;&#x683C;&#x5F0F;<br><code>-H</code>&#xFF1A;&#x4EE5;&#x5C42;&#x7EA7;&#x7ED3;&#x6784;<br><code>o</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#xFF0C;&#x5404;&#x5B57;&#x6BB5;&#x4EE5;<code>,</code>&#x9694;&#x5F00;&#xFF0C;&#x5E38;&#x7528;<strong>pid,ni,priority,pcpu,comm,tty,ppid,rtprio</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ps aux     </span><br><span class="line">ps -ef</span><br><span class="line">ps <span class="_">-e</span>FH</span><br><span class="line">ps -eo</span><br><span class="line">ps axo pid,ni,priority,comm</span><br></pre></td></tr></table></figure>
+<p><strong>&#x663E;&#x793A;&#x8BF4;&#x660E;</strong></p>
+<ul>
+<li><code>USER,UID</code>&#xFF1A;&#x7528;&#x6237;  </li>
+<li><code>PID</code> &#xFF1A;&#x8FDB;&#x7A0B;ID  </li>
+<li><code>%CPU,C</code>&#xFF1A;CPU&#x5360;&#x6BD4;  </li>
+<li><code>%MEM</code>&#xFF1A;&#x7269;&#x7406;&#x5185;&#x5B58;&#x5360;&#x6BD4;  </li>
+<li><code>VSZ</code> &#xFF1A;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x96C6; (Kbytes)  </li>
+<li><code>RSS</code> &#xFF1A;&#x5E38;&#x9A7B;&#x5185;&#x5B58;&#x96C6; (Kbytes)  </li>
+<li><code>TTY</code> &#xFF1A;&#x7EC8;&#x7AEF;&#x53F7;&#xFF0C;<code>?</code>&#x8868;&#x793A;&#x4E0E;&#x7EC8;&#x7AEF;&#x673A;&#x65E0;&#x5173;   </li>
+<li><code>STAT,S</code>&#xFF1A;&#x8BE5;&#x7A0B;&#x5E8F;&#x76EE;&#x524D;&#x7684;&#x72B6;&#x6001;    </li>
+<li><code>START,STIME</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x95F4;  </li>
+<li><code>TIME</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x8FD0;&#x884C;&#x7684;&#x65F6;&#x95F4;  </li>
+<li><code>COMMAND</code>&#xFF1A;&#x8BE5;&#x7A0B;&#x5E8F;&#x7684;&#x5B9E;&#x9645;&#x6307;&#x4EE4;  </li>
+<li><code>PRI</code>&#xFF1A;&#x8FD9;&#x4E2A;&#x662F; Priority (&#x4F18;&#x5148;&#x6267;&#x884C;&#x5E8F;) &#x7684;&#x7F29;&#x5199;  </li>
+<li><code>NI</code>&#xFF1A;&#x8FD9;&#x4E2A;&#x662F;Nice&#x503C;  </li>
+<li><code>ADDR</code>&#xFF1A;&#x8BE5;&#x7A0B;&#x5E8F;&#x5728;&#x5185;&#x5B58;&#x7684;&#x90A3;&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x8FD0;&#x884C;&#x4E2D;&#x4E00;&#x822C;&#x5C31;&#x662F; &#x201C;-&#x201C;  </li>
+<li><code>SZ</code>&#xFF1A;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;  </li>
+<li><code>WCHAN&#xFF1A;&#x76EE;&#x524D;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x662F;&#x5426;&#x6B63;&#x5728;&#x8FD0;&#x4F5C;&#x5F53;&#x4E2D;&#xFF0C;</code>-`&#x8868;&#x793A;&#x6B63;&#x5728;&#x8FD0;&#x4F5C;  </li>
+</ul>
+<p><em>&#x66F4;&#x591A;&#x72B6;&#x6001;&#x8BF4;&#x660E;&#x89C1;man&#x624B;&#x518C;</em></p>
+<p><strong>&#x8FDB;&#x7A0B;&#x72B6;&#x6001;&#xFF1A;</strong></p>
+<blockquote>
+<p>D&#xFF1A;&#x4E0D;&#x53EF;&#x4E2D;&#x65AD;&#x7684;&#x7761;&#x7720;<br>R&#xFF1A;&#x8FD0;&#x884C;&#x6216;&#x5C31;&#x7EEA;<br>S&#xFF1A;&#x53EF;&#x4E2D;&#x65AD;&#x7684;&#x7761;&#x7720;<br>T&#xFF1A;&#x505C;&#x6B62;<br>Z&#xFF1A;&#x50F5;&#x6B7B;<br>&lt;&#xFF1A;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x8FDB;&#x7A0B;<br>N&#xFF1A;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x8FDB;&#x7A0B;<br>+&#xFF1A;&#x524D;&#x53F0;&#x8FDB;&#x7A0B;&#x7EC4;&#x4E2D;&#x7684;&#x8FDB;&#x7A0B;<br>l: &#x591A;&#x7EBF;&#x7A0B;&#x8FDB;&#x7A0B;<br>s: &#x4F1A;&#x8BDD;&#x8FDB;&#x7A0B;&#x9996;&#x8FDB;&#x7A0B;  </p>
+</blockquote>
+<h4 id="pgrep-pkill"><a href="#pgrep-pkill" class="headerlink" title="pgrep, pkill"></a>pgrep, pkill</h4><p><code>pgrep [OPTION] PATTERN</code><br>&#x663E;&#x793A;&#x6307;&#x5B9A;&#x8FDB;&#x7A0B;&#x4FE1;&#x606F;&#xFF0C;pkill&#x9ED8;&#x8BA4;&#x4E3A;&#x53D1;&#x9001;&#x4E2D;&#x6B62;&#x4FE1;&#x53F7;</p>
+<blockquote>
+<p><code>-u UID</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x7528;&#x6237;&#x6709;&#x5173;&#x8FDB;&#x7A0B;<br><code>-U UID</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x7528;&#x6237;&#x8FDB;&#x7A0B;<br><code>-t TERMINAL</code>&#xFF1A;&#x67E5;&#x770B;&#x4E0E;&#x6307;&#x5B9A;&#x7EC8;&#x7AEF;&#x7684;&#x8FDB;&#x7A0B;<br><code>-l</code>&#xFF1A;&#x663E;&#x793A;PID&#x548C;&#x8FDB;&#x7A0B;&#x540D;<br><code>-a</code>&#xFF1A;&#x663E;&#x793A;&#x5B8C;&#x6574;&#x683C;&#x5F0F;<br><code>-P PID</code>&#xFF1A;&#x663E;&#x793A;&#x6B64;&#x8FDB;&#x7A0B;&#x7684;&#x5B50;&#x8FDB;&#x7A0B;    </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pgrep -U gdm</span><br><span class="line">pkill httpd</span><br></pre></td></tr></table></figure>
+<h4 id="pidof"><a href="#pidof" class="headerlink" title="pidof"></a>pidof</h4><p><code>pidof PRECOSS</code><br>&#x6839;&#x636E;&#x7A0B;&#x5E8F;&#x540D;&#x79F0;&#xFF0C;&#x67E5;&#x627E;&#x5176;&#x76F8;&#x5173;&#x8FDB;&#x7A0B;&#x7684;ID&#x53F7;</p>
+<h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>&#x5B9E;&#x65F6;&#x52A8;&#x6001;&#x5730;&#x67E5;&#x770B;&#x7CFB;&#x7EDF;&#x7684;&#x6574;&#x4F53;&#x8FD0;&#x884C;&#x60C5;&#x51B5;</p>
+<blockquote>
+<p><code>-d</code>&#xFF1A;&#x6307;&#x5B9A;&#x5237;&#x65B0;&#x65F6;&#x95F4;<br><code>-b</code>&#xFF1A;&#x4EE5;&#x6279;&#x6B21;&#x65B9;&#x5F0F;&#x663E;&#x793A;<br><code>-n</code>&#xFF1A;&#x663E;&#x793A;&#x591A;&#x5C11;&#x6279;&#x6B21;&#x540E;&#x9000;&#x51FA;   </p>
+</blockquote>
+<p>&#x4FE1;&#x606F;&#x5934;&#x8BF4;&#x660E;&#xFF1A;</p>
+<ol>
+<li>&#x7B2C;&#x4E00;&#x884C;&#xFF1A;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x4FE1;&#x606F;&#xFF0C;&#x540C;<code>uptime</code>&#x663E;&#x793A;&#x4FE1;&#x606F;<br>&#x5F53;&#x524D;&#x65F6;&#x95F4;&#xFF0C;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#xFF0C;&#x7528;&#x6237;&#x6570;&#xFF0C;1&#x3001;5&#x3001;15&#x5206;&#x949F;&#x8D1F;&#x8F7D;</li>
+<li>&#x7B2C;&#x4E8C;&#x884C;&#xFF1A;&#x8FDB;&#x7A0B;&#x4FE1;&#x606F;<br>&#x8FDB;&#x7A0B;&#x603B;&#x6570;&#xFF0C;&#x8FD0;&#x884C;&#x4E2D;&#xFF0C;&#x7761;&#x7720;&#x6001;&#xFF0C;&#x505C;&#x6B62;&#x6001;&#xFF0C;&#x50F5;&#x5C38;&#x6001;</li>
+<li>&#x7B2C;&#x4E09;&#x884C;&#xFF1A;cpu&#x5360;&#x7528;&#x4FE1;&#x606F;<br><code>us</code>&#x7528;&#x6237;&#x7A7A;&#x95F4;&#xFF0C;<code>sy</code>&#x5185;&#x6838;&#x7A7A;&#x95F4;&#xFF0C;<code>ni</code>&#x6539;&#x53D8;&#x8FC7;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;<code>id</code>&#x7A7A;&#x95F2;&#xFF0C;<code>wa</code>&#x7B49;&#x5F85;&#xFF0C;<code>hi</code>&#x786C;&#x4E2D;&#x65AD;&#xFF0C;<code>si</code>&#x8F6F;&#x4E2D;&#x65AD;&#xFF0C;<code>st</code>&#x88AB;&#x865A;&#x62DF;&#x5316;&#x5077;&#x8D70;</li>
+<li>&#x7B2C;&#x56DB;&#x884C;&#xFF1A;&#x5185;&#x5B58;&#x4FE1;&#x606F;<br>&#x7269;&#x7406;&#x603B;&#x91CF;&#xFF0C;&#x4F7F;&#x7528;&#x91CF;&#xFF0C;&#x7A7A;&#x95F2;&#xFF0C;&#x7F13;&#x5B58;</li>
+<li>&#x7B2C;&#x4E94;&#x884C;&#xFF1A;swap&#x4FE1;&#x606F;<br>&#x4EA4;&#x6362;&#x533A;&#x603B;&#x91CF;&#xFF0C;&#x4F7F;&#x7528;&#x91CF;&#xFF0C;&#x7A7A;&#x95F2;&#xFF0C;&#x7F13;&#x5B58;</li>
+</ol>
+<p>&#x4EA4;&#x4E92;&#x547D;&#x4EE4;&#xFF1A;</p>
+<ul>
+<li><code>M</code>: &#x6839;&#x636E;&#x9A7B;&#x7559;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x8FDB;&#x884C;&#x6392;&#x5E8F;  </li>
+<li><code>P</code>&#xFF1A;&#x6839;&#x636E;CPU&#x4F7F;&#x7528;&#x767E;&#x5206;&#x6BD4;&#x8FDB;&#x884C;&#x6392;&#x5E8F;  </li>
+<li><code>T</code>: &#x6839;&#x636E;&#x7D2F;&#x8BA1;&#x65F6;&#x95F4;&#x8FDB;&#x884C;&#x6392;&#x5E8F;  </li>
+<li><code>l</code>: &#x662F;&#x5426;&#x663E;&#x793A;&#x5E73;&#x5747;&#x8D1F;&#x8F7D;&#x548C;&#x542F;&#x52A8;&#x65F6;&#x95F4;</li>
+<li><code>t</code>: &#x662F;&#x5426;&#x663E;&#x793A;&#x8FDB;&#x7A0B;&#x548C;CPU&#x72B6;&#x6001;&#x76F8;&#x5173;&#x4FE1;&#x606F;</li>
+<li><code>m</code>: &#x662F;&#x5426;&#x663E;&#x793A;&#x5185;&#x5B58;&#x76F8;&#x5173;&#x4FE1;&#x606F;</li>
+<li><code>c</code>: &#x662F;&#x5426;&#x663E;&#x793A;&#x5B8C;&#x6574;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x4FE1;&#x606F;</li>
+<li><code>q</code>: &#x9000;&#x51FA;top</li>
+<li><code>s</code>&#xFF1A;&#x4FEE;&#x6539;&#x5237;&#x65B0;&#x65F6;&#x95F4;</li>
+<li><code>k</code>: &#x7EC8;&#x6B62;&#x67D0;&#x4E2A;&#x8FDB;&#x7A0B;&#xFF0C;&#x9ED8;&#x8BA4;15&#x4FE1;&#x53F7;</li>
+<li><code>h</code>&#xFF1A;&#x67E5;&#x770B;&#x5E2E;&#x52A9;</li>
+</ul>
+<p>&#x5185;&#x5BB9;&#x6807;&#x9898;&#x610F;&#x4E49;&#xFF1A;</p>
+<ul>
+<li><code>PID</code>&#xFF1A;&#x8FDB;&#x7A0B;id</li>
+<li><code>USER</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x6240;&#x6709;&#x8005;</li>
+<li><code>PR</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;</li>
+<li><code>NI</code>&#xFF1A;nice&#x503C;&#x3002;&#x8D1F;&#x503C;&#x8868;&#x793A;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x6B63;&#x503C;&#x8868;&#x793A;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;</li>
+<li><code>VIRT</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;&#x7684;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x603B;&#x91CF;&#xFF0C;&#x5355;&#x4F4D;kb&#x3002;VIRT=SWAP+RES</li>
+<li><code>RES</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;&#x7684;&#x3001;&#x672A;&#x88AB;&#x6362;&#x51FA;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#xFF0C;&#x5355;&#x4F4D;kb&#x3002;RES=CODE+DATA</li>
+<li><code>SHR</code>&#xFF1A;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#xFF0C;&#x5355;&#x4F4D;kb</li>
+<li><code>S</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x72B6;&#x6001;&#x3002;D:&#x4E0D;&#x53EF;&#x4E2D;&#x65AD;&#x7684;&#x7761;&#x7720;&#x72B6;&#x6001; R:&#x8FD0;&#x884C; S:&#x7761;&#x7720; T:&#x8DDF;&#x8E2A;/&#x505C;&#x6B62; Z:&#x50F5;&#x6B7B;</li>
+<li><code>%CPU</code>&#xFF1A;&#x4E0A;&#x6B21;&#x66F4;&#x65B0;&#x5230;&#x73B0;&#x5728;&#x7684;CPU&#x65F6;&#x95F4;&#x5360;&#x7528;&#x767E;&#x5206;&#x6BD4;</li>
+<li><code>%MEM</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x767E;&#x5206;&#x6BD4;</li>
+<li><code>TIME+</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;&#x7684;CPU&#x65F6;&#x95F4;&#x603B;&#x8BA1;&#xFF0C;&#x5355;&#x4F4D;1/100&#x79D2;</li>
+<li><code>COMMAND</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x540D;&#x79F0;&#xFF08;&#x547D;&#x4EE4;&#x540D;/&#x547D;&#x4EE4;&#x884C;&#xFF09;</li>
+</ul>
+<h4 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h4><p>&#x663E;&#x793A;&#x7CFB;&#x7EDF;&#x65F6;&#x95F4;&#x3001;&#x8FD0;&#x884C;&#x65F6;&#x957F;&#x53CA;&#x5E73;&#x5747;&#x8D1F;&#x8F7D;&#xFF0C;&#x540C;<code>top</code>&#x547D;&#x4EE4;&#x7B2C;&#x4E00;&#x884C;&#x5185;&#x5BB9;&#xFF0C;&#x9700;&#x624B;&#x52A8;&#x5B89;&#x88C5;</p>
+<h4 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h4><p>&#x5B83;&#x4E0E;&#x4F20;&#x7EDF;&#x7684;<code>top</code>&#x547D;&#x4EE4;&#x529F;&#x80FD;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x5B83;&#x6709;&#x66F4;&#x52A0;&#x5F3A;&#x5927;&#x7684;&#x529F;&#x80FD;&#x53CA;&#x80FD;&#x663E;&#x793A;&#x66F4;&#x591A;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x901A;&#x8FC7;&#x65B9;&#x5411;&#x952E;&#x79FB;&#x52A8;&#x5149;&#x6807;&#xFF0C;&#x540C;&#x65F6;&#x652F;&#x6301;&#x9F20;&#x6807;&#x64CD;&#x4F5C;</p>
+<blockquote>
+<p><code>-d</code>&#xFF1A;&#x8BBE;&#x7F6E;&#x5237;&#x65B0;&#x7684;&#x5EF6;&#x8FDF;&#x65F6;&#x95F4;<br><code>-u</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x7684;&#x7528;&#x6237;&#x7684;&#x8FDB;&#x7A0B;&#x4FE1;&#x606F;&#x5217;&#x8868;<br><code>-s</code>&#xFF1A;&#x6309;&#x6307;&#x5B9A;&#x7684;&#x5217;&#x6392;&#x5E8F;  </p>
+</blockquote>
+<p>&#x4EA4;&#x4E92;&#x547D;&#x4EE4;&#xFF1A;</p>
+<ul>
+<li>F1~F10&#xFF1A;&#x7565;&#xFF0C;F2&#x53EF;&#x5B9A;&#x4E49;&#x663E;&#x793A;&#x4FE1;&#x606F;&#x5185;&#x5BB9;&#x548C;&#x6837;&#x5F0F;</li>
+<li>&#x7A7A;&#x683C;&#xFF1A;&#x591A;&#x9009;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x4EE5;&#x540C;&#x65F6;kill&#x591A;&#x4E2A;&#x9009;&#x4E2D;&#x8FDB;&#x7A0B;  </li>
+<li><code>l</code>&#xFF1A;&#x663E;&#x793A;&#x9009;&#x4E2D;&#x8FDB;&#x7A0B;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;  </li>
+<li><code>s</code>&#xFF1A;&#x8FFD;&#x8E2A;&#x8FDB;&#x7A0B;&#x7684;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;  </li>
+<li><code>t</code>&#xFF1A;&#x663E;&#x793A;&#x8FDB;&#x7A0B;&#x6811;&#xFF0C;&#x540C;F5  </li>
+<li><code>a</code>&#xFF1A;&#x8BBE;&#x7F6E;&#x6307;&#x5B9A;&#x8FDB;&#x7A0B;&#x8FD0;&#x884C;&#x5728;&#x54EA;&#x4E2A;cpu&#x4E0A;  </li>
+<li><code>q</code>&#xFF1A;&#x8FD4;&#x56DE;&#x4E3B;&#x754C;&#x9762;&#x6216;&#x9000;&#x51FA;  </li>
+</ul>
+<h4 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h4><p><code>ss [OPTION] [FILTER]</code><br><em>socket statistics</em>&#x7684;&#x7F29;&#x5199;&#xFF0C;&#x7528;&#x4E8E;&#x4EE3;&#x66FF;netstat&#x547D;&#x4EE4;&#xFF0C;&#x9009;&#x9879;&#x76F8;&#x8FD1;&#x3002;<code>ss</code>&#x80FD;&#x591F;&#x663E;&#x793A;&#x6BD4;<code>netstat</code>&#x66F4;&#x591A;&#x7684;&#x4FE1;&#x606F;&#x5E76;&#x4E14;&#x901F;&#x5EA6;&#x4E5F;&#x66F4;&#x5FEB;&#x3002;netstat&#x662F;&#x4ECE;/proc &#x4E0B;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#x8BFB;&#x53D6;&#x4FE1;&#x606F;&#x518D;&#x6574;&#x7406;&#x663E;&#x793A;&#x7684;&#xFF0C;&#x800C;<code>ss</code>&#x547D;&#x4EE4;&#x76F4;&#x63A5;&#x4ECE;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x83B7;&#x53D6;&#x4FE1;&#x606F;  </p>
+<p><strong>OPTION</strong></p>
+<blockquote>
+<p><code>-n</code>&#xFF1A;&#x6570;&#x5B57;&#x65B9;&#x5F0F;&#x663E;&#x793A;IP&#x548C;&#x7AEF;&#x53E3;&#x53F7;&#xFF0C;&#x6BD4;&#x5982;&#x663E;&#x793A; 80 &#x800C;&#x4E0D;&#x662F; http<br><code>-t</code>&#xFF1A;&#x663E;&#x793A;TCP&#x534F;&#x8BAE;&#x7AEF;&#x53E3;<br><code>-u</code>&#xFF1A;UDP<br><code>-l</code>&#xFF1A;&#x9ED8;&#x8BA4;&#x4E0D;&#x663E;&#x793A;&#x76D1;&#x542C;&#x7684;&#x5957;&#x63A5;&#x5B57;&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x6307;&#x660E;&#x53EA;&#x663E;&#x793A;&#x76D1;&#x542C;&#x8FDE;&#x63A5;<br><code>-4</code>&#xFF1A;&#x663E;&#x793A;ipv4&#x670D;&#x52A1;&#x76D1;&#x542C;&#x72B6;&#x6001;<br><code>-p</code>&#xFF1A;&#x76F8;&#x5173;&#x7A0B;&#x5E8F;&#x548C;PID<br><code>-e</code>&#xFF1A;&#x6269;&#x5C55;&#x683C;&#x5F0F;&#x4FE1;&#x606F;<br><code>-s</code>&#xFF1A;&#x663E;&#x793A;&#x5957;&#x63A5;&#x5B57;&#x4F7F;&#x7528;&#x7684;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;<br><code>-o</code>&#xFF1A;&#x8BA1;&#x65F6;&#x5668;&#x4FE1;&#x606F;<br><code>-m</code>&#xFF1A;&#x5185;&#x5B58;&#x7528;&#x91CF;<br><code>-h</code>&#xFF1A;&#x67E5;&#x770B;&#x5E2E;&#x52A9;  </p>
+</blockquote>
+<p><strong>FILTER</strong></p>
+<blockquote>
+<p><code>dport|sport OP :PORT</code>&#xFF1A;&#x5339;&#x914D;&#x8FDC;&#x7A0B;dport&#x6216;&#x672C;&#x5730;src&#x7AEF;&#x53E3;&#x8FDE;&#x63A5;   </p>
+<blockquote>
+<p>OP&#x4E3A;&#x6BD4;&#x8F83;&#x7B26;&#xFF1A; <code>&gt;,&lt;,==,!=,&gt;=,&lt;=</code> &#x6216; <code>gt,lt,eq,ne,ge,le</code>&#xFF0C;&#x4F7F;&#x7528;<code>&gt;</code>&#x6216;<code>&lt;</code>&#x9700;&#x8F6C;&#x4E49;<br>PORT&#x53EF;&#x4E3A;&#x7AEF;&#x53E3;&#x53F7;&#x6216;&#x670D;&#x52A1;&#x540D;&#xFF0C;&#x5982;<code>:80</code>&#x6216;<code>:http</code>  </p>
+</blockquote>
+<p><code>dst|src IP[:PORT]</code>&#xFF1A;&#x5339;&#x914D;&#x8FDC;&#x7A0B;dst&#x6216;&#x672C;&#x5730;src&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;<br><code>state</code>&#xFF1A;&#x5339;&#x914D;&#x72B6;&#x6001;&#xFF0C;&#x5305;&#x62EC;all, established, listen, closed, closing, close-wait, syn-sent, syn-recv, time-wait ,fin-wait-1, last-ack, connected&#x2026; </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ss -tuln</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x8FC7;&#x6EE4;&#x529F;&#x80FD;</span></span><br><span class="line">ss dst 192.168.1.1                  <span class="comment"># &#x5339;&#x914D;&#x8FDC;&#x7A0B;&#x4E3B;&#x673A;</span></span><br><span class="line">ss src 172.16.60.2:22               <span class="comment"># &#x5339;&#x914D;&#x672C;&#x673A;22&#x53F7;&#x7AEF;&#x53E3;</span></span><br><span class="line">ss sport \&gt; :50                     <span class="comment"># &#x672C;&#x5730;&#x7AEF;&#x53E3;&#x53F7;&#x5927;&#x4E8E;50</span></span><br><span class="line">ss sport eq :http                   <span class="comment"># &#x5339;&#x914D;80&#x7AEF;&#x53E3;</span></span><br><span class="line">ss \( dport = :22 or sport = :22 \) <span class="comment"># &#x5339;&#x914D;&#x8FDC;&#x7A0B;&#x6216;&#x672C;&#x5730;22&#x7AEF;&#x53E3;</span></span><br><span class="line">ss -o state established <span class="string">&apos;( dport = :22 or sport = :22 )&apos;</span>    <span class="comment"># &#x5339;&#x914D;22&#x53F7;&#x7AEF;&#x53E3;&#x5DF2;&#x5EFA;&#x7ACB;&#x8FDE;&#x63A5;</span></span><br><span class="line"><span class="comment">####&#x6CE8;&#x610F;&#x7B49;&#x53F7;&#x524D;&#x540E;&#x7A7A;&#x683C;&#xFF0C;&#x62EC;&#x53F7;&#x8981;&#x8F6C;&#x4E49;&#x6216;&#x5F15;&#x53F7;&#x4E14;&#x91CC;&#x9762;&#x6709;&#x7A7A;&#x683C;</span></span><br></pre></td></tr></table></figure>
+<p><em>&#x76F4;&#x63A5;&#x6267;&#x884C; ss &#x4F1A;&#x5217;&#x51FA;&#x5F53;&#x524D;&#x6240;&#x6709;&#x5DF2;&#x5EFA;&#x7ACB;&#x7684;&#x975E;&#x76D1;&#x542C;&#x7684;&#xFF08;non-listening&#xFF09;&#x8FDE;&#x63A5;&#xFF0C;&#x4E00;&#x4E2A;&#x5E38;&#x7528;&#x7684;&#x53C2;&#x6570; -tuln</em></p>
+<h4 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h4><p><code>lsof [option] [FILE|USER|PID...]|</code><br>&#x5217;&#x51FA;&#x67D0;&#x4E2A;&#x8FDB;&#x7A0B;&#x6253;&#x5F00;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x4FE1;&#x606F;&#x3002;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;&#x53EF;&#x80FD;&#x662F;&#x666E;&#x901A;&#x7684;&#x6587;&#x4EF6;&#x3001;&#x76EE;&#x5F55;&#x3001;NFS&#x6587;&#x4EF6;&#x3001;&#x5757;&#x6587;&#x4EF6;&#x3001;&#x5B57;&#x7B26;&#x6587;&#x4EF6;&#x3001;&#x5171;&#x4EAB;&#x5E93;&#x3001;&#x5E38;&#x89C4;&#x7BA1;&#x9053;&#x3001;&#x547D;&#x540D;&#x7BA1;&#x9053;&#x3001;&#x7B26;&#x53F7;&#x94FE;&#x63A5;&#x3001;Socket&#x6D41;&#x3001;&#x7F51;&#x7EDC;Socket&#x3001;UNIX&#x57DF;Socket&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x5B83;&#x66F4;&#x591A;&#x7C7B;&#x578B;</p>
+<blockquote>
+<p><code>-i[46] [protocol][@hostname|hostaddr][:service|port]</code>&#xFF1A;&#x7B26;&#x5408;&#x6761;&#x4EF6;&#x7684;&#x8FDB;&#x7A0B;  </p>
+<blockquote>
+<p><code>46</code>&#xFF1A;IPv4 or IPv6<br><code>protocol</code>&#xFF1A;TCP or UDP<br><code>hostname</code>&#xFF1A;&#x4E3B;&#x673A;&#x540D;<br><code>hostaddr</code>&#xFF1A;IPv4&#x4F4D;&#x7F6E;<br><code>service</code>&#xFF1A;/etc/service&#x4E2D;&#x7684; service name (&#x53EF;&#x4EE5;&#x4E0D;&#x53EA;&#x4E00;&#x4E2A;)<br><code>port</code>&#xFF1A;&#x7AEF;&#x53E3;&#x53F7; (&#x53EF;&#x4EE5;&#x4E0D;&#x53EA;&#x4E00;&#x4E2A;)</p>
+</blockquote>
+<p><code>-p PID</code>&#xFF1A;&#x67E5;&#x770B;&#x8BE5;&#x8FDB;&#x7A0B;&#x6253;&#x5F00;&#x4E86;&#x54EA;&#x4E9B;&#x6587;&#x4EF6;&#xFF0C;&#x8FDB;&#x7A0B;&#x53F7;&#x524D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>^</code>&#x53D6;&#x53CD;<br><code>-u USER</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x7528;&#x6237;&#x7684;&#x8FDB;&#x7A0B;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x7528;&#x6237;&#x540D;&#x524D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>^</code>&#x53D6;&#x53CD;<br><code>-g GID</code>&#xFF1A;&#x663E;&#x793A;&#x5F52;&#x5C5E;gid&#x7684;&#x8FDB;&#x7A0B;&#x60C5;&#x51B5;<br><code>-n</code>&#xFF1A;&#x4E0D;&#x53CD;&#x89E3;IP&#x81F3;HOSTNAME<br><code>-c STR</code>&#xFF1A;&#x663E;&#x793A;&#x5176;COMMAND&#x5217;&#x4E2D;&#x5305;&#x542B;&#x6307;&#x5B9A;&#x5B57;&#x7B26;(STR)&#x7684;&#x8FDB;&#x7A0B;&#x6240;&#x6709;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x53EF;&#x91CD;&#x590D;&#x4F7F;&#x7528;<br><code>+d /DIR/</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E0B;&#x88AB;&#x8FDB;&#x7A0B;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;<br><code>+D /DIR/</code>&#xFF1A;&#x57FA;&#x672C;&#x529F;&#x80FD;&#x540C;&#x4E0A;&#xFF0C;&#x4F46;&#x4F1A;&#x5BF9;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x8FDB;&#x884C;&#x9012;&#x5F52;&#x67E5;&#x627E;<br><code>-N</code>&#xFF1A;&#x5217;&#x51FA;&#x6240;&#x6709;<code>NFS</code>&#x6587;&#x4EF6;<br><code>-d FD</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x7684;&#x76F8;&#x5173;&#x8FDB;&#x7A0B;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E3A;&#x63CF;&#x8FF0;&#x7B26;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x8303;&#x56F4;<br><code>-d mem</code>&#xFF1A;&#x5217;&#x51FA;&#x6240;&#x6709;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x6587;&#x4EF6;<br><code>-d mmap</code>&#xFF1A;&#x663E;&#x793A;&#x6240;&#x6709;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x8BBE;&#x5907;<br><code>-d txt</code>&#xFF1A;&#x5217;&#x51FA;&#x6240;&#x6709;&#x52A0;&#x8F7D;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x5E76;&#x6B63;&#x5728;&#x6267;&#x884C;&#x7684;&#x8FDB;&#x7A0B;&#xFF0C;&#x5305;&#x542B;code&#x548C;data<br><code>-d cwd</code>&#xFF1A;&#x6B63;&#x5728;&#x8BBF;&#x95EE;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x7684;&#x8FDB;&#x7A0B;&#x5217;&#x8868;<br><code>-a</code>&#xFF1A;&#x7528;&#x6765;&#x8FDE;&#x63A5;&#x4E0A;&#x8FF0;&#x591A;&#x4E2A;&#x9009;&#x9879;&#xFF0C;and&#x7684;&#x610F;&#x601D;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :80</span><br><span class="line">lsof -i tcp</span><br><span class="line">lsof -c httpd <span class="_">-a</span> -u ^root</span><br><span class="line">lsof /tmp/a.txt</span><br><span class="line">lsof -p 1245,5566,45222</span><br><span class="line">lsof <span class="_">-d</span> 0-2</span><br></pre></td></tr></table></figure>
+<p><strong>&#x6CE8;&#xFF1A;</strong>&#x591A;&#x6761;&#x4EF6;&#x65F6;&#x9ED8;&#x8BA4;&#x4E3A;or&#x5173;&#x7CFB;&#xFF0C;and&#x5173;&#x7CFB;&#x9700;&#x52A0;<code>-a</code>&#x9009;&#x9879;</p>
+<h4 id="vmstat"><a href="#vmstat" class="headerlink" title="vmstat"></a>vmstat</h4><p><code>vmstat [OPTION] [DELAY [COUNT]]</code><br>&#x663E;&#x793A;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x7684;&#x4F7F;&#x7528;&#x72B6;&#x6001;&#xFF0C;&#x540C;&#x65F6;&#x53EF;&#x4EE5;&#x62A5;&#x544A;&#x5173;&#x4E8E;&#x8FDB;&#x7A0B;&#x3001;&#x5185;&#x5B58;&#x3001;I/O&#x7B49;&#x7CFB;&#x7EDF;&#x6574;&#x4F53;&#x8FD0;&#x884C;&#x72B6;&#x6001;</p>
+<blockquote>
+<p><code>-a</code>&#xFF1A;&#x663E;&#x793A;&#x6D3B;&#x8DC3;&#x548C;&#x975E;&#x6D3B;&#x8DC3;&#x5185;&#x5B58;<br><code>-f</code>&#xFF1A;&#x663E;&#x793A;&#x4ECE;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x81F3;&#x4ECA;&#x7684;fork&#x6570;&#x91CF;<br><code>-m</code>&#xFF1A;&#x663E;&#x793A;slabinfo<br><code>-n</code>&#xFF1A;&#x53EA;&#x5728;&#x5F00;&#x59CB;&#x65F6;&#x663E;&#x793A;&#x4E00;&#x6B21;&#x5404;&#x5B57;&#x6BB5;&#x540D;&#x79F0;<br><code>-s</code>&#xFF1A;&#x663E;&#x793A;&#x5185;&#x5B58;&#x7EDF;&#x8BA1;&#x6570;&#x636E;<br><code>-d</code>&#xFF1A;&#x663E;&#x793A;&#x78C1;&#x76D8;&#x76F8;&#x5173;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;<br><code>-p</code>&#xFF1A;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x78C1;&#x76D8;&#x5206;&#x533A;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;</p>
+</blockquote>
+<p><strong>&#x663E;&#x793A;&#x5B57;&#x6BB5;&#x8BF4;&#x660E;</strong>&#xFF1A;</p>
+<ul>
+<li><strong>proc</strong><br>  <code>r</code>&#xFF1A;&#x7B49;&#x5F85;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;&#x4E2A;&#x6570;&#xFF0C;CPU&#x4E0A;&#x7B49;&#x5F85;&#x8FD0;&#x884C;&#x4EFB;&#x52A1;&#x7684;&#x961F;&#x5217;&#x957F;&#x5EA6;<br>  <code>b</code>&#xFF1A;&#x5904;&#x4E8E;&#x4E0D;&#x53EF;&#x4E2D;&#x65AD;&#x7761;&#x7720;&#x7684;&#x8FDB;&#x7A0B;&#x4E2A;&#x6570;&#xFF0C;&#x88AB;&#x963B;&#x585E;&#x7684;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x957F;&#x5EA6;</li>
+<li><strong>memory</strong><br>  <code>swad</code>&#xFF1A;&#x4EA4;&#x6362;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x603B;&#x91CF;<br>  <code>free</code>&#xFF1A;&#x7A7A;&#x95F2;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x603B;&#x91CF;<br>  <code>buffer</code>&#xFF1A;&#x7528;&#x4E8E;buffer&#x7684;&#x5185;&#x5B58;&#x603B;&#x91CF;<br>  <code>cache</code>&#xFF1A;&#x7528;&#x4E8E;cache&#x7684;&#x5185;&#x5B58;&#x603B;&#x91CF;</li>
+<li><strong>swap</strong><br>  <code>si</code>&#xFF1A;&#x6570;&#x636E;&#x8FDB;&#x5165;swap&#x4E2D;&#x7684;&#x6570;&#x636E;&#x901F;&#x7387;&#xFF08;kb/s&#xFF09;<br>  <code>so</code>&#xFF1A;&#x6570;&#x636E;&#x79BB;&#x5F00;swap&#x7684;&#x901F;&#x7387;</li>
+<li><strong>io</strong><br>  <code>bi</code>&#xFF1A;&#x4ECE;&#x5757;&#x8BBE;&#x5907;&#x8BFB;&#x5165;&#x6570;&#x636E;&#x5230;&#x7CFB;&#x7EDF;&#x7684;&#x901F;&#x7387;<br>  <code>bo</code>&#xFF1A;&#x4FDD;&#x5B58;&#x6570;&#x636E;&#x5230;&#x5757;&#x8BBE;&#x5907;&#x7684;&#x901F;&#x7387;</li>
+<li><strong>system</strong><br>  <code>in</code>&#xFF1A;interrupts, &#x4E2D;&#x65AD;&#x901F;&#x7387;<br>  <code>cs</code>&#xFF1A;context switch, &#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x7684;&#x901F;&#x7387;</li>
+<li><strong>cpu</strong><br>  <code>us</code>&#xFF1A;&#x7528;&#x6237;&#x7A7A;&#x95F4;<br>  <code>sy</code>&#xFF1A;&#x5185;&#x6838;&#x7A7A;&#x95F4;<br>  <code>id</code>&#xFF1A;&#x7A7A;&#x95F2;<br>  <code>wa</code>&#xFF1A;&#x7B49;&#x5F85;<br>  <code>st</code>&#xFF1A;&#x88AB;&#x865A;&#x62DF;&#x5316;&#x7ED9;&#x5077;&#x8D70;&#x7684;&#x65F6;&#x95F4;  </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vmstat                  <span class="comment"># &#x53EA;&#x663E;&#x793A;&#x4E00;&#x6761;&#x6570;&#x636E;&#x540E;&#x9000;&#x51FA;</span></span><br><span class="line">vmstat 2                <span class="comment"># &#x6BCF;2&#x79D2;&#x663E;&#x793A;&#x4E00;&#x6761;&#x6570;&#x636E;</span></span><br><span class="line">vmstat 2 3              <span class="comment"># &#x6BCF;2&#x79D2;&#x663E;&#x793A;&#x4E00;&#x6761;&#x6570;&#x636E;&#xFF0C;&#x603B;&#x663E;&#x793A;3&#x6761;</span></span><br><span class="line">vmstat -p /dev/sda1     <span class="comment"># &#x67E5;&#x770B;/dev/sda1&#x78C1;&#x76D8;&#x7684;&#x8BFB;/&#x5199;&#x72B6;&#x6001;</span></span><br></pre></td></tr></table></figure>
+<h4 id="mpstat"><a href="#mpstat" class="headerlink" title="mpstat"></a>mpstat</h4><p><code>mpstat [-P {|ALL}] [delay [count]]</code><br>MultiProcessor Statistics&#xFF0C;&#x662F;&#x5B9E;&#x65F6;&#x7CFB;&#x7EDF;&#x76D1;&#x63A7;&#x5DE5;&#x5177;,&#x5176;&#x62A5;&#x544A;&#x4E0E;CPU&#x7684;&#x4E00;&#x4E9B;&#x7EDF;&#x8BA1;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x5B58;&#x653E;&#x5728;/proc/stat&#x6587;&#x4EF6;&#x4E2D;</p>
+<blockquote>
+<p><code>-P {|ALL}</code>&#xFF1A;&#x8868;&#x793A;&#x76D1;&#x63A7;&#x54EA;&#x4E2A;CPU&#xFF0C; cpu&#x5728;[0,cpu&#x4E2A;&#x6570;-1]&#x4E2D;&#x53D6;&#x503C;<br><code>delay</code>&#xFF1A;&#x76F8;&#x90BB;&#x7684;&#x4E24;&#x6B21;&#x91C7;&#x6837;&#x7684;&#x95F4;&#x9694;&#x65F6;&#x95F4;<br><code>count</code>&#xFF1A;&#x91C7;&#x6837;&#x7684;&#x6B21;&#x6570;&#xFF0C;count&#x53EA;&#x80FD;&#x548C;delay&#x4E00;&#x8D77;&#x4F7F;&#x7528;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mpstat -p ALL 2</span><br></pre></td></tr></table></figure>
+<p><strong>&#x663E;&#x793A;&#x5B57;&#x6BB5;&#x8BF4;&#x660E;</strong></p>
+<ul>
+<li><code>%user</code>   &#xFF1A;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#xFF0C;&#x7528;&#x6237;&#x6001;&#x7684;CPU&#x65F6;&#x95F4;(%)&#xFF0C;&#x4E0D;&#x5305;&#x542B;nice&#x503C;&#x4E3A;&#x8D1F;&#x8FDB;&#x7A0B; (usr/total)*100 </li>
+<li><code>%nice</code>   &#xFF1A;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#xFF0C;nice&#x503C;&#x4E3A;&#x8D1F;&#x8FDB;&#x7A0B;&#x7684;CPU&#x65F6;&#x95F4;(%) (nice/total)*100</li>
+<li><code>%sys</code>   &#xFF1A;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#xFF0C;&#x5185;&#x6838;&#x65F6;&#x95F4;(%) (system/total)*100</li>
+<li><code>%iowait</code> &#xFF1A;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#xFF0C;&#x786C;&#x76D8;IO&#x7B49;&#x5F85;&#x65F6;&#x95F4;(%) (iowait/total)*100</li>
+<li><code>%irq</code>   &#xFF1A;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#xFF0C;&#x786C;&#x4E2D;&#x65AD;&#x65F6;&#x95F4;(%) (irq/total)*100</li>
+<li><code>%soft</code>   &#xFF1A;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#xFF0C;&#x8F6F;&#x4E2D;&#x65AD;&#x65F6;&#x95F4;(%) (softirq/total)*100</li>
+<li><code>%idle</code>   &#xFF1A;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#xFF0C;CPU&#x9664;&#x53BB;&#x7B49;&#x5F85;&#x78C1;&#x76D8;IO&#x64CD;&#x4F5C;&#x5916;&#x7684;&#x56E0;&#x4E3A;&#x4EFB;&#x4F55;&#x539F;&#x56E0;&#x800C;&#x7A7A;&#x95F2;&#x7684;&#x65F6;&#x95F4;&#x95F2;&#x7F6E;&#x65F6;&#x95F4;(%) (idle/total)*100</li>
+</ul>
+<h4 id="pmap"><a href="#pmap" class="headerlink" title="pmap"></a>pmap</h4><p><code>pmap [OPTION] PID</code><br>&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x6620;&#x5C04;&#x8868;&#xFF0C;&#x8BFB;&#x53D6;<code>/proc/#/maps</code>&#x6587;&#x4EF6;&#x6574;&#x7406;&#x663E;&#x793A;</p>
+<blockquote>
+<p><code>-x</code>&#xFF1A;&#x663E;&#x793A;&#x66F4;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;  </p>
+</blockquote>
+<h4 id="glances"><a href="#glances" class="headerlink" title="glances"></a>glances</h4><p>&#x529F;&#x80FD;&#x7C7B;&#x578B;top&#x7684;&#x76D1;&#x63A7;&#x5DE5;&#x5177;</p>
+<blockquote>
+<p><code>-b</code>&#xFF1A;&#x4EE5;byte&#x4E3A;&#x5355;&#x4F4D;&#x663E;&#x793A;&#x7F51;&#x4E0A;&#x6570;&#x636E;&#x901F;&#x5EA6;<br><code>-d</code>&#xFF1A;&#x5173;&#x95ED;&#x78C1;&#x76D8;IO&#x6A21;&#x5757;<br><code>-m</code>&#xFF1A;&#x5173;&#x95ED;mount&#x6A21;&#x5757;<br><code>-n</code>&#xFF1A;&#x5173;&#x95ED;network&#x6A21;&#x5757;<br><code>-t</code>&#xFF1A;&#x6307;&#x5B9A;&#x5237;&#x65B0;&#x65F6;&#x95F4;<br><code>-1</code>&#xFF1A;&#x6BCF;&#x9897;cpu&#x6570;&#x636E;&#x5355;&#x72EC;&#x663E;&#x793A;<br><code>-o</code> {HTML|CSV}&#xFF1A;&#x7EDF;&#x8BA1;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x4E3A;html&#x6216;csv&#x683C;&#x5F0F;&#x6587;&#x4EF6;<br><code>-f</code>&#xFF1A;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4FDD;&#x5B58;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x9ED8;&#x8BA4;&#x751F;&#x6210;glances.html|csv  </p>
+</blockquote>
+<p><em>&#x5185;&#x5EFA;&#x547D;&#x4EE4;&#x4F7F;&#x7528;<code>h</code>&#x67E5;&#x770B;&#xFF0C;&#x6B64;&#x5904;&#x7565;&#x53BB;</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">glances -o HTML <span class="_">-f</span> /tmp/    <span class="comment"># </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># C/S&#x6A21;&#x5F0F;&#x4E0B;&#x8FD0;&#x884C;&#xFF0C;&#x7528;&#x4E8E;&#x76D1;&#x63A7;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;</span></span><br><span class="line">glances <span class="_">-s</span> -B IPADDR    <span class="comment"># &#x670D;&#x52A1;&#x7AEF;&#x6A21;&#x5F0F;&#xFF0C;IPADDR&#x4E3A;&#x4E3B;&#x673A;&#x5730;&#x5740;&#xFF0C;&#x7528;&#x4E8E;&#x76D1;&#x542C;</span></span><br><span class="line">glances -c IPADDR       <span class="comment"># &#x5BA2;&#x6237;&#x7AEF;&#x6A21;&#x5F0F;&#xFF0C;IPADDR&#x4E3A;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x5730;&#x5740;</span></span><br></pre></td></tr></table></figure>
+<h4 id="dstat"><a href="#dstat" class="headerlink" title="dstat"></a>dstat</h4><p><code>dstat [OPTION] [DELAY [COUNT]]</code><br>&#x591A;&#x529F;&#x80FD;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x7EDF;&#x8BA1;&#x751F;&#x6210;&#x5DE5;&#x5177;&#xFF0C;&#x4FE1;&#x606F;&#x4E0A;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#x4E8E;top&#x3001;free&#x3001;iostat&#x3001;vmstat&#x7B49;&#x591A;&#x4E2A;&#x5DE5;&#x5177;&#x7684;&#x5408;&#x96C6;</p>
+<blockquote>
+<p><code>-c</code>&#xFF1A;CPU&#x72B6;&#x6001;<br><code>-C</code>&#xFF1A;&#x6307;&#x5B9A;cpu&#x72B6;&#x6001;<br><code>-d</code>&#xFF1A;&#x78C1;&#x76D8;&#x8BFB;&#x5199;&#x72B6;&#x6001;<br><code>-D</code>&#xFF1A;&#x6307;&#x5B9A;&#x78C1;&#x76D8;&#x6216;&#x6C47;&#x603B;&#x4FE1;&#x606F;<br><code>-g</code>&#xFF1A;&#x663E;&#x793A;page&#x76F8;&#x5173;&#x7EDF;&#x8BA1;&#x6570;&#x636E;<br><code>-m</code>&#xFF1A;&#x7269;&#x7406;&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x60C5;&#x51B5;<br><code>-n</code>&#xFF1A;&#x7F51;&#x7EDC;&#x4F7F;&#x7528;&#x60C5;&#x51B5;<br><code>-p</code>&#xFF1A;&#x8FDB;&#x7A0B;&#x4FE1;&#x606F;&#xFF0C;&#x5305;&#x62EC;runnable&#x3001;uninterruptible&#x3001;new<br><code>-r</code>&#xFF1A;I/O&#x8BF7;&#x6C42;<br><code>-s</code>&#xFF1A;swap&#x5DF2;&#x4F7F;&#x7528;&#x548C;&#x5269;&#x4F59;&#x91CF;<br><code>--tcp</code><br><code>--udp</code><br><code>--raw</code><br><code>--socket</code><br><code>--ipc</code><br><code>--top-cpu</code>&#xFF1A;&#x6700;&#x5360;&#x7528;cpu&#x8FDB;&#x7A0B;<br><code>--top-io</code><br><code>--top-mem</code><br><code>--top-lantency</code>&#xFF1A;&#x5EF6;&#x8FDF;&#x6700;&#x5927;&#x7684;&#x8FDB;&#x7A0B;<br>&#x2026;&#x2026;</p>
+</blockquote>
+<p>&#x9ED8;&#x8BA4;&#x9009;&#x9879;&#x4E3A;<code>-cdngy</code></p>
+<h4 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h4><p><code>kill [-s SIGNAL|-SIGNAL] PID</code><br><code>kill -l [SIGNAL]</code><br>&#x7528;&#x4E8E;&#x5411;&#x8FDB;&#x7A0B;&#x53D1;&#x9001;&#x4FE1;&#x53F7;&#xFF0C;&#x5B9E;&#x73B0;&#x8FDB;&#x7A0B;&#x7BA1;&#x7406;&#xFF0C;&#x9ED8;&#x8BA4;&#x53D1;&#x9001;15&#x4FE1;&#x53F7;&#x7EC8;&#x6B62;&#x8FDB;&#x7A0B;<br><strong>&#x4E3B;&#x8981;&#x4FE1;&#x53F7;&#xFF1A;</strong></p>
+<ul>
+<li>1) SIGHUP&#xFF1A;&#x65E0;&#x987B;&#x5173;&#x95ED;&#x8FDB;&#x7A0B;&#x800C;&#x8BA9;&#x5176;&#x91CD;&#x8BFB;&#x914D;&#x7F6E;&#x6587;&#x4EF6; </li>
+<li>2) SIGINT&#xFF1A;&#x4E2D;&#x6B62;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;&#xFF0C;&#x7B49;&#x540C;<code>ctrl+c</code>  </li>
+<li>9) SIGKILL&#xFF1A;&#x5F3A;&#x5236;&#x7ACB;&#x523B;&#x6740;&#x6B7B;&#x8FD0;&#x884C;&#x4E2D;&#x7684;&#x8FDB;&#x7A0B;   </li>
+<li>15) SIGTERM&#xFF1A;&#x7EC8;&#x6B62;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;  </li>
+<li>18) SIGCONT&#xFF1A;&#x7EE7;&#x7EED;&#x6682;&#x505C;&#x7684;&#x8FDB;&#x884C;  </li>
+<li>19) SIGSTOP&#xFF1A;&#x6682;&#x505C;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;    </li>
+</ul>
+<p><em>&#x4FE1;&#x53F7;&#x6807;&#x793A;&#x65B9;&#x6CD5;&#x6709;</em>&#xFF1A;1.&#x5B8C;&#x6574;&#x540D;(SIGHUP&#x2026;)&#x3001;2.&#x6570;&#x5B57;&#x4FE1;&#x53F7;(1, 2, 9&#x2026;)&#x3001;3.&#x7F29;&#x5199;(HUP, INT&#x2026;)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> <span class="_">-l</span>                     <span class="comment"># &#x663E;&#x793A;&#x4FE1;&#x53F7;&#x5217;&#x8868;</span></span><br><span class="line"><span class="built_in">kill</span> {-[SIG]HUP|1} 3030     <span class="comment"># &#x91CD;&#x8BFB;3030&#x8FDB;&#x7A0B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></span><br><span class="line"><span class="built_in">kill</span> -9 2334                <span class="comment"># &#x5F3A;&#x5236;&#x4E2D;&#x6B62;</span></span><br></pre></td></tr></table></figure>
+<h4 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h4><p><code>killall [-SIGNAL] program</code><br>&#x6839;&#x636E;&#x8FDB;&#x7A0B;&#x540D;&#x6765;&#x4E2D;&#x6B62;&#x76F8;&#x5173;&#x8FDB;&#x7A0B;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall httpd   <span class="comment"># &#x4E2D;&#x6B62;http</span></span><br></pre></td></tr></table></figure>
+<h4 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h4><p>&#x67E5;&#x770B;&#x6240;&#x6709;&#x4F5C;&#x4E1A;&#xFF0C;&#x5E26;&#x6709;&#x4F5C;&#x4E1A;&#x7F16;&#x53F7;</p>
+<p>&#x663E;&#x793A;&#x7B26;&#x53F7;&#x8BF4;&#x660E;<br><code>+</code>&#xFF1A;&#x540E;&#x53F0;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x6216;&#x4E0B;&#x6B21;&#x8FD0;&#x884C;&#x7684;&#x4F5C;&#x4E1A;<br><code>-</code>&#xFF1A;<code>+</code>&#x4F5C;&#x4E1A;&#x8FD0;&#x884C;&#x540E;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x8FD0;&#x884C;&#x4F5C;&#x4E1A;</p>
+<p>&#x7EC8;&#x6B62;&#x4F5C;&#x4E1A;&#xFF1A;<code>kill %JOBID</code></p>
+<h4 id="fg"><a href="#fg" class="headerlink" title="fg"></a>fg</h4><p><code>fg [[%]JOBID]</code><br>&#x5C06;&#x6307;&#x5B9A;&#x540E;&#x53F0;&#x4F5C;&#x4E1A;&#x8C03;&#x56DE;&#x524D;&#x53F0;&#xFF0C;&#x9ED8;&#x8BA4;&#x8C03;&#x56DE;&#x5E26;<code>+</code>&#x53F7;&#x4F5C;&#x4E1A;&#xFF0C;&#x4E5F;&#x53EF;&#x6307;&#x5B9A;&#x4F5C;&#x4E1A;&#x53F7;&#xFF0C;&#x5176;&#x4E2D;<code>%</code>&#x53EF;&#x7701;</p>
+<h4 id="bg"><a href="#bg" class="headerlink" title="bg"></a>bg</h4><p><code>bg [[%]JOBID]</code><br>&#x8BA9;&#x9001;&#x5F80;&#x540E;&#x53F0;&#x7684;&#x4F5C;&#x4E1A;&#x7EE7;&#x7EED;&#x8FD0;&#x884C;</p>
+<h4 id="nice"><a href="#nice" class="headerlink" title="nice"></a>nice</h4><p><code>nice [OPTION] [COMMAND]</code><br>&#x4EE5;&#x6307;&#x5B9A;&#x7684;nice&#x503C;&#xFF08;&#x4F18;&#x5148;&#x7EA7;&#xFF09;&#x8FD0;&#x884C;&#x547D;&#x4EE4;&#xFF0C;&#x503C;&#x8303;&#x56F4;&#x4E3A;-19~20&#xFF0C;&#x6570;&#x503C;&#x5C0F;&#x4F18;&#x5148;&#x7EA7;&#x9AD8;&#xFF0C;&#x4EC5;&#x7BA1;&#x7406;&#x5458;&#x624D;&#x80FD;&#x8C03;&#x4F4E;nice&#x503C;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nice 10 htop                            <span class="comment"># &#x8BBE;&#x7F6E;htop&#x547D;&#x4EE4;&#x8FD0;&#x884C;&#x7684;nice&#x503C;&#x4E3A;10</span></span><br><span class="line">ps axo pid,ni,priority,comm | grep xxx  <span class="comment"># &#x67E5;&#x770B;&#x6307;&#x5B9A;&#x547D;&#x4EE4;&#x4F18;&#x5148;&#x7EA7;</span></span><br></pre></td></tr></table></figure>
+<h4 id="renice"><a href="#renice" class="headerlink" title="renice"></a>renice</h4><p><code>renice [-n] NICE PID</code><br>&#x8C03;&#x6574;&#x8FD0;&#x884C;&#x4E2D;&#x7684;&#x8FDB;&#x7A0B;nice&#x503C;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">renice -12 23023    <span class="comment"># &#x8C03;&#x6574;pid&#x4E3A;23023&#x7684;&#x8FDB;&#x7A0B;nice&#x4E3A;-12&#xFF08;&#x4F18;&#x5148;&#x7EA7;&#x4E3A;8&#xFF09;</span></span><br></pre></td></tr></table></figure>
+<h4 id="chroot"><a href="#chroot" class="headerlink" title="chroot"></a>chroot</h4><p><code>chroot NEWROOT</code><br>&#x5207;&#x6362;&#x6839;&#x6240;&#x5728;&#x76EE;&#x5F55;  </p>
+<h4 id="ldd"><a href="#ldd" class="headerlink" title="ldd"></a>ldd</h4><p>&#x67E5;&#x770B;&#x547D;&#x4EE4;&#x6240;&#x4F9D;&#x8D56;&#x7684;&#x5171;&#x4EAB;&#x5E93;&#x6587;&#x4EF6;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldd /bin/ls</span><br></pre></td></tr></table></figure>
+<h4 id="sync"><a href="#sync" class="headerlink" title="sync"></a>sync</h4><p>&#x5F3A;&#x5236;&#x88AB;&#x6539;&#x53D8;&#x7684;&#x5185;&#x5BB9;&#x7ACB;&#x523B;&#x5199;&#x5165;&#x78C1;&#x76D8;&#xFF0C;&#x66F4;&#x65B0;&#x8D85;&#x5757;&#x4FE1;&#x606F;</p>
+<h4 id="chkconfig"><a href="#chkconfig" class="headerlink" title="chkconfig"></a>chkconfig</h4><p>&#x68C0;&#x67E5;&#x3001;&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x7684;&#x5404;&#x79CD;&#x670D;&#x52A1;&#xFF0C;centos7&#x4E0A;&#x5DF2;&#x5E9F;&#x5F03;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list                <span class="comment"># &#x5217;&#x51FA;&#x6240;&#x6709;&#x7684;&#x7CFB;&#x7EDF;&#x670D;&#x52A1;</span></span><br><span class="line">chkconfig --add httpd           <span class="comment"># &#x589E;&#x52A0;httpd&#x670D;&#x52A1;</span></span><br><span class="line">chkconfig --del httpd           <span class="comment"># &#x5220;&#x9664;httpd&#x670D;&#x52A1;</span></span><br><span class="line">chkconfig --level httpd 345 on  <span class="comment"># &#x8BBE;&#x7F6E;httpd&#x5728;2345&#x8FD0;&#x884C;&#x7EA7;&#x522B;&#x4E0B;&#x90FD;&#x662F;&#x5F00;&#x542F; </span></span><br><span class="line">chkconfig mysqld on             <span class="comment"># &#x8BBE;&#x5B9A;mysqld&#x5728;2345&#x7EA7;&#x522B;&#x4E0B;&#x5F00;&#x542F;</span></span><br></pre></td></tr></table></figure>
+<h4 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h4><p><code>uname [OPTION]</code><br>&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF08;&#x5185;&#x6838;&#x7248;&#x672C;&#x53F7;&#x3001;&#x786C;&#x4EF6;&#x67B6;&#x6784;&#x3001;&#x4E3B;&#x673A;&#x540D;&#x79F0;&#x548C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7C7B;&#x578B;&#x7B49;&#xFF09;</p>
+<blockquote>
+<p><code>-r</code>&#xFF1A;&#x7CFB;&#x7EDF;&#x53D1;&#x884C;&#x7F16;&#x53F7;<br><code>-a</code>&#xFF1A;&#x5168;&#x90E8;&#x4FE1;&#x606F;<br><code>-n</code>&#xFF1A;&#x4E3B;&#x673A;&#x540D;</p>
+</blockquote>
+<h4 id="lsmod"><a href="#lsmod" class="headerlink" title="lsmod"></a>lsmod</h4><p>&#x663E;&#x793A;&#x5185;&#x6838;&#x6240;&#x6709;&#x52A0;&#x8F7D;&#x7684;&#x6A21;&#x5757;&#x4FE1;&#x606F;&#xFF0C;&#x6765;&#x6E90;&#x4E8E;/proc/modules<br>&#x6A21;&#x5757;&#x6587;&#x4EF6;&#x653E;&#x7F6E;&#x5728;<code>/lib/modules/$(uname -r)/kernel/../*.ko</code></p>
+<h4 id="modinfo"><a href="#modinfo" class="headerlink" title="modinfo"></a>modinfo</h4><p><code>modinfo [OPTION] MOD_NAME</code><br>&#x67E5;&#x770B;&#x67D0;&#x6A21;&#x5757;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x5426;&#x5DF2;&#x52A0;&#x8F7D;</p>
+<blockquote>
+<p><code>-k</code>&#xFF1A;&#x5F53;&#x7CFB;&#x7EDF;&#x4E0A;&#x6709;&#x591A;&#x4E2A;&#x5185;&#x6838;&#x65F6;&#xFF0C;&#x53EF;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#x67E5;&#x770B;<br><code>-F</code>&#xFF1A;&#x4EC5;&#x663E;&#x793A;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;&#x4FE1;&#x606F;<br><code>-a</code>&#xFF1A;&#x4EC5;&#x5217;&#x51FA;&#x4F5C;&#x8005;&#x540D;<br><code>-d</code>&#xFF1A;&#x4EC5;&#x5217;&#x51FA;&#x6A21;&#x5757;&#x8BF4;&#x660E;<br><code>-l</code>&#xFF1A;&#x4EC5;&#x5217;&#x51FA;&#x6388;&#x6743;<br><code>-n</code>&#xFF1A;&#x663E;&#x793A;&#x6A21;&#x5757;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;  </p>
+</blockquote>
+<h4 id="modprobe"><a href="#modprobe" class="headerlink" title="modprobe"></a>modprobe</h4><p><code>modprobe [OPTION] MOD_NAME</code><br>&#x52A8;&#x6001;&#x88C5;&#x8F7D;&#x548C;&#x5378;&#x8F7D;&#x6A21;&#x5757;&#xFF0C;&#x5305;&#x62EC;&#x76F8;&#x5173;&#x4F9D;&#x8D56;&#x6A21;&#x5757;&#xFF0C;&#x9ED8;&#x8BA4;&#x88C5;&#x8F7D;&#x7684;&#x6A21;&#x5757;&#x4E0D;&#x8981;&#x8F7B;&#x6613;&#x53BB;&#x5378;&#x8F7D;</p>
+<blockquote>
+<p><code>-r</code>&#xFF1A;&#x5378;&#x8F7D;<br><code>-C</code>&#xFF1A;&#x57FA;&#x4E8E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+</blockquote>
+<h4 id="depmod"><a href="#depmod" class="headerlink" title="depmod"></a>depmod</h4><p><code>depmod [-Ane]</code><br>&#x5185;&#x6838;&#x6A21;&#x5757;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x6587;&#x4EF6;&#x7684;&#x751F;&#x6210;&#x5DE5;&#x5177;&#x6216;&#x663E;&#x793A;</p>
+<blockquote>
+<p><code>-A</code>&#xFF1A;&#x641C;&#x5BFB;&#x6BD4;<code>/lib/modules/$(uname -r)/modules.dep</code>&#x5185;&#x8FD8;&#x8981;&#x65B0;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x5982;&#x679C;&#x771F;&#x627E;&#x5230;&#x65B0;&#x6A21;&#x5757;&#xFF0C;&#x5219;&#x66F4;&#x65B0;&#x5199;&#x5165;<br><code>-n</code>&#xFF1A;&#x4E0D;&#x5199;&#x5165;<code>modules.dep</code>&#x4E2D;&#xFF0C;&#x800C;&#x662F;&#x663E;&#x793A;&#x5230;&#x5C4F;&#x5E55;&#x4E0A;<br><code>-e</code>&#xFF1A;&#x663E;&#x793A;&#x51FA;&#x76EE;&#x524D;&#x5DF2;&#x8F7D;&#x5165;&#x7684;&#x4E0D;&#x53EF;&#x6267;&#x884C;&#x7684;&#x6A21;&#x5757;&#x540D;&#x79F0;  </p>
+</blockquote>
+<h4 id="insmod"><a href="#insmod" class="headerlink" title="insmod"></a>insmod</h4><p><code>insmod MOD_FILENAME</code><br>&#x88C5;&#x8F7D;&#x6A21;&#x5757;&#xFF0C;MOD_FILENAME&#x4E3A;&#x6A21;&#x5757;&#x5B8C;&#x6574;&#x8DEF;&#x5F84;&#x540D;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;</p>
+<h4 id="rmmod"><a href="#rmmod" class="headerlink" title="rmmod"></a>rmmod</h4><p>&#x5378;&#x8F7D;&#x6A21;&#x5757;</p>
+<h4 id="mkinitrd"><a href="#mkinitrd" class="headerlink" title="mkinitrd"></a>mkinitrd</h4><p>&#x4E3A;&#x5F53;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x6838;&#x91CD;&#x65B0;&#x5236;&#x4F5C;ramdisk&#x6587;&#x4EF6;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkinitrd /boot/initramfs-$(uname -r).img  $(uname -r)</span><br></pre></td></tr></table></figure>
+<h4 id="sysctl"><a href="#sysctl" class="headerlink" title="sysctl"></a>sysctl</h4><p><code>sysctl [OPTION] [var[=value]]</code><br>&#x67E5;&#x770B;&#x6216;&#x8BBE;&#x5B9A;/proc/sys&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x5185;&#x6838;&#x53C2;&#x6570;&#xFF0C;&#x5185;&#x6838;&#x53C2;&#x6570;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/sysctl.conf     </p>
+<blockquote>
+<p><code>-a</code>&#xFF1A;&#x67E5;&#x770B;&#x6240;&#x6709;<br><code>-w</code>&#xFF1A;&#x5199;&#x5165;&#x65B0;&#x503C;<br><code>-p</code>&#xFF1A;&#x91CD;&#x8BFB;&#x914D;&#x7F6E;&#x6587;&#x4EF6;  </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sysctl <span class="_">-a</span>                       <span class="comment"># &#x67E5;&#x770B;&#x6240;&#x6709;&#x5185;&#x6838;&#x53C2;&#x6570;</span></span><br><span class="line">sysctl kernel.hostname          <span class="comment"># &#x67E5;&#x770B;&#x6307;&#x5B9A;&#x53C2;&#x6570;&#x503C;, &#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;cat /proc/sys/kernel/hostname</span></span><br><span class="line">sysctl -w net.ipv4.ip_forward=1 <span class="comment"># &#x8BBE;&#x7F6E;&#x503C;,&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;echo 1 &gt; /proc/sys/net/ipv4/ip_forward</span></span><br><span class="line">sysctl -p                       <span class="comment"># &#x91CD;&#x8BFB;&#x914D;&#x7F6E;&#x6587;&#x4EF6;/etc/sysctl.conf</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/命令/" rel="tag">#命令</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/21/常用命令--用户管理/" rel="next" title="常用命令--用户管理">
+                <i class="fa fa-chevron-left"></i> 常用命令--用户管理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/21/常用命令--网络管理/" rel="prev" title="常用命令--网络管理">
+                常用命令--网络管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/21/常用命令--系统管理/"
+           data-title="常用命令--系统管理" data-url="http://liu2lin600.github.io/2016/05/21/常用命令--系统管理/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/b.jpg"
+               alt="Liu2lin600" />
+          <p class="site-author-name" itemprop="name">Liu2lin600</p>
+          <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liu2lin600" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="liu2lin600@163.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  E-Mail
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1342783001" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/lin-lin-12-10-17" target="_blank" title="ZhiHu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#date"><span class="nav-number">1.</span> <span class="nav-text">date</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clock"><span class="nav-number">2.</span> <span class="nav-text">clock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#at"><span class="nav-number">3.</span> <span class="nav-text">at</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mail"><span class="nav-number">4.</span> <span class="nav-text">mail</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#read"><span class="nav-number">5.</span> <span class="nav-text">read</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#declare"><span class="nav-number">6.</span> <span class="nav-text">declare</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#env"><span class="nav-number">7.</span> <span class="nav-text">env</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">8.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echo"><span class="nav-number">9.</span> <span class="nav-text">echo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xargs"><span class="nav-number">10.</span> <span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#seq"><span class="nav-number">11.</span> <span class="nav-text">seq</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#history"><span class="nav-number">12.</span> <span class="nav-text">history</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch"><span class="nav-number">13.</span> <span class="nav-text">watch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#source"><span class="nav-number">14.</span> <span class="nav-text">source</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pstree"><span class="nav-number">15.</span> <span class="nav-text">pstree</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ps"><span class="nav-number">16.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pgrep-pkill"><span class="nav-number">17.</span> <span class="nav-text">pgrep, pkill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pidof"><span class="nav-number">18.</span> <span class="nav-text">pidof</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#top"><span class="nav-number">19.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#uptime"><span class="nav-number">20.</span> <span class="nav-text">uptime</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#htop"><span class="nav-number">21.</span> <span class="nav-text">htop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ss"><span class="nav-number">22.</span> <span class="nav-text">ss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lsof"><span class="nav-number">23.</span> <span class="nav-text">lsof</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vmstat"><span class="nav-number">24.</span> <span class="nav-text">vmstat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mpstat"><span class="nav-number">25.</span> <span class="nav-text">mpstat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pmap"><span class="nav-number">26.</span> <span class="nav-text">pmap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#glances"><span class="nav-number">27.</span> <span class="nav-text">glances</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dstat"><span class="nav-number">28.</span> <span class="nav-text">dstat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kill"><span class="nav-number">29.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#killall"><span class="nav-number">30.</span> <span class="nav-text">killall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jobs"><span class="nav-number">31.</span> <span class="nav-text">jobs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fg"><span class="nav-number">32.</span> <span class="nav-text">fg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bg"><span class="nav-number">33.</span> <span class="nav-text">bg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nice"><span class="nav-number">34.</span> <span class="nav-text">nice</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#renice"><span class="nav-number">35.</span> <span class="nav-text">renice</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chroot"><span class="nav-number">36.</span> <span class="nav-text">chroot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ldd"><span class="nav-number">37.</span> <span class="nav-text">ldd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sync"><span class="nav-number">38.</span> <span class="nav-text">sync</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chkconfig"><span class="nav-number">39.</span> <span class="nav-text">chkconfig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#uname"><span class="nav-number">40.</span> <span class="nav-text">uname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lsmod"><span class="nav-number">41.</span> <span class="nav-text">lsmod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#modinfo"><span class="nav-number">42.</span> <span class="nav-text">modinfo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#modprobe"><span class="nav-number">43.</span> <span class="nav-text">modprobe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#depmod"><span class="nav-number">44.</span> <span class="nav-text">depmod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#insmod"><span class="nav-number">45.</span> <span class="nav-text">insmod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rmmod"><span class="nav-number">46.</span> <span class="nav-text">rmmod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkinitrd"><span class="nav-number">47.</span> <span class="nav-text">mkinitrd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sysctl"><span class="nav-number">48.</span> <span class="nav-text">sysctl</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-film"></i>
+    <i class="fa fa-bicycle"></i>
+    <i class="fa fa-music"></i>
+    <i class="fa fa-linux"></i>
+    <i class="fa fa-camera-retro"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liu2lin600</span>
+</div>
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i>访客数：<span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>访问量：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liu2lin600"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
