@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,21 +63,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="MySQL主从,ssl," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="MySQL主从,ssl,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
@@ -85,16 +85,18 @@
 
 
 <meta name="description" content="&amp;#x672C;&amp;#x6587;&amp;#x7B80;&amp;#x8981;&amp;#x81EA;&amp;#x5EFA;CA&amp;#x4E2D;&amp;#x5FC3;&amp;#x7528;&amp;#x4E8E;&amp;#x57FA;&amp;#x4E8E;ssl&amp;#x7684;MySQL&amp;#x7684;&amp;#x4E3B;&amp;#x4ECE;&amp;#x590D;&amp;#x5236;&amp;#x7684;&amp;#x5B9E;&amp;#x73B0;">
+<meta name="keywords" content="MySQL主从,ssl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于ssl的MySQL主从复制">
 <meta property="og:url" content="http://liu2lin600.github.io/2016/09/02/基于ssl的MySQL主从复制/index.html">
-<meta property="og:site_name" content="600's life">
+<meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7B80;&amp;#x8981;&amp;#x81EA;&amp;#x5EFA;CA&amp;#x4E2D;&amp;#x5FC3;&amp;#x7528;&amp;#x4E8E;&amp;#x57FA;&amp;#x4E8E;ssl&amp;#x7684;MySQL&amp;#x7684;&amp;#x4E3B;&amp;#x4ECE;&amp;#x590D;&amp;#x5236;&amp;#x7684;&amp;#x5B9E;&amp;#x73B0;">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/09/02/基于ssl的MySQL主从复制/ca.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/09/02/基于ssl的MySQL主从复制/master_ca.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/09/02/基于ssl的MySQL主从复制/ca_2.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/09/02/基于ssl的MySQL主从复制/chown.png">
-<meta property="og:updated_time" content="2016-09-02T13:28:34.376Z">
+<meta property="og:updated_time" content="2016-09-02T13:28:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于ssl的MySQL主从复制">
 <meta name="twitter:description" content="&amp;#x672C;&amp;#x6587;&amp;#x7B80;&amp;#x8981;&amp;#x81EA;&amp;#x5EFA;CA&amp;#x4E2D;&amp;#x5FC3;&amp;#x7528;&amp;#x4E8E;&amp;#x57FA;&amp;#x4E8E;ssl&amp;#x7684;MySQL&amp;#x7684;&amp;#x4E3B;&amp;#x4ECE;&amp;#x590D;&amp;#x5236;&amp;#x7684;&amp;#x5B9E;&amp;#x73B0;">
@@ -119,7 +121,7 @@
   <title> 基于ssl的MySQL主从复制 | 600's life </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -140,12 +142,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">600's life</span>
       <span class="logo-line-after"><i></i></span>
@@ -172,7 +174,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -182,7 +184,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -192,7 +194,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -202,7 +204,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -212,7 +214,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -225,7 +227,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -268,7 +270,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -297,14 +299,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Linux服务/" itemprop="url" rel="index">
                     <span itemprop="name">Linux服务</span>
                   </a>
@@ -336,7 +338,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv">阅读次数
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
           
         </div>
@@ -540,8 +542,8 @@ Master_SSL_Verify_Server_Cert: No
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/08/Linux程序包管理之yum/" rel="prev" title="Linux程序包管理之yum">
-                Linux程序包管理之yum <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/31/SSH端口转发简介/" rel="prev" title="SSH端口转发简介">
+                SSH端口转发简介 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -568,8 +570,7 @@ Master_SSL_Verify_Server_Cert: No
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/02/基于ssl的MySQL主从复制/"
-           data-title="基于ssl的MySQL主从复制" data-url="http://liu2lin600.github.io/2016/09/02/基于ssl的MySQL主从复制/">
+      <div class="ds-thread" data-thread-key="2016/09/02/基于ssl的MySQL主从复制/" data-title="基于ssl的MySQL主从复制" data-url="http://liu2lin600.github.io/2016/09/02/基于ssl的MySQL主从复制/">
       </div>
     
   </div>
@@ -594,7 +595,7 @@ Master_SSL_Verify_Server_Cert: No
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -604,17 +605,15 @@ Master_SSL_Verify_Server_Cert: No
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/b.jpg"
-               alt="Liu2lin600" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/b.jpg" alt="Liu2lin600">
           <p class="site-author-name" itemprop="name">Liu2lin600</p>
           <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -622,7 +621,7 @@ Master_SSL_Verify_Server_Cert: No
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -631,7 +630,7 @@ Master_SSL_Verify_Server_Cert: No
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -714,10 +713,10 @@ Master_SSL_Verify_Server_Cert: No
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>

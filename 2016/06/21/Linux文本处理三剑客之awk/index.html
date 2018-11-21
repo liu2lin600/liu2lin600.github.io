@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,21 +63,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="awk,文本处理," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="awk,文本处理,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
@@ -85,12 +85,14 @@
 
 
 <meta name="description" content="Linux&amp;#x6587;&amp;#x672C;&amp;#x5904;&amp;#x7406;&amp;#x4E2D;&amp;#x7684;&amp;#x5C60;&amp;#x9F99;&amp;#x5200;&amp;#x51FA;&amp;#x573A;">
+<meta name="keywords" content="awk,文本处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux文本处理三剑客之awk">
 <meta property="og:url" content="http://liu2lin600.github.io/2016/06/21/Linux文本处理三剑客之awk/index.html">
-<meta property="og:site_name" content="600's life">
+<meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="Linux&amp;#x6587;&amp;#x672C;&amp;#x5904;&amp;#x7406;&amp;#x4E2D;&amp;#x7684;&amp;#x5C60;&amp;#x9F99;&amp;#x5200;&amp;#x51FA;&amp;#x573A;">
-<meta property="og:updated_time" content="2016-09-28T04:43:31.546Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-09-28T04:43:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux文本处理三剑客之awk">
 <meta name="twitter:description" content="Linux&amp;#x6587;&amp;#x672C;&amp;#x5904;&amp;#x7406;&amp;#x4E2D;&amp;#x7684;&amp;#x5C60;&amp;#x9F99;&amp;#x5200;&amp;#x51FA;&amp;#x573A;">
@@ -114,7 +116,7 @@
   <title> Linux文本处理三剑客之awk | 600's life </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -135,12 +137,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">600's life</span>
       <span class="logo-line-after"><i></i></span>
@@ -167,7 +169,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -177,7 +179,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -187,7 +189,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -197,7 +199,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -207,7 +209,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -220,7 +222,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -263,7 +265,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -292,14 +294,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Linux基础/" itemprop="url" rel="index">
                     <span itemprop="name">Linux基础</span>
                   </a>
@@ -331,7 +333,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv">阅读次数
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
           
         </div>
@@ -368,7 +370,7 @@
 <h3 id="1-OPTION"><a href="#1-OPTION" class="headerlink" title="1.OPTION"></a>1.OPTION</h3><blockquote>
 <p><code>-F</code>&#xFF1A;&#x6307;&#x660E;&#x8F93;&#x5165;&#x65F6;&#x7528;&#x5230;&#x7684;&#x5B57;&#x6BB5;&#x5206;&#x9694;&#x7B26;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;&#x7A7A;&#x767D;&#x5B57;&#x7B26;<br><code>-v var=value</code>&#xFF1A;&#x81EA;&#x5B9A;&#x4E49;&#x53D8;&#x91CF;<br><code>-f</code>&#xFF1A;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#x4E2D;&#x7684;awk&#x89C4;&#x5219;  </p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk -v str=<span class="string">&apos;hello&apos;</span> <span class="string">&apos;{print str,$1}&apos;</span> file1       <span class="comment"># </span></span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;hello&quot;}{print str,$1}&apos;</span> file1    <span class="comment"># &#x6548;&#x679C;&#x540C;&#x4E0A;</span></span><br><span class="line">awk <span class="_">-f</span> file1                                    <span class="comment"># awk&#x89C4;&#x5219;&#x5199;&#x5230;&#x811A;&#x672C;&#x4E2D;&#xFF0C;&#x4ECE;&#x4E2D;&#x8BFB;&#x53D6;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk -v str=<span class="string">&apos;hello&apos;</span> <span class="string">&apos;{print str,$1}&apos;</span> file1       <span class="comment"># </span></span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;hello&quot;}{print str,$1}&apos;</span> file1    <span class="comment"># &#x6548;&#x679C;&#x540C;&#x4E0A;</span></span><br><span class="line">awk -f file1                                    <span class="comment"># awk&#x89C4;&#x5219;&#x5199;&#x5230;&#x811A;&#x672C;&#x4E2D;&#xFF0C;&#x4ECE;&#x4E2D;&#x8BFB;&#x53D6;</span></span><br></pre></td></tr></table></figure>
 <h3 id="2-PATTERN"><a href="#2-PATTERN" class="headerlink" title="2.PATTERN"></a>2.PATTERN</h3><p>&#x5E38;&#x89C1;&#x7684;&#x6A21;&#x5F0F;&#x7C7B;&#x578B;&#x6709;&#x5730;&#x5740;&#x5B9A;&#x754C;&#x3001;BEGIN/END&#x3001;&#x8868;&#x8FBE;&#x5F0F;</p>
 <p><em>&#x5730;&#x5740;&#x5B9A;&#x754C;</em>&#xFF1A; </p>
 <ul>
@@ -459,7 +461,7 @@
 <li>&#x904D;&#x5386;&#xFF1A;<code>for (var in array) { statement1, ... }</code></li>
 <li>&#x5220;&#x9664;&#x6570;&#x7EC4;&#x53D8;&#x91CF;&#xFF1A;<code>delete  array[index]</code>  </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -ant | awk <span class="string">&apos;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&apos;</span>      <span class="comment"># &#x6BCF;&#x51FA;&#x73B0;&#x4E00;&#x88AB;/^tcp/&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#xFF0C;&#x6570;&#x7EC4;S[$NF]&#x5C31;&#x52A0;1&#xFF0C;NF&#x4E3A;&#x5F53;&#x524D;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x6B64;&#x5904;&#x7528;&#x5176;&#x503C;&#x505A;&#x4E3A;&#x6570;&#x7EC4;S&#x7684;&#x5143;&#x7D20;&#x7D22;&#x5F15;&#xFF1B;</span></span><br><span class="line"></span><br><span class="line">awk <span class="string">&apos;{counts[$1]++}; END {for(url in counts) print counts[url], url}&apos;</span> /var/<span class="built_in">log</span>/httpd/access_<span class="built_in">log</span>     <span class="comment">#&#x7EDF;&#x8BA1;&#x67D0;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;IP&#x5730;&#x7684;&#x8BBF;&#x95EE;&#x91CF;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -ant | awk <span class="string">&apos;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&apos;</span>      <span class="comment"># &#x6BCF;&#x51FA;&#x73B0;&#x4E00;&#x88AB;/^tcp/&#x6A21;&#x5F0F;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#xFF0C;&#x6570;&#x7EC4;S[$NF]&#x5C31;&#x52A0;1&#xFF0C;NF&#x4E3A;&#x5F53;&#x524D;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x6B64;&#x5904;&#x7528;&#x5176;&#x503C;&#x505A;&#x4E3A;&#x6570;&#x7EC4;S&#x7684;&#x5143;&#x7D20;&#x7D22;&#x5F15;&#xFF1B;</span></span><br><span class="line"></span><br><span class="line">awk <span class="string">&apos;{counts[$1]++}; END {for(url in counts) print counts[url], url}&apos;</span> /var/<span class="built_in">log</span>/httpd/access_log     <span class="comment">#&#x7EDF;&#x8BA1;&#x67D0;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;IP&#x5730;&#x7684;&#x8BBF;&#x95EE;&#x91CF;</span></span><br></pre></td></tr></table></figure>
 <h4 id="&#x5185;&#x7F6E;&#x51FD;&#x6570;"><a href="#&#x5185;&#x7F6E;&#x51FD;&#x6570;" class="headerlink" title="&#x5185;&#x7F6E;&#x51FD;&#x6570;"></a>&#x5185;&#x7F6E;&#x51FD;&#x6570;</h4><p><code>rand()</code>&#xFF1A;&#x968F;&#x673A;&#x6570;&#xFF0C;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;0&#xFF0C;&#x5C0F;&#x4E8E;1<br><code>gsub(str1, str2, str)</code>&#xFF1A;&#x5728;str&#x4E2D;&#x5C06;str1&#x5168;&#x90E8;&#x66FF;&#x6362;&#x4E3A;str2&#xFF0C;&#x652F;&#x6301;&#x914D;&#x7B26;&#x67E5;&#x627E;<br><code>index(str1, str2 )</code>&#xFF1A;&#x5728;str1&#x5185;&#x627E;&#x9996;&#x6B21;&#x51FA;&#x73B0;str2&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6CA1;&#x6709;&#x5219;&#x8FD4;&#x56DE;0<br><code>split(str,array[,fieldsep[,seps]])</code>&#xFF1A;&#x5C06;str&#x4EE5;fieldsep&#x4E3A;&#x5206;&#x9694;&#x7B26;&#x5206;&#x9694;&#xFF0C;&#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x81F3;array&#x6570;&#x7EC4;&#x4E2D;&#xFF0C;&#x4E0B;&#x6807;&#x4E3A;&#x4ECE;0&#x5F00;&#x59CB;<br><code>length([str])</code>&#xFF1A;&#x8FD4;&#x56DE;string&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x5B57;&#x7B26;&#x7684;&#x4E2A;&#x6570;<br><code>substr(str, start [, length])</code>&#xFF1A;&#x622A;&#x53D6;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4ECE;start&#x5F00;&#x59CB;&#xFF0C;&#x53D6;length&#x4E2A;&#xFF0C;start&#x4ECE;1&#x5F00;&#x59CB;&#x8BA1;&#x6570;<br><code>system(command)</code>&#xFF1A;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x547D;&#x4EE4;&#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x81F3;awk<br><code>systime()</code>&#xFF1A;&#x7CFB;&#x7EDF;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x6233;<br><code>mktime(&quot;YYYY MM DD HH MM SS[ DST]&quot;)</code>&#xFF1A;&#x6307;&#x5B9A;&#x65E5;&#x671F;&#x65F6;&#x95F4;&#x6233;&#xFF0C;&#x6CE8;&#x610F;&#x52A0;&#x5F15;&#x53F7;<br><code>strftime(format [,timestamp [,utc-flage]])</code>&#xFF1A;&#x751F;&#x6210;&#x6307;&#x5B9A;&#x683C;&#x5F0F;&#x65F6;&#x95F4;&#xFF0C;&#x5177;&#x4F53;&#x683C;&#x5F0F;&#x53C2;&#x8003;date&#x547D;&#x4EE4;<br><code>tolower(str)</code>&#xFF1A;&#x8F6C;&#x4E3A;&#x5C0F;&#x5199;<br><code>toupper(str)</code>&#xFF1A;&#x8F6C;&#x4E3A;&#x5927;&#x5199;  </p>
 <p><em>&#x66F4;&#x591A;&#x51FD;&#x6570;&#x5185;&#x5BB9;&#x67E5;&#x770B;man&#x5E2E;&#x52A9;</em></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;this is a test&quot;;split(str,A,&quot; &quot;);print length(A);for(i in A){print i,A[i];}}&apos;</span></span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;str std str2&quot;;gsub(&quot;str&quot;,&quot;STR&quot;,str);print str}&apos;</span> </span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;this is a test&quot;;b=match(str,&quot;is&quot;);print b}&apos;</span></span><br><span class="line">awk <span class="string">&apos;BEGIN{str=&quot;this is a test2016&quot;;print substr(str,4,6)}&apos;</span> </span><br><span class="line">netstat -ant | awk <span class="string">&apos;/:80\&gt;/{split($5,clients,&quot;:&quot;);IP[clients[1]]++}END{for(i in IP){print IP[i],i}}&apos;</span> | sort -rn | head -50</span><br><span class="line">awk <span class="string">&apos;BEGIN{print mktime(&quot;2016 06 21 11 22 33&quot;)}&apos;</span></span><br><span class="line">awk <span class="string">&apos;BEGIN{print strftime(&quot;%Y-%m-%d %H:%M:%S&quot;,systime())}&apos;</span></span><br><span class="line">awk <span class="string">&apos;{system(&quot;mkdir &quot; ($NF-1)}&apos;</span> filename    <span class="comment"># &#x5012;&#x6570;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B57;&#x6BB5;&#x505A;&#x4E3A;&#x76EE;&#x5F55;&#x540D;&#x521B;&#x5EFA;&#x76EE;&#x5F55;</span></span><br></pre></td></tr></table></figure>
@@ -532,8 +534,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/21/Linux文本处理三剑客之awk/"
-           data-title="Linux文本处理三剑客之awk" data-url="http://liu2lin600.github.io/2016/06/21/Linux文本处理三剑客之awk/">
+      <div class="ds-thread" data-thread-key="2016/06/21/Linux文本处理三剑客之awk/" data-title="Linux文本处理三剑客之awk" data-url="http://liu2lin600.github.io/2016/06/21/Linux文本处理三剑客之awk/">
       </div>
     
   </div>
@@ -558,7 +559,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -568,17 +569,15 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/b.jpg"
-               alt="Liu2lin600" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/b.jpg" alt="Liu2lin600">
           <p class="site-author-name" itemprop="name">Liu2lin600</p>
           <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -586,7 +585,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -595,7 +594,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -678,10 +677,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>

@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,21 +63,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="文本处理,正则," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="正则,文本处理,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
@@ -85,13 +85,15 @@
 
 
 <meta name="description" content="&amp;#x901A;&amp;#x8FC7;vim&amp;#xFF0C;grep&amp;#x53CA;&amp;#x6B63;&amp;#x5219;&amp;#x7684;&amp;#x8E42;&amp;#x8E8F;&amp;#x4EE5;&amp;#x540E;&amp;#xFF0C;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x770B;&amp;#x770B;&amp;#x53E6;&amp;#x4E00;&amp;#x628A;&amp;#x5229;&amp;#x5668;sed">
+<meta name="keywords" content="正则,文本处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux文本处理三剑客之sed">
 <meta property="og:url" content="http://liu2lin600.github.io/2016/05/26/Linux文本处理三剑客之sed/index.html">
-<meta property="og:site_name" content="600's life">
+<meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="&amp;#x901A;&amp;#x8FC7;vim&amp;#xFF0C;grep&amp;#x53CA;&amp;#x6B63;&amp;#x5219;&amp;#x7684;&amp;#x8E42;&amp;#x8E8F;&amp;#x4EE5;&amp;#x540E;&amp;#xFF0C;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x770B;&amp;#x770B;&amp;#x53E6;&amp;#x4E00;&amp;#x628A;&amp;#x5229;&amp;#x5668;sed">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/05/26/Linux文本处理三剑客之sed/sed.png">
-<meta property="og:updated_time" content="2017-01-12T15:08:28.410Z">
+<meta property="og:updated_time" content="2017-01-12T15:08:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux文本处理三剑客之sed">
 <meta name="twitter:description" content="&amp;#x901A;&amp;#x8FC7;vim&amp;#xFF0C;grep&amp;#x53CA;&amp;#x6B63;&amp;#x5219;&amp;#x7684;&amp;#x8E42;&amp;#x8E8F;&amp;#x4EE5;&amp;#x540E;&amp;#xFF0C;&amp;#x5C31;&amp;#x53EF;&amp;#x4EE5;&amp;#x770B;&amp;#x770B;&amp;#x53E6;&amp;#x4E00;&amp;#x628A;&amp;#x5229;&amp;#x5668;sed">
@@ -116,7 +118,7 @@
   <title> Linux文本处理三剑客之sed | 600's life </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -137,12 +139,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">600's life</span>
       <span class="logo-line-after"><i></i></span>
@@ -169,7 +171,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -179,7 +181,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -189,7 +191,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -199,7 +201,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -209,7 +211,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -222,7 +224,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -265,7 +267,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -294,14 +296,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Linux基础/" itemprop="url" rel="index">
                     <span itemprop="name">Linux基础</span>
                   </a>
@@ -333,7 +335,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv">阅读次数
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
           
         </div>
@@ -386,14 +388,14 @@
 <p>&#x4FEE;&#x9970;&#x7B26;&#xFF1A;g&#x5168;&#x5C40;&#xFF0C;&#x9ED8;&#x8BA4;&#x53EA;&#x5339;&#x914D;&#x6BCF;&#x4E00;&#x884C;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;; i&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;; p&#x663E;&#x793A;&#x66FF;&#x6362;&#x6210;&#x529F;&#x7684;&#x884C;<br>&#x540E;&#x5411;&#x5F15;&#x7528;&#xFF1A;<code>\(**\)</code>&#xFF0C;<code>\1&#xFF0C;\2...</code>&#x5BF9;&#x5E94;&#x62EC;&#x53F7;&#x5185;&#x5BB9;&#xFF0C;&amp;&#x8868;&#x793A;&#x5F15;&#x7528;&#x5339;&#x914D;&#x5230;&#x6574;&#x4E2A;<br><code>y/inchars/outchars/</code>&#xFF1A;&#x5168;&#x5C40;&#x8F6C;&#x6362;&#x547D;&#x4EE4;&#xFF0C;&#x4F1A;&#x8FDB;&#x884C;inchars&#x548C;outchars&#x7684;&#x4E00;&#x5BF9;&#x4E00;&#x8F6C;&#x6362;</p>
 </blockquote>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x6253;&#x5370;&#x7B2C;&#x4E8C;&#x884C;&#x5230;&#x7B2C;&#x4E00;&#x6B21;&#x4EE5;#&#x5F00;&#x5934;&#x7684;&#x884C;  </span></span><br><span class="line">sed -n <span class="string">&apos;2,/^#/p&apos;</span> /tmp/file1  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53BB;&#x9664;&#x6587;&#x672C;&#x4E2D;&#x7684;html&#x6807;&#x7B7E;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;This &lt;b&gt; is &lt;/b&gt; an &lt;i&gt;example&lt;/i&gt;.&quot;</span> | sed <span class="_">-e</span> <span class="string">&apos;s/&lt;[^&gt;]*&gt;//g&apos;</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5168;&#x6587;&#x6BCF;&#x884C;&#x540E;&#x6DFB;&#x52A0;2&#x884C;&#x5185;&#x5BB9;  </span></span><br><span class="line">sed <span class="string">&apos;a \new line\nother&apos;</span> /tmp/file2  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5220;&#x9664;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x7A7A;&#x767D;&#x884C;</span></span><br><span class="line">sed -r <span class="string">&apos;/^[[:space:]]*$/d&apos;</span> file3  </span><br><span class="line"></span><br><span class="line"><span class="comment"># file4&#x4E2D;&#x7B2C;&#x4E00;&#x6B21;&#x4EE5;#&#x5F00;&#x5934;&#x7684;&#x884C;&#x5230;&#x7B2C;&#x4E00;&#x6B21;&#x4EE5;ID&#x7ED3;&#x5C3E;&#x7684;&#x884C;&#x5199;&#x5165;sed.txt&#x4E2D;    </span></span><br><span class="line">sed -n <span class="string">&apos;/^#/,/ID$/w sed.txt&apos;</span> file4  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53D6;&#x57FA;&#x540D;&#xFF0C;&#x5305;&#x62EC;&#x6709;&#x65E0;&#x6700;&#x540E;&#x2018;/&#x2019;&#x7684;&#x60C5;&#x51B5;  </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/etc/rc.d/&quot;</span> | sed -r <span class="string">&apos;s@^/.*/([^/]+)/?@\1@g&apos;</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53D6;&#x76EE;&#x5F55;&#x540D;&#xFF0C;&#xFF08;&#x5C06;&#x57FA;&#x540D;&#x5220;&#x9664;&#xFF09;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&apos;/etc/rc.d/init.d/function&apos;</span> | sed -r <span class="string">&apos;s@[^/]+/?$@@&apos;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x6253;&#x5370;&#x7B2C;&#x4E8C;&#x884C;&#x5230;&#x7B2C;&#x4E00;&#x6B21;&#x4EE5;#&#x5F00;&#x5934;&#x7684;&#x884C;  </span></span><br><span class="line">sed -n <span class="string">&apos;2,/^#/p&apos;</span> /tmp/file1  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53BB;&#x9664;&#x6587;&#x672C;&#x4E2D;&#x7684;html&#x6807;&#x7B7E;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;This &lt;b&gt; is &lt;/b&gt; an &lt;i&gt;example&lt;/i&gt;.&quot;</span> | sed -e <span class="string">&apos;s/&lt;[^&gt;]*&gt;//g&apos;</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5168;&#x6587;&#x6BCF;&#x884C;&#x540E;&#x6DFB;&#x52A0;2&#x884C;&#x5185;&#x5BB9;  </span></span><br><span class="line">sed <span class="string">&apos;a \new line\nother&apos;</span> /tmp/file2  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5220;&#x9664;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x7A7A;&#x767D;&#x884C;</span></span><br><span class="line">sed -r <span class="string">&apos;/^[[:space:]]*$/d&apos;</span> file3  </span><br><span class="line"></span><br><span class="line"><span class="comment"># file4&#x4E2D;&#x7B2C;&#x4E00;&#x6B21;&#x4EE5;#&#x5F00;&#x5934;&#x7684;&#x884C;&#x5230;&#x7B2C;&#x4E00;&#x6B21;&#x4EE5;ID&#x7ED3;&#x5C3E;&#x7684;&#x884C;&#x5199;&#x5165;sed.txt&#x4E2D;    </span></span><br><span class="line">sed -n <span class="string">&apos;/^#/,/ID$/w sed.txt&apos;</span> file4  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53D6;&#x57FA;&#x540D;&#xFF0C;&#x5305;&#x62EC;&#x6709;&#x65E0;&#x6700;&#x540E;&#x2018;/&#x2019;&#x7684;&#x60C5;&#x51B5;  </span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/etc/rc.d/&quot;</span> | sed -r <span class="string">&apos;s@^/.*/([^/]+)/?@\1@g&apos;</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x53D6;&#x76EE;&#x5F55;&#x540D;&#xFF0C;&#xFF08;&#x5C06;&#x57FA;&#x540D;&#x5220;&#x9664;&#xFF09;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&apos;/etc/rc.d/init.d/function&apos;</span> | sed -r <span class="string">&apos;s@[^/]+/?$@@&apos;</span></span><br></pre></td></tr></table></figure>
 <h3 id="&#x9AD8;&#x7EA7;&#x547D;&#x4EE4;"><a href="#&#x9AD8;&#x7EA7;&#x547D;&#x4EE4;" class="headerlink" title="&#x9AD8;&#x7EA7;&#x547D;&#x4EE4;"></a>&#x9AD8;&#x7EA7;&#x547D;&#x4EE4;</h3><p>&#x6240;&#x8C13;&#x7684;&#x9AD8;&#x7EA7;&#x5C31;&#x662F;&#x7528;&#x4E0A;&#x56FE;&#x793A;&#x4E2D;&#x7684;&#x4FDD;&#x6301;&#x7A7A;&#x95F4;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x4E0E;&#x4FDD;&#x6301;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x4E92;&#x76F8;&#x66FF;&#x6362;&#xFF0C;&#x8FFD;&#x52A0;&#xFF0C;&#x5220;&#x9664;&#x7B49;&#x64CD;&#x4F5C;&#xFF0C;&#x4EE5;&#x5F97;&#x5230;&#x5404;&#x79CD;&#x532A;&#x5937;&#x6240;&#x601D;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x505A;&#x4E86;&#x89E3;&#x5373;&#x53EF;</p>
 <blockquote>
 <p>h&#xFF1A;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x2013;&gt;&#x8986;&#x76D6;&#x2013;&gt;&#x4FDD;&#x6301;&#x7A7A;&#x95F4;<br>H&#xFF1A;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x2013;&gt;&#x8FFD;&#x52A0;&#x2013;&gt;&#x4FDD;&#x6301;&#x7A7A;&#x95F4;&#xFF08;&#x52A0;&#x5728;&#x539F;&#x6709;&#x5185;&#x5BB9;&#x4E4B;&#x540E;&#xFF09;<br>g&#xFF1A;&#x4FDD;&#x6301;&#x7A7A;&#x95F4;&#x2013;&gt;&#x8986;&#x76D6;&#x2013;&gt;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;<br>G&#xFF1A;&#x4FDD;&#x6301;&#x7A7A;&#x95F4;&#x2013;&gt;&#x8FFD;&#x52A0;&#x2013;&gt;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#xFF08;&#x52A0;&#x5728;&#x539F;&#x6709;&#x5185;&#x5BB9;&#x4E4B;&#x540E;&#xFF09;<br>x&#xFF1A;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&lt;&#x2013;&#x4EA4;&#x6362;&#x2013;&gt;&#x4FDD;&#x6301;&#x7A7A;&#x95F4;<br>d&#xFF1A;&#x5220;&#x9664;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x5185;&#x5BB9;<br>D&#xFF1A;&#x5982;&#x679C;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x4E3A;&#x591A;&#x884C;&#x65F6;&#xFF0C;&#x5220;&#x9664;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x884C;<br>n&#xFF1A;&#x8BFB;&#x53D6;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#x7684;&#x4E0B;&#x4E00;&#x884C;&#x5230;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x4E2D;&#xFF08;&#x8986;&#x76D6;&#x539F;&#x5185;&#x5BB9;&#xFF09;<br>N&#xFF1A;&#x8BFB;&#x53D6;&#x5339;&#x914D;&#x5230;&#x7684;&#x884C;&#x7684;&#x4E0B;&#x4E00;&#x884C;&#x5230;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x4E2D;&#xFF08;&#x8FFD;&#x52A0;&#x5728;&#x539F;&#x5185;&#x5BB9;&#x4E4B;&#x540E;&#xFF09;  </p>
 </blockquote>
 <p><em>*&#x6CE8;&#xFF1A;&#x591A;&#x5904;&#x547D;&#x4EE4;&#x95F4;&#x7528;&#x5206;&#x53F7;&#x9694;&#x5F00;&#xFF0C;&#x5B9E;&#x73B0;&#x591A;&#x70B9;&#x7F16;&#x8F91;&#xFF0C;&#x8FFD;&#x52A0;&#x6216;&#x8986;&#x76D6;&#x64CD;&#x4F5C;&#x65F6;&#x539F;&#x7A7A;&#x95F4;&#x5185;&#x5BB9;&#x4F9D;&#x7136;&#x5B58;&#x5728;</em></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed -n <span class="string">&apos;n;p&apos;</span> file        <span class="comment"># &#x663E;&#x793A;&#x5076;&#x6570;&#x884C;</span></span><br><span class="line">sed <span class="string">&apos;/^$/d;G&apos;</span> file       <span class="comment"># &#x5220;&#x9664;&#x6587;&#x4EF6;&#x4E2D;&#x7A7A;&#x767D;&#x884C;&#xFF0C;&#x518D;&#x4E3A;&#x6BCF;&#x884C;&#x540E;&#x6DFB;&#x52A0;&#x7A7A;&#x767D;&#x884C;(&#x4FDD;&#x6301;&#x7A7A;&#x95F4;&#x4E3A;&#x7A7A;&#x8FFD;&#x52A0;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x5373;&#x52A0;&#x7A7A;&#x767D;&#x884C;)</span></span><br><span class="line">sed -r <span class="string">&apos;$!N;$!D&apos;</span> file    <span class="comment"># &#x53D6;&#x51FA;&#x6700;&#x540E;&#x4E24;&#x884C;</span></span><br><span class="line">sed <span class="string">&apos;1!G;h;$!d&apos;</span> file     <span class="comment"># &#x9006;&#x5E8F;&#x663E;&#x793A;</span></span><br></pre></td></tr></table></figure>
-<h3 id="&#x793A;&#x4F8B;&#x8BF4;&#x660E;"><a href="#&#x793A;&#x4F8B;&#x8BF4;&#x660E;" class="headerlink" title="&#x793A;&#x4F8B;&#x8BF4;&#x660E;"></a>&#x793A;&#x4F8B;&#x8BF4;&#x660E;</h3><p>&#x8F6C;&#x8F7D;&#x81EA;&#xFF1A;<a href="http://liwei.life/2016/07/04/sed/" target="_blank" rel="external">http://liwei.life/2016/07/04/sed/</a></p>
+<h3 id="&#x793A;&#x4F8B;&#x8BF4;&#x660E;"><a href="#&#x793A;&#x4F8B;&#x8BF4;&#x660E;" class="headerlink" title="&#x793A;&#x4F8B;&#x8BF4;&#x660E;"></a>&#x793A;&#x4F8B;&#x8BF4;&#x660E;</h3><p>&#x8F6C;&#x8F7D;&#x81EA;&#xFF1A;<a href="http://liwei.life/2016/07/04/sed/" target="_blank" rel="noopener">http://liwei.life/2016/07/04/sed/</a></p>
 <p><code>ifconfig</code>&#x4FE1;&#x606F;&#x4FDD;&#x5B58;&#x81F3;<code>ifconfig.out</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n &apos;/^[^ ]/{s/^\([^ ]*\) .*/\1/g;h;: top;n;/^$/b;s/^.*RX bytes:\([0-9]\{1,\}\).*/\1/g;T top;H;x;s/\n/:/g;p}&apos; ifconfig.out</span><br></pre></td></tr></table></figure>
 <p>&#x4E3A;&#x65B9;&#x4FBF;&#x5206;&#x6790;&#xFF0C;&#x5C06;&#x5176;&#x5199;&#x6210;sed&#x811A;&#x672C;</p>
@@ -412,7 +414,7 @@
 <p><strong>&#x7B2C;13&#x884C;</strong>&#xFF1A;s/\n/:/g&#xFF0C;&#x5C06;&#x6362;&#x884C;&#x66FF;&#x6362;&#x6210;&#x5192;&#x53F7;&#x3002;&#x4E4B;&#x540E;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x771F;&#x6B63;&#x60F3;&#x8981;&#x7684;&#x201C;&#x7F51;&#x5361;&#x540D;:&#x63A5;&#x6536;&#x5B57;&#x8282;&#x6570;&#x201D;&#x4E86;&#x3002;&#x4E8E;&#x662F;&#x5C31;&#x53EF;&#x4EE5;p&#x6253;&#x5370;&#x6216;&#x8005;&#x4F7F;&#x7528;w&#x6307;&#x4EE4;&#xFF0C;&#x4FDD;&#x5B58;&#x6A21;&#x5F0F;&#x7A7A;&#x95F4;&#x5185;&#x5BB9;&#x5230;&#x67D0;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;</p>
 <p>&#x6240;&#x6709;&#x6307;&#x4EE4;&#x7684;&#x9000;&#x51FA;&#x6761;&#x4EF6;&#x6709;&#x4E24;&#x4E2A;&#xFF1A;</p>
 <p><strong>&#x7B2C;8&#x884C;</strong>&#xFF0C;&#x9047;&#x5230;&#x7A7A;&#x683C;&#x4E4B;&#x540E;&#x672C;&#x6BB5;&#x89E3;&#x6790;&#x7ED3;&#x675F;&#x3002;<br>&#x6240;&#x6709;&#x6307;&#x4EE4;&#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x6253;&#x5370;&#x6216;&#x4FDD;&#x5B58;&#x4E86;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#x4E4B;&#x540E;&#x6267;&#x884C;&#x5B8C;&#x3002;<br>&#x6267;&#x884C;&#x5B8C;&#x9000;&#x51FA;&#x540E;&#xFF0C;sed&#x4F1A;&#x63A5;&#x7740;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#x7F51;&#x5361;&#x4FE1;&#x606F;&#x5F00;&#x59CB;&#x7684;&#x6BB5;&#xFF0C;&#x7EE7;&#x7EED;&#x4E0B;&#x4E00;&#x4E2A;&#x7F51;&#x5361;&#x7684;&#x89E3;&#x6790;&#x64CD;&#x4F5C;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x590D;&#x6742;sed&#x547D;&#x4EE4;&#x7684;&#x6574;&#x4F53;&#x5904;&#x7406;&#x8FC7;&#x7A0B;</p>
-<p>&#x66F4;&#x591A;&#x8D44;&#x6599;&#xFF1A;<br><a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="external">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br><a href="http://zuyunfei.com/2015/07/13/sed-in-shell-3/" target="_blank" rel="external">http://zuyunfei.com/2015/07/13/sed-in-shell-3/</a></p>
+<p>&#x66F4;&#x591A;&#x8D44;&#x6599;&#xFF1A;<br><a href="http://sed.sourceforge.net/sed1line_zh-CN.html" target="_blank" rel="noopener">http://sed.sourceforge.net/sed1line_zh-CN.html</a><br><a href="http://zuyunfei.com/2015/07/13/sed-in-shell-3/" target="_blank" rel="noopener">http://zuyunfei.com/2015/07/13/sed-in-shell-3/</a></p>
 
       
     </div>
@@ -434,9 +436,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/文本处理/" rel="tag">#文本处理</a>
-          
             <a href="/tags/正则/" rel="tag">#正则</a>
+          
+            <a href="/tags/文本处理/" rel="tag">#文本处理</a>
           
         </div>
       
@@ -481,8 +483,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/26/Linux文本处理三剑客之sed/"
-           data-title="Linux文本处理三剑客之sed" data-url="http://liu2lin600.github.io/2016/05/26/Linux文本处理三剑客之sed/">
+      <div class="ds-thread" data-thread-key="2016/05/26/Linux文本处理三剑客之sed/" data-title="Linux文本处理三剑客之sed" data-url="http://liu2lin600.github.io/2016/05/26/Linux文本处理三剑客之sed/">
       </div>
     
   </div>
@@ -507,7 +508,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -517,17 +518,15 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/b.jpg"
-               alt="Liu2lin600" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/b.jpg" alt="Liu2lin600">
           <p class="site-author-name" itemprop="name">Liu2lin600</p>
           <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -535,7 +534,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -544,7 +543,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -627,10 +626,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>

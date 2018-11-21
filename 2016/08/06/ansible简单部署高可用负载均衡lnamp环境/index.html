@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,21 +63,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="ansible,keepalived,nginx," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="ansible,keepalived,nginx,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="&amp;#x7B80;&amp;#x8FF0;&amp;#x4F7F;&amp;#x7528;ansible&amp;#x5FEB;&amp;#x901F;&amp;#x90E8;&amp;#x7F72;keepalived&amp;#x9AD8;&amp;#x53EF;&amp;#x7528;nginx&amp;#x53CD;&amp;#x4EE3;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#xFF0C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x540E;&amp;#">
+<meta name="keywords" content="ansible,keepalived,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ansible简单部署高可用负载均衡lnamp环境">
 <meta property="og:url" content="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/index.html">
-<meta property="og:site_name" content="600's life">
+<meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="&amp;#x7B80;&amp;#x8FF0;&amp;#x4F7F;&amp;#x7528;ansible&amp;#x5FEB;&amp;#x901F;&amp;#x90E8;&amp;#x7F72;keepalived&amp;#x9AD8;&amp;#x53EF;&amp;#x7528;nginx&amp;#x53CD;&amp;#x4EE3;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#xFF0C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x540E;&amp;#">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/main.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/ping.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/nginx.png">
@@ -100,7 +102,7 @@
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/test3.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/test4.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/test5.png">
-<meta property="og:updated_time" content="2016-08-06T11:21:33.752Z">
+<meta property="og:updated_time" content="2016-08-06T11:21:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ansible简单部署高可用负载均衡lnamp环境">
 <meta name="twitter:description" content="&amp;#x7B80;&amp;#x8FF0;&amp;#x4F7F;&amp;#x7528;ansible&amp;#x5FEB;&amp;#x901F;&amp;#x90E8;&amp;#x7F72;keepalived&amp;#x9AD8;&amp;#x53EF;&amp;#x7528;nginx&amp;#x53CD;&amp;#x4EE3;&amp;#x670D;&amp;#x52A1;&amp;#x5668;&amp;#xFF0C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x540E;&amp;#">
@@ -125,7 +127,7 @@
   <title> ansible简单部署高可用负载均衡lnamp环境 | 600's life </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -146,12 +148,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">600's life</span>
       <span class="logo-line-after"><i></i></span>
@@ -178,7 +180,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -188,7 +190,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -198,7 +200,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -208,7 +210,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -218,7 +220,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -231,7 +233,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -274,7 +276,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -303,14 +305,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/运维工具/" itemprop="url" rel="index">
                     <span itemprop="name">运维工具</span>
                   </a>
@@ -342,7 +344,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv">阅读次数
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
           
         </div>
@@ -366,7 +368,7 @@
 <li>&#x4E3A;&#x5B9E;&#x9A8C;&#x65B9;&#x4FBF;&#x8FDB;&#x884C;&#xFF0C;&#x5173;&#x95ED;&#x5404;&#x4E3B;&#x673A;&#x9632;&#x706B;&#x5899;&#x53CA;SELinux</li>
 <li>&#x786E;&#x4FDD;&#x5404;&#x4E3B;&#x673A;&#x4E0A;&#x7684;yum&#x6E90;&#x6B63;&#x5E38;&#x53EF;&#x7528;</li>
 </ul>
-<h2 id="ansible&#x914D;&#x7F6E;"><a href="#ansible&#x914D;&#x7F6E;" class="headerlink" title="ansible&#x914D;&#x7F6E;"></a>ansible&#x914D;&#x7F6E;</h2><h3 id="ansible&#x5B89;&#x88C5;"><a href="#ansible&#x5B89;&#x88C5;" class="headerlink" title="ansible&#x5B89;&#x88C5;"></a>ansible&#x5B89;&#x88C5;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># &#x5148;&#x914D;&#x7F6E;&#x597D;epel&#x6E90;</span><br><span class="line">yum -y install ansible</span><br><span class="line"></span><br><span class="line"># &#x521B;&#x5EFA;roles&#x76EE;&#x5F55;</span><br><span class="line">cd /etc/ansible/roles</span><br><span class="line">mkdir -pv {keepalived,httpd,nginx,mariadb}/{files,tasks,templates,handlers,vars}</span><br></pre></td></tr></table></figure>
+<h2 id="ansible&#x914D;&#x7F6E;"><a href="#ansible&#x914D;&#x7F6E;" class="headerlink" title="ansible&#x914D;&#x7F6E;"></a>ansible&#x914D;&#x7F6E;</h2><h3 id="ansible&#x5B89;&#x88C5;"><a href="#ansible&#x5B89;&#x88C5;" class="headerlink" title="ansible&#x5B89;&#x88C5;"></a>ansible&#x5B89;&#x88C5;</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> &#x5148;&#x914D;&#x7F6E;&#x597D;epel&#x6E90;</span></span><br><span class="line">yum -y install ansible</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> &#x521B;&#x5EFA;roles&#x76EE;&#x5F55;</span></span><br><span class="line">cd /etc/ansible/roles</span><br><span class="line">mkdir -pv {keepalived,httpd,nginx,mariadb}/{files,tasks,templates,handlers,vars}</span><br></pre></td></tr></table></figure>
 <h3 id="&#x4E3B;&#x673A;&#x6E05;&#x5355;&#x8BBE;&#x7F6E;"><a href="#&#x4E3B;&#x673A;&#x6E05;&#x5355;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x4E3B;&#x673A;&#x6E05;&#x5355;&#x8BBE;&#x7F6E;"></a>&#x4E3B;&#x673A;&#x6E05;&#x5355;&#x8BBE;&#x7F6E;</h3><pre><code>&#x27A4; vim /etc/ansible/hosts
 
 [nginx_keepalived]
@@ -577,7 +579,7 @@ pass=fLsdk3Gk
       remote_user: root
       roles:
       - mariadb
-</code></pre><h2 id="&#x90E8;&#x7F72;"><a href="#&#x90E8;&#x7F72;" class="headerlink" title="&#x90E8;&#x7F72;"></a>&#x90E8;&#x7F72;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/ansible/</span><br><span class="line">ansible-play --check lnamp.yml      # &#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6B63;&#x5E38;</span><br><span class="line">ansible-play  lnamp.yml             # &#x5B9E;&#x9645;&#x8FD0;&#x884C;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="&#x90E8;&#x7F72;"><a href="#&#x90E8;&#x7F72;" class="headerlink" title="&#x90E8;&#x7F72;"></a>&#x90E8;&#x7F72;</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/ansible/</span><br><span class="line">ansible-play --check lnamp.yml      # &#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x6B63;&#x5E38;</span><br><span class="line">ansible-play  lnamp.yml             # &#x5B9E;&#x9645;&#x8FD0;&#x884C;</span><br></pre></td></tr></table></figure>
 <p>&#x4EE5;&#x4E0B;&#x662F;&#x90E8;&#x5206;&#x8FD0;&#x884C;&#x622A;&#x56FE;<br><img src="/2016/08/06/ansible&#x7B80;&#x5355;&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;&#x8D1F;&#x8F7D;&#x5747;&#x8861;lnamp&#x73AF;&#x5883;/check.png" alt="ansible_check" title="&#x6D4B;&#x8BD5;&#x8FD0;&#x884C;&#x90E8;&#x5206;&#x622A;&#x56FE;"><br><img src="/2016/08/06/ansible&#x7B80;&#x5355;&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;&#x8D1F;&#x8F7D;&#x5747;&#x8861;lnamp&#x73AF;&#x5883;/run.png" alt="ansible_run" title="&#x90E8;&#x7F72;&#x6210;&#x529F;&#x7ED3;&#x679C;"></p>
 <h2 id="&#x6D4B;&#x8BD5;"><a href="#&#x6D4B;&#x8BD5;" class="headerlink" title="&#x6D4B;&#x8BD5;"></a>&#x6D4B;&#x8BD5;</h2><h3 id="&#x6D4B;&#x8BD5;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><a href="#&#x6D4B;&#x8BD5;&#x8D1F;&#x8F7D;&#x5747;&#x8861;" class="headerlink" title="&#x6D4B;&#x8BD5;&#x8D1F;&#x8F7D;&#x5747;&#x8861;"></a>&#x6D4B;&#x8BD5;&#x8D1F;&#x8F7D;&#x5747;&#x8861;</h3><p>&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x770B;&#x51FA;&#x7ED3;&#x679C;&#xFF0C;&#x5728;&#x4E0A;&#x8FF0;&#x914D;&#x7F6E;&#x65F6;&#x6709;&#x610F;&#x5C06;2&#x53F0;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x9996;&#x9875;&#x8BBE;&#x4E3A;&#x4E0D;&#x540C;&#xFF0C;&#x7ED3;&#x679C;&#x5982;&#x4E0B;<br><img src="/2016/08/06/ansible&#x7B80;&#x5355;&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;&#x8D1F;&#x8F7D;&#x5747;&#x8861;lnamp&#x73AF;&#x5883;/test1.png" alt="load_balance"></p>
 <h3 id="&#x6D4B;&#x8BD5;lamp&#x73AF;&#x5883;"><a href="#&#x6D4B;&#x8BD5;lamp&#x73AF;&#x5883;" class="headerlink" title="&#x6D4B;&#x8BD5;lamp&#x73AF;&#x5883;"></a>&#x6D4B;&#x8BD5;lamp&#x73AF;&#x5883;</h3><p>&#x6D4B;&#x8BD5;php&#x8FDE;&#x63A5;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5982;&#x4E0B;<br><img src="/2016/08/06/ansible&#x7B80;&#x5355;&#x90E8;&#x7F72;&#x9AD8;&#x53EF;&#x7528;&#x8D1F;&#x8F7D;&#x5747;&#x8861;lnamp&#x73AF;&#x5883;/test2.png" alt="php_mysql"></p>
@@ -661,8 +663,7 @@ pass=fLsdk3Gk
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/06/ansible简单部署高可用负载均衡lnamp环境/"
-           data-title="ansible简单部署高可用负载均衡lnamp环境" data-url="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/">
+      <div class="ds-thread" data-thread-key="2016/08/06/ansible简单部署高可用负载均衡lnamp环境/" data-title="ansible简单部署高可用负载均衡lnamp环境" data-url="http://liu2lin600.github.io/2016/08/06/ansible简单部署高可用负载均衡lnamp环境/">
       </div>
     
   </div>
@@ -687,7 +688,7 @@ pass=fLsdk3Gk
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -697,17 +698,15 @@ pass=fLsdk3Gk
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/b.jpg"
-               alt="Liu2lin600" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/b.jpg" alt="Liu2lin600">
           <p class="site-author-name" itemprop="name">Liu2lin600</p>
           <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -715,7 +714,7 @@ pass=fLsdk3Gk
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -724,7 +723,7 @@ pass=fLsdk3Gk
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -807,10 +806,10 @@ pass=fLsdk3Gk
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>

@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,21 +63,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="iptables,FORWARD,NAT," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="iptables,FORWARD,NAT,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
@@ -85,13 +85,15 @@
 
 
 <meta name="description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x6A21;&amp;#x62DF;&amp;#x5B9E;&amp;#x73B0;iptables&amp;#x4E2D;&amp;#x7684;FORWARD&amp;#x53CA;NAT&amp;#x529F;&amp;#x80FD;">
+<meta name="keywords" content="iptables,FORWARD,NAT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iptables的FORWAD和NAT实验">
 <meta property="og:url" content="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/index.html">
-<meta property="og:site_name" content="600's life">
+<meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x6A21;&amp;#x62DF;&amp;#x5B9E;&amp;#x73B0;iptables&amp;#x4E2D;&amp;#x7684;FORWARD&amp;#x53CA;NAT&amp;#x529F;&amp;#x80FD;">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/forward_nat.png">
-<meta property="og:updated_time" content="2016-07-24T09:58:53.865Z">
+<meta property="og:updated_time" content="2016-07-24T09:58:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iptables的FORWAD和NAT实验">
 <meta name="twitter:description" content="&amp;#x5728;&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x4E2D;&amp;#x6A21;&amp;#x62DF;&amp;#x5B9E;&amp;#x73B0;iptables&amp;#x4E2D;&amp;#x7684;FORWARD&amp;#x53CA;NAT&amp;#x529F;&amp;#x80FD;">
@@ -116,7 +118,7 @@
   <title> iptables的FORWAD和NAT实验 | 600's life </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -137,12 +139,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">600's life</span>
       <span class="logo-line-after"><i></i></span>
@@ -169,7 +171,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -179,7 +181,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -189,7 +191,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -199,7 +201,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -209,7 +211,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -222,7 +224,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -265,7 +267,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -294,14 +296,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Linux服务/" itemprop="url" rel="index">
                     <span itemprop="name">Linux服务</span>
                   </a>
@@ -333,7 +335,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv">阅读次数
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
           
         </div>
@@ -372,7 +374,7 @@ lsmod | grep nf_conntrack
 </li>
 </ol>
 <h3 id="&#x5B9E;&#x9A8C;&#x8981;&#x6C42;"><a href="#&#x5B9E;&#x9A8C;&#x8981;&#x6C42;" class="headerlink" title="&#x5B9E;&#x9A8C;&#x8981;&#x6C42;"></a>&#x5B9E;&#x9A8C;&#x8981;&#x6C42;</h3><p>A&#x4E3B;&#x673A;&#x5F00;&#x542F;web,ftp,ssh&#x670D;&#x52A1;&#xFF0C;&#x786E;&#x4FDD;&#x5916;&#x7F51;C&#x4E3B;&#x673A;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;FORWARD&#x9ED8;&#x8BA4;&#x89C4;&#x5219;&#x4E3A;DROP&#xFF0C;&#x6B64;&#x65F6;AC&#x95F4;&#x4E0D;&#x80FD;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x901A;&#x4FE1;</span></span><br><span class="line">iptables -P FORWARD DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x653E;&#x72B6;&#x6001;&#x4E3A;&#x5DF2;&#x5EFA;&#x7ACB;&#x7684;&#x8FDE;&#x63A5;&#x53CA;&#x6709;&#x5173;&#x8054;&#x8FDE;&#x63A5;</span></span><br><span class="line">iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x542F;A&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x5916;&#x90E8;&#x7F51;&#x7EDC;&#xFF0C;&#x6B64;&#x65F6;&#x5916;&#x7F51;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;A&#x4E3B;&#x673A;</span></span><br><span class="line">iptables -A FORWARD <span class="_">-s</span> 172.16.60.11 -m state --state NEW -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x653E;A&#x4E3B;&#x673A;21,22,23,80&#x7AEF;&#x53E3;</span></span><br><span class="line">iptables -A FORWARD <span class="_">-d</span> 172.16.60.11 -p tcp -m multiport --dports 21,22,80 -m state --state NEW -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># B&#x4E3B;&#x673A;&#x52A0;&#x8F7D;ftp&#x6A21;&#x5757;&#xFF0C;&#x786E;&#x4FDD;&#x53EF;&#x4EE5;&#x8FFD;&#x8E2A;ftp&#x72B6;&#x6001;</span></span><br><span class="line">modprobe nf_conntrack_ftp</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5728;C&#x4E3B;&#x673A;&#x6D4B;&#x8BD5;</span></span><br><span class="line">ftp 172.16.60.11</span><br><span class="line">curl 172.16.60.11</span><br><span class="line">ssh root@172.16.60.11</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;FORWARD&#x9ED8;&#x8BA4;&#x89C4;&#x5219;&#x4E3A;DROP&#xFF0C;&#x6B64;&#x65F6;AC&#x95F4;&#x4E0D;&#x80FD;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x901A;&#x4FE1;</span></span><br><span class="line">iptables -P FORWARD DROP</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x653E;&#x72B6;&#x6001;&#x4E3A;&#x5DF2;&#x5EFA;&#x7ACB;&#x7684;&#x8FDE;&#x63A5;&#x53CA;&#x6709;&#x5173;&#x8054;&#x8FDE;&#x63A5;</span></span><br><span class="line">iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x542F;A&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x5916;&#x90E8;&#x7F51;&#x7EDC;&#xFF0C;&#x6B64;&#x65F6;&#x5916;&#x7F51;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;A&#x4E3B;&#x673A;</span></span><br><span class="line">iptables -A FORWARD -s 172.16.60.11 -m state --state NEW -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x653E;A&#x4E3B;&#x673A;21,22,23,80&#x7AEF;&#x53E3;</span></span><br><span class="line">iptables -A FORWARD -d 172.16.60.11 -p tcp -m multiport --dports 21,22,80 -m state --state NEW -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># B&#x4E3B;&#x673A;&#x52A0;&#x8F7D;ftp&#x6A21;&#x5757;&#xFF0C;&#x786E;&#x4FDD;&#x53EF;&#x4EE5;&#x8FFD;&#x8E2A;ftp&#x72B6;&#x6001;</span></span><br><span class="line">modprobe nf_conntrack_ftp</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5728;C&#x4E3B;&#x673A;&#x6D4B;&#x8BD5;</span></span><br><span class="line">ftp 172.16.60.11</span><br><span class="line">curl 172.16.60.11</span><br><span class="line">ssh root@172.16.60.11</span><br></pre></td></tr></table></figure>
 <h2 id="NAT-&#x5730;&#x5740;&#x8F6C;&#x6362;"><a href="#NAT-&#x5730;&#x5740;&#x8F6C;&#x6362;" class="headerlink" title="NAT(&#x5730;&#x5740;&#x8F6C;&#x6362;)"></a>NAT(&#x5730;&#x5740;&#x8F6C;&#x6362;)</h2><h3 id="&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;-1"><a href="#&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;-1" class="headerlink" title="&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;"></a>&#x5B9E;&#x9A8C;&#x524D;&#x914D;&#x7F6E;</h3><ol>
 <li><p>&#x5220;&#x9664;&#x4E0A;&#x5B9E;&#x9A8C;&#x4E2D;&#x4E3A;C&#x4E3B;&#x673A;&#x6DFB;&#x52A0;&#x7684;&#x5230;B&#x4E3B;&#x673A;&#x7F51;&#x7EDC;&#x8DEF;&#x7531;</p>
 <pre><code>route del -net 172.16.0.0/16
@@ -383,10 +385,10 @@ lsmod | grep nf_conntrack
 </ol>
 <h3 id="SNAT"><a href="#SNAT" class="headerlink" title="SNAT"></a>SNAT</h3><p><strong>&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;</strong>&#x7528;&#x4E8E;&#x8BA9;&#x5185;&#x7F51;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x4E92;&#x8054;&#x7F51;&#xFF0C;&#x4EC5;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;POSTROUTING&#xFF0C;INPUT&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x8FBE;&#x5230;&#x9690;&#x85CF;&#x5185;&#x7F51;ip&#x7684;&#x4F5C;&#x7528;</p>
 <p><strong>&#x5B9E;&#x9A8C;&#x8981;&#x6C42;</strong>&#xFF1A;&#x5185;&#x7F51;&#x4E3B;&#x673A;A&#x8BBF;&#x95EE;&#x5916;&#x7F51;C&#x4E3B;&#x673A;&#xFF0C;&#x901A;&#x8FC7;B&#x4E3B;&#x673A;&#x7684;&#x6E90;&#x5730;&#x5740;&#x8F6C;&#x6362;&#xFF0C;&#x5B9E;&#x73B0;B&#x4EE3;&#x7406;&#x8BBF;&#x95EE;C&#xFF0C;&#x540C;&#x65F6;&#x9690;&#x85CF;&#x5185;&#x7F51;ip&#x3002;&#x524D;&#x63D0;&#x786E;&#x4FDD;B&#x4E3B;&#x673A;&#x80FD;&#x591F;&#x6B63;&#x5E38;&#x8BBF;&#x95EE;C</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;&#x8F6C;&#x6362;</span></span><br><span class="line">iptables -t nat -A POSTROUTING <span class="_">-s</span> 172.16.60.11 -j SNAT --to-source 192.168.1.71</span><br><span class="line"></span><br><span class="line"><span class="comment"># A&#x4E3B;&#x673A;&#x8BBF;&#x95EE;C&#x4E3B;&#x673A;web&#x670D;&#x52A1;</span></span><br><span class="line">curl 192.168.1.72</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5728;C&#x4E3B;&#x673A;&#x4E0A;&#x67E5;&#x770B;&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;</span></span><br><span class="line">tail /var/<span class="built_in">log</span>/httpd/access_<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x8BBF;&#x95EE;&#x4E3B;&#x673A;&#x663E;&#x793A;B&#x4E3B;&#x673A;IP</span></span><br><span class="line">    192.168.1.71 - - [24/Jul/2016:11:17:10 +0800] <span class="string">&quot;GET /index.html HTTP/1.1&quot;</span> 200 10</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;&#x8F6C;&#x6362;</span></span><br><span class="line">iptables -t nat -A POSTROUTING -s 172.16.60.11 -j SNAT --to-source 192.168.1.71</span><br><span class="line"></span><br><span class="line"><span class="comment"># A&#x4E3B;&#x673A;&#x8BBF;&#x95EE;C&#x4E3B;&#x673A;web&#x670D;&#x52A1;</span></span><br><span class="line">curl 192.168.1.72</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5728;C&#x4E3B;&#x673A;&#x4E0A;&#x67E5;&#x770B;&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;</span></span><br><span class="line">tail /var/<span class="built_in">log</span>/httpd/access_log</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x8BBF;&#x95EE;&#x4E3B;&#x673A;&#x663E;&#x793A;B&#x4E3B;&#x673A;IP</span></span><br><span class="line">    192.168.1.71 - - [24/Jul/2016:11:17:10 +0800] <span class="string">&quot;GET /index.html HTTP/1.1&quot;</span> 200 10</span><br></pre></td></tr></table></figure>
 <h3 id="DNAT"><a href="#DNAT" class="headerlink" title="DNAT"></a>DNAT</h3><p><strong>&#x76EE;&#x6807;&#x5730;&#x5740;&#x8F6C;&#x6362;</strong>&#x7528;&#x4E8E;&#x8BA9;&#x4E92;&#x8054;&#x7F51;&#x4E0A;&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x672C;&#x5730;&#x5185;&#x7F51;&#x4E0A;&#x7684;&#x67D0;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x4EC5;&#x4F5C;&#x7528;&#x4E8E;nat&#x8868;&#x4E0A;PREROUTING&#x548C;OUTPUT&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x6709;&#x7AEF;&#x53E3;&#x8F6C;&#x6362;&#x4F5C;&#x7528;</p>
 <p><strong>&#x5B9E;&#x9A8C;&#x8981;&#x6C42;</strong>&#xFF1A;&#x5185;&#x7F51;&#x4E3B;&#x673A;&#x7684;httpd&#x670D;&#x52A1;&#x76D1;&#x542C;&#x5728;8080&#x7AEF;&#x53E3;&#xFF0C;&#x8BA9;C&#x8BBF;&#x95EE;&#x4E3B;&#x673A;B&#x7684;80&#x65F6;&#x8F6C;&#x6362;&#x5230;A&#x4E3B;&#x673A;&#x7684;8080&#x4E0A;&#xFF0C;B&#x4E0A;&#x6CA1;&#x6709;httpd&#x670D;&#x52A1;&#xFF0C;&#x53EA;&#x8D1F;&#x8D23;&#x5730;&#x5740;&#x8F6C;&#x6362;</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;&#x8F6C;&#x6362;</span></span><br><span class="line">iptables -t nat -A PREROUTING <span class="_">-d</span> 192.168.1.71 -p tcp --dport 80 -j DNAT --to-destination 172.16.60.11:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># C&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x6D4B;&#x8BD5;</span></span><br><span class="line">curl 192.168.1.71</span><br><span class="line"></span><br><span class="line"><span class="comment"># A&#x4E3B;&#x673A;&#x4E0A;&#x67E5;&#x770B;http&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;</span></span><br><span class="line">tail /var/<span class="built_in">log</span>/httpd/access_<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x6B63;&#x5E38;&#x8BB0;&#x5F55;&#x4E0B;C&#x4E3B;&#x673A;IP</span></span><br><span class="line">    192.168.1.72 - - [24/Jul/2016:10:44:14 +0800] <span class="string">&quot;GET / HTTP/1.1&quot;</span> 200 9 <span class="string">&quot;-&quot;</span> <span class="string">&quot;curl/7.29.0&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x8BBE;&#x7F6E;&#x8F6C;&#x6362;</span></span><br><span class="line">iptables -t nat -A PREROUTING -d 192.168.1.71 -p tcp --dport 80 -j DNAT --to-destination 172.16.60.11:8080</span><br><span class="line"></span><br><span class="line"><span class="comment"># C&#x4E3B;&#x673A;&#x8BBF;&#x95EE;&#x6D4B;&#x8BD5;</span></span><br><span class="line">curl 192.168.1.71</span><br><span class="line"></span><br><span class="line"><span class="comment"># A&#x4E3B;&#x673A;&#x4E0A;&#x67E5;&#x770B;http&#x8BBF;&#x95EE;&#x65E5;&#x5FD7;</span></span><br><span class="line">tail /var/<span class="built_in">log</span>/httpd/access_log</span><br><span class="line"></span><br><span class="line">    <span class="comment"># &#x6B63;&#x5E38;&#x8BB0;&#x5F55;&#x4E0B;C&#x4E3B;&#x673A;IP</span></span><br><span class="line">    192.168.1.72 - - [24/Jul/2016:10:44:14 +0800] <span class="string">&quot;GET / HTTP/1.1&quot;</span> 200 9 <span class="string">&quot;-&quot;</span> <span class="string">&quot;curl/7.29.0&quot;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -457,8 +459,7 @@ lsmod | grep nf_conntrack
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/24/iptables的FORWAD和NAT实验/"
-           data-title="iptables的FORWAD和NAT实验" data-url="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/">
+      <div class="ds-thread" data-thread-key="2016/07/24/iptables的FORWAD和NAT实验/" data-title="iptables的FORWAD和NAT实验" data-url="http://liu2lin600.github.io/2016/07/24/iptables的FORWAD和NAT实验/">
       </div>
     
   </div>
@@ -483,7 +484,7 @@ lsmod | grep nf_conntrack
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -493,17 +494,15 @@ lsmod | grep nf_conntrack
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/b.jpg"
-               alt="Liu2lin600" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/b.jpg" alt="Liu2lin600">
           <p class="site-author-name" itemprop="name">Liu2lin600</p>
           <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -511,7 +510,7 @@ lsmod | grep nf_conntrack
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -520,7 +519,7 @@ lsmod | grep nf_conntrack
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -603,10 +602,10 @@ lsmod | grep nf_conntrack
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>

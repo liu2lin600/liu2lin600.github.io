@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,21 +63,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="反向代理,负载均衡,缓存," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="反向代理,负载均衡,缓存,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="&amp;#x524D;&amp;#x7AEF;&amp;#x4F7F;&amp;#x7528;haproxy&amp;#x8FDB;&amp;#x884C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x53CA;&amp;#x5BF9;&amp;#x52A8;&amp;#x9759;&amp;#x5206;&amp;#x79BB;&amp;#xFF0C;&amp;#x540C;&amp;#x65F6;&amp;#x4F7F;&amp;#x7528;keepalived&amp;#x5BF9;&amp;#x5176">
+<meta name="keywords" content="反向代理,负载均衡,缓存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="keepalived+haproxy+varnish实现web动静分离">
 <meta property="og:url" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/index.html">
-<meta property="og:site_name" content="600's life">
+<meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="&amp;#x524D;&amp;#x7AEF;&amp;#x4F7F;&amp;#x7528;haproxy&amp;#x8FDB;&amp;#x884C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x53CA;&amp;#x5BF9;&amp;#x52A8;&amp;#x9759;&amp;#x5206;&amp;#x79BB;&amp;#xFF0C;&amp;#x540C;&amp;#x65F6;&amp;#x4F7F;&amp;#x7528;keepalived&amp;#x5BF9;&amp;#x5176">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/main.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/varnishadm.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/check.png">
@@ -99,7 +101,7 @@
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/keepalived.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/cache.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/session.png">
-<meta property="og:updated_time" content="2016-08-22T04:14:58.765Z">
+<meta property="og:updated_time" content="2016-08-22T04:15:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="keepalived+haproxy+varnish实现web动静分离">
 <meta name="twitter:description" content="&amp;#x524D;&amp;#x7AEF;&amp;#x4F7F;&amp;#x7528;haproxy&amp;#x8FDB;&amp;#x884C;&amp;#x8D1F;&amp;#x8F7D;&amp;#x5747;&amp;#x8861;&amp;#x53CA;&amp;#x5BF9;&amp;#x52A8;&amp;#x9759;&amp;#x5206;&amp;#x79BB;&amp;#xFF0C;&amp;#x540C;&amp;#x65F6;&amp;#x4F7F;&amp;#x7528;keepalived&amp;#x5BF9;&amp;#x5176">
@@ -124,7 +126,7 @@
   <title> keepalived+haproxy+varnish实现web动静分离 | 600's life </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -145,12 +147,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">600's life</span>
       <span class="logo-line-after"><i></i></span>
@@ -177,7 +179,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -187,7 +189,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -197,7 +199,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -207,7 +209,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -217,7 +219,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -230,7 +232,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -273,7 +275,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -302,14 +304,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Linux服务/" itemprop="url" rel="index">
                     <span itemprop="name">Linux服务</span>
                   </a>
@@ -341,7 +343,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv">阅读次数
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
           
         </div>
@@ -415,7 +417,7 @@
 </ol>
 <h2 id="keepalived&#x914D;&#x7F6E;"><a href="#keepalived&#x914D;&#x7F6E;" class="headerlink" title="keepalived&#x914D;&#x7F6E;"></a>keepalived&#x914D;&#x7F6E;</h2><ol>
 <li><p>MASTER&#x8BBE;&#x7F6E;(172.16.60.3)<br> <code>vim /etc/keepalived/keepalived.conf</code></p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">!Configuration File <span class="keyword">for</span> keepalived</span><br><span class="line">global_defs {</span><br><span class="line">    notification_email {</span><br><span class="line">        root@localhost</span><br><span class="line">    }</span><br><span class="line">    notification_email_from keepalived@localhost</span><br><span class="line">    smtp_server 127.0.0.1</span><br><span class="line">    smtp_connect_timeout 30</span><br><span class="line">    router_id node1</span><br><span class="line">    vrrp_mcast_group4 224.0.100.18</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">vrrp_script chk_haproxy {</span><br><span class="line">    script <span class="string">&quot;killall -0 haproxy&quot;</span></span><br><span class="line">    interval 1</span><br><span class="line">    weight -5</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">vrrp_instance VI_1 {</span><br><span class="line">    state MASTER</span><br><span class="line">    interface eno16777736</span><br><span class="line">    virtual_router_id 66</span><br><span class="line">    priority 100</span><br><span class="line">    advert_int 1</span><br><span class="line"></span><br><span class="line">    authentication {</span><br><span class="line">        auth_<span class="built_in">type</span> PASS</span><br><span class="line">        auth_pass sdfhj23H</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    virtual_ipaddress {</span><br><span class="line">        172.16.60.100/32 dev eno16777736</span><br><span class="line">    }</span><br><span class="line">    track_script {</span><br><span class="line">        chk_haproxy</span><br><span class="line">    }</span><br><span class="line">    notify_master <span class="string">&quot;/etc/keepalived/notify.sh master&quot;</span></span><br><span class="line">    notify_backup <span class="string">&quot;/etc/keepalived/notify.sh backup&quot;</span></span><br><span class="line">    notify_fault <span class="string">&quot;/etc/keepalived/notify.sh fault&quot;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">!Configuration File <span class="keyword">for</span> keepalived</span><br><span class="line">global_defs {</span><br><span class="line">    notification_email {</span><br><span class="line">        root@localhost</span><br><span class="line">    }</span><br><span class="line">    notification_email_from keepalived@localhost</span><br><span class="line">    smtp_server 127.0.0.1</span><br><span class="line">    smtp_connect_timeout 30</span><br><span class="line">    router_id node1</span><br><span class="line">    vrrp_mcast_group4 224.0.100.18</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">vrrp_script chk_haproxy {</span><br><span class="line">    script <span class="string">&quot;killall -0 haproxy&quot;</span></span><br><span class="line">    interval 1</span><br><span class="line">    weight -5</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">vrrp_instance VI_1 {</span><br><span class="line">    state MASTER</span><br><span class="line">    interface eno16777736</span><br><span class="line">    virtual_router_id 66</span><br><span class="line">    priority 100</span><br><span class="line">    advert_int 1</span><br><span class="line"></span><br><span class="line">    authentication {</span><br><span class="line">        auth_type PASS</span><br><span class="line">        auth_pass sdfhj23H</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    virtual_ipaddress {</span><br><span class="line">        172.16.60.100/32 dev eno16777736</span><br><span class="line">    }</span><br><span class="line">    track_script {</span><br><span class="line">        chk_haproxy</span><br><span class="line">    }</span><br><span class="line">    notify_master <span class="string">&quot;/etc/keepalived/notify.sh master&quot;</span></span><br><span class="line">    notify_backup <span class="string">&quot;/etc/keepalived/notify.sh backup&quot;</span></span><br><span class="line">    notify_fault <span class="string">&quot;/etc/keepalived/notify.sh fault&quot;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>BACKUP&#x914D;&#x7F6E;(172.16.60.4)<br> &#x590D;&#x5236;MASTER&#x914D;&#x7F6E;&#x5E76;&#x505A;&#x5982;&#x4E0B;&#x51E0;&#x5904;&#x4FEE;&#x6539;</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router_id node2</span><br><span class="line">state BACKUP</span><br><span class="line">priority 97</span><br></pre></td></tr></table></figure>
@@ -503,8 +505,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/22/keepalived-haproxy-varnish实现web动静分离/"
-           data-title="keepalived+haproxy+varnish实现web动静分离" data-url="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/">
+      <div class="ds-thread" data-thread-key="2016/08/22/keepalived-haproxy-varnish实现web动静分离/" data-title="keepalived+haproxy+varnish实现web动静分离" data-url="http://liu2lin600.github.io/2016/08/22/keepalived-haproxy-varnish实现web动静分离/">
       </div>
     
   </div>
@@ -529,7 +530,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -539,17 +540,15 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/b.jpg"
-               alt="Liu2lin600" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/b.jpg" alt="Liu2lin600">
           <p class="site-author-name" itemprop="name">Liu2lin600</p>
           <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -557,7 +556,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -566,7 +565,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -649,10 +648,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>

@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,21 +63,21 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="rpm,程序包管理," />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="程序包管理,rpm,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
 
 
 
@@ -85,17 +85,19 @@
 
 
 <meta name="description" content="RPM&amp;#x5305;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;rpm">
+<meta name="keywords" content="程序包管理,rpm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux程序包管理之rpm">
 <meta property="og:url" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/index.html">
-<meta property="og:site_name" content="600's life">
+<meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="RPM&amp;#x5305;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;rpm">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmInstall.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmUpdate.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmErase.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmQuery.png">
 <meta property="og:image" content="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/rpmVertify.png">
-<meta property="og:updated_time" content="2016-05-31T01:50:28.865Z">
+<meta property="og:updated_time" content="2016-05-31T01:50:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux程序包管理之rpm">
 <meta name="twitter:description" content="RPM&amp;#x5305;&amp;#x7BA1;&amp;#x7406;&amp;#x5DE5;&amp;#x5177;rpm">
@@ -120,7 +122,7 @@
   <title> Linux程序包管理之rpm | 600's life </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -141,12 +143,12 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">600's life</span>
       <span class="logo-line-after"><i></i></span>
@@ -173,7 +175,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -183,7 +185,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -193,7 +195,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -203,7 +205,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -213,7 +215,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -226,7 +228,7 @@
             <a href="#" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
             搜索
           </a>
@@ -269,7 +271,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -298,14 +300,14 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
                   <a href="/categories/Linux基础/" itemprop="url" rel="index">
                     <span itemprop="name">Linux基础</span>
                   </a>
@@ -337,7 +339,7 @@
           
               &nbsp; | &nbsp;
               <span class="page-pv">阅读次数
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
               </span>
           
         </div>
@@ -358,9 +360,9 @@
 <h3 id="&#x547D;&#x540D;"><a href="#&#x547D;&#x540D;" class="headerlink" title="&#x547D;&#x540D;"></a>&#x547D;&#x540D;</h3><p><strong>&#x6E90;&#x7801;&#x5305;</strong>&#xFF1A;thrift-0.9.3.tar.gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thrift: &#x5305;&#x540D;  </span><br><span class="line">0.9.3:  &#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;0&#x4E3A;&#x4E3B;&#x7248;&#x672C;&#x53F7;&#xFF0C;9&#x8868;&#x793A;&#x6B21;&#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;3&#x4E3A;&#x6E90;&#x7801;&#x5305;&#x53D1;&#x884C;&#x53F7;  </span><br><span class="line">tar.gz&#xFF1A;&#x4EE5;gz&#x683C;&#x5F0F;&#x538B;&#x7F29;</span><br></pre></td></tr></table></figure></p>
 <p><strong>RPM&#x5305;</strong>&#xFF1A;httpd-devel-2.4.6-40.el7.centos.x86_64.rpm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">httpd: &#x4E3B;&#x5305;&#x540D;</span><br><span class="line">devel: &#x5206;&#x5305;&#x540D;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x4E3B;&#x5305;&#x5219;&#x65E0;&#x6B64;&#x9879;</span><br><span class="line">2.4.6: &#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;2&#x4E3A;&#x4E3B;&#x7248;&#x672C;&#x53F7;&#xFF0C;0&#x8868;&#x793A;&#x6B21;&#x7248;&#x672C;&#x4FE1;&#x606F;&#xFF0C;35&#x4E3A;&#x6E90;&#x7801;&#x5305;&#x53D1;&#x884C;&#x53F7;&#xFF0C;&#x4E5F;&#x53EB;&#x4FEE;&#x8BA2;&#x53F7;</span><br><span class="line">40.el7: &#x53D1;&#x884C;&#x4FE1;&#x606F;&#xFF0C;40&#x8868;&#x793A;rpm&#x7684;&#x53D1;&#x884C;&#x53F7;&#xFF0C;el6&#x8868;&#x793A;REHL7</span><br><span class="line">x86_64: &#x9002;&#x7528;&#x5E73;&#x53F0;&#xFF0C;&#x5E38;&#x6709;i386-i686,x86_64,noarch,powerpc,ppc</span><br><span class="line">rpm: &#x540E;&#x7F00;&#x540D;</span><br></pre></td></tr></table></figure></p>
 <h3 id="&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;"><a href="#&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;" class="headerlink" title="&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;"></a>&#x83B7;&#x53D6;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x9014;&#x5F84;&#xFF1A;</h3><ol>
-<li>&#x7CFB;&#x7EDF;&#x53D1;&#x7248;&#x7684;&#x5149;&#x76D8;&#x6216;&#x5B98;&#x65B9;&#x7684;&#x670D;&#x52A1;&#x5668;<br><a href="http://mirrors.aliyun.com" target="_blank" rel="external">http://mirrors.aliyun.com</a><br><a href="http://mirrors.163.com" target="_blank" rel="external">http://mirrors.163.com</a></li>
-<li>&#x9879;&#x76EE;&#x5B98;&#x65B9;&#x7AD9;&#x70B9;<br><a href="https://thrift.apache.org/" target="_blank" rel="external">https://thrift.apache.org/</a><br><a href="http://redis.io/" target="_blank" rel="external">http://redis.io/</a></li>
-<li>&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x7EC7;&#xFF08;EPEL&#xFF09;<br><a href="http://pkgs.org" target="_blank" rel="external">http://pkgs.org</a><br><a href="http://rpmfind.net" target="_blank" rel="external">http://rpmfind.net</a><br><a href="http://rpm.pbone.net" target="_blank" rel="external">http://rpm.pbone.net</a></li>
+<li>&#x7CFB;&#x7EDF;&#x53D1;&#x7248;&#x7684;&#x5149;&#x76D8;&#x6216;&#x5B98;&#x65B9;&#x7684;&#x670D;&#x52A1;&#x5668;<br><a href="http://mirrors.aliyun.com" target="_blank" rel="noopener">http://mirrors.aliyun.com</a><br><a href="http://mirrors.163.com" target="_blank" rel="noopener">http://mirrors.163.com</a></li>
+<li>&#x9879;&#x76EE;&#x5B98;&#x65B9;&#x7AD9;&#x70B9;<br><a href="https://thrift.apache.org/" target="_blank" rel="noopener">https://thrift.apache.org/</a><br><a href="http://redis.io/" target="_blank" rel="noopener">http://redis.io/</a></li>
+<li>&#x7B2C;&#x4E09;&#x65B9;&#x7EC4;&#x7EC7;&#xFF08;EPEL&#xFF09;<br><a href="http://pkgs.org" target="_blank" rel="noopener">http://pkgs.org</a><br><a href="http://rpmfind.net" target="_blank" rel="noopener">http://rpmfind.net</a><br><a href="http://rpm.pbone.net" target="_blank" rel="noopener">http://rpm.pbone.net</a></li>
 <li>&#x81EA;&#x5DF1;&#x5236;&#x4F5C;rpm&#x5305;</li>
 </ol>
 <h2 id="&#x7528;&#x6CD5;"><a href="#&#x7528;&#x6CD5;" class="headerlink" title="&#x7528;&#x6CD5;"></a>&#x7528;&#x6CD5;</h2><p>&#x8BF4;&#x660E;&#xFF1A;  </p>
@@ -451,9 +453,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/rpm/" rel="tag">#rpm</a>
-          
             <a href="/tags/程序包管理/" rel="tag">#程序包管理</a>
+          
+            <a href="/tags/rpm/" rel="tag">#rpm</a>
           
         </div>
       
@@ -498,8 +500,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/28/Linux程序包管理之rpm/"
-           data-title="Linux程序包管理之rpm" data-url="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/">
+      <div class="ds-thread" data-thread-key="2016/05/28/Linux程序包管理之rpm/" data-title="Linux程序包管理之rpm" data-url="http://liu2lin600.github.io/2016/05/28/Linux程序包管理之rpm/">
       </div>
     
   </div>
@@ -524,7 +525,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -534,17 +535,15 @@
       
 
       <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/b.jpg"
-               alt="Liu2lin600" />
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/uploads/b.jpg" alt="Liu2lin600">
           <p class="site-author-name" itemprop="name">Liu2lin600</p>
           <p class="site-description motion-element" itemprop="description">记录生活，学习</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -552,7 +551,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -561,7 +560,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -644,10 +643,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>
