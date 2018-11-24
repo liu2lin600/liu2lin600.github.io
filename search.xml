@@ -3568,7 +3568,7 @@ lsmod | grep nf_conntrack
     
     <entry>
       <title><![CDATA[常用命令--文件目录]]></title>
-      <url>http://liu2lin600.github.io/2016/05/21/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4--%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C/</url>
+      <url>http://liu2lin600.github.io/2016/05/21/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4--%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95/</url>
       <content type="html"><![CDATA[<p>&#x5305;&#x62EC;&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x5F55;&#x7684;&#x67E5;&#x770B;&#x3001;&#x521B;&#x5EFA;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x5220;&#x9664;&#x7B49;&#x4E00;&#x7CFB;&#x5217;&#x76F8;&#x5173;&#x64CD;&#x4F5C;&#x5185;&#x5BB9;<br><a id="more"></a></p>
 <h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h4><p><code>ls [OPTION]... FILE...</code>  </p>
 <p>List &#x663E;&#x793A;&#x76EE;&#x6807;&#x5217;&#x8868;</p>
