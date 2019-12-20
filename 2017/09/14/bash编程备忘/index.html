@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="bash&amp;#x7F16;&amp;#x7A0B;&amp;#x5907;&amp;#x5FD8;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-22T09:07:34.065Z">
+<meta property="og:updated_time" content="2018-11-30T06:14:57.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bash编程备忘">
 <meta name="twitter:description" content="bash&amp;#x7F16;&amp;#x7A0B;&amp;#x5907;&amp;#x5FD8;">
@@ -484,7 +484,8 @@
 <ul>
 <li>&#x591A;&#x7EBF;&#x7A0B;</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># &#x4F7F;&#x7528;(CMD)&#x65B9;&#x5F0F;fork&#x4E00;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x6765;&#x6267;&#x884C;</span><br><span class="line"></span><br><span class="line">num=10</span><br><span class="line">function multi_test(){</span><br><span class="line">    echo &quot;working...&quot;</span><br><span class="line">    sleep 2</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">for ((i=0; i &lt; num ;i++)); do</span><br><span class="line">    echo &quot;Fork job $i&quot;</span><br><span class="line">    (multi_test) &amp;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">wait</span><br><span class="line">echo &quot;All job done!&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 1. &#x4F7F;&#x7528;(CMD)&#x65B9;&#x5F0F;fork&#x4E00;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#x6765;&#x6267;&#x884C;</span><br><span class="line"></span><br><span class="line">num=10</span><br><span class="line">function multi_test(){</span><br><span class="line">    echo &quot;working...&quot;</span><br><span class="line">    sleep 2</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">for ((i=0; i &lt; num ;i++)); do</span><br><span class="line">    echo &quot;Fork job $i&quot;</span><br><span class="line">    (multi_test) &amp;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">wait</span><br><span class="line">echo &quot;All job done!&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 2. &#x4F7F;&#x7528;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;&#x53CA;&#x7BA1;&#x9053;&#x65B9;&#x5F0F;&#x7684;&#x591A;&#x8FDB;&#x7A0B;</span><br><span class="line"></span><br><span class="line">Nproc=24</span><br><span class="line">trap &quot;exec 999&gt;&amp;-;exec 999&lt;&amp;-;exit 0&quot; 2</span><br><span class="line">start=`date +%s`</span><br><span class="line"></span><br><span class="line">Pfifo=&quot;/tmp/$$.fifo&quot;</span><br><span class="line">mkfifo $Pfifo</span><br><span class="line">exec 999&lt;&gt;$Pfifo</span><br><span class="line">rm -f $Pfifo</span><br><span class="line"></span><br><span class="line">for((i=1; i&lt;=$Nproc; i++)); do</span><br><span class="line">    echo</span><br><span class="line">done &gt;&amp;999</span><br><span class="line"></span><br><span class="line">for i in {1..100}; do</span><br><span class="line">    read -u999</span><br><span class="line">    {</span><br><span class="line">        echo ${i}; sleep 1</span><br><span class="line">        echo &gt;&amp;999</span><br><span class="line">    }&amp;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">wait </span><br><span class="line">exec 999&gt;&amp;-;exec 999&lt;&amp;-</span><br><span class="line">end=`date +%s`</span><br><span class="line">echo &quot;Time:  $(($end-$start))s&quot;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>vim&#x7F16;&#x8F91;&#x8FDC;&#x7A0B;&#x6587;&#x4EF6;</li>
 </ul>
@@ -535,7 +536,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/22/Hadoop-常用命令/" rel="prev" title="Hadoop 常用命令">
+              <a href="/2018/01/22/Hadoop-常用命令/" rel="prev" title="Hadoop 常用命令">
                 Hadoop 常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -709,7 +710,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>

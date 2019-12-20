@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="600&#39;s life">
 <meta property="og:description" content="bash&amp;#x7279;&amp;#x6027;&amp;#x4ECB;&amp;#x7ECD;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-29T03:16:26.400Z">
+<meta property="og:updated_time" content="2018-11-29T04:07:20.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bash基本特性介绍">
 <meta name="twitter:description" content="bash&amp;#x7279;&amp;#x6027;&amp;#x4ECB;&amp;#x7ECD;">
@@ -375,9 +375,10 @@
 </ol>
 <p>&#x5E38;&#x7528;&#x6280;&#x5DE7;</p>
 <ul>
+<li><code>!STR</code>&#xFF1A;&#x8C03;&#x7528;&#x6700;&#x8FD1;&#x4EE5;STR&#x5F00;&#x5934;&#x7684;&#x547D;&#x4EE4;  </li>
 <li><code>!5</code>&#xFF1A;&#x8C03;&#x7528;&#x7B2C;5&#x4E2A;&#x5386;&#x53F2;&#xFF0C;&#x4E3A;&#x8D1F;&#x6570;&#x8868;&#x793A;&#x5012;&#x6570;    </li>
 <li><code>!5:2</code>&#xFF1A;&#x8C03;&#x7528;&#x7B2C;5&#x6761;&#x5386;&#x53F2;&#x7684;&#x7B2C;2&#x4E2A;&#x53C2;&#x6570;  </li>
-<li><code>!STR</code>&#xFF1A;&#x8C03;&#x7528;&#x6700;&#x8FD1;&#x4EE5;STR&#x5F00;&#x5934;&#x7684;&#x547D;&#x4EE4;  </li>
+<li><code>!-2:2</code>&#xFF1A;&#x8C03;&#x7528;&#x5012;&#x6570;&#x7B2C;&#x4E8C;&#x4E2A;&#x547D;&#x4EE4;&#x7B2C;2&#x4E2A;&#x53C2;&#x6570;  </li>
 <li><code>ESC</code>+<code>.</code>&#xFF1A;&#x8C03;&#x7528;&#x6700;&#x540E;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#xFF0C;&#x6CE8;&#x610F;&#x6309;<code>ESC</code>&#x540E;&#x677E;&#x5F00;&#x518D;&#x6309;<code>.</code>  </li>
 <li><code>!$</code>&#xFF1A;&#x6700;&#x540E;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53C2;&#x6570; (!5:$ &#x7B2C;5&#x6761;&#x547D;&#x4EE4;&#x6700;&#x540E;&#x53C2;&#x6570;&#xFF0C;&#x4E0B;&#x540C;)  </li>
 <li><code>!^</code>&#xFF1A;&#x6700;&#x540E;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;</li>
@@ -468,14 +469,13 @@
 <li>&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x91CD;&#x590D;&#x5B9A;&#x4E49;&#xFF1B;&#x6216;&#x8BA9;shell&#x8FDB;&#x7A0B;&#x91CD;&#x8BFB;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528; <code>.</code> &#x6216; <code>source</code> &#x6765;&#x751F;&#x6548;&#x914D;&#x7F6E;</li>
 </ul>
 <h3 id="13-&#x5176;&#x5B83;"><a href="#13-&#x5176;&#x5B83;" class="headerlink" title="13. &#x5176;&#x5B83;"></a>13. &#x5176;&#x5B83;</h3><ul>
-<li>&#x6267;&#x884C;&#x4E0A;&#x6761;&#x547D;&#x4EE4;&#xFF0C;&#x53D6;&#x4EE3;&#x6307;&#x5B9A;&#x5B57;&#x7B26;</li>
+<li><p>&#x6267;&#x884C;&#x4E0A;&#x6761;&#x547D;&#x4EE4;&#xFF0C;&#x53D6;&#x4EE3;&#x6307;&#x5B9A;&#x5B57;&#x7B26;</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp xxx data02:/ect/</span><br><span class="line">^data02^data03 			<span class="comment"># &#x7B49;&#x6548;&#x4E8E;scp xxx data03:/ect/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6392;&#x9664;</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm !(*.py) 		<span class="comment"># &#x5220;&#x9664;&#x9664;py&#x7ED3;&#x5C3E;&#x7684;&#x5176;&#x5B83;&#x6587;&#x4EF6;</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp xxx data02:/ect/</span><br><span class="line">^data02^data03 			<span class="comment"># &#x7B49;&#x6548;&#x4E8E;scp xxx data03:/ect/</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>&#x6392;&#x9664;</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm !(*.py) 		<span class="comment"># &#x5220;&#x9664;&#x9664;py&#x7ED3;&#x5C3E;&#x7684;&#x5176;&#x5B83;&#x6587;&#x4EF6;</span></span><br></pre></td></tr></table></figure>
-<p>&#x5927;&#x4F53;&#x4E0A;&#x5C31;&#x662F;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x4EE5;&#x540E;&#x78B0;&#x5230;&#x518D;&#x6DFB;&#x52A0;</p>
 
       
     </div>
@@ -688,7 +688,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-film"></i>
     <i class="fa fa-bicycle"></i>
